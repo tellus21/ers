@@ -1,8 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-// thenのあとに型をつけたい
-export function useQueryBase(feature: string) {
+// 与えられたfeatureをもとにAPIからデータを取得するhook
+export function useQueryBase(feature: string): {
+    isLoading: boolean
+    error: any
+    data: any
+} {
     const getData = () =>
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/${feature}`).then((res) =>
             res.json()
@@ -15,13 +19,18 @@ export function useQueryBase(feature: string) {
     return { isLoading, error, data }
 }
 
-export function useMutateBase(feature: string) {
+// 与えられたfeatureをもとにデータを作成、更新、削除するhook
+export function useMutateBase(feature: string): {
+    createNewDataMutation: any
+    updateSelectedDataMutation: any
+    deleteSelectedDataMutation: any
+} {
     const queryClient = useQueryClient()
     const invalidateAndRefetchData = () => {
         queryClient.invalidateQueries({ queryKey: [feature] })
     }
 
-    const postData = (postData) => {
+    const postData = (postData: any) => {
         return axios.post(
             `${process.env.NEXT_PUBLIC_API_URL}/${feature}`,
             postData
@@ -32,7 +41,7 @@ export function useMutateBase(feature: string) {
         onSuccess: invalidateAndRefetchData,
     })
 
-    const patchData = (patchData) => {
+    const patchData = (patchData: any) => {
         return axios.patch(
             `${process.env.NEXT_PUBLIC_API_URL}/${feature}/${patchData.id}`,
             patchData
