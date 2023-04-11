@@ -38,16 +38,12 @@ export function useRequest() {
     >
 
     // ---【InitialValues】---
-    const initialValues = {
-        id: 0,
+    const initialValues: FormValues = {
         user_id: 0,
         patient_id: 0,
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: new Date(),
     }
 
-    // ---【Validation】---
+    // ---【Validate】---
     const validate = {}
 
     // ---【Form】---
