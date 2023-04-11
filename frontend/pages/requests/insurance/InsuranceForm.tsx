@@ -1,7 +1,7 @@
-import { ExamFormBase } from '../components/ExamFormBase'
-import { ExamFieldsFourTwelve } from '../components/ExamFieldsFourTwelve'
-import { TitleText } from '../components/TitleText'
+import { ExamFormBase } from '@/pages/exams/components/ExamFormBase'
 import { useInsurance } from './useInsurance'
+import { TitleText } from '@/pages/exams/components/TitleText'
+import { ExamFieldsFourTwelve } from '@/pages/exams/components/ExamFieldsFourTwelve'
 
 export function InsuranceForm() {
     const { logicalName, resource, form, fields } = useInsurance()

@@ -1,9 +1,9 @@
 import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
-import { Field } from '@/common/types'
+import { Field, UseObject } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 
-export function useCondition() {
+export function useCondition(): UseObject {
     // ---【Name】---
     const logicalName = '患者状況'
     const physicalName = 'condition'
@@ -37,25 +37,11 @@ export function useCondition() {
         anything_memo: string
         created_at: Date
         updated_at: Date
-        deleted_at: Date
+        deleted_at: Date | null
     }
 
-    //検討中
-    // ---【Table】---
-    const columns = [
-        { accessor: 'id', title: 'id' },
-        { accessor: 'name', title: '名前', width: 150 },
-        { accessor: 'postal_code', title: '郵便番号' },
-        { accessor: 'address', title: '住所' },
-        { accessor: 'phone_number', title: '電話番号' },
-        { accessor: 'fax_number', title: 'FAX番号' },
-    ]
-
     // ---【FormValues】---
-    type FormValues = Omit<
-        Condition,
-        'id' | 'created_at' | 'updated_at' | 'deleted_at'
-    >
+    type FormValues = Omit<Condition, 'id'>
 
     // ---【InitialValues】---
     const initialValues: FormValues = {
@@ -79,6 +65,9 @@ export function useCondition() {
         surgery_history: '',
         other: '',
         anything_memo: '',
+        created_at: new Date(),
+        updated_at: new Date(),
+        deleted_at: null,
     }
 
     // ---【Validate】---
@@ -100,7 +89,6 @@ export function useCondition() {
     })
 
     // ---【Fields】---
-
     const fields: { first: Field[]; second: Field[] } = {
         first: [
             {
@@ -334,7 +322,6 @@ export function useCondition() {
         physicalName,
         resource,
         query,
-        columns,
         form,
         fields,
     }

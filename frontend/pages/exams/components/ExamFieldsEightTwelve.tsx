@@ -16,6 +16,7 @@ import { IconCalendar, IconClock } from '@tabler/icons-react'
 import { DisplayPickUpTimeList } from './DisplayPickUpTimeList'
 import { RadioMorningDaytime } from '../direction/RadioMorningDaytime'
 import { Field } from '@/common/types'
+import { KarteNumberInput } from '@/common/components/KarteNumberInput'
 
 interface ExamFieldsEightTwelveProps {
     form: any
@@ -170,6 +171,16 @@ export function ExamFieldsEightTwelve({
                                         textInput={field.textInput}
                                     />
                                 </Box>
+                            </Grid.Col>
+                        )
+                    case 'KarteNumberInput':
+                        return (
+                            <Grid.Col span={4} key={index}>
+                                <KarteNumberInput
+                                    form={form}
+                                    props={field.props}
+                                    formPath={field.formPath}
+                                />
                             </Grid.Col>
                         )
                     default:

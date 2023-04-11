@@ -1,30 +1,26 @@
-import { TimeInput } from '@mantine/dates'
-import { ExamFormBase } from '../components/ExamFormBase'
-import { ExamFieldsEightTwelve } from '../components/ExamFieldsEightTwelve'
-import { TitleText } from '../components/TitleText'
-import { useReservationInformation } from './useReservationInformationForm'
-import { Box, Divider, Group, Space, Stack, Text } from '@mantine/core'
+import { ExamFormBase } from '@/pages/exams/components/ExamFormBase'
+import { useAppointment } from './useAppointment'
+import { TitleText } from '@/pages/exams/components/TitleText'
+import { ExamFieldsEightTwelve } from '@/pages/exams/components/ExamFieldsEightTwelve'
+import { Divider } from '@mantine/core'
 
-export function ReservationInformationForm() {
-    const { logicalName, resource, form, fields } = useReservationInformation()
+export function AppointmentForm() {
+    const { logicalName, resource, form, fields } = useAppointment()
 
     return (
         <ExamFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
-
             {/* メタデータ */}
-            <ExamFieldsEightTwelve form={form} fields={fields.metaData} />
-
+            記載日：○○、記載者：○○
             {/* 診察関連 */}
             <Divider label="診察関連" />
             <ExamFieldsEightTwelve form={form} fields={fields.examination} />
-
             {/* 送迎関連 */}
             <Divider label="送迎関連" />
             <ExamFieldsEightTwelve form={form} fields={fields.pickUp} />
-
             {/* FAX関連 */}
             <Divider label="FAX関連" />
+            発信者：○○
             <ExamFieldsEightTwelve form={form} fields={fields.fax} />
         </ExamFormBase>
     )

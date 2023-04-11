@@ -1,7 +1,8 @@
 import { useQueryBase } from '@/common/hooks'
+import { UseObject } from '@/common/types'
 import { useForm } from '@mantine/form'
 
-export function useRequest() {
+export function useRequest(): UseObject {
     // ---【Name】---
     const logicalName = '検査依頼'
     const physicalName = 'request'
@@ -17,7 +18,7 @@ export function useRequest() {
         patient_id: number
         created_at: Date
         updated_at: Date
-        deleted_at: Date
+        deleted_at: Date | null
     }
 
     //検討中
@@ -32,15 +33,15 @@ export function useRequest() {
     ]
 
     // ---【FormValues】---
-    type FormValues = Omit<
-        Request,
-        'id' | 'created_at' | 'updated_at' | 'deleted_at'
-    >
+    type FormValues = Omit<Request, 'id'>
 
     // ---【InitialValues】---
     const initialValues: FormValues = {
         user_id: 0,
         patient_id: 0,
+        created_at: new Date(),
+        updated_at: new Date(),
+        deleted_at: null,
     }
 
     // ---【Validate】---
