@@ -11,8 +11,8 @@ export function ConditionForm() {
         <ExamFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
             <ExamFieldsFourTwelve form={form} fields={fields.first} />
-            {/* 感染症のとこ状況でいろいろやる必要あるので分けた、なければわけなくてよい */}
             <Box p={5} />
+
             <ExamFieldsFourTwelve form={form} fields={fields.second} />
         </ExamFormBase>
     )

@@ -25,16 +25,11 @@ export function useCondition() {
         allergy: string
         allergy_content: string
         infection: string
-        is_hbs_antigen: boolean
-        is_hcv: boolean
-        is_syphilis: boolean
-        is_hiv: boolean
-        is_mrsa: boolean
+        types_of_infection: string
         other_infection: string
-        is_intra_metal: boolean
+        intra_metal: string
         intra_metal_content: string
-        is_alcohol_prohibition: boolean
-        is_pacemaker: boolean
+        other_situations: string
         day_week: string
         diagnosis_day: string
         surgery_history: string
@@ -74,16 +69,11 @@ export function useCondition() {
         allergy: '',
         allergy_content: '',
         infection: '',
-        is_hbs_antigen: false,
-        is_hcv: false,
-        is_syphilis: false,
-        is_hiv: false,
-        is_mrsa: false,
+        types_of_infection: '',
         other_infection: '',
-        is_intra_metal: false,
+        intra_metal: '',
         intra_metal_content: '',
-        is_alcohol_prohibition: false,
-        is_pacemaker: false,
+        other_situations: '',
         day_week: '',
         diagnosis_day: '',
         surgery_history: '',
@@ -94,12 +84,13 @@ export function useCondition() {
     // ---【Validate】---
     const validate = {
         walking_state: isNotEmpty(isNotEmptyErrorMessage),
-        vaaccompaniment: isNotEmpty(isNotEmptyErrorMessage),
+        accompaniment: isNotEmpty(isNotEmptyErrorMessage),
         pickup: isNotEmpty(isNotEmptyErrorMessage),
         dementia: isNotEmpty(isNotEmptyErrorMessage),
         oxygen: isNotEmpty(isNotEmptyErrorMessage),
         allergy: isNotEmpty(isNotEmptyErrorMessage),
         infection: isNotEmpty(isNotEmptyErrorMessage),
+        intra_metal: isNotEmpty(isNotEmptyErrorMessage),
     }
 
     // ---【Form】---
@@ -118,7 +109,6 @@ export function useCondition() {
                 props: {
                     label: '歩行状態',
                     data: [
-                        '　',
                         '独歩',
                         '独歩・杖歩行',
                         '歩行器',
@@ -130,12 +120,11 @@ export function useCondition() {
                 },
             },
             {
-                formPath: 'attendant',
+                formPath: 'accompaniment',
                 component: 'Select',
                 props: {
                     label: '付添',
                     data: [
-                        '　',
                         '不要',
                         '施設',
                         '家族',
@@ -146,7 +135,7 @@ export function useCondition() {
                 },
             },
             {
-                formPath: 'pick_up',
+                formPath: 'pickup',
                 component: 'RadioYesNoUnknown',
                 props: {
                     label: '送迎',
@@ -171,7 +160,7 @@ export function useCondition() {
                 },
             },
             {
-                formPath: 'oxygen_quantity',
+                formPath: 'oxygen_amount',
                 component: 'TextInput',
                 props: {
                     label: '酸素量(L/分)',
@@ -180,11 +169,13 @@ export function useCondition() {
             {
                 formPath: 'allergy',
                 component: 'RadioYesNoUnknown',
-                props: { label: 'アレルギー' },
-                withAsterisk: true,
+                props: {
+                    label: 'アレルギー',
+                    withAsterisk: true,
+                },
             },
             {
-                formPath: 'allergy_detail',
+                formPath: 'allergy_content',
                 component: 'TextInput',
                 props: {
                     label: 'アレルギー内容',
@@ -202,10 +193,10 @@ export function useCondition() {
             },
             { component: 'Blank' },
             {
-                formPath: 'infections',
+                formPath: 'types_of_infection',
                 component: 'CheckboxGroup',
                 props: {
-                    label: '感染症選択',
+                    label: '感染症の種類',
                     children: [
                         {
                             label: 'HBS抗原',
@@ -238,7 +229,7 @@ export function useCondition() {
                 },
             },
             {
-                formPath: 'is_body_during_metal',
+                formPath: 'intra_metal',
                 component: 'RadioYesNoUnknown',
                 props: {
                     label: '体内金属',
@@ -246,7 +237,7 @@ export function useCondition() {
                 },
             },
             {
-                formPath: 'body_during_metal_detail',
+                formPath: 'intra_metal_content',
                 component: 'TextInput',
                 props: {
                     label: '体内金属内容',
@@ -271,51 +262,51 @@ export function useCondition() {
             },
             { component: 'Blank' },
             {
-                formPath: 'day_service_days',
+                formPath: 'day_week',
                 component: 'CheckboxGroup',
                 props: {
                     label: 'デイの曜日',
                     children: [
                         {
                             label: '月',
-                            value: 'monday',
+                            value: 'mon',
                         },
                         {
                             label: '火',
-                            value: 'tuesday',
+                            value: 'tues',
                         },
                         {
                             label: '水',
-                            value: 'wednesday',
+                            value: 'wed',
                         },
                         {
                             label: '木',
-                            value: 'thursday',
+                            value: 'thurs',
                         },
                         {
                             label: '金',
-                            value: 'friday',
+                            value: 'fri',
                         },
                         {
                             label: '土',
-                            value: 'saturday',
+                            value: 'sat',
                         },
                         {
                             label: '日',
-                            value: 'sunday',
+                            value: 'sun',
                         },
                     ],
                 },
             },
             {
-                formPath: 'medical_care_date',
+                formPath: 'diagnosis_day',
                 component: 'TextInput',
                 props: {
                     label: '診療日',
                 },
             },
             {
-                formPath: 'surgery_medical_history',
+                formPath: 'surgery_history',
                 component: 'Textarea',
                 props: {
                     label: '手術既往歴',

@@ -1,10 +1,11 @@
 import { Box, Grid, Select, TextInput, Textarea } from '@mantine/core'
 import { CheckboxGroup } from './CheckboxGroup'
 import { RadioYesNo } from './RadioYesNo'
+import { Field } from '@/common/types'
 
 interface ExamFieldsFourTwelveProps {
     form: any
-    fields: { component: string; props: any; formPath: string }[]
+    fields: Field[]
 }
 
 export function ExamFieldsFourTwelve({

@@ -15,10 +15,11 @@ import { DatePickerInput, MonthPickerInput, TimeInput } from '@mantine/dates'
 import { IconCalendar, IconClock } from '@tabler/icons-react'
 import { DisplayPickUpTimeList } from './DisplayPickUpTimeList'
 import { RadioMorningDaytime } from '../direction/RadioMorningDaytime'
+import { Field } from '@/common/types'
 
 interface ExamFieldsEightTwelveProps {
     form: any
-    fields: any
+    fields: Field[]
     disabled?: boolean
 }
 

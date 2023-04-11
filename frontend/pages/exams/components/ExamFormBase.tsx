@@ -25,9 +25,11 @@ export function ExamFormBase({ resource, form, children }: ExamFormBaseProps) {
             <form
                 onSubmit={form.onSubmit((values: any) => {
                     clickedButtonName === 'create'
-                        ? createNewDataMutation.mutate(values)
+                        ? // ? createNewDataMutation.mutate(values)
+                          console.log(values)
                         : clickedButtonName === 'update'
-                        ? updateSelectedDataMutation.mutate(values)
+                        ? // ? updateSelectedDataMutation.mutate(values)
+                          console.log(values)
                         : clickedButtonName === 'delete'
                         ? deleteSelectedDataMutation.mutate(values)
                         : null
