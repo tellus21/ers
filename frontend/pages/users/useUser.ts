@@ -10,11 +10,11 @@ export function useUser() {
     // ---【Name】---
     const logicalName = 'ユーザ'
     const physicalName = 'user'
-    const feature = 'users'
+    const resource = 'users'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface User {
@@ -149,7 +149,7 @@ export function useUser() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         query,
         columns,
         form,

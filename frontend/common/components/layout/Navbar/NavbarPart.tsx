@@ -105,7 +105,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 const data = [
-    { link: '/exams', label: '検査', icon: IconBellRinging },
+    { link: '/requests', label: '検査', icon: IconBellRinging },
     { link: '/patients', label: '患者', icon: IconReceipt },
     { link: '/nursing-homes', label: '入居施設', icon: IconFingerprint },
     { link: '/users', label: 'ユーザ', icon: IconFaceId },

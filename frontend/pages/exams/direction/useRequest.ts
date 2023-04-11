@@ -7,11 +7,11 @@ export function useRequest() {
     // ---【Name】---
     const logicalName = '依頼'
     const physicalName = 'request'
-    const feature = 'requests'
+    const resource = 'requests'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface Request {
@@ -107,7 +107,7 @@ export function useRequest() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         columns,
         query,
         form,

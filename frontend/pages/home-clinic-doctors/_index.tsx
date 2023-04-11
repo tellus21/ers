@@ -11,7 +11,7 @@ import {
 } from './useHomeClinicDoctor'
 
 const IndexObject = {
-    feature: 'home_clinic_doctors',
+    resource: 'home_clinic_doctors',
     logicalName: '在宅医師',
     formInitialValues: homeClinicDoctorInitialValues,
     formValidate: homeClinicDoctorValidate,

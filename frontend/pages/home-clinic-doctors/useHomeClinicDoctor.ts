@@ -11,11 +11,11 @@ export function useHomeClinicDoctor() {
     // ---【Name】---
     const logicalName = '在宅医師'
     const physicalName = 'home_clinic_doctor'
-    const feature = 'home_clinic_doctors'
+    const resource = 'home_clinic_doctors'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface HomeClinicDoctor {
@@ -88,7 +88,7 @@ export function useHomeClinicDoctor() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         query,
         columns,
         form,

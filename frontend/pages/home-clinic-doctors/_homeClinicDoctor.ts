@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { HomeClinic } from '../home-clinics/useHomeClinic'
 import { useHomeClinics } from '../home-clinics/_useHomeClinics'
 
-// ---【featureの基本type】---
+// ---【resourceの基本type】---
 // モデルをそのまま記載
 export interface HomeClinicDoctor {
     id: string

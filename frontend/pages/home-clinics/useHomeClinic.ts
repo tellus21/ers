@@ -2,7 +2,7 @@ import { isNotEmptyErrorMessage } from '@/common/constants'
 import {
 
     karteNumberLengthErrorMessage,
-} from 
+} from
 import { useQueryBase } from '@/common/hooks'
 
 import { hasLength, isNotEmpty, useForm } from '@mantine/form'
@@ -12,11 +12,11 @@ export function useHomeClinic() {
     // ---【Name】---
     const logicalName = '在宅クリニック'
     const physicalName = 'home_clinic'
-    const feature = 'home_clinics'
+    const resource = 'home_clinics'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface HomeClinic {
@@ -127,7 +127,7 @@ export function useHomeClinic() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         query,
         columns,
         form,

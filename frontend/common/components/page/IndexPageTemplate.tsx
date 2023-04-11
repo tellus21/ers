@@ -4,7 +4,7 @@ import { FormBase } from '../FormBase'
 import { NormalFields } from '../NormalFields'
 
 interface CommonIndexPageProps {
-    feature: string
+    resource: string
     logicalName: string
     modalSize?: string
     formInitialValues: any
@@ -15,7 +15,7 @@ interface CommonIndexPageProps {
 }
 
 export function IndexPageTemplate({
-    feature,
+    resource,
     logicalName,
     modalSize,
     formInitialValues,
@@ -32,13 +32,13 @@ export function IndexPageTemplate({
 
     return (
         <ModalAndDataTable
-            feature={feature}
+            resource={resource}
             logicalName={logicalName}
             modalSize={modalSize}
             form={form}
             tableColumns={tableColumns}
         >
-            <FormBase feature={feature} form={form}>
+            <FormBase resource={resource} form={form}>
                 <NormalFields form={form} fields={formFields} />
             </FormBase>
         </ModalAndDataTable>

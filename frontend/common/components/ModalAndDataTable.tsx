@@ -5,7 +5,7 @@ import { useQueryBase } from '../hooks'
 
 //templateTypeに|stringを加えないと、スプレッド構文を利用したときに、エラーになる。
 interface ModalAndDataTableProps {
-    feature: string
+    resource: string
     logicalName: string
     modalSize?: string
     children: React.ReactNode
@@ -14,7 +14,7 @@ interface ModalAndDataTableProps {
 }
 
 export function ModalAndDataTable({
-    feature,
+    resource,
     logicalName,
     modalSize,
     children,
@@ -23,8 +23,8 @@ export function ModalAndDataTable({
 }: ModalAndDataTableProps) {
     // TODO: IndexTemplate用のuseを作ってここに書く
     const [modalOpened, modalHandlers] = useDisclosure(false)
-    const { isLoading, error, data: query } = useQueryBase(feature)
-    const allQuery = query?.[feature]
+    const { isLoading, error, data: query } = useQueryBase(resource)
+    const allQuery = query?.[resource]
 
     isLoading ? <Loader /> : null
     error ? <Text>Errorです！</Text> : null

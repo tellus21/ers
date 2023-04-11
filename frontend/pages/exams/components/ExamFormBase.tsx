@@ -7,17 +7,17 @@ const captionUpdate = '更新'
 const captionDelete = '削除'
 
 interface ExamFormBaseProps {
-    feature: string
+    resource: string
     form: any
     children: React.ReactNode
 }
 
-export function ExamFormBase({ feature, form, children }: ExamFormBaseProps) {
+export function ExamFormBase({ resource, form, children }: ExamFormBaseProps) {
     const {
         createNewDataMutation,
         updateSelectedDataMutation,
         deleteSelectedDataMutation,
-    } = useMutateBase(feature)
+    } = useMutateBase(resource)
     const [clickedButtonName, setClickedButtonName] = useState<string>('')
     const onClickCreateButton = (): void => setClickedButtonName('create')
     const onClickUpdateButton = (): void => setClickedButtonName('update')

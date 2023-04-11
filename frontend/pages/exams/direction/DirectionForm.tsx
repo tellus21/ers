@@ -7,22 +7,22 @@ import { useDirectionForm } from './useDirectionForm'
 import { ExamFieldsEightTwelve } from '../components/ExamFieldsEightTwelve'
 
 interface DirectionFormProps {
-    feature: string
+    resource: string
     form: any
     activeTab: string | null
 }
 
 export function DirectionForm({
-    feature,
+    resource,
     form,
     activeTab,
 }: DirectionFormProps) {
     const { fields } = useDirectionForm()
 
     return (
-        <ExamFormBase feature={feature} form={form}>
+        <ExamFormBase resource={resource} form={form}>
             {/* メタデータ */}
-            {feature}
+            {resource}
             <button onClick={() => console.log(form)}>送信テスト</button>
             {(activeTab === 'request' && (
                 <ExamFieldsEightTwelve

@@ -1,14 +1,14 @@
 import { Box } from '@mantine/core'
-import { ExamFormBase } from '../components/ExamFormBase'
-import { ExamFieldsFourTwelve } from '../components/ExamFieldsFourTwelve'
-import { TitleText } from '../components/TitleText'
+import { ExamFormBase } from '../../exams/components/ExamFormBase'
+import { ExamFieldsFourTwelve } from '../../exams/components/ExamFieldsFourTwelve'
+import { TitleText } from '../../exams/components/TitleText'
 import { usePatientStatus } from './usePatientStatus'
 
 export function PatientStatusForm() {
-    const { logicalName, feature, form, fields } = usePatientStatus()
+    const { logicalName, resource, form, fields } = usePatientStatus()
 
     return (
-        <ExamFormBase feature={feature} form={form}>
+        <ExamFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
             <ExamFieldsFourTwelve form={form} fields={fields.first} />
             {/* 感染症のとこ状況でいろいろやる必要あるので分けた、なければわけなくてよい */}

@@ -10,11 +10,11 @@ export function usePatientStatus() {
     // ---【Name】---
     const logicalName = '患者状況'
     const physicalName = 'patientStatus'
-    const feature = 'patient_status'
+    const resource = 'patient_status'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface PatientStatus {
@@ -102,7 +102,7 @@ export function usePatientStatus() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         query,
         form,
         fields,

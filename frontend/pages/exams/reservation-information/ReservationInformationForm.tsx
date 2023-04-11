@@ -6,10 +6,10 @@ import { useReservationInformation } from './useReservationInformationForm'
 import { Box, Divider, Group, Space, Stack, Text } from '@mantine/core'
 
 export function ReservationInformationForm() {
-    const { logicalName, feature, form, fields } = useReservationInformation()
+    const { logicalName, resource, form, fields } = useReservationInformation()
 
     return (
-        <ExamFormBase feature={feature} form={form}>
+        <ExamFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
 
             {/* メタデータ */}

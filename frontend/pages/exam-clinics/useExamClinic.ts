@@ -10,11 +10,11 @@ export function useExamClinic() {
     // ---【Name】---
     const logicalName = '検査クリニック'
     const physicalName = 'exam_clinic'
-    const feature = 'exam_clinics'
+    const resource = 'exam_clinics'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface ExamClinic {
@@ -125,7 +125,7 @@ export function useExamClinic() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         query,
         columns,
         form,

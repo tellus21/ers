@@ -1,22 +1,20 @@
 import { Box } from '@mantine/core'
-import { useExam } from './useExam'
 import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
 import { GridItemsLayout } from '@/common/components/layout/GridItemsLayout'
-import { PatientInformation } from './patient-information/PatientInformation'
-import { PatientStatusForm } from './patient-status/PatientStatusForm'
-import { InsuranceForm } from './insurance/InsuranceForm'
-
-import { ReservationInformationForm } from './reservation-information/ReservationInformationForm'
-import { TabsSelectDirection } from './direction/TabsSelectDirection'
+import { useRequest } from './useRequest'
+import { PatientInformation } from '../exams/patient-information/PatientInformation'
+import { PatientStatusForm } from '../exams/patient-status/PatientStatusForm'
+import { InsuranceForm } from '../exams/insurance/InsuranceForm'
+import { TabsSelectDirection } from '../exams/direction/TabsSelectDirection'
+import { ReservationInformationForm } from '../exams/reservation-information/ReservationInformationForm'
 
 export default function Index() {
-    const { logicalName, physicalName, feature, query, columns, form } =
-        useExam()
+    const { logicalName, resource, columns, form } = useRequest()
 
     return (
         <Box>
             <ModalAndDataTable
-                feature={feature}
+                resource={resource}
                 logicalName={logicalName}
                 modalSize="100%"
                 form={form}
@@ -26,7 +24,6 @@ export default function Index() {
                     leftTop={<PatientInformation />}
                     leftCenter={<PatientStatusForm />}
                     leftBottom={<InsuranceForm />}
-                    // rightTop={<RequestForm form={form} />}
                     rightTop={<TabsSelectDirection />}
                     rightButtom={<ReservationInformationForm />}
                 />

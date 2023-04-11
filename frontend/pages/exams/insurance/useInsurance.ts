@@ -10,11 +10,11 @@ export function useInsurance() {
     // ---【Name】---
     const logicalName = '保険情報'
     const physicalName = 'insurance'
-    const feature = 'insurances'
+    const resource = 'insurances'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface Insurance {
@@ -130,7 +130,7 @@ export function useInsurance() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         query,
         form,
         fields,

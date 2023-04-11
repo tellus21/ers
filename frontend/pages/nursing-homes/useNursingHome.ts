@@ -10,11 +10,11 @@ export function useNursingHome() {
     // ---【Name】---
     const logicalName = '入居施設'
     const physicalName = 'nursing_home'
-    const feature = 'nursing_homes'
+    const resource = 'nursing_homes'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface NursingHome {
@@ -163,7 +163,7 @@ export function useNursingHome() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         query,
         columns,
         form,

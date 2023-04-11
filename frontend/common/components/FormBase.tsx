@@ -7,18 +7,18 @@ const captionUpdate = '更新'
 const captionDelete = '削除'
 
 interface FormBaseProps {
-    feature: string
+    resource: string
     form: any
     children: React.ReactNode
 }
 
 // 新規の場合はinitialValues空欄、更新と削除の場合はPropsで受け渡し
-export function FormBase({ feature, form, children }: FormBaseProps) {
+export function FormBase({ resource, form, children }: FormBaseProps) {
     const {
         createNewDataMutation,
         updateSelectedDataMutation,
         deleteSelectedDataMutation,
-    } = useMutateBase(feature)
+    } = useMutateBase(resource)
     const [clickedButtonName, setClickedButtonName] = useState<string>('')
     const onClickCreateButton = (): void => setClickedButtonName('create')
     const onClickUpdateButton = (): void => setClickedButtonName('update')

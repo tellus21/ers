@@ -13,11 +13,11 @@ export function useReservation() {
     // ---【Name】---
     const logicalName = '予約'
     const physicalName = 'reservation'
-    const feature = 'reservations'
+    const resource = 'reservations'
 
     // ---【API】---
     // physicalNameでデータ取れるようにしたほうがいいかも
-    const { data: query } = useQueryBase(feature)
+    const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface Reservation {
@@ -113,7 +113,7 @@ export function useReservation() {
     return {
         logicalName,
         physicalName,
-        feature,
+        resource,
         columns,
         query,
         form,

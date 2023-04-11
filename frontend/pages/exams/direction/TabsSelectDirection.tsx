@@ -10,10 +10,10 @@ import { useReservation } from './useReservation'
 
 export function TabsSelectDirection() {
     const [activeTab, setActiveTab] = useState<string | null>('request')
-    const requestFeature = 'request'
-    const reservationFeature = 'reservation'
-    const { feature: reauests, form: requestForm } = useRequest()
-    const { feature: reservations, form: reservationForm } = useReservation()
+    const requestresource = 'request'
+    const reservationresource = 'reservation'
+    const { resource: reauests, form: requestForm } = useRequest()
+    const { resource: reservations, form: reservationForm } = useReservation()
 
     return (
         <Box>
@@ -34,7 +34,7 @@ export function TabsSelectDirection() {
                 <Tabs.Panel value="request" pt="xs">
                     <Group position="right">○○年○○月○○日　依頼: 関</Group>
                     <DirectionForm
-                        feature={reauests}
+                        resource={reauests}
                         form={requestForm}
                         activeTab={activeTab}
                     />
@@ -43,7 +43,7 @@ export function TabsSelectDirection() {
                 <Tabs.Panel value="reservation" pt="xs">
                     <Group position="right">○○年○○月○○日　依頼: 亀谷</Group>
                     <DirectionForm
-                        feature={reservations}
+                        resource={reservations}
                         form={reservationForm}
                         activeTab={activeTab}
                     />

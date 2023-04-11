@@ -1,38 +1,38 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
-// 与えられたfeatureをもとにAPIからデータを取得するhook
-export function useQueryBase(feature: string): {
+// 与えられたresourceをもとにAPIからデータを取得するhook
+export function useQueryBase(resource: string): {
     isLoading: boolean
     error: any
     data: any
 } {
     const getData = () =>
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/${feature}`).then((res) =>
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/${resource}`).then((res) =>
             res.json()
         )
     const { isLoading, error, data } = useQuery({
-        queryKey: [feature],
+        queryKey: [resource],
         queryFn: getData,
     })
 
     return { isLoading, error, data }
 }
 
-// 与えられたfeatureをもとにデータを作成、更新、削除するhook
-export function useMutateBase(feature: string): {
+// 与えられたresourceをもとにデータを作成、更新、削除するhook
+export function useMutateBase(resource: string): {
     createNewDataMutation: any
     updateSelectedDataMutation: any
     deleteSelectedDataMutation: any
 } {
     const queryClient = useQueryClient()
     const invalidateAndRefetchData = () => {
-        queryClient.invalidateQueries({ queryKey: [feature] })
+        queryClient.invalidateQueries({ queryKey: [resource] })
     }
 
     const postData = (postData: any) => {
         return axios.post(
-            `${process.env.NEXT_PUBLIC_API_URL}/${feature}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/${resource}`,
             postData
         )
     }
@@ -43,7 +43,7 @@ export function useMutateBase(feature: string): {
 
     const patchData = (patchData: any) => {
         return axios.patch(
-            `${process.env.NEXT_PUBLIC_API_URL}/${feature}/${patchData.id}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/${resource}/${patchData.id}`,
             patchData
         )
     }
@@ -54,7 +54,7 @@ export function useMutateBase(feature: string): {
 
     const deleteData = (deleteData) => {
         return axios.delete(
-            `${process.env.NEXT_PUBLIC_API_URL}/${feature}/${deleteData.id}`
+            `${process.env.NEXT_PUBLIC_API_URL}/${resource}/${deleteData.id}`
         )
     }
     const deleteSelectedDataMutation = useMutation({
