@@ -1,5 +1,6 @@
 import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
+import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 
 export function useCondition() {
@@ -108,234 +109,235 @@ export function useCondition() {
     })
 
     // ---【Fields】---
-    const first = [
-        {
-            formPath: 'walking_state',
-            component: 'Select',
-            props: {
-                label: '歩行状態',
-                data: [
-                    '　',
-                    '独歩',
-                    '独歩・杖歩行',
-                    '歩行器',
-                    '車椅子・立位可',
-                    '車椅子・立位不可',
-                    'ストレッチャー',
-                ],
-                withAsterisk: true,
-            },
-        },
-        {
-            formPath: 'attendant',
-            component: 'Select',
-            props: {
-                label: '付添',
-                data: [
-                    '　',
-                    '不要',
-                    '施設',
-                    '家族',
-                    '必要・院内',
-                    '必要・送迎院内',
-                ],
-                withAsterisk: true,
-            },
-        },
-        {
-            formPath: 'pick_up',
-            component: 'RadioYesNoUnknown',
-            props: {
-                label: '送迎',
-                withAsterisk: true,
-            },
-        },
 
-        {
-            formPath: 'dementia',
-            component: 'RadioYesNoUnknown',
-            props: {
-                label: '認知症',
-                withAsterisk: true,
+    const fields: { first: Field[]; second: Field[] } = {
+        first: [
+            {
+                formPath: 'walking_state',
+                component: 'Select',
+                props: {
+                    label: '歩行状態',
+                    data: [
+                        '　',
+                        '独歩',
+                        '独歩・杖歩行',
+                        '歩行器',
+                        '車椅子・立位可',
+                        '車椅子・立位不可',
+                        'ストレッチャー',
+                    ],
+                    withAsterisk: true,
+                },
             },
-        },
-        {
-            formPath: 'oxygen',
-            component: 'RadioYesNoUnknown',
-            props: {
-                label: '酸素',
-                withAsterisk: true,
+            {
+                formPath: 'attendant',
+                component: 'Select',
+                props: {
+                    label: '付添',
+                    data: [
+                        '　',
+                        '不要',
+                        '施設',
+                        '家族',
+                        '必要・院内',
+                        '必要・送迎院内',
+                    ],
+                    withAsterisk: true,
+                },
             },
-        },
-        {
-            formPath: 'oxygen_quantity',
-            component: 'TextInput',
-            props: {
-                label: '酸素量(L/分)',
+            {
+                formPath: 'pick_up',
+                component: 'RadioYesNoUnknown',
+                props: {
+                    label: '送迎',
+                    withAsterisk: true,
+                },
             },
-        },
-        {
-            formPath: 'allergy',
-            component: 'RadioYesNoUnknown',
-            props: { label: 'アレルギー' },
-            withAsterisk: true,
-        },
-        {
-            formPath: 'allergy_detail',
-            component: 'TextInput',
-            props: {
-                label: 'アレルギー内容',
-            },
-        },
-    ]
 
-    const second = [
-        {
-            formPath: 'infection',
-            component: 'RadioYesNoUnknown',
-            props: {
-                label: '感染症',
+            {
+                formPath: 'dementia',
+                component: 'RadioYesNoUnknown',
+                props: {
+                    label: '認知症',
+                    withAsterisk: true,
+                },
+            },
+            {
+                formPath: 'oxygen',
+                component: 'RadioYesNoUnknown',
+                props: {
+                    label: '酸素',
+                    withAsterisk: true,
+                },
+            },
+            {
+                formPath: 'oxygen_quantity',
+                component: 'TextInput',
+                props: {
+                    label: '酸素量(L/分)',
+                },
+            },
+            {
+                formPath: 'allergy',
+                component: 'RadioYesNoUnknown',
+                props: { label: 'アレルギー' },
                 withAsterisk: true,
             },
-        },
-        { component: 'Blank' },
-        {
-            formPath: 'infections',
-            component: 'CheckboxGroup',
-            props: {
-                label: '感染症選択',
-                children: [
-                    {
-                        label: 'HBS抗原',
-                        value: 'is_hbs_antigen',
-                    },
-                    {
-                        label: 'HCV',
-                        value: 'is_hcv',
-                    },
-                    {
-                        label: '梅毒',
-                        value: 'is_syphilis',
-                    },
-                    {
-                        label: 'HIV',
-                        value: 'is_hiv',
-                    },
-                    {
-                        label: 'MRSA',
-                        value: 'is_mrsa',
-                    },
-                ],
+            {
+                formPath: 'allergy_detail',
+                component: 'TextInput',
+                props: {
+                    label: 'アレルギー内容',
+                },
             },
-        },
-        {
-            formPath: 'other_infection',
-            component: 'TextInput',
-            props: {
-                label: 'その他感染症',
+        ],
+        second: [
+            {
+                formPath: 'infection',
+                component: 'RadioYesNoUnknown',
+                props: {
+                    label: '感染症',
+                    withAsterisk: true,
+                },
             },
-        },
-        {
-            formPath: 'is_body_during_metal',
-            component: 'RadioYesNoUnknown',
-            props: {
-                label: '体内金属',
-                withAsterisk: true,
+            { component: 'Blank' },
+            {
+                formPath: 'infections',
+                component: 'CheckboxGroup',
+                props: {
+                    label: '感染症選択',
+                    children: [
+                        {
+                            label: 'HBS抗原',
+                            value: 'is_hbs_antigen',
+                        },
+                        {
+                            label: 'HCV',
+                            value: 'is_hcv',
+                        },
+                        {
+                            label: '梅毒',
+                            value: 'is_syphilis',
+                        },
+                        {
+                            label: 'HIV',
+                            value: 'is_hiv',
+                        },
+                        {
+                            label: 'MRSA',
+                            value: 'is_mrsa',
+                        },
+                    ],
+                },
             },
-        },
-        {
-            formPath: 'body_during_metal_detail',
-            component: 'TextInput',
-            props: {
-                label: '体内金属内容',
+            {
+                formPath: 'other_infection',
+                component: 'TextInput',
+                props: {
+                    label: 'その他感染症',
+                },
             },
-        },
-        {
-            formPath: 'other_situations',
-            component: 'CheckboxGroup',
-            props: {
-                label: 'その他状況',
-                children: [
-                    {
-                        label: 'アルコール禁',
-                        value: 'is_alcohol_prohibiting',
-                    },
-                    {
-                        label: 'ペースメーカー有',
-                        value: 'is_pace_maker',
-                    },
-                ],
+            {
+                formPath: 'is_body_during_metal',
+                component: 'RadioYesNoUnknown',
+                props: {
+                    label: '体内金属',
+                    withAsterisk: true,
+                },
             },
-        },
-        { component: 'Blank' },
-        {
-            formPath: 'day_service_days',
-            component: 'CheckboxGroup',
-            props: {
-                label: 'デイの曜日',
-                children: [
-                    {
-                        label: '月',
-                        value: 'monday',
-                    },
-                    {
-                        label: '火',
-                        value: 'tuesday',
-                    },
-                    {
-                        label: '水',
-                        value: 'wednesday',
-                    },
-                    {
-                        label: '木',
-                        value: 'thursday',
-                    },
-                    {
-                        label: '金',
-                        value: 'friday',
-                    },
-                    {
-                        label: '土',
-                        value: 'saturday',
-                    },
-                    {
-                        label: '日',
-                        value: 'sunday',
-                    },
-                ],
+            {
+                formPath: 'body_during_metal_detail',
+                component: 'TextInput',
+                props: {
+                    label: '体内金属内容',
+                },
             },
-        },
-        {
-            formPath: 'medical_care_date',
-            component: 'TextInput',
-            props: {
-                label: '診療日',
+            {
+                formPath: 'other_situations',
+                component: 'CheckboxGroup',
+                props: {
+                    label: 'その他状況',
+                    children: [
+                        {
+                            label: 'アルコール禁',
+                            value: 'is_alcohol_prohibiting',
+                        },
+                        {
+                            label: 'ペースメーカー有',
+                            value: 'is_pace_maker',
+                        },
+                    ],
+                },
             },
-        },
-        {
-            formPath: 'surgery_medical_history',
-            component: 'Textarea',
-            props: {
-                label: '手術既往歴',
+            { component: 'Blank' },
+            {
+                formPath: 'day_service_days',
+                component: 'CheckboxGroup',
+                props: {
+                    label: 'デイの曜日',
+                    children: [
+                        {
+                            label: '月',
+                            value: 'monday',
+                        },
+                        {
+                            label: '火',
+                            value: 'tuesday',
+                        },
+                        {
+                            label: '水',
+                            value: 'wednesday',
+                        },
+                        {
+                            label: '木',
+                            value: 'thursday',
+                        },
+                        {
+                            label: '金',
+                            value: 'friday',
+                        },
+                        {
+                            label: '土',
+                            value: 'saturday',
+                        },
+                        {
+                            label: '日',
+                            value: 'sunday',
+                        },
+                    ],
+                },
             },
-        },
-        {
-            formPath: 'other',
-            component: 'Textarea',
-            props: {
-                label: 'その他',
+            {
+                formPath: 'medical_care_date',
+                component: 'TextInput',
+                props: {
+                    label: '診療日',
+                },
             },
-        },
-        {
-            formPath: 'anything_memo',
-            component: 'Textarea',
-            props: {
-                label: 'なんでもメモ',
+            {
+                formPath: 'surgery_medical_history',
+                component: 'Textarea',
+                props: {
+                    label: '手術既往歴',
+                },
             },
-        },
-    ]
+            {
+                formPath: 'other',
+                component: 'Textarea',
+                props: {
+                    label: 'その他',
+                },
+            },
+            {
+                formPath: 'anything_memo',
+                component: 'Textarea',
+                props: {
+                    label: 'なんでもメモ',
+                },
+            },
+        ],
+    }
 
-    const fields = { first: first, second: second }
     return {
         logicalName,
         physicalName,

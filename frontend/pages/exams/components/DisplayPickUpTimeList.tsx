@@ -17,9 +17,9 @@ export function DisplayPickUpTimeList({
                     <Stack spacing="xs" align="center" key={index}>
                         <Group spacing="xs">
                             <Text>{homeClinics.name}</Text>
-                            <Text bg="gray.0" p={5}>
+                            <Box bg="gray.0" p={5}>
                                 {homeClinics.time}
-                            </Text>
+                            </Box>
                             <Divider size="xs" orientation="vertical" />
                         </Group>
                     </Stack>

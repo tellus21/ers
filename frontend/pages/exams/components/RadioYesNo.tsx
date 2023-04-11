@@ -7,18 +7,17 @@ interface RadioYesProps {
     unKnown?: boolean
 }
 
-export function RadioYesNo({ form, props, formPath, unKnown }: RadioYesProps) {
-    return (
-        <Radio.Group
-            description="　"
-            {...props}
-            {...form.getInputProps(formPath)}
-        >
-            <Group>
-                {unKnown && <Radio value="unKnown" label="不明" />}
-                <Radio value="no" label="無" />
-                <Radio value="yes" label="有" />
-            </Group>
-        </Radio.Group>
-    )
-}
+export const RadioYesNo = ({
+    form,
+    props,
+    formPath,
+    unKnown,
+}: RadioYesProps) => (
+    <Radio.Group description="　" {...props} {...form.getInputProps(formPath)}>
+        <Group>
+            {unKnown && <Radio value="unKnown" label="不明" />}
+            <Radio value="no" label="無" />
+            <Radio value="yes" label="有" />
+        </Group>
+    </Radio.Group>
+)

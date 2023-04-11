@@ -2,10 +2,10 @@ import { Box } from '@mantine/core'
 import { ExamFormBase } from '../../exams/components/ExamFormBase'
 import { ExamFieldsFourTwelve } from '../../exams/components/ExamFieldsFourTwelve'
 import { TitleText } from '../../exams/components/TitleText'
-import { usePatientStatus } from './useCondition'
+import { useCondition } from './useCondition'
 
-export function PatientStatusForm() {
-    const { logicalName, resource, form, fields } = usePatientStatus()
+export function ConditionForm() {
+    const { logicalName, resource, form, fields } = useCondition()
 
     return (
         <ExamFormBase resource={resource} form={form}>

@@ -19,17 +19,13 @@ export function ExamFormBase({ resource, form, children }: ExamFormBaseProps) {
         deleteSelectedDataMutation,
     } = useMutateBase(resource)
     const [clickedButtonName, setClickedButtonName] = useState<string>('')
-    const onClickCreateButton = (): void => setClickedButtonName('create')
-    const onClickUpdateButton = (): void => setClickedButtonName('update')
-    const onClickDeleteButton = (): void => setClickedButtonName('delete')
 
     return (
         <Box>
             <form
                 onSubmit={form.onSubmit((values: any) => {
                     clickedButtonName === 'create'
-                        ? // ? createNewDataMutation.mutate(values)
-                          console.log(values)
+                        ? createNewDataMutation.mutate(values)
                         : clickedButtonName === 'update'
                         ? updateSelectedDataMutation.mutate(values)
                         : clickedButtonName === 'delete'
@@ -46,7 +42,7 @@ export function ExamFormBase({ resource, form, children }: ExamFormBaseProps) {
                             <Button
                                 size="sm"
                                 type="submit"
-                                onClick={onClickCreateButton}
+                                onClick={() => setClickedButtonName('create')}
                             >
                                 {captionCreat}
                             </Button>
@@ -55,7 +51,7 @@ export function ExamFormBase({ resource, form, children }: ExamFormBaseProps) {
                             <Button
                                 size="sm"
                                 type="submit"
-                                onClick={onClickUpdateButton}
+                                onClick={() => setClickedButtonName('update')}
                             >
                                 {captionUpdate}
                             </Button>
