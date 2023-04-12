@@ -3,7 +3,7 @@ import { Checkbox, Group, Select, Text, TextInput } from '@mantine/core'
 interface CheckboxGroupProps {
     form: any
     props: any
-    formPath: string
+    formPath: string | undefined
     select?: {
         props: {
             label: string

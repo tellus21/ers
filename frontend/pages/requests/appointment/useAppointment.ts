@@ -64,8 +64,9 @@ export function useAppointment(): UseObject {
 
     // ---【Validate】---
     const validate = {
+        //うまくいかない
         // home_clinic_karte_number: (value: string) =>
-        //     checkKarteNumberLength(value),
+        //     value.toString.length < 5 ? 'Invalid email' : null,
     }
 
     // ---【Form】---
