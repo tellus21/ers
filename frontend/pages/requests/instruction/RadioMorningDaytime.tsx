@@ -14,6 +14,7 @@ export function RadioMorningDaytime({ form, props, formPath }: RadioYesProps) {
             {...form.getInputProps(formPath)}
         >
             <Group>
+                <Radio value="non" label="無し" />
                 <Radio value="morning" label="朝" />
                 <Radio value="daytime" label="昼" />
                 <Radio value="morning_daytime" label="朝・昼" />

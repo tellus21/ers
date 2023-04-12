@@ -131,18 +131,6 @@ export function RequestFieldsEightTwelve({
                                 />
                             </Grid.Col>
                         )
-                    case 'CheckboxCenter':
-                        return (
-                            <Grid.Col span={24} key={index}>
-                                <Center pb={6}>
-                                    <Checkbox
-                                        {...field.props}
-                                        {...(form.getInputProps(field.formPath),
-                                        { type: 'checkbox' })}
-                                    />
-                                </Center>
-                            </Grid.Col>
-                        )
                     case 'RadioYesNo':
                         return (
                             <Grid.Col span={4} key={index}>

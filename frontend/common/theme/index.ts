@@ -114,5 +114,19 @@ export const emsTheme: MantineThemeOverride = {
                 labelPosition: 'center',
             },
         },
+        Input: {
+            defaultProps: {
+                size: 'xs',
+            },
+        },
+        InputWrapper: {
+            defaultProps: {
+                size: 'xs',
+            },
+        },
+        Box: {
+            borderRadius: 'sm',
+            defaultProps: {},
+        },
     },
 }

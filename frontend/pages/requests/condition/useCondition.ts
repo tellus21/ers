@@ -89,8 +89,8 @@ export function useCondition(): UseObject {
     })
 
     // ---【Fields】---
-    const fields: { first: Field[]; second: Field[] } = {
-        first: [
+    const fields: { condition_1: Field[]; condition_2: Field[] } = {
+        condition_1: [
             {
                 formPath: 'walking_state',
                 component: 'Select',
@@ -170,7 +170,7 @@ export function useCondition(): UseObject {
                 },
             },
         ],
-        second: [
+        condition_2: [
             {
                 formPath: 'infection',
                 component: 'RadioYesNoUnknown',

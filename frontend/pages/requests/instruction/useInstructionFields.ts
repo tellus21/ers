@@ -78,7 +78,7 @@ const useMetaData = () => {
 
 const ct_1 = [
     {
-        formPath: 'is_ct_contrast',
+        formPath: 'has_ct_contrast',
         component: 'Checkbox',
         props: {
             label: '造影',
@@ -102,28 +102,28 @@ const ct_2 = [
         },
     },
     {
-        formPath: 'has_abdomen',
+        formPath: 'has_thoracic',
         component: 'Checkbox',
         props: {
             label: '胸部',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_abdomen',
         component: 'Checkbox',
         props: {
             label: '腹部',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_pelvis',
         component: 'Checkbox',
         props: {
             label: '骨盤部',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_lung_pelvis',
         component: 'Checkbox',
         props: {
             label: '肺から骨盤まで',
@@ -139,21 +139,21 @@ const ct_3 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_cervical_spine',
         component: 'Checkbox',
         props: {
             label: '頚',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_thoracic_spine',
         component: 'Checkbox',
         props: {
             label: '胸',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_lumbar_spine',
         component: 'Checkbox',
         props: {
             label: '腰',
@@ -172,28 +172,28 @@ const ct_3 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_cta_head',
         component: 'Checkbox',
         props: {
             label: '頭',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_cta_heart',
         component: 'Checkbox',
         props: {
             label: '心臓',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_cta_trunk',
         component: 'Checkbox',
         props: {
             label: '体幹部',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_cta_lower_limb',
         component: 'Checkbox',
         props: {
             label: '下肢',
@@ -213,7 +213,7 @@ const ct_3 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_ct_other',
         component: 'etcTextInput',
         props: {
             label: '',
@@ -223,7 +223,7 @@ const ct_3 = [
 
 const mri_1 = [
     {
-        formPath: 'mri_contrast',
+        formPath: 'has_mri_contrast',
         component: 'Checkbox',
         props: {
             label: '造影',
@@ -239,49 +239,49 @@ const mri_2 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_vsrad',
         component: 'Checkbox',
         props: {
             label: 'VSRAD',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_head_neck',
         component: 'Checkbox',
         props: {
             label: '頭頸部',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_breast',
         component: 'Checkbox',
         props: {
             label: '乳腺',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_liver_gallbladder_pancreas_spleen',
         component: 'Checkbox',
         props: {
             label: '肝・胆・膵・脾',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_kidney_adrenal',
         component: 'Checkbox',
         props: {
             label: 'MRCP',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_pelvis_bone',
         component: 'Checkbox',
         props: {
             label: '腎・副腎',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_joint',
         component: 'Checkbox',
         props: {
             label: '骨盤部',
@@ -303,42 +303,42 @@ const mri_3 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_shoulder_joint',
         component: 'Checkbox',
         props: {
             label: '肩',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_elbow_joint',
         component: 'Checkbox',
         props: {
             label: '肘',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_hand_joint',
         component: 'Checkbox',
         props: {
             label: '手',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_thigh_joint',
         component: 'Checkbox',
         props: {
             label: '股',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_knee_joint',
         component: 'Checkbox',
         props: {
             label: '膝',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_foot_joint',
         component: 'Checkbox',
         props: {
             label: '足',
@@ -359,23 +359,21 @@ const mri_4 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_cervical_spine_spinal_cord',
         component: 'Checkbox',
         props: {
             label: '頚',
         },
     },
-
     {
-        formPath: '',
+        formPath: 'has_thoracic_spine_spinal_cord',
         component: 'Checkbox',
         props: {
             label: '胸',
         },
     },
-
     {
-        formPath: '',
+        formPath: 'has_lumbar_spine_spinal_cord',
         component: 'Checkbox',
         props: {
             label: '腰',
@@ -394,28 +392,28 @@ const mri_4 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_mra_head',
         component: 'Checkbox',
         props: {
             label: '頭',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_mra_neck',
         component: 'Checkbox',
         props: {
             label: '頚',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_mra_kidney',
         component: 'Checkbox',
         props: {
             label: '腎',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_mra_lower_limb',
         component: 'Checkbox',
         props: {
             label: '下肢',
@@ -434,7 +432,7 @@ const mri_4 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_mri_other',
         component: 'etcTextInput',
         props: {
             label: '',
@@ -444,56 +442,56 @@ const mri_4 = [
 
 const us = [
     {
-        formPath: '',
+        formPath: 'has_thyroid',
         component: 'Checkbox',
         props: {
             label: '甲状腺',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_carotid_artery',
         component: 'Checkbox',
         props: {
             label: '頸動脈',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_heart',
         component: 'Checkbox',
         props: {
             label: '心臓',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_breast_mri',
         component: 'Checkbox',
         props: {
             label: '乳腺',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_abdomen_mri',
         component: 'Checkbox',
         props: {
             label: '腹部',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_lower_limb_artery',
         component: 'Checkbox',
         props: {
             label: '下肢動脈',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_lower_limb_vein',
         component: 'Checkbox',
         props: {
             label: '下肢静脈',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_abi',
         component: 'Checkbox',
         props: {
             label: 'ABI',
@@ -506,7 +504,7 @@ const us = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_us_other',
         component: 'etcTextInput',
         props: {
             label: '',
@@ -516,49 +514,49 @@ const us = [
 
 const spect = [
     {
-        formPath: '',
+        formPath: 'has_brain_ecd',
         component: 'Checkbox',
         props: {
             label: '脳（ECD）',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_brain_imp_qualitative',
         component: 'Checkbox',
         props: {
             label: '脳（IMP定性）',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_brain_datscan',
         component: 'Checkbox',
         props: {
             label: '脳（DATscan）',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_thyroid_tc',
         component: 'Checkbox',
         props: {
             label: '甲状腺（Tc）',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_heart_mibg',
         component: 'Checkbox',
         props: {
             label: '心臓（MIBG）',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_bmipp',
         component: 'Checkbox',
         props: {
             label: 'BMIPP',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_bone_scintigraphy',
         component: 'Checkbox',
         props: {
             label: '骨シンチ',
@@ -571,7 +569,7 @@ const spect = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_spect_other',
         component: 'etcTextInput',
         props: {
             label: '',
@@ -582,14 +580,14 @@ const spect = [
 const petCt = [
     {
         component: 'RadioYesNo',
-        formPath: 'diabetes',
+        formPath: 'has_diabetes',
         props: {
             label: '保険適応/悪性腫瘍(早期胃がん除く)糖尿病',
         },
     },
     {
         component: 'RadioYesNo',
-        formPath: 'insulin_injection',
+        formPath: 'can_insulin_injection',
         props: {
             label: 'インシュリン注射',
             pt: 14,
@@ -597,7 +595,7 @@ const petCt = [
     },
     {
         component: 'TextInput',
-        formPath: 'blood_glucose_level',
+        formPath: 'blood_glucose_value',
         props: {
             label: '血糖値(mg/dL)',
             pt: 14,
@@ -615,7 +613,7 @@ const petCt = [
 
 const etc_1 = [
     {
-        formPath: '',
+        formPath: 'has_chest_simple_photography',
         component: 'Checkbox',
         props: {
             label: '胸部単純撮影(立位)',
@@ -623,7 +621,7 @@ const etc_1 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_blood_drawing',
         component: 'Checkbox',
         props: {
             label: '採血（',
@@ -632,7 +630,7 @@ const etc_1 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'is_urgent',
         component: 'Checkbox',
         props: {
             label: '至急の場合はチェック　）',
@@ -641,7 +639,7 @@ const etc_1 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'blood_drawing_set',
         component: 'Select',
         props: {
             label: '採血セット',
@@ -659,7 +657,7 @@ const etc_1 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'blood_drawing_option',
         component: 'etcTextInput',
         props: {
             label: '採血オプション',
@@ -671,7 +669,7 @@ const etc_1 = [
 
 const etc_2 = [
     {
-        formPath: '',
+        formPath: 'has_ecg',
         component: 'Checkbox',
         props: {
             label: 'ECG',
@@ -679,7 +677,7 @@ const etc_2 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_bmd',
         component: 'Checkbox',
         props: {
             label: 'BMD',
@@ -687,7 +685,7 @@ const etc_2 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_mmg',
         component: 'Checkbox',
         props: {
             label: 'MMG',
@@ -695,7 +693,7 @@ const etc_2 = [
         },
     },
     {
-        formPath: '',
+        formPath: 'has_camera',
         component: 'Checkbox',
         props: {
             label: 'カメラ',
@@ -714,34 +712,31 @@ const etc_2 = [
 
 const text = [
     {
-        formPath: 'main_complaint',
+        formPath: 'chief_complaint',
         component: 'Textarea',
         props: {
             label: '主訴',
         },
     },
     {
-        formPath: 'exam_target',
+        formPath: 'examination_purpose',
         component: 'Textarea',
         props: {
             label: '検査目的',
         },
     },
-    {
-        component: 'Blank',
-    },
 ]
 
 const contact = [
     {
-        formPath: 'kensa',
+        formPath: 'fasting',
         component: 'RadioMorningDaytime',
         props: {
             label: '食止め',
         },
     },
     {
-        formPath: 'kensa',
+        formPath: 'medication_stop',
         component: 'RadioMorningDaytime',
         props: {
             label: '服止め',

@@ -1,4 +1,4 @@
-import { Box } from '@mantine/core'
+import { Box, Space } from '@mantine/core'
 import { TitleText } from '../components/TitleText'
 import { useCondition } from './useCondition'
 import { RequestFormBase } from '../components/RequestFormBase'
@@ -10,10 +10,9 @@ export function ConditionForm() {
     return (
         <RequestFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
-            <RequestFieldsFourTwelve form={form} fields={fields.first} />
-            <Box p={5} />
-
-            <RequestFieldsFourTwelve form={form} fields={fields.second} />
+            <RequestFieldsFourTwelve form={form} fields={fields.condition_1} />
+            <Box p={8} />
+            <RequestFieldsFourTwelve form={form} fields={fields.condition_2} />
         </RequestFormBase>
     )
 }
