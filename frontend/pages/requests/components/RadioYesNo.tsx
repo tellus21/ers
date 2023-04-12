@@ -3,7 +3,7 @@ import { Radio, Group } from '@mantine/core'
 interface RadioYesProps {
     form: any
     props: any
-    formPath: string
+    formPath: string | undefined
     unKnown?: boolean
 }
 
