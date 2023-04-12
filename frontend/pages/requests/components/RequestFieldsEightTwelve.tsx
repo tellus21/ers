@@ -5,11 +5,11 @@ import {
     Grid,
     NumberInput,
     Select,
+    Text,
     TextInput,
     Textarea,
 } from '@mantine/core'
 import { RadioYesNo } from './RadioYesNo'
-import { CheckboxGroup } from './CheckboxGroup'
 import { DatePickerInput, MonthPickerInput, TimeInput } from '@mantine/dates'
 import { IconCalendar, IconClock } from '@tabler/icons-react'
 import { DisplayPickUpTimeList } from './DisplayPickUpTimeList'
@@ -43,6 +43,8 @@ export function RequestFieldsEightTwelve({
                                 { type: 'checkbox' })}
                             />
                         )
+                    case 'Text':
+                        return <Text key={index} p={6} {...field.props}></Text>
                     case 'etcTextInput':
                         return (
                             <TextInput

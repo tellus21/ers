@@ -5,7 +5,7 @@ export interface Field {
         label?: string
         data?: string | {}[]
         withAsterisk?: boolean
-        children?: { label: string; value: string }[]
+        children?: any
         max?: number
         min?: number
     }

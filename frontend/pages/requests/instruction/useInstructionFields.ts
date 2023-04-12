@@ -3,15 +3,18 @@ export function useInstractionFields() {
 
     const fields = {
         metaData: metaData,
-        ct: ct,
-        ctContrast: ctContrast,
-        mri: mri,
-        mriContrast: mriContrast,
+        ct_1: ct_1,
+        ct_2: ct_2,
+        ct_3: ct_3,
+        mri_1: mri_1,
+        mri_2: mri_2,
+        mri_3: mri_3,
+        mri_4: mri_4,
         us: us,
         spect: spect,
         petCt: petCt,
-        etcExams: etcExams,
-        bloodSample: bloodSample,
+        etc_1: etc_1,
+        etc_2: etc_2,
         text: text,
         message: message,
     }
@@ -72,17 +75,24 @@ const useMetaData = () => {
     ]
 }
 
-const ctContrast = [
+const ct_1 = [
     {
         formPath: 'ct_contrast',
-        component: 'CheckboxCenter',
+        component: 'Checkbox',
         props: {
             label: '造影',
         },
     },
 ]
 
-const ct = [
+const ct_2 = [
+    {
+        formPath: '',
+        component: 'Checkbox',
+        props: {
+            label: '脳と肺から骨盤まで',
+        },
+    },
     {
         formPath: '',
         component: 'Checkbox',
@@ -111,11 +121,20 @@ const ct = [
             label: '肺から骨盤まで',
         },
     },
+]
+
+const ct_3 = [
+    {
+        component: 'Text',
+        props: {
+            children: '脊椎（',
+        },
+    },
     {
         formPath: '',
         component: 'Checkbox',
         props: {
-            label: '脊椎',
+            label: '頚',
         },
     },
     {
@@ -130,6 +149,18 @@ const ct = [
         component: 'Checkbox',
         props: {
             label: '腰',
+        },
+    },
+    {
+        component: 'Text',
+        props: {
+            children: '）',
+        },
+    },
+    {
+        component: 'Text',
+        props: {
+            children: 'CTA（',
         },
     },
     {
@@ -161,10 +192,16 @@ const ct = [
         },
     },
     {
-        formPath: '',
-        component: 'Checkbox',
+        component: 'Text',
         props: {
-            label: 'その他',
+            children: '）',
+        },
+    },
+
+    {
+        component: 'Text',
+        props: {
+            children: 'その他',
         },
     },
     {
@@ -176,17 +213,16 @@ const ct = [
     },
 ]
 
-const mriContrast = [
+const mri_1 = [
     {
         formPath: 'mri_contrast',
-        component: 'CheckboxCenter',
+        component: 'Checkbox',
         props: {
             label: '造影',
         },
     },
 ]
-
-const mri = [
+const mri_2 = [
     {
         formPath: 'has_head_mri',
         component: 'Checkbox',
@@ -226,6 +262,13 @@ const mri = [
         formPath: '',
         component: 'Checkbox',
         props: {
+            label: 'MRCP',
+        },
+    },
+    {
+        formPath: '',
+        component: 'Checkbox',
+        props: {
             label: '腎・副腎',
         },
     },
@@ -234,6 +277,14 @@ const mri = [
         component: 'Checkbox',
         props: {
             label: '骨盤部',
+        },
+    },
+]
+const mri_3 = [
+    {
+        component: 'Text',
+        props: {
+            children: '関節（',
         },
     },
     {
@@ -286,10 +337,17 @@ const mri = [
         },
     },
     {
-        formPath: '',
-        component: 'Checkbox',
+        component: 'Text',
         props: {
-            label: '脊髄',
+            children: ')',
+        },
+    },
+]
+const mri_4 = [
+    {
+        component: 'Text',
+        props: {
+            children: '脊椎・脊髄（',
         },
     },
     {
@@ -313,6 +371,18 @@ const mri = [
         component: 'Checkbox',
         props: {
             label: '腰',
+        },
+    },
+    {
+        component: 'Text',
+        props: {
+            children: ')',
+        },
+    },
+    {
+        component: 'Text',
+        props: {
+            children: 'MRA (',
         },
     },
     {
@@ -344,10 +414,15 @@ const mri = [
         },
     },
     {
-        formPath: '',
-        component: 'Checkbox',
+        component: 'Text',
         props: {
-            label: 'その他',
+            children: ')',
+        },
+    },
+    {
+        component: 'Text',
+        props: {
+            children: 'その他',
         },
     },
     {
@@ -417,10 +492,9 @@ const us = [
         },
     },
     {
-        formPath: '',
-        component: 'Checkbox',
+        component: 'Text',
         props: {
-            label: 'その他',
+            children: 'その他',
         },
     },
     {
@@ -483,10 +557,9 @@ const spect = [
         },
     },
     {
-        formPath: '',
-        component: 'Checkbox',
+        component: 'Text',
         props: {
-            label: 'その他',
+            children: 'その他',
         },
     },
     {
@@ -529,7 +602,7 @@ const petCt = [
     },
 ]
 
-const etcExams = [
+const etc_1 = [
     {
         formPath: '',
         component: 'Checkbox',
@@ -538,6 +611,54 @@ const etcExams = [
             pt: 40,
         },
     },
+    {
+        formPath: '',
+        component: 'Checkbox',
+        props: {
+            label: '採血（',
+            value: 'bloodSample',
+            pt: 40,
+        },
+    },
+    {
+        formPath: '',
+        component: 'Checkbox',
+        props: {
+            label: '至急の場合はチェック　）',
+            value: 'urgen',
+            pt: 40,
+        },
+    },
+    {
+        formPath: '',
+        component: 'Select',
+        props: {
+            label: '採血セット',
+            data: [
+                '初回',
+                '定期Ⅰ',
+                '定期Ⅱ',
+                '定期(腫瘍)',
+                '定期(薬物)',
+                '特養定期Ⅰ',
+                '特養定期Ⅱ',
+                '特養甲状腺',
+                '特養初診',
+            ],
+        },
+    },
+    {
+        formPath: '',
+        component: 'etcTextInput',
+        props: {
+            label: '採血オプション',
+            value: '',
+            pt: 8,
+        },
+    },
+]
+
+const etc_2 = [
     {
         formPath: '',
         component: 'Checkbox',
@@ -576,55 +697,6 @@ const etcExams = [
         props: {
             label: 'カメラ内容',
             data: ['胃', '大腸', '胃・大腸'],
-        },
-    },
-]
-
-const bloodSample = [
-    {
-        formPath: '',
-        component: 'Checkbox',
-        props: {
-            label: '採血（',
-            value: 'bloodSample',
-            pt: 40,
-        },
-    },
-    {
-        formPath: '',
-        component: 'Checkbox',
-        props: {
-            label: '至急の場合はチェック　）',
-            value: 'urgen',
-            pt: 40,
-        },
-    },
-    {
-        formPath: '',
-        component: 'Select',
-        props: {
-            label: '採血セット',
-            data: [
-                '初回',
-                '定期Ⅰ',
-                '定期Ⅱ',
-                '定期(腫瘍)',
-                '定期(薬物)',
-                '特養定期Ⅰ',
-                '特養定期Ⅱ',
-                '特養甲状腺',
-                '特養初診',
-            ],
-            value: '',
-        },
-    },
-    {
-        formPath: '',
-        component: 'etcTextInput',
-        props: {
-            label: '採血オプション',
-            value: '',
-            pt: 10,
         },
     },
 ]
