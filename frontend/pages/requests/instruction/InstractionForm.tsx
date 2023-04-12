@@ -90,13 +90,15 @@ export function InstractionForm() {
                     />
                 </Box>
                 <Space h={10} />
-                <Group>
-                    <Text>■PET/CT</Text>
-                    <Text color="red.4">
-                        ※３カ月以内にCTを実施した方のみ保険適用可能
-                    </Text>
-                </Group>
+                <Text>■PET/CT</Text>
                 <Box p={12} bg="gray.0">
+                    <Text color="red.6">
+                        ※３カ月以内にCTを実施した方のみ保険適用可能です。
+                    </Text>
+                    <Text color="red.6">
+                        ※検査当日に食事や血糖降下薬の服用(インシュリン注射も含む)等を行うと検査中止になります。
+                    </Text>
+
                     <RequestFieldsEightTwelve
                         form={form}
                         fields={fields.petCt}
@@ -128,7 +130,7 @@ export function InstractionForm() {
                     <Divider label={'連絡関連'} />
                     <RequestFieldsEightTwelve
                         form={form}
-                        fields={fields.message}
+                        fields={fields.contact}
                     />
                 </Box>
             </Box>

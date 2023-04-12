@@ -16,7 +16,7 @@ export function useInstractionFields() {
         etc_1: etc_1,
         etc_2: etc_2,
         text: text,
-        message: message,
+        contact: contact,
     }
 
     return {
@@ -27,7 +27,7 @@ export function useInstractionFields() {
 const useMetaData = () => {
     return [
         {
-            formPath: 'exam_clinic',
+            formPath: 'examination_clinic_id',
             component: 'Select',
             props: {
                 label: '検査クリニック',
@@ -36,11 +36,12 @@ const useMetaData = () => {
                     'きた在宅クリニック',
                     'スマイル健康クリニック',
                 ], //サンプル
+                // data:examination_clinic.name???
                 withAsterisk: true,
             },
         },
         {
-            formPath: 'order_doctor',
+            formPath: 'home_care_doctor_id',
             component: 'Select',
             props: {
                 label: '指示医師',
@@ -49,11 +50,11 @@ const useMetaData = () => {
             },
         },
         {
-            formPath: '',
+            formPath: 'appointment_contant',
             component: 'Select',
             props: {
                 data: ['定期', '臨時', '急ぎ', '緊急'],
-                label: '予約内容', //緊急度とかのほうが
+                label: '予約内容',
                 withAsterisk: true,
             },
         },
@@ -77,7 +78,7 @@ const useMetaData = () => {
 
 const ct_1 = [
     {
-        formPath: 'ct_contrast',
+        formPath: 'is_ct_contrast',
         component: 'Checkbox',
         props: {
             label: '造影',
@@ -87,17 +88,24 @@ const ct_1 = [
 
 const ct_2 = [
     {
-        formPath: '',
+        formPath: 'has_brain_pelvis',
         component: 'Checkbox',
         props: {
             label: '脳と肺から骨盤まで',
         },
     },
     {
-        formPath: '',
+        formPath: 'has_head',
         component: 'Checkbox',
         props: {
             label: '頭',
+        },
+    },
+    {
+        formPath: 'has_abdomen',
+        component: 'Checkbox',
+        props: {
+            label: '胸部',
         },
     },
     {
@@ -576,7 +584,7 @@ const petCt = [
         component: 'RadioYesNo',
         formPath: 'diabetes',
         props: {
-            label: '糖尿病',
+            label: '保険適応/悪性腫瘍(早期胃がん除く)糖尿病',
         },
     },
     {
@@ -584,6 +592,7 @@ const petCt = [
         formPath: 'insulin_injection',
         props: {
             label: 'インシュリン注射',
+            pt: 14,
         },
     },
     {
@@ -591,6 +600,7 @@ const petCt = [
         formPath: 'blood_glucose_level',
         props: {
             label: '血糖値(mg/dL)',
+            pt: 14,
         },
     },
     {
@@ -598,6 +608,7 @@ const petCt = [
         formPath: 'a1c',
         props: {
             label: 'A1C(%)',
+            pt: 14,
         },
     },
 ]
@@ -721,7 +732,7 @@ const text = [
     },
 ]
 
-const message = [
+const contact = [
     {
         formPath: 'kensa',
         component: 'RadioMorningDaytime',

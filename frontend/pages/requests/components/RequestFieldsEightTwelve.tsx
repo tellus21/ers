@@ -39,8 +39,7 @@ export function RequestFieldsEightTwelve({
                                 key={index}
                                 p={6}
                                 {...field.props}
-                                {...(form.getInputProps(field.formPath),
-                                { type: 'checkbox' })}
+                                {...form.getInputProps(field.formPath)}
                             />
                         )
                     case 'Text':

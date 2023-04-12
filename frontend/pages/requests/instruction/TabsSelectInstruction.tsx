@@ -4,7 +4,6 @@ import { InstractionForm } from './InstractionForm'
 
 import { useState } from 'react'
 import { TitleText } from '@/pages/requests/components/TitleText'
-import { useRequest } from '../useRequest'
 import { useInstraction } from './useInstraction'
 
 export function TabsSelectInstruction() {
