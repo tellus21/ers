@@ -1,43 +1,27 @@
-import { ChangeEvent, useState } from 'react'
+import { Divider, Group, Space, Text } from '@mantine/core'
+import { ExamFormBase } from '@/pages/requests/components/ExamFormBase'
+import { ExamFieldsEightTwelve } from '@/pages/requests/components/ExamFieldsEightTwelve'
+import { useInstraction } from './useInstraction'
+import { TitleText } from '../components/TitleText'
 
-import { ExamFormBase } from '../components/ExamFormBase'
-import { Box, Divider, Group, Space, Text } from '@mantine/core'
-import { DividerCheckbox } from './_DividerCheckbox'
-import { useDirectionForm } from './useDirectionForm'
-import { ExamFieldsEightTwelve } from '../components/ExamFieldsEightTwelve'
-
-interface DirectionFormProps {
-    resource: string
-    form: any
-    activeTab: string | null
-}
-
-export function DirectionForm({
-    resource,
-    form,
-    activeTab,
-}: DirectionFormProps) {
-    const { fields } = useDirectionForm()
+export function InstractionForm() {
+    const { logicalName, resource, form, fields } = useInstraction()
 
     return (
         <ExamFormBase resource={resource} form={form}>
+            <TitleText title={logicalName} />
             {/* メタデータ */}
-            {resource}
+            {/* {resource}
             <button onClick={() => console.log(form)}>送信テスト</button>
             {(activeTab === 'request' && (
-                <ExamFieldsEightTwelve
-                    form={form}
-                    fields={fields.metaData}
-                    disabled={false}
-                />
+                <ExamFieldsEightTwelve form={form} fields={fields.metaData} />
             )) ||
                 (activeTab === 'reservation' && (
                     <ExamFieldsEightTwelve
                         form={form}
                         fields={fields.metaData}
-                        disabled={true}
                     />
-                ))}
+                ))} */}
             {/* CT */}
             <Divider label={'CT'} />
             <ExamFieldsEightTwelve form={form} fields={fields.ctContrast} />

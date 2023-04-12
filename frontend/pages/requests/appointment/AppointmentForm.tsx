@@ -1,7 +1,7 @@
-import { ExamFormBase } from '@/pages/exams/components/ExamFormBase'
+import { ExamFormBase } from '@/pages/requests/components/ExamFormBase'
 import { useAppointment } from './useAppointment'
-import { TitleText } from '@/pages/exams/components/TitleText'
-import { ExamFieldsEightTwelve } from '@/pages/exams/components/ExamFieldsEightTwelve'
+import { TitleText } from '@/pages/requests/components/TitleText'
+import { ExamFieldsEightTwelve } from '@/pages/requests/components/ExamFieldsEightTwelve'
 import { Divider } from '@mantine/core'
 
 export function AppointmentForm() {

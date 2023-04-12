@@ -1,4 +1,4 @@
-export function useDirectionForm() {
+export function useInstractionFormFields() {
     const metaData = useMetaData()
 
     const fields = {

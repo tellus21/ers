@@ -2,7 +2,7 @@ import { Button, Center, Grid } from '@mantine/core'
 import { TextInputBorderBottom } from './TextInputBorderBottom'
 
 import { patientInformationData } from './patientInformationData'
-import { TitleText } from '../components/TitleText'
+import { TitleText } from '../../requests/components/TitleText'
 
 export function PatientInformation() {
     const data = patientInformationData

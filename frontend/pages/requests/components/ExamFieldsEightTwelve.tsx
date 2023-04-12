@@ -3,7 +3,6 @@ import {
     Center,
     Checkbox,
     Grid,
-    Group,
     NumberInput,
     Select,
     TextInput,
@@ -14,9 +13,10 @@ import { CheckboxGroup } from './CheckboxGroup'
 import { DatePickerInput, MonthPickerInput, TimeInput } from '@mantine/dates'
 import { IconCalendar, IconClock } from '@tabler/icons-react'
 import { DisplayPickUpTimeList } from './DisplayPickUpTimeList'
-import { RadioMorningDaytime } from '../direction/RadioMorningDaytime'
+
 import { Field } from '@/common/types'
 import { KarteNumberInput } from '@/common/components/KarteNumberInput'
+import { RadioMorningDaytime } from '../instruction/RadioMorningDaytime'
 
 interface ExamFieldsEightTwelveProps {
     form: any
@@ -39,7 +39,6 @@ export function ExamFieldsEightTwelve({
                         return (
                             <Grid.Col span={4} key={index}>
                                 <Select
-                                    disabled={disabled}
                                     {...field.props}
                                     {...form.getInputProps(field.formPath)}
                                 />
@@ -67,7 +66,6 @@ export function ExamFieldsEightTwelve({
                         return (
                             <Grid.Col span={4} key={index}>
                                 <MonthPickerInput
-                                    disabled={disabled}
                                     icon={
                                         <IconCalendar
                                             size="1.1rem"

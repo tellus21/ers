@@ -1,19 +1,16 @@
 import { Box, Center, Group, Tabs, Text } from '@mantine/core'
 
-import { useForm } from '@mantine/form'
-import { DirectionForm } from './DirectionForm'
+import { InstractionForm } from './InstractionForm'
 
-import { TitleText } from '../components/TitleText'
 import { useState } from 'react'
-import { useRequest } from './useRequest'
-import { useReservation } from './useReservation'
+import { TitleText } from '@/pages/requests/components/TitleText'
+import { useRequest } from '../useRequest'
+import { useInstraction } from './useInstraction'
 
-export function TabsSelectDirection() {
+export function TabsSelectInstruction() {
     const [activeTab, setActiveTab] = useState<string | null>('request')
-    const requestresource = 'request'
-    const reservationresource = 'reservation'
-    const { resource: reauests, form: requestForm } = useRequest()
-    const { resource: reservations, form: reservationForm } = useReservation()
+    const { logicalName, physicalName, resource, query, form } =
+        useInstraction()
 
     return (
         <Box>
@@ -23,28 +20,28 @@ export function TabsSelectDirection() {
                 <Tabs.List position="center">
                     <Tabs.Tab value="request">
                         <Center>
-                            <Text size="sm">依頼</Text>
+                            <Text size="sm">１</Text>
                         </Center>
                     </Tabs.Tab>
                     <Tabs.Tab value="reservation">
-                        <Text size="sm">予約</Text>
+                        <Text size="sm">２</Text>
                     </Tabs.Tab>
                 </Tabs.List>
 
                 <Tabs.Panel value="request" pt="xs">
                     <Group position="right">○○年○○月○○日　依頼: 関</Group>
-                    <DirectionForm
-                        resource={reauests}
-                        form={requestForm}
+                    <InstractionForm
+                        resource={resource}
+                        form={form}
                         activeTab={activeTab}
                     />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="reservation" pt="xs">
                     <Group position="right">○○年○○月○○日　依頼: 亀谷</Group>
-                    <DirectionForm
-                        resource={reservations}
-                        form={reservationForm}
+                    <InstractionForm
+                        resource={resource}
+                        form={activeTab}
                         activeTab={activeTab}
                     />
                 </Tabs.Panel>

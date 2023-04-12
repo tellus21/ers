@@ -1,7 +1,7 @@
 import { Box } from '@mantine/core'
-import { ExamFormBase } from '../../exams/components/ExamFormBase'
-import { ExamFieldsFourTwelve } from '../../exams/components/ExamFieldsFourTwelve'
-import { TitleText } from '../../exams/components/TitleText'
+import { ExamFormBase } from '../components/ExamFormBase'
+import { ExamFieldsFourTwelve } from '../components/ExamFieldsFourTwelve'
+import { TitleText } from '../components/TitleText'
 import { useCondition } from './useCondition'
 
 export function ConditionForm() {
