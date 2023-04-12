@@ -18,21 +18,38 @@ import { Field } from '@/common/types'
 import { KarteNumberInput } from '@/common/components/KarteNumberInput'
 import { RadioMorningDaytime } from '../instruction/RadioMorningDaytime'
 
-interface ExamFieldsEightTwelveProps {
+interface RequestFieldsEightTwelveProps {
     form: any
     fields: Field[]
     disabled?: boolean
 }
 
-export function ExamFieldsEightTwelve({
+export function RequestFieldsEightTwelve({
     form,
     fields,
     disabled,
-}: ExamFieldsEightTwelveProps) {
+}: RequestFieldsEightTwelveProps) {
     return (
         <Grid columns={24}>
             {fields?.map((field: any, index: number) => {
                 switch (field.component) {
+                    case 'Checkbox':
+                        return (
+                            <Checkbox
+                                key={index}
+                                p={6}
+                                {...field.props}
+                                {...(form.getInputProps(field.formPath),
+                                { type: 'checkbox' })}
+                            />
+                        )
+                    case 'etcTextInput':
+                        return (
+                            <TextInput
+                                {...field.props}
+                                {...form.getInputProps(field.formPath)}
+                            />
+                        )
                     case 'Blank':
                         return <Grid.Col span={4} key={index} />
                     case 'Select':
@@ -113,10 +130,10 @@ export function ExamFieldsEightTwelve({
                                 />
                             </Grid.Col>
                         )
-                    case 'Checkbox':
+                    case 'CheckboxCenter':
                         return (
                             <Grid.Col span={24} key={index}>
-                                <Center>
+                                <Center pb={6}>
                                     <Checkbox
                                         {...field.props}
                                         {...(form.getInputProps(field.formPath),
@@ -128,13 +145,11 @@ export function ExamFieldsEightTwelve({
                     case 'RadioYesNo':
                         return (
                             <Grid.Col span={4} key={index}>
-                                <Box p={6} bg="gray.0">
-                                    <RadioYesNo
-                                        form={form}
-                                        props={field.props}
-                                        formPath={field.formPath}
-                                    />
-                                </Box>
+                                <RadioYesNo
+                                    form={form}
+                                    props={field.props}
+                                    formPath={field.formPath}
+                                />
                             </Grid.Col>
                         )
                     case 'RadioMorningDaytime':
@@ -157,20 +172,6 @@ export function ExamFieldsEightTwelve({
                                 />
                             </Grid.Col>
                         )
-                    case 'CheckboxGroup':
-                        return (
-                            <Grid.Col span={24} key={index}>
-                                <Box p={6} bg="gray.0">
-                                    <CheckboxGroup
-                                        form={form}
-                                        props={field.props}
-                                        formPath={field.formPath}
-                                        select={field.select}
-                                        textInput={field.textInput}
-                                    />
-                                </Box>
-                            </Grid.Col>
-                        )
                     case 'KarteNumberInput':
                         return (
                             <Grid.Col span={4} key={index}>
@@ -181,6 +182,7 @@ export function ExamFieldsEightTwelve({
                                 />
                             </Grid.Col>
                         )
+
                     default:
                         return null
                 }

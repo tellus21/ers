@@ -6,13 +6,17 @@ const captionCreat = '登録'
 const captionUpdate = '更新'
 const captionDelete = '削除'
 
-interface ExamFormBaseProps {
+interface RequestFormBaseProps {
     resource: string
     form: any
     children: React.ReactNode
 }
 
-export function ExamFormBase({ resource, form, children }: ExamFormBaseProps) {
+export function RequestFormBase({
+    resource,
+    form,
+    children,
+}: RequestFormBaseProps) {
     const {
         createNewDataMutation,
         updateSelectedDataMutation,

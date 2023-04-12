@@ -1,6 +1,6 @@
 import { useQueryBase } from '@/common/hooks'
 import { useForm } from '@mantine/form'
-import { useInstractionFormFields } from './useInstructionFormFields'
+import { useInstractionFields } from './useInstructionFields'
 
 export function useInstraction() {
     // ---【Name】---
@@ -202,7 +202,7 @@ export function useInstraction() {
 
     //データが多すぎるので分けた
     // ---【Fields】---
-    const { fields } = useInstractionFormFields()
+    const { fields } = useInstractionFields()
 
     return {
         logicalName,

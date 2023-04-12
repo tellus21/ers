@@ -1,19 +1,19 @@
 import { Box } from '@mantine/core'
-import { ExamFormBase } from '../components/ExamFormBase'
-import { ExamFieldsFourTwelve } from '../components/ExamFieldsFourTwelve'
 import { TitleText } from '../components/TitleText'
 import { useCondition } from './useCondition'
+import { RequestFormBase } from '../components/RequestFormBase'
+import { RequestFieldsFourTwelve } from '../components/RequestFieldsFourTwelve'
 
 export function ConditionForm() {
     const { logicalName, resource, form, fields } = useCondition()
 
     return (
-        <ExamFormBase resource={resource} form={form}>
+        <RequestFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
-            <ExamFieldsFourTwelve form={form} fields={fields.first} />
+            <RequestFieldsFourTwelve form={form} fields={fields.first} />
             <Box p={5} />
 
-            <ExamFieldsFourTwelve form={form} fields={fields.second} />
-        </ExamFormBase>
+            <RequestFieldsFourTwelve form={form} fields={fields.second} />
+        </RequestFormBase>
     )
 }

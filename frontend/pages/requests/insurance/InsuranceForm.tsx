@@ -1,15 +1,15 @@
-import { ExamFormBase } from '@/pages/requests/components/ExamFormBase'
+import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { useInsurance } from './useInsurance'
 import { TitleText } from '@/pages/requests/components/TitleText'
-import { ExamFieldsFourTwelve } from '@/pages/requests/components/ExamFieldsFourTwelve'
+import { RequestFieldsFourTwelve } from '@/pages/requests/components/RequestFieldsFourTwelve'
 
 export function InsuranceForm() {
     const { logicalName, resource, form, fields } = useInsurance()
 
     return (
-        <ExamFormBase resource={resource} form={form}>
+        <RequestFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
-            <ExamFieldsFourTwelve form={form} fields={fields} />
-        </ExamFormBase>
+            <RequestFieldsFourTwelve form={form} fields={fields} />
+        </RequestFormBase>
     )
 }
