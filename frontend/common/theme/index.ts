@@ -75,11 +75,13 @@ export const emsTheme: MantineThemeOverride = {
                 autosize: true,
                 minRows: 2,
                 maxRows: 8,
+                maxLength: 300,
             },
         },
         TextInput: {
             defaultProps: {
                 size: 'xs',
+                maxLength: 30,
             },
         },
         Checkbox: {
@@ -118,10 +120,6 @@ export const emsTheme: MantineThemeOverride = {
             defaultProps: {
                 size: 'xs',
             },
-        },
-        Box: {
-            borderRadius: 'sm',
-            defaultProps: {},
         },
     },
 }

@@ -1,11 +1,3 @@
-import {
-    isNotEmptyErrorMessage,
-    karteNumberLengthErrorMessage,
-} from '@/common/constants'
-import { useQueryBase } from '@/common/hooks'
-import { Fields } from '@/common/types'
-import { hasLength, isNotEmpty, useForm } from '@mantine/form'
-
 export function useNursingHome() {
     // ---【Name】---
     const logicalName = '入居施設'
@@ -13,7 +5,6 @@ export function useNursingHome() {
     const resource = 'nursing_homes'
 
     // ---【API】---
-    // physicalNameでデータ取れるようにしたほうがいいかも
     const { data: query } = useQueryBase(resource)
 
     // ---【Type】---

@@ -9,6 +9,7 @@ export interface Field {
         children?: any
         max?: number
         min?: number
+        maxLength?: number
     }
 }
 

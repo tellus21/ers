@@ -1,36 +1,31 @@
+import { isNotEmpty, useForm } from '@mantine/form'
 import { isNotEmptyErrorMessage } from '@/common/constants'
-import {
-
-    karteNumberLengthErrorMessage,
-} from
 import { useQueryBase } from '@/common/hooks'
+import { Field } from '@/common/types'
 
-import { hasLength, isNotEmpty, useForm } from '@mantine/form'
-import { Fields } from '@/common/types'
-
-export function useHomeClinic() {
+export function useExaminationClinics() {
     // ---【Name】---
-    const logicalName = '在宅クリニック'
-    const physicalName = 'home_clinic'
-    const resource = 'home_clinics'
+    const logicalName = '検査クリニック'
+    const physicalName = 'examination_clinic'
+    const resource = 'examination_clinics'
 
     // ---【API】---
-    // physicalNameでデータ取れるようにしたほうがいいかも
     const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
-    interface HomeClinic {
-        id: string
+    interface ExaminationClinic {
+        id: number
         name: string
-        abbreviation: string
         postal_code: string
         address: string
         phone_number: string
         fax_number: string
+        created_at: Date
+        updated_at: Date
+        deleted_at: Date | null
     }
 
     // ---【DataTable】---
-    // DataTableのカラム
     const columns = [
         { accessor: 'id', title: 'id' },
         { accessor: 'name', title: '名前', width: 150 },
@@ -40,90 +35,82 @@ export function useHomeClinic() {
         { accessor: 'fax_number', title: 'FAX番号' },
     ]
 
-    // ---【Form】---
-    // TODO:created_atなどを作ったあとに、それらを抜く
-    type FormValues = HomeClinic
-    //  type HomeClinicFormValues = Omit<HomeClinic, 'id'>
+    // ---【FormValues】---
+    type FormValues = Omit<ExaminationClinic, 'id'>
 
-    // Formの初期値とバリデーションチェック
+    // ---【InitialValues】---
     const initialValues = {
-        id: '0',
         name: '',
-        abbreviation: '',
         postal_code: '',
         address: '',
         phone_number: '',
         fax_number: '',
+        created_at: new Date(),
+        updated_at: new Date(),
+        deleted_at: null,
     }
 
+    // ---【Validate】---
     const validate = {
-        name: isNotEmptyErrorMessage(isNotEmptyErrorMessage),
-        abbreviation: isNotEmpty(isNotEmptyErrorMessage),
-        postal_code: isNotEmpty(isNotEmptyErrorMessage),
-        address: isNotEmpty(isNotEmptyErrorMessage),
-        phone_number: isNotEmpty(isNotEmptyErrorMessage),
-        fax_number: isNotEmpty(isNotEmptyErrorMessage),
+        name: isNotEmpty(isNotEmptyErrorMessage),
     }
 
+    // ---【Form】---
     const form = useForm<FormValues>({
         initialValues: initialValues,
         validate: validate,
     })
 
     // ---【Fields】---
-    const fields: Fields[] = [
+    const fields: Field[] = [
         {
+            formPath: 'name',
             component: 'TextInput',
             props: {
-                label: '在宅クリニック名',
+                label: '検査クリニック名',
                 withAsterisk: true,
             },
-            formPath: 'name',
         },
         {
+            formPath: 'abbreviation',
             component: 'TextInput',
             props: {
                 label: '略称',
-                withAsterisk: true,
             },
-            formPath: 'abbreviation',
         },
         {
+            formPath: 'postal_code',
             component: 'TextInput',
             props: {
                 label: '郵便番号',
-                withAsterisk: true,
             },
-            formPath: 'postal_code',
         },
         {
+            formPath: 'address',
             component: 'TextInput',
             props: {
                 label: '住所',
                 maxLength: 100,
-                withAsterisk: true,
             },
-            formPath: 'address',
         },
         {
+            formPath: 'phone_number',
             component: 'TextInput',
             props: {
                 label: '電話番号',
                 maxLength: 13,
-                withAsterisk: true,
             },
-            formPath: 'phone_number',
         },
         {
+            formPath: 'fax_number',
             component: 'TextInput',
             props: {
                 label: 'FAX番号',
                 maxLength: 13,
-                withAsterisk: true,
             },
-            formPath: 'fax_number',
         },
     ]
+
     return {
         logicalName,
         physicalName,

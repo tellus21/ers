@@ -32,7 +32,8 @@ export function FormBase({ resource, form, children }: FormBaseProps) {
                         ? createNewDataMutation.mutate(values)
                         : //   console.log(values)
                         clickedButtonName === 'update'
-                        ? updateSelectedDataMutation.mutate(values)
+                        ? // ? updateSelectedDataMutation.mutate(values)
+                          console.log(values)
                         : clickedButtonName === 'delete'
                         ? deleteSelectedDataMutation.mutate(values)
                         : null

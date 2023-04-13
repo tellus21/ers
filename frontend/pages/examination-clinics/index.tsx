@@ -1,18 +1,11 @@
 import { FormBase } from '@/common/components/FormBase'
 import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
 import { NormalFields } from '@/common/components/NormalFields'
-import { useExamClinic } from './useExamClinic'
+import { useExaminationClinics } from './useExaminationClinics'
 
 export default function index() {
-    const {
-        logicalName,
-        physicalName,
-        resource,
-        query,
-        columns,
-        form,
-        fields,
-    } = useExamClinic()
+    const { logicalName, resource, columns, form, fields } =
+        useExaminationClinics()
 
     return (
         <ModalAndDataTable
