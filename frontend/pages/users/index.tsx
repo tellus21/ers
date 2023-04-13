@@ -4,15 +4,7 @@ import { NormalFields } from '@/common/components/NormalFields'
 import { useUser } from './useUser'
 
 export default function index() {
-    const {
-        logicalName,
-        physicalName,
-        resource,
-        query,
-        columns,
-        form,
-        fields,
-    } = useUser()
+    const { logicalName, resource, columns, form, fields } = useUser()
 
     return (
         <ModalAndDataTable

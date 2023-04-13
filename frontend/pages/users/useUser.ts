@@ -1,10 +1,7 @@
-import {
-    isNotEmptyErrorMessage,
-    karteNumberLengthErrorMessage,
-} from '@/common/constants'
+import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
-import { Fields } from '@/common/types'
-import { hasLength, isNotEmpty, useForm } from '@mantine/form'
+import { Field } from '@/common/types'
+import { isNotEmpty, useForm } from '@mantine/form'
 
 export function useUser() {
     // ---【Name】---
@@ -13,22 +10,24 @@ export function useUser() {
     const resource = 'users'
 
     // ---【API】---
-    // physicalNameでデータ取れるようにしたほうがいいかも
     const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface User {
-        id: string
-        login_id: string
+        id: number
+        department_id: number
+        login_name: string
         password: string
-        family_name: string
+        last_name: string
         first_name: string
-        department: string
         authority: string
+        email_address: string
+        created_at: Date
+        updated_at: Date
+        deleted_at: Date | null
     }
 
     // ---【DataTable】---
-    // DataTableのカラム
     const columns = [
         { accessor: 'id', title: 'id' },
         { accessor: 'name', title: '名前', width: 150 },
@@ -38,75 +37,80 @@ export function useUser() {
         { accessor: 'fax_number', title: 'FAX番号' },
     ]
 
-    // ---【Form】---
-    // TODO:created_atなどを作ったあとに、それらを抜く
-    type FormValues = User
-    //  type UserFormValues = Omit<User, 'id'>
+    // ---【FormValues】---
+    type FormValues = Omit<User, 'id'>
 
-    // Formの初期値とバリデーションチェック
+    // ---【InitialValues】---
     const initialValues = {
-        id: '0',
-        login_id: '',
+        department_id: 0,
+        login_name: '',
         password: '',
-        family_name: '',
+        last_name: '',
         first_name: '',
-        department: '',
         authority: '',
+        email_address: '',
+        created_at: new Date(),
+        updated_at: new Date(),
+        deleted_at: null,
     }
 
+    // ---【Validate】---
     const validate = {
-        // name: isNotEmpty(isNotEmptyErrorMessage),
-        // furigana: isNotEmpty(isNotEmptyErrorMessage),
-        // management_company: isNotEmpty(isNotEmptyErrorMessage),
+        login_name: isNotEmpty(isNotEmptyErrorMessage),
+        password: isNotEmpty(isNotEmptyErrorMessage),
+        last_name: isNotEmpty(isNotEmptyErrorMessage),
+        first_name: isNotEmpty(isNotEmptyErrorMessage),
+        authority: isNotEmpty(isNotEmptyErrorMessage),
     }
 
+    // ---【Form】---
     const form = useForm<FormValues>({
         initialValues: initialValues,
         validate: validate,
     })
 
     // ---【Fields】---
-    const fields: Fields[] = [
+    const fields: Field[] = [
         {
+            formPath: 'login_name',
             component: 'TextInput',
             props: {
-                label: 'ログインID',
+                label: 'ログイン名',
                 maxLength: 10,
                 withAsterisk: true,
             },
-            formPath: 'login_id',
         },
         {
+            formPath: 'password',
             component: 'TextInput',
             props: {
                 label: 'パスワード',
                 maxLength: 10,
                 withAsterisk: true,
             },
-            formPath: 'password',
         },
         {
+            formPath: 'last_name',
             component: 'TextInput',
             props: {
                 label: '姓',
                 withAsterisk: true,
             },
-            formPath: 'family_name',
         },
         {
+            formPath: 'first_name',
             component: 'TextInput',
             props: {
                 label: '名',
                 withAsterisk: true,
             },
-            formPath: 'first_name',
         },
         {
+            formPath: 'department.name',
             component: 'Select',
             props: {
                 label: '所属',
                 data: [
-                    '',
                     'ことに在宅',
                     'ひがし在宅',
                     'スマイル在宅',
@@ -116,34 +120,22 @@ export function useUser() {
                 ],
                 withAsterisk: true,
             },
-            formPath: 'department',
         },
         {
+            formPath: 'authority',
             component: 'Select',
             props: {
                 label: '権限',
-                data: ['', '管理者', '検査依頼', '検査予約', '送迎'],
+                data: ['管理者', '検査依頼', '検査予約', '送迎'],
                 withAsterisk: true,
             },
-            formPath: 'authority',
         },
         {
-            component: 'BlankLong',
-        },
-        {
-            component: 'BlankLong',
-        },
-        {
-            component: 'BlankLong',
-        },
-        {
-            component: 'BlankLong',
-        },
-        {
-            component: 'BlankLong',
-        },
-        {
-            component: 'BlankLong',
+            formPath: 'email_address',
+            component: 'TextInput',
+            props: {
+                label: 'メールアドレス',
+            },
         },
     ]
     return {
