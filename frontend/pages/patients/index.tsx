@@ -5,15 +5,7 @@ import { NormalFields } from '@/common/components/NormalFields'
 import { usePatient } from './usePatient'
 
 export default function index() {
-    const {
-        logicalName,
-        physicalName,
-        resource,
-        query,
-        columns,
-        form,
-        fields,
-    } = usePatient()
+    const { logicalName, resource, columns, form, fields } = usePatient()
 
     return (
         <ModalAndDataTable

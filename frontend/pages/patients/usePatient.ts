@@ -1,10 +1,7 @@
-import {
-    isNotEmptyErrorMessage,
-    karteNumberLengthErrorMessage,
-} from '@/common/constants'
+import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
-import { Fields } from '@/common/types'
-import { hasLength, isNotEmpty, useForm } from '@mantine/form'
+import { Field } from '@/common/types'
+import { isNotEmpty, useForm } from '@mantine/form'
 
 export function usePatient() {
     // ---【Name】---
@@ -13,30 +10,28 @@ export function usePatient() {
     const resource = 'patients'
 
     // ---【API】---
-    // physicalNameでデータ取れるようにしたほうがいいかも
     const { data: query } = useQueryBase(resource)
 
     // ---【Type】---
     interface Patient {
-        id: string
-        home_clinic: string
-        primary_doctor: string
-        karte_number_home: string
-        karte_number_exam: string
-        family_name_furigana: string
-        first_name_furigana: string
-        family_name: string
+        id: number
+        home_care_clinic_id: number
+        home_care_doctor_id: number
+        nursing_home_id: number
+        home_karte_number: string
+        exam_karte_number: string
+        last_name_kana: string
+        first_name_kana: string
+        last_name: string
         first_name: string
-        birthdate: string
+        birthday: string
         gender: string
-        nursing_home: string
-        phone_number: string
-        postal_code: string
-        address: string
+        created_at: Date
+        updated_at: Date
+        deleted_at: Date | null
     }
 
     // ---【DataTable】---
-    // DataTableのカラム
     const columns = [
         { accessor: 'id', title: 'id' },
         { accessor: 'name', title: '名前', width: 150 },
@@ -46,163 +41,140 @@ export function usePatient() {
         { accessor: 'fax_number', title: 'FAX番号' },
     ]
 
-    // ---【Form】---
-    // TODO:created_atなどを作ったあとに、それらを抜く
-    type FormValues = Patient
-    //  type PatientFormValues = Omit<Patient, 'id'>
+    // ---【FormValues】---
+    type FormValues = Omit<Patient, 'id'>
 
-    // Formの初期値とバリデーションチェック
+    // ---【InitialValues】---
     const initialValues = {
-        id: '0',
-        home_clinic: '',
-        primary_doctor: '',
-        karte_number_home: '',
-        karte_number_exam: '',
-        family_name_furigana: '',
-        first_name_furigana: '',
-        family_name: '',
+        home_care_clinic_id: 0,
+        home_care_doctor_id: 0,
+        nursing_home_id: 0,
+        home_karte_number: '',
+        exam_karte_number: '',
+        last_name_kana: '',
+        first_name_kana: '',
+        last_name: '',
         first_name: '',
-        birthdate: '',
+        birthday: '',
         gender: '',
-        nursing_home: '',
-        phone_number: '',
-        postal_code: '',
-        address: '',
+        created_at: new Date(),
+        updated_at: new Date(),
+        deleted_at: null,
     }
 
+    // ---【Validate】---
     const validate = {
-        // name: isNotEmpty(isNotEmptyErrorMessage),
-        // furigana: isNotEmpty(isNotEmptyErrorMessage),
-        // management_company: isNotEmpty(isNotEmptyErrorMessage),
+        home_care_clinic_id: isNotEmpty(isNotEmptyErrorMessage),
+        home_karte_number: isNotEmpty(isNotEmptyErrorMessage),
+        nursing_home_id: isNotEmpty(isNotEmptyErrorMessage),
+        last_name_kana: isNotEmpty(isNotEmptyErrorMessage),
+        first_name_kana: isNotEmpty(isNotEmptyErrorMessage),
+        last_name: isNotEmpty(isNotEmptyErrorMessage),
+        first_name: isNotEmpty(isNotEmptyErrorMessage),
+        birthday: isNotEmpty(isNotEmptyErrorMessage),
+        gender: isNotEmpty(isNotEmptyErrorMessage),
     }
 
+    // ---【Validate】---
     const form = useForm<FormValues>({
         initialValues: initialValues,
         validate: validate,
     })
 
     // ---【Fields】---
-    const fields: Fields[] = [
+    const fields: Field[] = [
         {
+            formPath: 'home_care_clinic.name',
             component: 'Select',
             props: {
                 data: ['test', 'test2'],
                 label: '在宅クリニック',
                 withAsterisk: true,
             },
-            formPath: 'home_clinic',
         },
         {
+            formPath: 'home_care_doctor.name',
             component: 'Select',
             props: {
                 data: ['testaaaa', 'testbbbb'],
                 label: '主治医',
-                withAsterisk: true,
             },
-            formPath: 'primary_doctor',
         },
         {
+            formPath: 'home_karte_number',
             component: 'TextInput',
             props: {
                 label: 'カルテ番号(在宅)',
                 maxLength: 6,
-                withAsterisk: true,
             },
-            formPath: 'karte_number_home',
         },
         {
+            formPath: 'exam_karte_number',
             component: 'TextInput',
             props: {
                 label: 'カルテ番号(検査)',
                 maxLength: 6,
-                withAsterisk: true,
             },
-            formPath: 'karte_number_exam',
         },
         {
+            formPath: 'last_name_kana',
             component: 'TextInput',
             props: {
                 label: '姓(フリガナ)',
                 withAsterisk: true,
             },
-            formPath: 'family_name_furigana',
         },
         {
+            formPath: 'first_name_kana',
             component: 'TextInput',
             props: {
                 label: '名(フリガナ)',
                 withAsterisk: true,
             },
-            formPath: 'first_name_furigana',
         },
         {
+            formPath: 'last_name',
             component: 'TextInput',
             props: {
                 label: '姓',
                 withAsterisk: true,
             },
-            formPath: 'family_name',
         },
         {
+            formPath: 'first_name',
             component: 'TextInput',
             props: {
                 label: '名',
                 withAsterisk: true,
             },
-            formPath: 'first_name',
         },
         {
+            formPath: 'birthday',
             component: 'DateInput',
             props: {
                 label: '生年月日',
                 withAsterisk: true,
             },
-            formPath: 'birthdate',
         },
         {
+            formPath: 'gender',
             component: 'Select',
             props: {
                 data: ['testaaaa', 'testbbbb'],
                 label: '性別',
                 withAsterisk: true,
             },
-            formPath: 'gender',
         },
         {
+            formPath: 'nursing_home.name',
             component: 'TextInput',
             props: {
                 label: '入居施設',
                 withAsterisk: true,
             },
-            formPath: 'nursing_home',
-        },
-        {
-            component: 'TextInput',
-            props: {
-                label: '電話番号',
-                maxLength: 13,
-                withAsterisk: true,
-            },
-            formPath: 'phone_number',
-        },
-        {
-            component: 'TextInput',
-            props: {
-                label: '郵便番号',
-                maxLength: 10,
-                withAsterisk: true,
-            },
-            formPath: 'postal_code',
-        },
-        {
-            component: 'TextInputLong',
-            props: {
-                label: '住所',
-                withAsterisk: true,
-            },
-            formPath: 'address',
         },
     ]
+
     return {
         logicalName,
         physicalName,

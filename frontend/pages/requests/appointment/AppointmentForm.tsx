@@ -22,7 +22,7 @@ export function AppointmentForm() {
             <Box px={12}>
                 <Group position="apart">
                     <DisplayPickUpTimeList homeClinics={homeClinicsTest} />
-                    <Text size="md">最終更新日、記載者：○○</Text>
+                    <Text size="md">最終更新日：〇〇、記載者：〇〇</Text>
                 </Group>
                 {/* 診察関連 */}
                 <Divider label="診察関連" />

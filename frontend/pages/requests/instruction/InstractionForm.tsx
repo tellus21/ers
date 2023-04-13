@@ -1,13 +1,4 @@
-import {
-    Box,
-    Center,
-    Divider,
-    Flex,
-    Group,
-    Space,
-    Tabs,
-    Text,
-} from '@mantine/core'
+import { Box, Divider, Group, Space, Tabs, Text } from '@mantine/core'
 import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { RequestFieldsEightTwelve } from '@/pages/requests/components/RequestFieldsEightTwelve'
 import { useInstraction } from './useInstraction'
@@ -18,24 +9,28 @@ export function InstractionForm() {
 
     return (
         <RequestFormBase resource={resource} form={form}>
-            <TitleText title={logicalName} />
             <Box px={12}>
-                {/* メタデータ */}
+                <TitleText title={logicalName} />
                 <Tabs defaultValue="gallery">
                     <Tabs.List position="center">
-                        <Tabs.Tab value="gallery">①</Tabs.Tab>
-                        <Tabs.Tab value="messages">②</Tabs.Tab>
-                        <Tabs.Tab value="settings">③</Tabs.Tab>
+                        <Tabs.Tab value="gallery">
+                            <Text size="md">①</Text>
+                        </Tabs.Tab>
+                        <Tabs.Tab value="messages">
+                            <Text size="md">②</Text>
+                        </Tabs.Tab>
+                        <Tabs.Tab value="settings">
+                            <Text size="md">③</Text>
+                        </Tabs.Tab>
                     </Tabs.List>
+                    {/* メタデータ */}
 
-                    <Tabs.Panel value="gallery" pt="xs"></Tabs.Panel>
-
-                    <Tabs.Panel value="messages" pt="xs"></Tabs.Panel>
-
-                    <Tabs.Panel value="settings" pt="xs"></Tabs.Panel>
+                    <Tabs.Panel value="1" pt="xs"></Tabs.Panel>
+                    <Tabs.Panel value="2" pt="xs"></Tabs.Panel>
+                    <Tabs.Panel value="3" pt="xs"></Tabs.Panel>
                 </Tabs>
                 <Group position="right">
-                    <Text size="md">最終更新日、記載者：○○</Text>
+                    <Text size="md">最終更新日：〇〇、記載者：〇〇</Text>
                 </Group>
                 <RequestFieldsEightTwelve
                     form={form}
