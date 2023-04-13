@@ -25,12 +25,22 @@ export function useCondition(): UseObject {
         allergy: string
         allergy_content: string
         infection: string
-        types_of_infection: string
-        other_infection: string
+        is_hbs_antigen: boolean
+        is_hcv: boolean
+        is_syphilis: boolean
+        is_hiv: boolean
+        is_mrsa: boolean
         intra_metal: string
         intra_metal_content: string
-        other_situations: string
-        day_week: string
+        is_alcohol_prohibiting: boolean
+        is_pace_maker: boolean
+        is_mon: boolean
+        is_tue: boolean
+        is_wed: boolean
+        is_thu: boolean
+        is_fri: boolean
+        is_sat: boolean
+        is_sun: boolean
         diagnosis_day: string
         surgery_history: string
         other: string
@@ -55,12 +65,22 @@ export function useCondition(): UseObject {
         allergy: '',
         allergy_content: '',
         infection: '',
-        types_of_infection: '',
-        other_infection: '',
+        is_hbs_antigen: false,
+        is_hcv: false,
+        is_syphilis: false,
+        is_hiv: false,
+        is_mrsa: false,
         intra_metal: '',
         intra_metal_content: '',
-        other_situations: '',
-        day_week: '',
+        is_alcohol_prohibiting: false,
+        is_pace_maker: false,
+        is_mon: false,
+        is_tue: false,
+        is_wed: false,
+        is_thu: false,
+        is_fri: false,
+        is_sat: false,
+        is_sun: false,
         diagnosis_day: '',
         surgery_history: '',
         other: '',
@@ -181,31 +201,15 @@ export function useCondition(): UseObject {
             },
             { component: 'Blank' },
             {
-                formPath: 'types_of_infection',
-                component: 'CheckboxGroup',
+                component: 'Checkboxes',
                 props: {
                     label: '感染症の種類',
-                    children: [
-                        {
-                            label: 'HBS抗原',
-                            value: 'is_hbs_antigen',
-                        },
-                        {
-                            label: 'HCV',
-                            value: 'is_hcv',
-                        },
-                        {
-                            label: '梅毒',
-                            value: 'is_syphilis',
-                        },
-                        {
-                            label: 'HIV',
-                            value: 'is_hiv',
-                        },
-                        {
-                            label: 'MRSA',
-                            value: 'is_mrsa',
-                        },
+                    checkboxProps: [
+                        { label: 'HBS抗原', formPath: 'is_hbs_antigen' },
+                        { label: 'HCV', formPath: 'is_hcv' },
+                        { label: '梅毒', formPath: 'is_syphilis' },
+                        { label: 'HIV', formPath: 'is_hiv' },
+                        { label: 'MRSA', formPath: 'is_mrsa' },
                     ],
                 },
             },
@@ -232,57 +236,34 @@ export function useCondition(): UseObject {
                 },
             },
             {
-                formPath: 'other_situations',
-                component: 'CheckboxGroup',
+                component: 'Checkboxes',
                 props: {
                     label: 'その他状況',
-                    children: [
+                    checkboxProps: [
                         {
                             label: 'アルコール禁',
-                            value: 'is_alcohol_prohibiting',
+                            formPath: 'is_alcohol_prohibiting',
                         },
                         {
                             label: 'ペースメーカー有',
-                            value: 'is_pace_maker',
+                            formPath: 'is_pace_maker',
                         },
                     ],
                 },
             },
             { component: 'Blank' },
             {
-                formPath: 'day_week',
-                component: 'CheckboxGroup',
+                component: 'Checkboxes',
                 props: {
                     label: 'デイの曜日',
-                    children: [
-                        {
-                            label: '月',
-                            value: 'mon',
-                        },
-                        {
-                            label: '火',
-                            value: 'tues',
-                        },
-                        {
-                            label: '水',
-                            value: 'wed',
-                        },
-                        {
-                            label: '木',
-                            value: 'thurs',
-                        },
-                        {
-                            label: '金',
-                            value: 'fri',
-                        },
-                        {
-                            label: '土',
-                            value: 'sat',
-                        },
-                        {
-                            label: '日',
-                            value: 'sun',
-                        },
+                    checkboxProps: [
+                        { label: '月', formPath: 'is_mon' },
+                        { label: '火', formPath: 'is_tue' },
+                        { label: '水', formPath: 'is_wed' },
+                        { label: '木', formPath: 'is_thu' },
+                        { label: '金', formPath: 'is_fri' },
+                        { label: '土', formPath: 'is_sat' },
+                        { label: '日', formPath: 'is_sun' },
                     ],
                 },
             },

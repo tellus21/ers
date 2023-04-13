@@ -10,7 +10,6 @@ export function useInsurance(): UseObject {
     const resource = 'insurances'
 
     // ---【API】---
-    // physicalNameでデータ取れるようにしたほうがいいかも
     const { data: query } = useQueryBase(resource)
 
     // ---【Type】---

@@ -87,11 +87,6 @@ export const emsTheme: MantineThemeOverride = {
                 size: 'xs',
             },
         },
-        CheckboxGroup: {
-            defaultProps: {
-                size: 'xs',
-            },
-        },
         RadioGroup: {
             defaultProps: {
                 size: 'xs',

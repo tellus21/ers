@@ -1,6 +1,5 @@
 import {
     Box,
-    Center,
     Checkbox,
     Grid,
     NumberInput,
@@ -9,13 +8,12 @@ import {
     TextInput,
     Textarea,
 } from '@mantine/core'
-import { RadioYesNo } from './RadioYesNo'
 import { DatePickerInput, MonthPickerInput, TimeInput } from '@mantine/dates'
-import { IconCalendar, IconClock } from '@tabler/icons-react'
-import { DisplayPickUpTimeList } from './DisplayPickUpTimeList'
-
+import { IconCalendarTime, IconClock } from '@tabler/icons-react'
 import { Field } from '@/common/types'
 import { KarteNumberInput } from '@/common/components/KarteNumberInput'
+import { DisplayPickUpTimeList } from './DisplayPickUpTimeList'
+import { RadioYesNo } from './RadioYesNo'
 import { RadioMorningDaytime } from '../instruction/RadioMorningDaytime'
 
 interface RequestFieldsEightTwelveProps {
@@ -23,11 +21,9 @@ interface RequestFieldsEightTwelveProps {
     fields: Field[]
     disabled?: boolean
 }
-
 export function RequestFieldsEightTwelve({
     form,
     fields,
-    disabled,
 }: RequestFieldsEightTwelveProps) {
     return (
         <Grid columns={24}>
@@ -85,7 +81,7 @@ export function RequestFieldsEightTwelve({
                             <Grid.Col span={4} key={index}>
                                 <MonthPickerInput
                                     icon={
-                                        <IconCalendar
+                                        <IconCalendarTime
                                             size="1.1rem"
                                             stroke={1.5}
                                         />
@@ -100,7 +96,7 @@ export function RequestFieldsEightTwelve({
                             <Grid.Col span={4} key={index}>
                                 <DatePickerInput
                                     icon={
-                                        <IconCalendar
+                                        <IconCalendarTime
                                             size="1.1rem"
                                             stroke={1.5}
                                         />
@@ -144,7 +140,7 @@ export function RequestFieldsEightTwelve({
                     case 'RadioMorningDaytime':
                         return (
                             <Grid.Col span={6} key={index}>
-                                <Box p={6} bg="gray.0">
+                                <Box p={12} bg="gray.0">
                                     <RadioMorningDaytime
                                         form={form}
                                         props={field.props}

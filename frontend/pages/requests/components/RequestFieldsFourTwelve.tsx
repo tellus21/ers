@@ -1,6 +1,6 @@
 import { Box, Grid, Select, TextInput, Textarea } from '@mantine/core'
-import { CheckboxGroup } from './CheckboxGroup'
 import { RadioYesNo } from './RadioYesNo'
+import { Checkboxes } from './Checkboxes'
 import { Field } from '@/common/types'
 
 interface RequestFieldsFourTwelveProps {
@@ -28,17 +28,14 @@ export function RequestFieldsFourTwelve({
                             </Grid.Col>
                         )
                     case 'TextInput':
-                        return (
-                            <Grid.Col span={6} key={index}>
-                                <TextInput
-                                    {...field.props}
-                                    {...form.getInputProps(field.formPath)}
-                                />
-                            </Grid.Col>
-                        )
                     case 'TextInputLong':
                         return (
-                            <Grid.Col span={12} key={index}>
+                            <Grid.Col
+                                span={
+                                    field.component === 'TextInputLong' ? 12 : 6
+                                }
+                                key={index}
+                            >
                                 <TextInput
                                     {...field.props}
                                     {...form.getInputProps(field.formPath)}
@@ -47,7 +44,7 @@ export function RequestFieldsFourTwelve({
                         )
                     case 'Textarea':
                         return (
-                            <Grid.Col span={12} key={index}>
+                            <Grid.Col span={6} key={index}>
                                 <Textarea
                                     {...field.props}
                                     {...form.getInputProps(field.formPath)}
@@ -57,7 +54,7 @@ export function RequestFieldsFourTwelve({
                     case 'RadioYesNoUnknown':
                         return (
                             <Grid.Col span={6} key={index}>
-                                <Box p={6} bg="gray.0">
+                                <Box p={12} bg="gray.0">
                                     <RadioYesNo
                                         form={form}
                                         props={field.props}
@@ -67,14 +64,13 @@ export function RequestFieldsFourTwelve({
                                 </Box>
                             </Grid.Col>
                         )
-                    case 'CheckboxGroup':
+                    case 'Checkboxes':
                         return (
                             <Grid.Col span={6} key={index}>
-                                <Box p={6} bg="gray.0">
-                                    <CheckboxGroup
+                                <Box p={12} bg="gray.0">
+                                    <Checkboxes
                                         form={form}
                                         props={field.props}
-                                        formPath={field.formPath}
                                     />
                                 </Box>
                             </Grid.Col>

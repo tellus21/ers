@@ -5,6 +5,7 @@ export interface Field {
         label?: string
         data?: string | {}[]
         withAsterisk?: boolean
+        checkboxProps?: any | undefined
         children?: any
         max?: number
         min?: number
