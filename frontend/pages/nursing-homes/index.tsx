@@ -4,15 +4,7 @@ import { NormalFields } from '@/common/components/NormalFields'
 import { useNursingHome } from './useNursingHome'
 
 export default function index() {
-    const {
-        logicalName,
-        physicalName,
-        resource,
-        query,
-        columns,
-        form,
-        fields,
-    } = useNursingHome()
+    const { logicalName, resource, columns, form, fields } = useNursingHome()
 
     return (
         <ModalAndDataTable

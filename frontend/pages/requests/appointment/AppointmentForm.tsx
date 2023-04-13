@@ -2,7 +2,7 @@ import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { useAppointment } from './useAppointment'
 import { TitleText } from '@/pages/requests/components/TitleText'
 import { RequestFieldsEightTwelve } from '@/pages/requests/components/RequestFieldsEightTwelve'
-import { Box, Divider } from '@mantine/core'
+import { Box, Divider, Group, Text } from '@mantine/core'
 
 export function AppointmentForm() {
     const { logicalName, resource, form, fields } = useAppointment()
@@ -11,7 +11,9 @@ export function AppointmentForm() {
         <RequestFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
             <Box px={12}>
-                最終更新日、記載者：○○
+                <Group position="right">
+                    <Text size="md">最終更新日、記載者：○○</Text>
+                </Group>
                 {/* 診察関連 */}
                 <Divider label="診察関連" />
                 <RequestFieldsEightTwelve

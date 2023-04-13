@@ -16,6 +16,7 @@ export function useExaminationClinics() {
     interface ExaminationClinic {
         id: number
         name: string
+        abbreviation: string
         postal_code: string
         address: string
         phone_number: string
@@ -41,6 +42,7 @@ export function useExaminationClinics() {
     // ---【InitialValues】---
     const initialValues = {
         name: '',
+        abbreviation: '',
         postal_code: '',
         address: '',
         phone_number: '',

@@ -1,4 +1,13 @@
-import { Box, Divider, Flex, Group, Space, Text } from '@mantine/core'
+import {
+    Box,
+    Center,
+    Divider,
+    Flex,
+    Group,
+    Space,
+    Tabs,
+    Text,
+} from '@mantine/core'
 import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { RequestFieldsEightTwelve } from '@/pages/requests/components/RequestFieldsEightTwelve'
 import { useInstraction } from './useInstraction'
@@ -12,18 +21,22 @@ export function InstractionForm() {
             <TitleText title={logicalName} />
             <Box px={12}>
                 {/* メタデータ */}
-                {/* {resource}
-            <button onClick={() => console.log(form)}>送信テスト</button>
-            {(activeTab === 'request' && (
-                <RequestFieldsEightTwelve form={form} fields={fields.metaData} />
-            )) ||
-                (activeTab === 'reservation' && (
-                    <RequestFieldsEightTwelve
-                        form={form}
-                        fields={fields.metaData}
-                    />
-                ))} */}
-                １と２のタブで表示を切り替える 記載者〇〇、記載日〇〇
+                <Tabs defaultValue="gallery">
+                    <Tabs.List position="center">
+                        <Tabs.Tab value="gallery">①</Tabs.Tab>
+                        <Tabs.Tab value="messages">②</Tabs.Tab>
+                        <Tabs.Tab value="settings">③</Tabs.Tab>
+                    </Tabs.List>
+
+                    <Tabs.Panel value="gallery" pt="xs"></Tabs.Panel>
+
+                    <Tabs.Panel value="messages" pt="xs"></Tabs.Panel>
+
+                    <Tabs.Panel value="settings" pt="xs"></Tabs.Panel>
+                </Tabs>
+                <Group position="right">
+                    <Text size="md">最終更新日、記載者：○○</Text>
+                </Group>
                 <RequestFieldsEightTwelve
                     form={form}
                     fields={fields.metaData}
