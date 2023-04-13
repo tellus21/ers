@@ -145,6 +145,9 @@ export function InstractionForm() {
                         form={form}
                         fields={fields.contact}
                     />
+                    <Text color="red.6">
+                        ※診療情報提供書には表示されません。
+                    </Text>
                 </Box>
             </Box>
         </RequestFormBase>

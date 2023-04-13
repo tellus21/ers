@@ -3,6 +3,15 @@ import { useAppointment } from './useAppointment'
 import { TitleText } from '@/pages/requests/components/TitleText'
 import { RequestFieldsEightTwelve } from '@/pages/requests/components/RequestFieldsEightTwelve'
 import { Box, Divider, Group, Text } from '@mantine/core'
+import { DisplayPickUpTimeList } from '../components/DisplayPickUpTimeList'
+
+const homeClinicsTest = [
+    { name: 'スマイル', time: '10分' },
+    { name: 'ひがし', time: '20分' },
+    { name: 'ことに', time: '30分' },
+    { name: 'きた', time: '100分' },
+    { name: 'きた高速', time: '50分' },
+]
 
 export function AppointmentForm() {
     const { logicalName, resource, form, fields } = useAppointment()
@@ -11,7 +20,8 @@ export function AppointmentForm() {
         <RequestFormBase resource={resource} form={form}>
             <TitleText title={logicalName} />
             <Box px={12}>
-                <Group position="right">
+                <Group position="apart">
+                    <DisplayPickUpTimeList homeClinics={homeClinicsTest} />
                     <Text size="md">最終更新日、記載者：○○</Text>
                 </Group>
                 {/* 診察関連 */}

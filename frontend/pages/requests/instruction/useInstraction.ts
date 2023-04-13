@@ -21,6 +21,7 @@ export function useInstraction() {
         candidate_month_1: Date | null
         candidate_month_2: Date | null
         has_ct_contrast: boolean
+        ct_creatinine_value: string
         has_brain_pelvis: boolean
         has_head: boolean
         has_thoracic: boolean
@@ -36,6 +37,7 @@ export function useInstraction() {
         has_cta_lower_limb: boolean
         has_ct_other: string
         has_mri_contrast: boolean
+        mri_creatinine_value: string
         has_head_mri: boolean
         has_vsrad: boolean
         has_head_neck: boolean
@@ -111,6 +113,7 @@ export function useInstraction() {
         candidate_month_1: null,
         candidate_month_2: null,
         has_ct_contrast: false,
+        ct_creatinine_value: '',
         has_brain_pelvis: false,
         has_head: false,
         has_thoracic: false,
@@ -126,6 +129,7 @@ export function useInstraction() {
         has_cta_lower_limb: false,
         has_ct_other: '',
         has_mri_contrast: false,
+        mri_creatinine_value: '',
         has_head_mri: false,
         has_vsrad: false,
         has_head_neck: false,

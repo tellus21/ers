@@ -129,7 +129,7 @@ export function RequestFieldsEightTwelve({
                         )
                     case 'RadioYesNo':
                         return (
-                            <Grid.Col span={4} key={index}>
+                            <Grid.Col span={6} key={index}>
                                 <RadioYesNo
                                     form={form}
                                     props={field.props}

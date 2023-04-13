@@ -10,15 +10,14 @@ export function DisplayPickUpTimeList({
 }: DisplayPickUpTimeListProps) {
     return (
         <>
-            <Text size="xs">送迎時間</Text>
             <Group>
                 <Divider orientation="vertical" />
-                {homeClinics.map((homeClinics, index) => (
+                {homeClinics?.map((homeClinics, index) => (
                     <Stack spacing="xs" align="center" key={index}>
                         <Group spacing="xs">
-                            <Text>{homeClinics.name}</Text>
+                            <Text size="xs">{homeClinics.name}</Text>
                             <Box bg="gray.0" p={5}>
-                                {homeClinics.time}
+                                <Text>{homeClinics.time}</Text>
                             </Box>
                             <Divider size="xs" orientation="vertical" />
                         </Group>

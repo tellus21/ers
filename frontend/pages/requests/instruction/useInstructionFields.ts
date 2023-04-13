@@ -84,6 +84,27 @@ const ct_1 = [
             label: '造影',
         },
     },
+    {
+        component: 'Text',
+        props: {
+            children: '　　クレアチニン値(mg/dl)',
+        },
+    },
+    {
+        formPath: 'ct_creatinine_value',
+        component: 'etcTextInput',
+        props: {
+            label: '',
+            pb: 4,
+        },
+    },
+    {
+        component: 'Text',
+        props: {
+            children: '※直近3カ月以内の数値',
+            color: 'red.6',
+        },
+    },
 ]
 
 const ct_2 = [
@@ -227,6 +248,27 @@ const mri_1 = [
         component: 'Checkbox',
         props: {
             label: '造影',
+        },
+    },
+    {
+        component: 'Text',
+        props: {
+            children: '　　クレアチニン値(mg/dl)',
+        },
+    },
+    {
+        formPath: 'mri_creatinine_value',
+        component: 'etcTextInput',
+        props: {
+            label: '',
+            pb: 4,
+        },
+    },
+    {
+        component: 'Text',
+        props: {
+            children: '※直近3カ月以内の数値',
+            color: 'red.6',
         },
     },
 ]
@@ -590,7 +632,6 @@ const petCt = [
         formPath: 'can_insulin_injection',
         props: {
             label: 'インシュリン注射',
-            pt: 14,
         },
     },
     {
@@ -598,7 +639,6 @@ const petCt = [
         formPath: 'blood_glucose_value',
         props: {
             label: '血糖値(mg/dL)',
-            pt: 14,
         },
     },
     {
@@ -606,7 +646,6 @@ const petCt = [
         formPath: 'a1c',
         props: {
             label: 'A1C(%)',
-            pt: 14,
         },
     },
 ]
