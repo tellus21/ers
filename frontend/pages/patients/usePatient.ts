@@ -1,9 +1,9 @@
 import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
-import { Field } from '@/common/types'
+import { Field,  } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 
-export function usePatient() {
+export function usePatients():  {
     // ---【Name】---
     const logicalName = '患者'
     const physicalName = 'patient'
@@ -75,7 +75,7 @@ export function usePatient() {
         gender: isNotEmpty(isNotEmptyErrorMessage),
     }
 
-    // ---【Validate】---
+    // ---【Form】---
     const form = useForm<FormValues>({
         initialValues: initialValues,
         validate: validate,

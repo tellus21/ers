@@ -18,7 +18,7 @@ interface UseFormInput<T, F> {
     validate: F
 }
 
-export interface UseObject {
+export interface useObject {
     logicalName: string
     physicalName: string
     resource: string

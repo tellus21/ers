@@ -1,8 +1,7 @@
 import { useQueryBase } from '@/common/hooks'
-import { UseObject } from '@/common/types'
 import { useForm } from '@mantine/form'
 
-export function useRequest(): UseObject {
+export function useRequest() {
     // ---【Name】---
     const logicalName = '検査依頼'
     const physicalName = 'request'

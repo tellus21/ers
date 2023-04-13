@@ -1,9 +1,9 @@
 import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
-import { Field, UseObject } from '@/common/types'
+import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 
-export function useCondition(): UseObject {
+export function useCondition() {
     // ---【Name】---
     const logicalName = '患者状況'
     const physicalName = 'condition'

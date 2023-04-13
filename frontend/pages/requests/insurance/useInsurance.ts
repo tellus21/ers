@@ -1,9 +1,9 @@
 import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
-import { Field, UseObject } from '@/common/types'
+import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 
-export function useInsurance(): UseObject {
+export function useInsurance() {
     // ---【Name】---
     const logicalName = '保険情報'
     const physicalName = 'insurance'
