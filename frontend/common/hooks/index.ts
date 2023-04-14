@@ -52,7 +52,7 @@ export function useMutateBase(resource: string): {
         onSuccess: invalidateAndRefetchData,
     })
 
-    const deleteData = (deleteData) => {
+    const deleteData = (deleteData: any) => {
         return axios.delete(
             `${process.env.NEXT_PUBLIC_API_URL}/${resource}/${deleteData.id}`
         )

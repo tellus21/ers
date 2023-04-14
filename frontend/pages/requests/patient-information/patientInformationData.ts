@@ -19,6 +19,6 @@ export const patientInformationData: patientInformationData[] = [
     { label: '郵便番号', value: '〒060-0042' },
     {
         label: '住所',
-        value: '北海道札幌市中央区大通西１丁目１４−２ 桂和大通ビル50 4F',
+        value: '北海道札幌市中央区大通西１丁目',
     },
 ]
