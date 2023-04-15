@@ -4,24 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateExaminationClinicPatientTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('examination_clinic_patient', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('examination_clinic_id')->constrained();
+            $table->foreignId('patient_id')->constrained();
+            $table->string('exam_karte_number');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('examination_clinic_patient');
     }
-};
+}
