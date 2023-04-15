@@ -9,12 +9,14 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'login_name' => 'required|string|unique:users,login_name',
-            'password' => 'required|string',
-            'last_name' => 'required|string',
-            'first_name' => 'required|string',
-            'authority' => 'required|string',
-            'email_address' => 'nullable|string|email',
+            'home_care_clinic_id' => 'required|exists:home_care_clinics,id',
+            'examination_clinic_id' => 'required|exists:examination_clinics,id',
+            'login_name' => 'required|unique:users',
+            'password' => 'required',
+            'last_name' => 'required',
+            'first_name' => 'required',
+            'authority' => 'required',
+            'email_address' => 'nullable',
         ];
     }
 }

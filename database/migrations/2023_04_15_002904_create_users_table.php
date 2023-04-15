@@ -10,6 +10,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('home_care_clinic_id')->constrained();
+            $table->foreignId('examination_clinic_id')->constrained();
             $table->string('login_name')->unique();
             $table->string('password');
             $table->string('last_name');
@@ -21,12 +23,8 @@ class CreateUsersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('users');
     }
 }
-;

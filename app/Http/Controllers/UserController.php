@@ -9,7 +9,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::all();
+        $users = User::with(['homeCareClinic', 'examinationClinic'])->get();
+        return response()->json($users);
     }
 
     public function store(UserRequest $request)
