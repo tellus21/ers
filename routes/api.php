@@ -28,9 +28,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 Route::apiResource('departments', DepartmentController::class);
 Route::apiResource('users', UserController::class);
 Route::apiResource('examination_clinics', ExaminationClinicController::class);

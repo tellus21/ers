@@ -2,36 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\InstructionRequest;
-use App\Models\Instruction;
+use App\Http\Requests\UserRequest;
+use App\Models\User;
 
-class InstructionController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
-        return Instruction::all();
+        return User::with('department')->get();
     }
 
-    public function store(InstructionRequest $request)
+    public function store(UserRequest $request)
     {
-        $instruction = Instruction::create($request->validated());
-        return $instruction;
+        $user = User::create($request->validated());
+        return $user;
     }
 
-    public function show(Instruction $instruction)
+    public function show(User $user)
     {
-        return $instruction;
+        return $user->load('department');
     }
 
-    public function update(InstructionRequest $request, Instruction $instruction)
+    public function update(UserRequest $request, User $user)
     {
-        $instruction->update($request->validated());
-        return $instruction;
+        $user->update($request->validated());
+        return $user;
     }
 
-    public function destroy(Instruction $instruction)
+    public function destroy(User $user)
     {
-        $instruction->delete();
-        return response()->json(['message' => 'Instruction deleted']);
+        $user->delete();
+        return response()->json(['message' => 'User deleted']);
     }
 }

@@ -1,9 +1,9 @@
 import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
-import { Field,  } from '@/common/types'
+import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 
-export function usePatients():  {
+export function usePatients() {
     // ---【Name】---
     const logicalName = '患者'
     const physicalName = 'patient'
@@ -19,7 +19,6 @@ export function usePatients():  {
         home_care_doctor_id: number
         nursing_home_id: number
         home_karte_number: string
-        exam_karte_number: string
         last_name_kana: string
         first_name_kana: string
         last_name: string
@@ -50,7 +49,6 @@ export function usePatients():  {
         home_care_doctor_id: 0,
         nursing_home_id: 0,
         home_karte_number: '',
-        exam_karte_number: '',
         last_name_kana: '',
         first_name_kana: '',
         last_name: '',
@@ -109,20 +107,15 @@ export function usePatients():  {
             },
         },
         {
-            formPath: 'exam_karte_number',
-            component: 'TextInput',
-            props: {
-                label: 'カルテ番号(検査)',
-                maxLength: 6,
-            },
-        },
-        {
             formPath: 'last_name_kana',
             component: 'TextInput',
             props: {
                 label: '姓(フリガナ)',
                 withAsterisk: true,
             },
+        },
+        {
+            component: 'Blank',
         },
         {
             formPath: 'first_name_kana',

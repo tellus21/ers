@@ -1,11 +1,10 @@
 import { FormBase } from '@/common/components/FormBase'
 import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
 import { NormalFields } from '@/common/components/NormalFields'
-
-import { usePatient } from './usePatient'
+import { usePatients } from './usePatients'
 
 export default function index() {
-    const { logicalName, resource, columns, form, fields } = usePatient()
+    const { logicalName, resource, columns, form, fields } = usePatients()
 
     return (
         <ModalAndDataTable
