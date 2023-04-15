@@ -15,7 +15,6 @@ class Patient extends Model
         'home_care_doctor_id',
         'nursing_home_id',
         'home_karte_number',
-        'exam_karte_number',
         'last_name_kana',
         'first_name_kana',
         'last_name',
