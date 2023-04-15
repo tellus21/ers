@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ConditionController;
-use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ExaminationClinicController;
 use App\Http\Controllers\ExaminationClinicPatientController;
 use App\Http\Controllers\HomeCareClinicController;
@@ -31,7 +30,6 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::apiResource('departments', DepartmentController::class);
 Route::apiResource('users', UserController::class);
 Route::apiResource('examination_clinics', ExaminationClinicController::class);
 Route::apiResource('home_care_clinics', HomeCareClinicController::class);
