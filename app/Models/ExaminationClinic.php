@@ -16,6 +16,6 @@ class ExaminationClinic extends Model
         'postal_code',
         'address',
         'phone_number',
-        'fax_number',
+        'fax_number'
     ];
 }
