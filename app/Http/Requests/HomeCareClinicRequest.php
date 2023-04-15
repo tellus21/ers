@@ -9,12 +9,12 @@ class HomeCareClinicRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:home_care_clinics,name',
-            'abbreviation' => 'nullable|string',
-            'postal_code' => 'nullable|string',
-            'address' => 'nullable|string',
-            'phone_number' => 'nullable|string',
-            'fax_number' => 'nullable|string',
+            'name' => 'required|unique:home_care_clinics',
+            'abbreviation' => 'nullable',
+            'postal_code' => 'nullable',
+            'address' => 'nullable',
+            'phone_number' => 'nullable',
+            'fax_number' => 'nullable',
         ];
     }
 }

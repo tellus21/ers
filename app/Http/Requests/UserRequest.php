@@ -9,7 +9,6 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'department_id' => 'required|integer|exists:departments,id',
             'login_name' => 'required|string|unique:users,login_name',
             'password' => 'required|string',
             'last_name' => 'required|string',

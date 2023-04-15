@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        return User::with('department')->get();
+        return User::all();
     }
 
     public function store(UserRequest $request)
@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return $user->load('department');
+        return $user;
     }
 
     public function update(UserRequest $request, User $user)

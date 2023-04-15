@@ -15,7 +15,8 @@ export function useUser() {
     // ---【Type】---
     interface User {
         id: number
-        department_id: number
+        home_care_clinic_id: number
+        examination_clinic_id: number
         login_name: string
         password: string
         last_name: string
@@ -42,7 +43,8 @@ export function useUser() {
 
     // ---【InitialValues】---
     const initialValues = {
-        department_id: 0,
+        home_care_clinic_id: 0,
+        examination_clinic_id: 0,
         login_name: '',
         password: '',
         last_name: '',
@@ -102,22 +104,6 @@ export function useUser() {
             component: 'TextInput',
             props: {
                 label: '名',
-                withAsterisk: true,
-            },
-        },
-        {
-            formPath: 'department.name',
-            component: 'Select',
-            props: {
-                label: '所属',
-                data: [
-                    'ことに在宅',
-                    'ひがし在宅',
-                    'スマイル在宅',
-                    'きた在宅',
-                    'LSI札幌クリニック',
-                    'スマイル健康クリニック',
-                ],
                 withAsterisk: true,
             },
         },

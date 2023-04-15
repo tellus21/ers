@@ -11,7 +11,6 @@ class User extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'department_id',
         'login_name',
         'password',
         'last_name',
@@ -20,8 +19,4 @@ class User extends Model
         'email_address',
     ];
 
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
 }
