@@ -36,6 +36,7 @@ export function useHomeCareDoctors() {
 
     // ---【InitialValues】---
     const initialValues = {
+        id: 0,
         name: '',
         created_at: new Date(),
         updated_at: new Date(),
@@ -48,7 +49,7 @@ export function useHomeCareDoctors() {
     }
 
     // ---【Form】---
-    const form = useForm<FormValues>({
+    const form = useForm<HomeCareDoctor>({
         initialValues: initialValues,
         validate: validate,
     })
@@ -65,15 +66,6 @@ export function useHomeCareDoctors() {
         },
         {
             component: 'Blank',
-        },
-        {
-            component: 'BlankLong',
-        },
-        {
-            component: 'BlankLong',
-        },
-        {
-            component: 'BlankLong',
         },
     ]
 

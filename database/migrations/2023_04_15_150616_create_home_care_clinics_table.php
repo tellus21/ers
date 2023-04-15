@@ -13,7 +13,7 @@ class CreateHomeCareClinicsTable extends Migration
             $table->string('name')->unique();
             $table->string('abbreviation')->nullable();
             $table->string('postal_code')->nullable();
-            $table->text('address')->nullable();
+            $table->string('address')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('fax_number')->nullable();
             $table->timestamps();
