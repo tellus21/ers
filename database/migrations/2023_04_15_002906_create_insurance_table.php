@@ -4,24 +4,25 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateInsuranceTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('insurance', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('request_id')->constrained();
+            $table->string('insurance_type');
+            $table->string('public_expense');
+            $table->string('responsible_city_district');
+            $table->string('life_insurance_responsible_name');
+            $table->string('other_medical_insurance');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('insurance');
     }
-};
+}
