@@ -108,7 +108,7 @@ const data = [
     { link: '/requests', label: '検査', icon: IconBellRinging },
     { link: '/patients', label: '患者', icon: IconReceipt },
     { link: '/home-care-clinics', label: '入居施設', icon: IconFingerprint },
-    { link: '/home-clinic-doctors', label: '在宅医師', icon: IconKey },
+    { link: '/home-care-doctors', label: '在宅医師', icon: IconKey },
     { link: '/home-care-clinics', label: '在宅クリニック', icon: IconKey },
     {
         link: '/examination-clinics',
