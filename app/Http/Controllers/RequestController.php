@@ -2,9 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\RequestRequest;
+use App\Models\Request;
 
 class RequestController extends Controller
 {
-    //
+    public function index()
+    {
+        return Request::all();
+    }
+
+    public function store(RequestRequest $request)
+    {
+        $request = Request::create($request->validated());
+        return $request;
+    }
+
+    public function show(Request $request)
+    {
+        return $request;
+    }
+
+    public function update(RequestRequest $request, Request $requestModel)
+    {
+        $requestModel->update($request->validated());
+        return $requestModel;
+    }
+
+    public function destroy(Request $request)
+    {
+        $request->delete();
+        return response()->json(['message' => 'Request deleted']);
+    }
 }
