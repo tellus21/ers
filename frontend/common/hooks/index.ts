@@ -1,6 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL
+
 // 与えられたresourceをもとにAPIからデータを取得するhook
 export function useQueryBase(resource: string): {
     isLoading: boolean
@@ -8,9 +10,7 @@ export function useQueryBase(resource: string): {
     data: any
 } {
     const getData = () =>
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/${resource}`).then((res) =>
-            res.json()
-        )
+        fetch(`${API_URL}/${resource}`).then((res) => res.json())
     const { isLoading, error, data } = useQuery({
         queryKey: [resource],
         queryFn: getData,
@@ -31,10 +31,7 @@ export function useMutateBase(resource: string): {
     }
 
     const postData = (postData: any) => {
-        return axios.post(
-            `${process.env.NEXT_PUBLIC_API_URL}/${resource}`,
-            postData
-        )
+        return axios.post(`${API_URL}/${resource}`, postData)
     }
     const createNewDataMutation = useMutation({
         mutationFn: postData,
@@ -42,10 +39,7 @@ export function useMutateBase(resource: string): {
     })
 
     const patchData = (patchData: any) => {
-        return axios.patch(
-            `${process.env.NEXT_PUBLIC_API_URL}/${resource}/${patchData.id}`,
-            patchData
-        )
+        return axios.patch(`${API_URL}/${resource}/${patchData.id}`, patchData)
     }
     const updateSelectedDataMutation = useMutation({
         mutationFn: patchData,
@@ -53,9 +47,7 @@ export function useMutateBase(resource: string): {
     })
 
     const deleteData = (deleteData: any) => {
-        return axios.delete(
-            `${process.env.NEXT_PUBLIC_API_URL}/${resource}/${deleteData.id}`
-        )
+        return axios.delete(`${API_URL}/${resource}/${deleteData.id}`)
     }
     const deleteSelectedDataMutation = useMutation({
         mutationFn: deleteData,

@@ -44,7 +44,7 @@ export function RequestFormBase({
                 <Group position="center" mt="sm">
                     {
                         // /* 新規の場合 */
-                        form.values.id === '0' ? (
+                        form.values.id === 0 ? (
                             <Button
                                 size="sm"
                                 type="submit"
@@ -53,7 +53,7 @@ export function RequestFormBase({
                                 {captionCreat}
                             </Button>
                         ) : // /* 更新の場合 */
-                        form.values.id !== '0' ? (
+                        form.values.id !== 0 ? (
                             <Button
                                 size="sm"
                                 type="submit"

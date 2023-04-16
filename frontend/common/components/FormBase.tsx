@@ -41,7 +41,7 @@ export function FormBase({ resource, form, children }: FormBaseProps) {
             >
                 {children}
 
-                {form.values.id === '0' ? (
+                {form.values.id === 0 ? (
                     // 登録の場合
                     <Group position="center" mt="sm">
                         <Button
@@ -52,7 +52,7 @@ export function FormBase({ resource, form, children }: FormBaseProps) {
                             {captionCreat}
                         </Button>
                     </Group>
-                ) : form.values.id !== '0' ? (
+                ) : form.values.id !== 0 ? (
                     // 更新/削除の場合
                     <Group position="center" mt="sm">
                         <Button
