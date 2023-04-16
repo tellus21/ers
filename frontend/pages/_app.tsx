@@ -5,7 +5,6 @@ import { MantineProvider } from '@mantine/core'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import 'dayjs/locale/ja'
-import axios from 'axios'
 
 import { AppShellLayout } from '@/common/components/layout/AppShellLayout'
 import { emsTheme } from '@/common/theme'
@@ -13,7 +12,6 @@ import { emsTheme } from '@/common/theme'
 export default function App(props: AppProps) {
     const queryClient = new QueryClient()
     const { Component, pageProps } = props
-    // axios.defaults.withCredentials = true
 
     return (
         <>

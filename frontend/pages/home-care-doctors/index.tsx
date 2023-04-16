@@ -8,7 +8,7 @@ export default function index() {
     const { logicalName, resource, query, columns, form, fields } =
         useHomeCareDoctors()
 
-    useEffect(() => {}, [query, fields])
+    // useEffect(() => {}, [query, fields])
 
     return (
         <ModalAndDataTable

@@ -1,4 +1,12 @@
-import { Box, Button, Group, Loader, Modal, Text } from '@mantine/core'
+import {
+    Box,
+    Button,
+    Container,
+    Group,
+    Loader,
+    Modal,
+    Text,
+} from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { DataTable } from 'mantine-datatable'
 
@@ -64,9 +72,9 @@ export function ModalAndDataTable({
     }
 
     return (
-        <Box>
+        <Container size="sm">
+            {' '}
             <Text size="md">{`${logicalName}一覧`}</Text>
-
             <Modal
                 opened={modalOpened}
                 onClose={onModalCloseClick}
@@ -75,19 +83,17 @@ export function ModalAndDataTable({
             >
                 {children}
             </Modal>
-
             <Group position="right">
                 <Button
                     size="sm"
                     onClick={onCreateButtonClick}
                 >{`${logicalName}登録`}</Button>
             </Group>
-
             <DataTableBase
                 columns={tableColumns}
                 records={query}
                 onRowClick={(rowData) => onTableRowClick(rowData)}
             />
-        </Box>
+        </Container>
     )
 }
