@@ -1,11 +1,36 @@
 import { Box, Button, Group, Loader, Modal, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { DataTable } from 'mantine-datatable'
-import { useQueryBase } from '../hooks'
+
+interface DataTableBaseProps {
+    columns: any
+    records: any
+    onRowClick: (rowData: any) => void
+}
+
+function DataTableBase({ columns, records, onRowClick }: DataTableBaseProps) {
+    return (
+        <DataTable
+            withBorder
+            borderRadius="sm"
+            shadow="sm"
+            withColumnBorders
+            striped
+            highlightOnHover
+            horizontalSpacing="xs"
+            verticalSpacing="xs"
+            fontSize="xs"
+            verticalAlignment="center"
+            columns={columns}
+            records={records}
+            onRowClick={onRowClick}
+        />
+    )
+}
 
 //templateTypeに|stringを加えないと、スプレッド構文を利用したときに、エラーになる。
 interface ModalAndDataTableProps {
-    resource: string
+    query: any
     logicalName: string
     modalSize?: string
     children: React.ReactNode
@@ -14,20 +39,19 @@ interface ModalAndDataTableProps {
 }
 
 export function ModalAndDataTable({
-    resource,
+    query,
     logicalName,
     modalSize,
     children,
     form,
     tableColumns,
 }: ModalAndDataTableProps) {
-    // TODO: IndexTemplate用のuseを作ってここに書く
     const [modalOpened, modalHandlers] = useDisclosure(false)
-    const { isLoading, error, data: query } = useQueryBase(resource)
-    const allQuery = query?.[resource]
+    // const { isLoading, error, data: query } = useQueryBase(resource)
+    // const allQuery = query?.[resource]
 
-    isLoading ? <Loader /> : null
-    error ? <Text>Errorです！</Text> : null
+    // isLoading ? <Loader /> : null
+    // error ? <Text>Errorです！</Text> : null
 
     const onModalCloseClick = () => modalHandlers.close()
     const onCreateButtonClick = () => {
@@ -59,20 +83,9 @@ export function ModalAndDataTable({
                 >{`${logicalName}登録`}</Button>
             </Group>
 
-            {/* defaultPropsにかけないので、ここに書くしかないか */}
-            <DataTable
-                withBorder
-                borderRadius="sm"
-                shadow="sm"
-                withColumnBorders
-                striped
-                highlightOnHover
-                horizontalSpacing="xs"
-                verticalSpacing="xs"
-                fontSize="xs"
-                verticalAlignment="center"
+            <DataTableBase
                 columns={tableColumns}
-                records={allQuery}
+                records={query}
                 onRowClick={(rowData) => onTableRowClick(rowData)}
             />
         </Box>
