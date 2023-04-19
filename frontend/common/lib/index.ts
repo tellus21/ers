@@ -1,5 +1,5 @@
 // 6桁の文字数でない場合、エラー文字列を返す関数
-const checkKarteNumberLength = (value: string): string => {
+export const checkKarteNumberLength = (value: string): string => {
     // 5桁の場合は先頭に0を付与して6桁にする
     if (value.length === 5) {
         return `0${value}`
@@ -11,3 +11,6 @@ const checkKarteNumberLength = (value: string): string => {
     // 6桁の場合はそのまま返す
     return value
 }
+// objからnameプロパティを抽出して配列として返す関数
+export const getNames = (obj: any) =>
+    obj?.map(({ name }: { name: string }) => name)

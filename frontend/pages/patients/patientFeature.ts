@@ -1,8 +1,16 @@
+import {
+    NursingHome,
+    useNursingHomeNames,
+} from './../nursing-homes/nursingHomeFeature'
+import { useHomeCareDoctorNames } from './../home-care-doctors/homeCareDoctorFeature'
+import { HomeCareClinic } from './../home-care-clinics/homeCareClinicFeature'
 import { genderOptions, isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
+import { getNames } from '@/common/lib'
 import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 import dayjs from 'dayjs'
+import { useHomeCareClinicNames } from '../home-care-clinics/homeCareClinicFeature'
 
 export interface Patient {
     id: number
@@ -22,6 +30,12 @@ export interface Patient {
 }
 
 export function usePatientFeature() {
+    // ここでuse～を取得しないとエラーになる。
+    // リレーション先だとだめ。
+    const homeCareClinicNames = useHomeCareClinicNames()
+    const homeCareDoctorNames = useHomeCareDoctorNames()
+    const nursingHomeNames = useNursingHomeNames()
+
     // ---【Name】---
     const logicalName = '患者'
     const resource = 'patients'
@@ -94,7 +108,7 @@ export function usePatientFeature() {
             formPath: 'home_care_clinic.name',
             component: 'Select',
             props: {
-                data: ['test', 'test2'],
+                data: homeCareClinicNames,
                 label: '在宅クリニック',
                 withAsterisk: true,
             },
@@ -103,7 +117,7 @@ export function usePatientFeature() {
             formPath: 'home_care_doctor.name',
             component: 'Select',
             props: {
-                data: ['testaaaa', 'testbbbb'],
+                data: homeCareDoctorNames,
                 label: '主治医',
             },
         },
@@ -177,8 +191,9 @@ export function usePatientFeature() {
         },
         {
             formPath: 'nursing_home.name',
-            component: 'TextInput',
+            component: 'Select',
             props: {
+                data: nursingHomeNames,
                 label: '入居施設',
                 withAsterisk: true,
             },

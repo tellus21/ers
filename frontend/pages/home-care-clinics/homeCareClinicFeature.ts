@@ -2,6 +2,7 @@ import { isNotEmpty, useForm } from '@mantine/form'
 import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
+import { getNames } from '@/common/lib'
 
 export interface HomeCareClinic {
     id: number
@@ -14,6 +15,12 @@ export interface HomeCareClinic {
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
+}
+
+export const useHomeCareClinicNames = () => {
+    const { data: homeCareClinics } = useQueryBase('home_care_clinics')
+    const homeCareClinicNames = getNames(homeCareClinics)
+    return homeCareClinicNames
 }
 
 export function useHomeCareClinicFeature() {
