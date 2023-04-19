@@ -9,7 +9,7 @@ class PatientController extends Controller
 {
     public function index()
     {
-        return Patient::all();
+        return Patient::with('homeCareClinic', 'homeCareDoctor', 'nursingHome')->get();
     }
 
     public function store(PatientRequest $request)

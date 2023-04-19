@@ -28,19 +28,6 @@ export function useNursingHomeFeature() {
     // ---【API】---
     const { data: query } = useQueryBase(resource)
 
-    // ---【DataTable】---
-    const columns = [
-        { accessor: 'id', title: 'id' },
-        { accessor: 'name', title: '名前', width: 150 },
-        { accessor: 'postal_code', title: '郵便番号' },
-        { accessor: 'address', title: '住所' },
-        { accessor: 'phone_number', title: '電話番号' },
-        { accessor: 'fax_number', title: 'FAX番号' },
-        { accessor: 'main_contact', title: '主担当' },
-        { accessor: 'sub_contact', title: '副担当' },
-        { accessor: 'pick_up_time', title: '送迎時間' },
-    ]
-
     // ---【InitialValues】---
     const initialValues = {
         id: 0,
@@ -69,6 +56,19 @@ export function useNursingHomeFeature() {
         initialValues: initialValues,
         validate: validate,
     })
+
+    // ---【DataTable】---
+    const columns = [
+        { accessor: 'id', title: 'id' },
+        { accessor: 'name', title: '名前', width: 150 },
+        { accessor: 'postal_code', title: '郵便番号' },
+        { accessor: 'address', title: '住所' },
+        { accessor: 'phone_number', title: '電話番号' },
+        { accessor: 'fax_number', title: 'FAX番号' },
+        { accessor: 'main_contact', title: '主担当' },
+        { accessor: 'sub_contact', title: '副担当' },
+        { accessor: 'pick_up_time', title: '送迎時間' },
+    ]
 
     // ---【Fields】---
     const fields: Field[] = [

@@ -1,17 +1,21 @@
 import { FormBase } from '@/common/components/FormBase'
 import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
 import { NormalFields } from '@/common/components/NormalFields'
-import { usePatients } from './usePatients'
+import { useEffect } from 'react'
+import { usePatientFeature } from './patientFeature'
 
 export default function index() {
-    const { logicalName, resource, columns, form, fields } = usePatients()
+    const { logicalName, resource, query, form, columns, fields } =
+        usePatientFeature()
+
+    useEffect(() => {}, [query, fields])
 
     return (
         <ModalAndDataTable
-            resource={resource}
             logicalName={logicalName}
             form={form}
             tableColumns={columns}
+            query={query}
         >
             <FormBase resource={resource} form={form}>
                 <NormalFields form={form} fields={fields} />
