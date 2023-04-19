@@ -1,18 +1,18 @@
 import { FormBase } from '@/common/components/FormBase'
 import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
 import { NormalFields } from '@/common/components/NormalFields'
-import { useHomeCareClinics } from './useHomeCareClinics'
+import { useHomeCareClinicFeature } from './homeCareClinicFeature'
 
 export default function index() {
-    const { logicalName, resource, columns, form, fields } =
-        useHomeCareClinics()
+    const { logicalName, resource, query, columns, form, fields } =
+        useHomeCareClinicFeature()
 
     return (
         <ModalAndDataTable
-            resource={resource}
             logicalName={logicalName}
             form={form}
             tableColumns={columns}
+            query={query}
         >
             <FormBase resource={resource} form={form}>
                 <NormalFields form={form} fields={fields} />

@@ -3,44 +3,30 @@ import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 
-export function useExaminationClinics() {
+export interface ExaminationClinic {
+    id: number
+    name: string
+    abbreviation: string
+    postal_code: string
+    address: string
+    phone_number: string
+    fax_number: string
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+}
+
+export function useExaminationClinicFeature() {
     // ---【Name】---
     const logicalName = '検査クリニック'
-    const physicalName = 'examination_clinic'
     const resource = 'examination_clinics'
 
     // ---【API】---
     const { data: query } = useQueryBase(resource)
 
-    // ---【Type】---
-    interface ExaminationClinic {
-        id: number
-        name: string
-        abbreviation: string
-        postal_code: string
-        address: string
-        phone_number: string
-        fax_number: string
-        created_at: Date
-        updated_at: Date
-        deleted_at: Date | null
-    }
-
-    // ---【DataTable】---
-    const columns = [
-        { accessor: 'id', title: 'id' },
-        { accessor: 'name', title: '名前', width: 150 },
-        { accessor: 'postal_code', title: '郵便番号' },
-        { accessor: 'address', title: '住所' },
-        { accessor: 'phone_number', title: '電話番号' },
-        { accessor: 'fax_number', title: 'FAX番号' },
-    ]
-
-    // ---【FormValues】---
-    type FormValues = Omit<ExaminationClinic, 'id'>
-
     // ---【InitialValues】---
     const initialValues = {
+        id: 0,
         name: '',
         abbreviation: '',
         postal_code: '',
@@ -58,10 +44,20 @@ export function useExaminationClinics() {
     }
 
     // ---【Form】---
-    const form = useForm<FormValues>({
+    const form = useForm<ExaminationClinic>({
         initialValues: initialValues,
         validate: validate,
     })
+
+    // ---【DataTable】---
+    const columns = [
+        { accessor: 'id', title: 'id' },
+        { accessor: 'name', title: '名前', width: 150 },
+        { accessor: 'postal_code', title: '郵便番号' },
+        { accessor: 'address', title: '住所' },
+        { accessor: 'phone_number', title: '電話番号' },
+        { accessor: 'fax_number', title: 'FAX番号' },
+    ]
 
     // ---【Fields】---
     const fields: Field[] = [
@@ -115,7 +111,6 @@ export function useExaminationClinics() {
 
     return {
         logicalName,
-        physicalName,
         resource,
         query,
         columns,
