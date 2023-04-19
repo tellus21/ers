@@ -8,14 +8,31 @@ import {
     Text,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
+import dayjs from 'dayjs'
 import { DataTable } from 'mantine-datatable'
+
+const dateColumns = [
+    {
+        accessor: 'created_at',
+        title: '作成日',
+        textaligment: 'center',
+        render: ({ created_at }: { created_at: Date }) =>
+            dayjs(created_at).format('YYYY/MM/DD'),
+    },
+    {
+        accessor: 'updated_at',
+        title: '更新日',
+        textaligment: 'center',
+        render: ({ updated_at }: { updated_at: Date }) =>
+            dayjs(updated_at).format('YYYY/MM/DD'),
+    },
+]
 
 interface DataTableBaseProps {
     columns: any
     records: any
     onRowClick: (rowData: any) => void
 }
-
 function DataTableBase({ columns, records, onRowClick }: DataTableBaseProps) {
     return (
         <DataTable
@@ -29,7 +46,7 @@ function DataTableBase({ columns, records, onRowClick }: DataTableBaseProps) {
             verticalSpacing="xs"
             fontSize="xs"
             verticalAlignment="center"
-            columns={columns}
+            columns={[...columns, ...dateColumns]}
             records={records}
             onRowClick={onRowClick}
         />

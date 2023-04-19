@@ -2,13 +2,13 @@ import { useEffect } from 'react'
 import { FormBase } from '@/common/components/FormBase'
 import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
 import { NormalFields } from '@/common/components/NormalFields'
-import { useHomeCareDoctors } from './useHomeCareDoctors'
+import { useHomeCareDoctorFeature } from './homeCareDoctorFeature'
 
 export default function index() {
-    const { logicalName, resource, query, columns, form, fields } =
-        useHomeCareDoctors()
+    const { logicalName, resource, query, form, columns, fields } =
+        useHomeCareDoctorFeature()
 
-    // useEffect(() => {}, [query, fields])
+    useEffect(() => {}, [query, fields])
 
     return (
         <ModalAndDataTable
