@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { FormBase } from '@/common/components/FormBase'
 import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
 import { NormalFields } from '@/common/components/NormalFields'
@@ -6,6 +7,8 @@ import { useHomeCareClinicFeature } from './homeCareClinicFeature'
 export default function index() {
     const { logicalName, resource, query, columns, form, fields } =
         useHomeCareClinicFeature()
+
+    useEffect(() => {}, [query, fields])
 
     return (
         <ModalAndDataTable

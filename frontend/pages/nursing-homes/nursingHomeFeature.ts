@@ -3,32 +3,30 @@ import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 
-export function useNursingHome() {
+export interface NursingHome {
+    id: number
+    name: string
+    kana: string
+    company_name: string
+    postal_code: string
+    address: string
+    phone_number: string
+    fax_number: string
+    main_contact: string
+    sub_contact: string
+    pickup_time: string
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+}
+
+export function useNursingHomeFeature() {
     // ---【Name】---
     const logicalName = '入居施設'
-    const physicalName = 'nursing_home'
     const resource = 'nursing_homes'
 
     // ---【API】---
     const { data: query } = useQueryBase(resource)
-
-    // ---【Type】---
-    interface NursingHome {
-        id: number
-        name: string
-        kana: string
-        company_name: string
-        postal_code: string
-        address: string
-        phone_number: string
-        fax_number: string
-        main_contact: string
-        sub_contact: string
-        pickup_time: string
-        created_at: Date
-        updated_at: Date
-        deleted_at: Date | null
-    }
 
     // ---【DataTable】---
     const columns = [
@@ -38,13 +36,14 @@ export function useNursingHome() {
         { accessor: 'address', title: '住所' },
         { accessor: 'phone_number', title: '電話番号' },
         { accessor: 'fax_number', title: 'FAX番号' },
+        { accessor: 'main_contact', title: '主担当' },
+        { accessor: 'sub_contact', title: '副担当' },
+        { accessor: 'pick_up_time', title: '送迎時間' },
     ]
-
-    // ---【FormValues】---
-    type FormValues = Omit<NursingHome, 'id'>
 
     // ---【InitialValues】---
     const initialValues = {
+        id: 0,
         name: '',
         kana: '',
         company_name: '',
@@ -66,7 +65,7 @@ export function useNursingHome() {
     }
 
     // ---【Form】---
-    const form = useForm<FormValues>({
+    const form = useForm<NursingHome>({
         initialValues: initialValues,
         validate: validate,
     })
@@ -149,9 +148,9 @@ export function useNursingHome() {
             },
         },
     ]
+
     return {
         logicalName,
-        physicalName,
         resource,
         query,
         columns,

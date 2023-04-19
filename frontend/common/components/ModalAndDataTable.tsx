@@ -89,8 +89,7 @@ export function ModalAndDataTable({
     }
 
     return (
-        <Container size="sm">
-            {' '}
+        <Container size="xl">
             <Text size="md">{`${logicalName}一覧`}</Text>
             <Modal
                 opened={modalOpened}
