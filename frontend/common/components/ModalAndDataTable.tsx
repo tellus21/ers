@@ -1,12 +1,4 @@
-import {
-    Box,
-    Button,
-    Container,
-    Group,
-    Loader,
-    Modal,
-    Text,
-} from '@mantine/core'
+import { Button, Container, Group, Modal, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import dayjs from 'dayjs'
 import { DataTable } from 'mantine-datatable'
@@ -53,7 +45,6 @@ function DataTableBase({ columns, records, onRowClick }: DataTableBaseProps) {
     )
 }
 
-//templateTypeに|stringを加えないと、スプレッド構文を利用したときに、エラーになる。
 interface ModalAndDataTableProps {
     query: any
     logicalName: string
@@ -99,12 +90,14 @@ export function ModalAndDataTable({
             >
                 {children}
             </Modal>
+
             <Group position="right">
                 <Button
                     size="sm"
                     onClick={onCreateButtonClick}
                 >{`${logicalName}登録`}</Button>
             </Group>
+
             <DataTableBase
                 columns={tableColumns}
                 records={query}

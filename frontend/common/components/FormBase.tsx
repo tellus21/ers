@@ -28,15 +28,19 @@ export function FormBase({ resource, form, children }: FormBaseProps) {
         <Box>
             <form
                 onSubmit={form.onSubmit((values: any) => {
-                    clickedButtonName === 'create'
-                        ? createNewDataMutation.mutate(values)
-                        : //   console.log(values)
-                        clickedButtonName === 'update'
-                        ? // ? updateSelectedDataMutation.mutate(values)
-                          console.log(values)
-                        : clickedButtonName === 'delete'
-                        ? deleteSelectedDataMutation.mutate(values)
-                        : null
+                    switch (clickedButtonName) {
+                        case 'create':
+                            createNewDataMutation.mutate(values)
+                            break
+                        case 'update':
+                            updateSelectedDataMutation.mutate(values)
+                            break
+                        case 'delete':
+                            deleteSelectedDataMutation.mutate(values)
+                            break
+                        default:
+                            break
+                    }
                 })}
             >
                 {children}
