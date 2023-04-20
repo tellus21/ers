@@ -27,11 +27,11 @@ export interface Patient {
     first_name_kana: string
     last_name: string
     first_name: string
-    birthday: string
+    birthday: Date | null
     gender: string
-    // created_at: Date
-    // updated_at: Date
-    // deleted_at: Date | null
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
     // home_care_clinic: HomeCareClinic
     // home_care_doctor: HomeCareDoctor
     // nursing_home: NursingHome
@@ -41,12 +41,9 @@ export interface PatientFormValues extends Patient {
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
-}
-
-export interface PatientColumns extends Patient {
-    home_care_clinic: HomeCareClinic
-    home_care_doctor: HomeCareDoctor
-    nursing_home: NursingHome
+    home_care_clinic: { name: string }
+    home_care_doctor: { name: string }
+    nursing_home: { name: string }
 }
 
 // type Optional = 'home_care_clinic' | 'home_care_doctor' | 'nursing_home'
@@ -79,11 +76,15 @@ export function usePatientFeature() {
         first_name_kana: '',
         last_name: '',
         first_name: '',
-        birthday: '',
+        birthday: new Date(),
         gender: '',
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: null,
+
+        home_care_clinic: { name: '' },
+        home_care_doctor: { name: '' },
+        nursing_home: { name: '' },
     }
 
     // const initialValues = {
@@ -100,7 +101,7 @@ export function usePatientFeature() {
     //     gender: '',
     //     created_at: new Date(),
     //     updated_at: new Date(),
-    //     deleted_at: null,
+    //     deleted_at: null,string
     // }
 
     // ---【Validate】---
@@ -121,13 +122,13 @@ export function usePatientFeature() {
         ...values,
         home_care_clinic_id: findIdByName(
             homeCareClinics,
-            values.home_care_clinic_id
+            values.home_care_clinic.name
         ),
         home_care_doctor_id: findIdByName(
             homeCareDoctors,
-            values.home_care_doctor_id
+            values.home_care_doctor.name
         ),
-        nursing_home_id: findIdByName(nursingHomes, values.nursing_home_id),
+        nursing_home_id: findIdByName(nursingHomes, values.nursing_home.name),
     })
 
     // ---【Form】---
@@ -150,13 +151,12 @@ export function usePatientFeature() {
         { accessor: 'first_name_kana', title: '名(フリガナ)' },
         { accessor: 'last_name', title: '姓' },
         { accessor: 'first_name', title: '名' },
-        {
-            accessor: 'birthday',
-            title: '生年月日',
-            render: ({ birthday }: { birthday: Date }) =>
-                dayjs(birthday).format('YYYY/MM/DD'),
-        },
-
+        // {
+        //     accessor: 'birthday',
+        //     title: '生年月日',
+        //     render: ({ birthday }: { birthday: Date }) =>
+        //         dayjs(birthday).format('YYYY/MM/DD'),
+        // },
         { accessor: 'gender', title: '性別' },
         { accessor: 'nursing_home.name', title: '入居施設', width: 150 },
     ]
@@ -166,7 +166,7 @@ export function usePatientFeature() {
 
     const fields: Field[] = [
         {
-            formPath: 'home_care_clinic_id',
+            formPath: 'home_care_clinic.name',
             component: 'Select',
             props: {
                 data: homeCareClinicNames,
@@ -175,7 +175,7 @@ export function usePatientFeature() {
             },
         },
         {
-            formPath: 'home_care_doctor_id',
+            formPath: 'home_care_doctor.name',
             component: 'Select',
             props: {
                 data: homeCareDoctorNames,
@@ -251,7 +251,7 @@ export function usePatientFeature() {
             },
         },
         {
-            formPath: 'nursing_home_id',
+            formPath: 'nursing_home.name',
             component: 'Select',
             props: {
                 data: nursingHomeNames,

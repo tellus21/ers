@@ -11,7 +11,7 @@ import {
 import { DatePickerInput, MonthPickerInput, TimeInput } from '@mantine/dates'
 import { IconCalendarTime, IconClock } from '@tabler/icons-react'
 import { Field } from '@/common/types'
-import { KarteNumberInput } from '@/common/components/KarteNumberInput'
+import { KarteNumberInput } from '@/pages/components/KarteNumberInput'
 import { DisplayPickUpTimeList } from './DisplayPickUpTimeList'
 import { RadioYesNo } from './RadioYesNo'
 import { RadioMorningDaytime } from '../instruction/RadioMorningDaytime'

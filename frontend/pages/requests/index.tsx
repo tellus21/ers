@@ -1,6 +1,6 @@
 import { Box } from '@mantine/core'
-import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
-import { GridItemsLayout } from '@/common/components/layout/GridItemsLayout'
+import { ModalAndDataTable } from '@/pages/components/ModalAndDataTable'
+import { GridItemsLayout } from '@/pages/components/layout/GridItemsLayout'
 import { useRequest } from './useRequest'
 import { ConditionForm } from './condition/ConditionForm'
 

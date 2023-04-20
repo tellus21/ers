@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { FormBase } from '@/common/components/FormBase'
-import { ModalAndDataTable } from '@/common/components/ModalAndDataTable'
-import { NormalFields } from '@/common/components/NormalFields'
+import { FormBase } from '@/pages/components/FormBase'
+import { ModalAndDataTable } from '@/pages/components/ModalAndDataTable'
+import { NormalFields } from '@/pages/components/NormalFields'
 import { useHomeCareDoctorFeature } from './homeCareDoctorFeature'
 
 export default function index() {

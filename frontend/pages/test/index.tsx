@@ -18,7 +18,7 @@ export default function index() {
 
     return (
         <div>
-            <button onClick={() => console.log(home_care_clinic_id)}>dd</button>
+            <button onClick={() => console.log(homeCareClinics)}>dd</button>
         </div>
     )
 }

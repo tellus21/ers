@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import 'dayjs/locale/ja'
 
-import { AppShellLayout } from '@/common/components/layout/AppShellLayout'
+import { AppShellLayout } from '@/pages/components/layout/AppShellLayout'
 import { emsTheme } from '@/common/theme'
 
 export default function App(props: AppProps) {

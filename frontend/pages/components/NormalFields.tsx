@@ -1,13 +1,22 @@
 import { Box, Checkbox, Grid, Select, Textarea, TextInput } from '@mantine/core'
 import { DateInput } from '@mantine/dates'
 import { IconCalendar } from '@tabler/icons-react'
-import { RadioYesNo } from '../../pages/requests/components/RadioYesNo'
+import { RadioYesNo } from '../requests/components/RadioYesNo'
 
 interface NormalFieldsProps {
     form: any
     fields: any
 }
 
+/**
+ * NormalFieldsは、フォームのフィールドを表示するコンポーネント関数です。
+ * 引数としてformとfieldsを受け取り、Gridコンポーネントを使用して各フィールドをレイアウトします。
+ * フィールドにはTextInput, Textarea, Select, DateInput, RadioYesNo, Checkboxなどがあり、
+ * それぞれcomponentプロパティで指定されたコンポーネントをレンダリングします。
+ *
+ * @param {any} form - フォームのデータ
+ * @param {any} fields - フォームのフィールドデータ
+ */
 export function NormalFields({ form, fields }: NormalFieldsProps) {
     return (
         <Grid gutter={15}>

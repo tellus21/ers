@@ -1,5 +1,5 @@
 import { useMutateBase } from '@/common/hooks'
-import { Box, Button, Group, Space } from '@mantine/core'
+import { Box, Button, Group } from '@mantine/core'
 import { useState } from 'react'
 
 const captionCreat = '登録'
@@ -24,21 +24,19 @@ export function RequestFormBase({
     } = useMutateBase(resource)
     const [clickedButtonName, setClickedButtonName] = useState<string>('')
 
+    const handleSubmit = (values: any) => {
+        clickedButtonName === 'create'
+            ? createNewDataMutation.mutate(values)
+            : clickedButtonName === 'update'
+            ? updateSelectedDataMutation.mutate(values)
+            : clickedButtonName === 'delete'
+            ? deleteSelectedDataMutation.mutate(values)
+            : null
+    }
+
     return (
         <Box>
-            <form
-                onSubmit={form.onSubmit((values: any) => {
-                    clickedButtonName === 'create'
-                        ? // ? createNewDataMutation.mutate(values)
-                          console.log(values)
-                        : clickedButtonName === 'update'
-                        ? // ? updateSelectedDataMutation.mutate(values)
-                          console.log(values)
-                        : clickedButtonName === 'delete'
-                        ? deleteSelectedDataMutation.mutate(values)
-                        : null
-                })}
-            >
+            <form onSubmit={form.onSubmit(handleSubmit)}>
                 {children}
 
                 <Group position="center" mt="sm">

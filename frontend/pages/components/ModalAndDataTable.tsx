@@ -1,3 +1,4 @@
+import { convertDateProperty } from '@/common/lib'
 import { Button, Container, Group, Modal, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import dayjs from 'dayjs'
@@ -25,6 +26,7 @@ interface DataTableBaseProps {
     records: any
     onRowClick: (rowData: any) => void
 }
+
 function DataTableBase({ columns, records, onRowClick }: DataTableBaseProps) {
     return (
         <DataTable
@@ -54,6 +56,11 @@ interface ModalAndDataTableProps {
     tableColumns: any
 }
 
+/**
+ * ModalAndDataTableコンポーネントは、モーダルとデータテーブルを表示するためのReactコンポーネントです。
+ * モーダル内には子要素を表示し、データテーブルには指定された列とレコードを表示します。
+ * テーブルの行をクリックすると、モーダルが開き、フォームの値が設定されます。
+ */
 export function ModalAndDataTable({
     query,
     logicalName,
@@ -75,7 +82,7 @@ export function ModalAndDataTable({
         modalHandlers.open()
     }
     const onTableRowClick = (rowData: any) => {
-        form.setValues(rowData)
+        form.setValues(convertDateProperty(rowData, 'birthday'))
         modalHandlers.open()
     }
 

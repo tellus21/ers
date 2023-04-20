@@ -19,7 +19,7 @@ export const checkKarteNumberLength = (value: string): string => {
 }
 
 /**
- * objを受け取り、nameプロパティを持つオブジェクトの配列として返す関数です。
+ * objを受け取り、nameプロパティを持つオブジェクトの配列として返す関数
  * @param obj 任意の型のオブジェクト
  * @returns nameプロパティを持つオブジェクトの配列
  */
@@ -37,3 +37,20 @@ export const findIdByName = (
     obj: { name: string; id: string }[],
     value: string
 ) => obj?.find((item) => item.name === value)?.id
+
+/**
+ * 日付プロパティを変換する関数
+ * @param obj 変換対象のオブジェクト
+ * @param key 変換対象のプロパティ名
+ * @returns 変換後のオブジェクト
+ */
+export const convertDateProperty = (
+    obj: { [key: string]: any },
+    key: string
+) => {
+    const newObj = { ...obj }
+    if (newObj.hasOwnProperty(key)) {
+        newObj[key] = new Date(newObj[key])
+    }
+    return newObj
+}
