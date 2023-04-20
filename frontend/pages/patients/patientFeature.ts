@@ -1,16 +1,21 @@
+import dayjs from 'dayjs'
+import { isNotEmpty, useForm } from '@mantine/form'
+import { genderOptions, isNotEmptyErrorMessage } from '@/common/constants'
+import { Field } from '@/common/types'
+import { useQueryBase } from '@/common/hooks'
+import {
+    HomeCareClinic,
+    useHomeCareClinicFeature,
+} from '../home-care-clinics/homeCareClinicFeature'
+import {
+    HomeCareDoctor,
+    useHomeCareDoctorFeature,
+} from '../home-care-doctors/homeCareDoctorFeature'
 import {
     NursingHome,
-    useNursingHomeNames,
-} from './../nursing-homes/nursingHomeFeature'
-import { useHomeCareDoctorNames } from './../home-care-doctors/homeCareDoctorFeature'
-import { HomeCareClinic } from './../home-care-clinics/homeCareClinicFeature'
-import { genderOptions, isNotEmptyErrorMessage } from '@/common/constants'
-import { useQueryBase } from '@/common/hooks'
-import { getNames } from '@/common/lib'
-import { Field } from '@/common/types'
-import { isNotEmpty, useForm } from '@mantine/form'
-import dayjs from 'dayjs'
-import { useHomeCareClinicNames } from '../home-care-clinics/homeCareClinicFeature'
+    useNursingHomeFeature,
+} from '../nursing-homes/nursingHomeFeature'
+import { findIdByName } from '@/common/lib'
 
 export interface Patient {
     id: number
@@ -24,26 +29,46 @@ export interface Patient {
     first_name: string
     birthday: string
     gender: string
+    // created_at: Date
+    // updated_at: Date
+    // deleted_at: Date | null
+    // home_care_clinic: HomeCareClinic
+    // home_care_doctor: HomeCareDoctor
+    // nursing_home: NursingHome
+}
+
+export interface PatientFormValues extends Patient {
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
 }
 
+export interface PatientColumns extends Patient {
+    home_care_clinic: HomeCareClinic
+    home_care_doctor: HomeCareDoctor
+    nursing_home: NursingHome
+}
+
+// type Optional = 'home_care_clinic' | 'home_care_doctor' | 'nursing_home'
+// export type PatientFormValues = Omit<Patient, Optional>
+
 export function usePatientFeature() {
-    // ここでuse～を取得しないとエラーになる。
-    // リレーション先だとだめ。
-    const homeCareClinicNames = useHomeCareClinicNames()
-    const homeCareDoctorNames = useHomeCareDoctorNames()
-    const nursingHomeNames = useNursingHomeNames()
+    const { query: homeCareClinics, homeCareClinicNames } =
+        useHomeCareClinicFeature()
+    const { query: homeCareDoctors, homeCareDoctorNames } =
+        useHomeCareDoctorFeature()
+    const { query: nursingHomes, nursingHomeNames } = useNursingHomeFeature()
 
     // ---【Name】---
-    const logicalName = '患者'
-    const resource = 'patients'
+    const logicalName = '患者' // 患者を表す変数
+    const resource = 'patients' // APIのリソース名
 
     // ---【API】---
+    // APIから取得したデータをqueryに格納する
     const { data: query } = useQueryBase(resource)
 
     // ---【InitialValues】---
+    // フォームの初期値を定義する
     const initialValues = {
         id: 0,
         home_care_clinic_id: 0,
@@ -61,7 +86,25 @@ export function usePatientFeature() {
         deleted_at: null,
     }
 
+    // const initialValues = {
+    //     id: 0,
+    //     home_care_clinic_name: '',
+    //     home_care_doctor_name: '',
+    //     nursing_home_name: '',
+    //     home_karte_number: '',
+    //     last_name_kana: '',
+    //     first_name_kana: '',
+    //     last_name: '',
+    //     first_name: '',
+    //     birthday: '',
+    //     gender: '',
+    //     created_at: new Date(),
+    //     updated_at: new Date(),
+    //     deleted_at: null,
+    // }
+
     // ---【Validate】---
+    // バリデーションルールを定義する
     const validate = {
         home_care_clinic_id: isNotEmpty(isNotEmptyErrorMessage),
         home_karte_number: isNotEmpty(isNotEmptyErrorMessage),
@@ -74,13 +117,29 @@ export function usePatientFeature() {
         gender: isNotEmpty(isNotEmptyErrorMessage),
     }
 
+    const transformValues = (values: any) => ({
+        ...values,
+        home_care_clinic_id: findIdByName(
+            homeCareClinics,
+            values.home_care_clinic_id
+        ),
+        home_care_doctor_id: findIdByName(
+            homeCareDoctors,
+            values.home_care_doctor_id
+        ),
+        nursing_home_id: findIdByName(nursingHomes, values.nursing_home_id),
+    })
+
     // ---【Form】---
-    const form = useForm<Patient>({
+    // フォームを定義する
+    const form = useForm<PatientFormValues>({
         initialValues: initialValues,
         validate: validate,
+        transformValues: transformValues,
     })
 
     // ---【DataTable】---
+    // テーブルのカラムを定義する
     const columns = [
         { accessor: 'id', title: 'id' },
         { accessor: 'home_care_clinic.name', title: '在宅クリニック' },
@@ -103,9 +162,11 @@ export function usePatientFeature() {
     ]
 
     // ---【Fields】---
+    // フォームのフィールドを定義する
+
     const fields: Field[] = [
         {
-            formPath: 'home_care_clinic.name',
+            formPath: 'home_care_clinic_id',
             component: 'Select',
             props: {
                 data: homeCareClinicNames,
@@ -114,7 +175,7 @@ export function usePatientFeature() {
             },
         },
         {
-            formPath: 'home_care_doctor.name',
+            formPath: 'home_care_doctor_id',
             component: 'Select',
             props: {
                 data: homeCareDoctorNames,
@@ -129,14 +190,14 @@ export function usePatientFeature() {
                 maxLength: 6,
             },
         },
-        {
-            formPath: 'examination_karte_number',
-            component: 'TextInput',
-            props: {
-                label: 'カルテ番号(検査)',
-                maxLength: 6,
-            },
-        },
+        // {
+        //     formPath: 'examination_karte_number',
+        //     component: 'TextInput',
+        //     props: {
+        //         label: 'カルテ番号(検査)',
+        //         maxLength: 6,
+        //     },
+        // },
         {
             component: 'Blank',
         },
@@ -190,7 +251,7 @@ export function usePatientFeature() {
             },
         },
         {
-            formPath: 'nursing_home.name',
+            formPath: 'nursing_home_id',
             component: 'Select',
             props: {
                 data: nursingHomeNames,

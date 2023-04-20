@@ -5,10 +5,10 @@ import { NormalFields } from '@/common/components/NormalFields'
 import { useNursingHomeFeature } from './nursingHomeFeature'
 
 export default function index() {
-    const { logicalName, resource, query, form, columns, fields } =
+    const { logicalName, resource, columns, form, fields, query } =
         useNursingHomeFeature()
 
-    useEffect(() => {}, [query, fields])
+    useEffect(() => {}, [fields, query])
 
     return (
         <ModalAndDataTable

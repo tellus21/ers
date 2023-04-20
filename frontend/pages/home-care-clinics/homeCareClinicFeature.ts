@@ -17,19 +17,10 @@ export interface HomeCareClinic {
     deleted_at: Date | null
 }
 
-export const useHomeCareClinicNames = () => {
-    const { data: homeCareClinics } = useQueryBase('home_care_clinics')
-    const homeCareClinicNames = getNames(homeCareClinics)
-    return homeCareClinicNames
-}
-
 export function useHomeCareClinicFeature() {
     // ---【Name】---
     const logicalName = '在宅クリニック'
     const resource = 'home_care_clinics'
-
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
 
     // ---【InitialValues】---
     const initialValues = {
@@ -116,12 +107,17 @@ export function useHomeCareClinicFeature() {
         },
     ]
 
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+    const homeCareClinicNames = getNames(query)
+
     return {
         logicalName,
         resource,
-        query,
         columns,
         form,
         fields,
+        query,
+        homeCareClinicNames,
     }
 }

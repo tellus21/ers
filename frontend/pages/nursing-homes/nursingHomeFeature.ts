@@ -21,19 +21,10 @@ export interface NursingHome {
     deleted_at: Date | null
 }
 
-export const useNursingHomeNames = () => {
-    const { data: nursingHomes } = useQueryBase('nursing_homes')
-    const nursingHomeNames = getNames(nursingHomes)
-    return nursingHomeNames
-}
-
 export function useNursingHomeFeature() {
     // ---【Name】---
     const logicalName = '入居施設'
     const resource = 'nursing_homes'
-
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
 
     // ---【InitialValues】---
     const initialValues = {
@@ -156,6 +147,10 @@ export function useNursingHomeFeature() {
         },
     ]
 
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+    const nursingHomeNames = getNames(query)
+
     return {
         logicalName,
         resource,
@@ -163,5 +158,6 @@ export function useNursingHomeFeature() {
         columns,
         form,
         fields,
+        nursingHomeNames,
     }
 }

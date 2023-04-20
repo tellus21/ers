@@ -5,10 +5,10 @@ import { NormalFields } from '@/common/components/NormalFields'
 import { useHomeCareClinicFeature } from './homeCareClinicFeature'
 
 export default function index() {
-    const { logicalName, resource, query, columns, form, fields } =
+    const { logicalName, resource, columns, form, fields, query } =
         useHomeCareClinicFeature()
 
-    useEffect(() => {}, [query, fields])
+    useEffect(() => {}, [fields, query])
 
     return (
         <ModalAndDataTable

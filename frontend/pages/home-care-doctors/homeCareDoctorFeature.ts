@@ -23,9 +23,6 @@ export function useHomeCareDoctorFeature() {
     const logicalName = '在宅医師'
     const resource = 'home_care_doctors'
 
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
-
     // ---【InitialValues】---
     const initialValues = {
         id: 0,
@@ -67,12 +64,17 @@ export function useHomeCareDoctorFeature() {
         },
     ]
 
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+    const homeCareDoctorNames = getNames(query)
+
     return {
         logicalName,
         resource,
-        query,
         form,
         columns,
         fields,
+        query,
+        homeCareDoctorNames,
     }
 }

@@ -1,6 +1,6 @@
 import { useQueryBase } from '@/common/hooks'
-import { get } from 'http'
-import { useState } from 'react'
+import { findIdByName } from '@/common/lib'
+
 const getNames = (obj: any) => obj?.map(({ name }: { name: string }) => name)
 
 export default function index() {
@@ -14,9 +14,11 @@ export default function index() {
     //     ({ name }: { name: string }) => name
     // )
     const homeCareClinicNames = getNames(homeCareClinics)
+    const home_care_clinic_id = findIdByName(homeCareClinics, '北海道')
+
     return (
         <div>
-            <button onClick={() => console.log(homeCareClinics)}>dd</button>
+            <button onClick={() => console.log(home_care_clinic_id)}>dd</button>
         </div>
     )
 }
