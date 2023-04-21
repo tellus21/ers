@@ -1,51 +1,7 @@
 import { convertDateProperty } from '@/common/lib'
 import { Button, Container, Group, Modal, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import dayjs from 'dayjs'
-import { DataTable } from 'mantine-datatable'
-
-const dateColumns = [
-    {
-        accessor: 'created_at',
-        title: '作成日',
-        textaligment: 'center',
-        render: ({ created_at }: { created_at: Date }) =>
-            dayjs(created_at).format('YYYY/MM/DD'),
-    },
-    {
-        accessor: 'updated_at',
-        title: '更新日',
-        textaligment: 'center',
-        render: ({ updated_at }: { updated_at: Date }) =>
-            dayjs(updated_at).format('YYYY/MM/DD'),
-    },
-]
-
-interface DataTableBaseProps {
-    columns: any
-    records: any
-    onRowClick: (rowData: any) => void
-}
-
-function DataTableBase({ columns, records, onRowClick }: DataTableBaseProps) {
-    return (
-        <DataTable
-            withBorder
-            borderRadius="sm"
-            shadow="sm"
-            withColumnBorders
-            striped
-            highlightOnHover
-            horizontalSpacing="xs"
-            verticalSpacing="xs"
-            fontSize="xs"
-            verticalAlignment="center"
-            columns={[...columns, ...dateColumns]}
-            records={records}
-            onRowClick={onRowClick}
-        />
-    )
-}
+import { DataTableBase } from './DataTableBase'
 
 interface ModalAndDataTableProps {
     query: any
@@ -57,9 +13,15 @@ interface ModalAndDataTableProps {
 }
 
 /**
- * ModalAndDataTableコンポーネントは、モーダルとデータテーブルを表示するためのReactコンポーネントです。
- * モーダル内には子要素を表示し、データテーブルには指定された列とレコードを表示します。
- * テーブルの行をクリックすると、モーダルが開き、フォームの値が設定されます。
+ * ModalAndDataTableコンポーネントは、モーダルとテーブルを表示するためのReactコンポーネントです。
+ * モーダルを開いてフォームを入力したり、テーブルの行をクリックしてフォームに値を設定したりできます。
+ *
+ * @param query 検索結果のデータ
+ * @param logicalName 表示するロジカル名
+ * @param modalSize モーダルのサイズ
+ * @param children モーダル内に表示する子要素
+ * @param form フォーム
+ * @param tableColumns テーブルの列
  */
 export function ModalAndDataTable({
     query,
