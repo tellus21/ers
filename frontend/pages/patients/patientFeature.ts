@@ -6,6 +6,7 @@ import { useQueryBase } from '@/common/hooks'
 import { useHomeCareClinicFeature } from '../home-care-clinics/homeCareClinicFeature'
 import { useHomeCareDoctorFeature } from '../home-care-doctors/homeCareDoctorFeature'
 import { useNursingHomeFeature } from '../nursing-homes/nursingHomeFeature'
+import dayjs from 'dayjs'
 
 export interface Patient {
     id: number
@@ -57,7 +58,7 @@ export function usePatientFeature() {
         first_name_kana: '',
         last_name: '',
         first_name: '',
-        birthday: new Date(),
+        birthday: new Date(1850, 0, 1),
         gender: '',
         created_at: new Date(),
         updated_at: new Date(),
