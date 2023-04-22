@@ -10,7 +10,6 @@ export interface Field {
         max?: number
         min?: number
         maxLength?: number
-        clearable?: boolean
     }
 }
 

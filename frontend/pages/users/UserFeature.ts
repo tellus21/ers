@@ -106,7 +106,6 @@ export function useUserFeature() {
             props: {
                 data: homeCareClinicNames,
                 label: '在宅クリニック',
-                clearable: true,
             },
         },
         {
@@ -115,7 +114,6 @@ export function useUserFeature() {
             props: {
                 data: examinationClinicNames,
                 label: '検査クリニック',
-                clearable: true,
             },
         },
         {

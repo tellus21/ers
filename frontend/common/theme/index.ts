@@ -98,6 +98,7 @@ export const emsTheme: MantineThemeOverride = {
             defaultProps: {
                 dropdownPosition: 'buttom',
                 size: 'xs',
+                clearable: true,
             },
         },
         NumberInput: {
