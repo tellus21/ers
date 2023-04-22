@@ -31,6 +31,7 @@ export function FormBase({ resource, form, children }: FormBaseProps) {
                     switch (clickedButtonName) {
                         case 'create':
                             createNewDataMutation.mutate(values)
+                            console.log(values)
                             break
                         case 'update':
                             updateSelectedDataMutation.mutate(values)

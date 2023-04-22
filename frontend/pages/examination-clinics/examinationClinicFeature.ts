@@ -2,6 +2,7 @@ import { isNotEmpty, useForm } from '@mantine/form'
 import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
+import { getNames } from '@/common/lib'
 
 export interface ExaminationClinic {
     id: number
@@ -20,9 +21,6 @@ export function useExaminationClinicFeature() {
     // ---【Name】---
     const logicalName = '検査クリニック'
     const resource = 'examination_clinics'
-
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
 
     // ---【InitialValues】---
     const initialValues = {
@@ -109,6 +107,10 @@ export function useExaminationClinicFeature() {
         },
     ]
 
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+    const examinationClinicNames = getNames(query)
+
     return {
         logicalName,
         resource,
@@ -116,5 +118,6 @@ export function useExaminationClinicFeature() {
         columns,
         form,
         fields,
+        examinationClinicNames,
     }
 }

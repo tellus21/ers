@@ -19,7 +19,7 @@ class CreatePatientsTable extends Migration
             $table->string('first_name_kana')->nullable();
             $table->string('last_name')->nullable();
             $table->string('first_name')->nullable();
-            $table->date('birthday')->nullable();
+            $table->timestamp('birthday')->nullable();
             $table->string('gender')->nullable();
             $table->timestamps();
             $table->softDeletes();

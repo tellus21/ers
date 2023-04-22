@@ -10,8 +10,10 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('home_care_clinic_id')->constrained();
-            $table->foreignId('examination_clinic_id')->constrained();
+            // $table->foreignId('home_care_clinic_id')->constrained();
+            // $table->foreignId('examination_clinic_id')->constrained();
+            $table->foreignId('home_care_clinic_id')->nullable();
+            $table->foreignId('examination_clinic_id')->nullable();
             $table->string('login_name')->unique();
             $table->string('password');
             $table->string('last_name');

@@ -2,47 +2,46 @@ import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
+import { useHomeCareClinicFeature } from '../home-care-clinics/homeCareClinicFeature'
+import { useExaminationClinicFeature } from '../examination-clinics/examinationClinicFeature'
+import { findIdByName } from '@/common/lib'
 
-export function useUser() {
+export interface User {
+    id: number
+    home_care_clinic_id: number
+    examination_clinic_id: number
+    login_name: string
+    password: string
+    last_name: string
+    first_name: string
+    authority: string
+    email_address: string
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+}
+
+export interface UserFormValues extends User {
+    home_care_clinic: { name: string }
+    examination_clinic: { name: string }
+}
+
+export function useUserFeature() {
+    const { query: homeCareClinics, homeCareClinicNames } =
+        useHomeCareClinicFeature()
+    const { query: examinationClinics, examinationClinicNames } =
+        useExaminationClinicFeature()
+
     // ---【Name】---
     const logicalName = 'ユーザ'
-    const physicalName = 'user'
     const resource = 'users'
 
     // ---【API】---
     const { data: query } = useQueryBase(resource)
 
-    // ---【Type】---
-    interface User {
-        id: number
-        home_care_clinic_id: number
-        examination_clinic_id: number
-        login_name: string
-        password: string
-        last_name: string
-        first_name: string
-        authority: string
-        email_address: string
-        created_at: Date
-        updated_at: Date
-        deleted_at: Date | null
-    }
-
-    // ---【DataTable】---
-    const columns = [
-        { accessor: 'id', title: 'id' },
-        { accessor: 'name', title: '名前', width: 150 },
-        { accessor: 'postal_code', title: '郵便番号' },
-        { accessor: 'address', title: '住所' },
-        { accessor: 'phone_number', title: '電話番号' },
-        { accessor: 'fax_number', title: 'FAX番号' },
-    ]
-
-    // ---【FormValues】---
-    type FormValues = Omit<User, 'id'>
-
     // ---【InitialValues】---
     const initialValues = {
+        id: 0,
         home_care_clinic_id: 0,
         examination_clinic_id: 0,
         login_name: '',
@@ -54,6 +53,8 @@ export function useUser() {
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: null,
+        home_care_clinic: { name: '' },
+        examination_clinic: { name: '' },
     }
 
     // ---【Validate】---
@@ -65,14 +66,56 @@ export function useUser() {
         authority: isNotEmpty(isNotEmptyErrorMessage),
     }
 
-    // ---【Form】---
-    const form = useForm<FormValues>({
-        initialValues: initialValues,
-        validate: validate,
+    // ---【TransFormValues】---
+    const transformValues = (values: any): UserFormValues => ({
+        ...values,
+        home_care_clinic_id: findIdByName(
+            homeCareClinics,
+            values.home_care_clinic.name
+        ),
+        examination_clinic_id: findIdByName(
+            examinationClinics,
+            values.examination_clinic.name
+        ),
     })
 
-    // ---【Fields】---
+    // ---【Form】---
+    const form = useForm<UserFormValues>({
+        initialValues: initialValues,
+        validate: validate,
+        transformValues: transformValues,
+    })
+
+    // ---【DataTable】---
+    const columns = [
+        { accessor: 'id', title: 'id' },
+        { accessor: 'home_care_clinic.name', title: '在宅クリニック' },
+        { accessor: 'examination_clinic.name', title: '検査クリニック' },
+        { accessor: 'login_name', title: 'ログイン名' },
+        { accessor: 'last_name', title: '姓' },
+        { accessor: 'first_name', title: '名' },
+        { accessor: 'authority', title: '権限' },
+        { accessor: 'email_address', title: 'メールアドレス' },
+    ]
+
     const fields: Field[] = [
+        // ---【Fields】---
+        {
+            formPath: 'home_care_clinic.name',
+            component: 'Select',
+            props: {
+                data: homeCareClinicNames,
+                label: '在宅クリニック',
+            },
+        },
+        {
+            formPath: 'examination_clinic.name',
+            component: 'Select',
+            props: {
+                data: examinationClinicNames,
+                label: '検査クリニック',
+            },
+        },
         {
             formPath: 'login_name',
             component: 'TextInput',
@@ -126,7 +169,6 @@ export function useUser() {
     ]
     return {
         logicalName,
-        physicalName,
         resource,
         query,
         columns,

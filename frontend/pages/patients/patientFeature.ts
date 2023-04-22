@@ -58,7 +58,7 @@ export function usePatientFeature() {
         first_name_kana: '',
         last_name: '',
         first_name: '',
-        birthday: new Date(1850, 0, 1),
+        birthday: new Date(1850, 0, 1), //この辺が生年月日の患者が多そうだと推測
         gender: '',
         created_at: new Date(),
         updated_at: new Date(),
@@ -82,7 +82,9 @@ export function usePatientFeature() {
         gender: isNotEmpty(isNotEmptyErrorMessage),
     }
 
-    const transformValues = (values: any) => ({
+    // ---【TransFormValues】---
+    // 入力された値を変換し、新しいオブジェクトを返す
+    const transformValues = (values: any): PatientFormValues => ({
         ...values,
         home_care_clinic_id: findIdByName(
             homeCareClinics,
@@ -127,7 +129,6 @@ export function usePatientFeature() {
 
     // ---【Fields】---
     // フォームのフィールドを定義する
-
     const fields: Field[] = [
         {
             formPath: 'home_care_clinic.name',
