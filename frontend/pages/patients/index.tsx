@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { usePatientFeature } from './patientFeature'
 
 export default function index() {
-    const { logicalName, resource, query, form, columns, fields } =
+    const { logicalName, resource, columns, form, fields, query } =
         usePatientFeature()
 
     useEffect(() => {}, [query, fields])

@@ -6,6 +6,7 @@ import { useHomeCareClinicFeature } from '../home-care-clinics/homeCareClinicFea
 import { useExaminationClinicFeature } from '../examination-clinics/examinationClinicFeature'
 import { findIdByName } from '@/common/lib'
 
+// ---【Types】---
 export interface User {
     id: number
     home_care_clinic_id: number | null
@@ -21,11 +22,13 @@ export interface User {
     deleted_at: Date | null
 }
 
+// ---【FormValues】---
 export interface UserFormValues extends User {
     home_care_clinic: { name: string }
     examination_clinic: { name: string }
 }
 
+// ---【Feature】---
 export function useUserFeature() {
     const { query: homeCareClinics, homeCareClinicNames } =
         useHomeCareClinicFeature()
@@ -35,9 +38,6 @@ export function useUserFeature() {
     // ---【Name】---
     const logicalName = 'ユーザ'
     const resource = 'users'
-
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
 
     // ---【InitialValues】---
     const initialValues = {
@@ -98,14 +98,15 @@ export function useUserFeature() {
         { accessor: 'email_address', title: 'メールアドレス' },
     ]
 
+    // ---【Fields】---
     const fields: Field[] = [
-        // ---【Fields】---
         {
             formPath: 'home_care_clinic.name',
             component: 'Select',
             props: {
                 data: homeCareClinicNames,
                 label: '在宅クリニック',
+                clearable: true,
             },
         },
         {
@@ -114,6 +115,7 @@ export function useUserFeature() {
             props: {
                 data: examinationClinicNames,
                 label: '検査クリニック',
+                clearable: true,
             },
         },
         {
@@ -167,12 +169,17 @@ export function useUserFeature() {
             },
         },
     ]
+
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+
+    // ---【Return】 ---
     return {
         logicalName,
         resource,
-        query,
         columns,
         form,
         fields,
+        query,
     }
 }

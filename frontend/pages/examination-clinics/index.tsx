@@ -4,7 +4,7 @@ import { NormalFields } from '@/pages/components/NormalFields'
 import { useExaminationClinicFeature } from './examinationClinicFeature'
 
 export default function index() {
-    const { logicalName, resource, query, columns, form, fields } =
+    const { logicalName, resource, columns, form, fields, query } =
         useExaminationClinicFeature()
 
     return (

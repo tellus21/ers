@@ -8,6 +8,7 @@ import { useHomeCareDoctorFeature } from '../home-care-doctors/homeCareDoctorFea
 import { useNursingHomeFeature } from '../nursing-homes/nursingHomeFeature'
 import dayjs from 'dayjs'
 
+// ---【Types】---
 export interface Patient {
     id: number
     home_care_clinic_id: number
@@ -25,12 +26,14 @@ export interface Patient {
     deleted_at: Date | null
 }
 
+// ---【FormValues】---
 export interface PatientFormValues extends Patient {
     home_care_clinic: { name: string }
     home_care_doctor: { name: string }
     nursing_home: { name: string }
 }
 
+// ---【Feature】---
 export function usePatientFeature() {
     const { query: homeCareClinics, homeCareClinicNames } =
         useHomeCareClinicFeature()
@@ -39,15 +42,10 @@ export function usePatientFeature() {
     const { query: nursingHomes, nursingHomeNames } = useNursingHomeFeature()
 
     // ---【Name】---
-    const logicalName = '患者' // 患者を表す変数
-    const resource = 'patients' // APIのリソース名
-
-    // ---【API】---
-    // APIから取得したデータをqueryに格納する
-    const { data: query } = useQueryBase(resource)
+    const logicalName = '患者'
+    const resource = 'patients'
 
     // ---【InitialValues】---
-    // フォームの初期値を定義する
     const initialValues = {
         id: 0,
         home_care_clinic_id: 0,
@@ -69,7 +67,6 @@ export function usePatientFeature() {
     }
 
     // ---【Validate】---
-    // バリデーションルールを定義する
     const validate = {
         home_care_clinic_id: isNotEmpty(isNotEmptyErrorMessage),
         home_karte_number: isNotEmpty(isNotEmptyErrorMessage),
@@ -83,7 +80,6 @@ export function usePatientFeature() {
     }
 
     // ---【TransFormValues】---
-    // 入力された値を変換し、新しいオブジェクトを返す
     const transformValues = (values: any): PatientFormValues => ({
         ...values,
         home_care_clinic_id: findIdByName(
@@ -98,7 +94,6 @@ export function usePatientFeature() {
     })
 
     // ---【Form】---
-    // フォームを定義する
     const form = useForm<PatientFormValues>({
         initialValues: initialValues,
         validate: validate,
@@ -106,7 +101,6 @@ export function usePatientFeature() {
     })
 
     // ---【DataTable】---
-    // テーブルのカラムを定義する
     const columns = [
         { accessor: 'id', title: 'id' },
         { accessor: 'home_care_clinic.name', title: '在宅クリニック' },
@@ -128,7 +122,6 @@ export function usePatientFeature() {
     ]
 
     // ---【Fields】---
-    // フォームのフィールドを定義する
     const fields: Field[] = [
         {
             formPath: 'home_care_clinic.name',
@@ -226,12 +219,15 @@ export function usePatientFeature() {
         },
     ]
 
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+
     return {
         logicalName,
         resource,
-        query,
         columns,
         form,
         fields,
+        query,
     }
 }

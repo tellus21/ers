@@ -4,6 +4,7 @@ import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 import { getNames } from '@/common/lib'
 
+// ---【Types】---
 export interface HomeCareDoctor {
     id: number
     name: string
@@ -12,12 +13,10 @@ export interface HomeCareDoctor {
     deleted_at: Date | null
 }
 
-export const useHomeCareDoctorNames = () => {
-    const { data: homeCareDoctors } = useQueryBase('home_care_doctors')
-    const homeCareDoctorNames = getNames(homeCareDoctors)
-    return homeCareDoctorNames
-}
+// ---【FormValues】---
+export interface HomeCareDoctorFormValues extends HomeCareDoctor {}
 
+// ---【Feature】---
 export function useHomeCareDoctorFeature() {
     // ---【Name】---
     const logicalName = '在宅医師'
@@ -38,7 +37,7 @@ export function useHomeCareDoctorFeature() {
     }
 
     // ---【Form】---
-    const form = useForm<HomeCareDoctor>({
+    const form = useForm<HomeCareDoctorFormValues>({
         initialValues: initialValues,
         validate: validate,
     })
@@ -68,11 +67,12 @@ export function useHomeCareDoctorFeature() {
     const { data: query } = useQueryBase(resource)
     const homeCareDoctorNames = getNames(query)
 
+    // ---【Return】 ---
     return {
         logicalName,
         resource,
-        form,
         columns,
+        form,
         fields,
         query,
         homeCareDoctorNames,

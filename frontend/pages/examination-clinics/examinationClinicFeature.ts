@@ -4,6 +4,7 @@ import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 import { getNames } from '@/common/lib'
 
+// ---【Types】---
 export interface ExaminationClinic {
     id: number
     name: string
@@ -17,6 +18,10 @@ export interface ExaminationClinic {
     deleted_at: Date | null
 }
 
+// ---【FormValues】---
+export interface ExaminationClinicFormValues extends ExaminationClinic {}
+
+// ---【Feature】---
 export function useExaminationClinicFeature() {
     // ---【Name】---
     const logicalName = '検査クリニック'
@@ -42,7 +47,7 @@ export function useExaminationClinicFeature() {
     }
 
     // ---【Form】---
-    const form = useForm<ExaminationClinic>({
+    const form = useForm<ExaminationClinicFormValues>({
         initialValues: initialValues,
         validate: validate,
     })
@@ -111,13 +116,14 @@ export function useExaminationClinicFeature() {
     const { data: query } = useQueryBase(resource)
     const examinationClinicNames = getNames(query)
 
+    // ---【Return】---
     return {
         logicalName,
         resource,
-        query,
         columns,
         form,
         fields,
+        query,
         examinationClinicNames,
     }
 }

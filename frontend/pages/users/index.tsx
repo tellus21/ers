@@ -1,11 +1,11 @@
+import { useEffect } from 'react'
 import { FormBase } from '@/pages/components/FormBase'
 import { ModalAndDataTable } from '@/pages/components/ModalAndDataTable'
 import { NormalFields } from '@/pages/components/NormalFields'
-import { useEffect } from 'react'
 import { useUserFeature } from './UserFeature'
 
 export default function index() {
-    const { logicalName, resource, query, form, columns, fields } =
+    const { logicalName, resource, columns, form, fields, query } =
         useUserFeature()
 
     useEffect(() => {}, [query, fields])
