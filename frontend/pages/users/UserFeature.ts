@@ -8,8 +8,8 @@ import { findIdByName } from '@/common/lib'
 
 export interface User {
     id: number
-    home_care_clinic_id: number
-    examination_clinic_id: number
+    home_care_clinic_id: number | null
+    examination_clinic_id: number | null
     login_name: string
     password: string
     last_name: string
@@ -42,8 +42,8 @@ export function useUserFeature() {
     // ---【InitialValues】---
     const initialValues = {
         id: 0,
-        home_care_clinic_id: 0,
-        examination_clinic_id: 0,
+        home_care_clinic_id: null, //nullの場合もあるので
+        examination_clinic_id: null, //nullの場合もあるので
         login_name: '',
         password: '',
         last_name: '',

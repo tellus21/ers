@@ -9,10 +9,15 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
+            //NGパターン
             // 'home_care_clinic_id' => 'required|exists:home_care_clinics,id',
             // 'examination_clinic_id' => 'required|exists:examination_clinics,id',
-            // 'home_care_clinic_id' => 'required|exists:home_care_clinics,id',
-            // 'examination_clinic_id' => 'required|exists:examination_clinics,id',
+            // 'home_care_clinic_id' => 'required|integer|nullable',
+            // 'examination_clinic_id' => 'required|integer|nullable',
+
+            //OKパターン
+            'home_care_clinic_id' => 'nullable',
+            'examination_clinic_id' => 'nullable',
             'login_name' => 'required|unique:users',
             'password' => 'required',
             'last_name' => 'required',
