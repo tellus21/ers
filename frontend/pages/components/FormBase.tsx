@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Box, Button, Group, Space } from '@mantine/core'
 import { useMutateBase } from '../../common/hooks'
+import { notifications } from '@mantine/notifications'
 
 const captionCreat = '登録'
 const captionUpdate = '更新'
