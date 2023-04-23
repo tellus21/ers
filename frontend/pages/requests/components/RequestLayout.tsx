@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Group, Paper, Stack } from '@mantine/core'
 
 interface RequestLayoutProps {
+    Top?: React.ReactNode
     leftTop?: React.ReactNode
     leftCenter?: React.ReactNode
     leftBottom?: React.ReactNode
@@ -9,6 +10,7 @@ interface RequestLayoutProps {
 }
 
 export function RequestLayout({
+    Top,
     leftTop,
     leftCenter,
     leftBottom,
@@ -18,6 +20,7 @@ export function RequestLayout({
     return (
         <Box bg="gray.2" p={20}>
             <Grid>
+                <Grid.Col span={12}>{Top && <Paper>{Top}</Paper>}</Grid.Col>
                 <Grid.Col span={4}>
                     <Stack>
                         {leftTop && <Paper>{leftTop}</Paper>}

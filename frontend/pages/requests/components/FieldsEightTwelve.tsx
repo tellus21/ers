@@ -12,19 +12,16 @@ import { DatePickerInput, MonthPickerInput, TimeInput } from '@mantine/dates'
 import { IconCalendarTime, IconClock } from '@tabler/icons-react'
 import { Field } from '@/common/types'
 import { KarteNumberInput } from '@/pages/components/KarteNumberInput'
-import { DisplayPickUpTimeList } from './DisplayPickUpTimeList'
+import { DisplayPickUpTimeList } from '../appointment/components/DisplayPickUpTimeList'
 import { RadioYesNo } from './RadioYesNo'
-import { RadioMorningDaytime } from '../instruction/RadioMorningDaytime'
+import { RadioMorningDaytime } from '../instruction/components/RadioMorningDaytime'
 
-interface RequestFieldsEightTwelveProps {
+interface FieldsEightTwelveProps {
     form: any
     fields: Field[]
     disabled?: boolean
 }
-export function RequestFieldsEightTwelve({
-    form,
-    fields,
-}: RequestFieldsEightTwelveProps) {
+export function FieldsEightTwelve({ form, fields }: FieldsEightTwelveProps) {
     return (
         <Grid columns={24}>
             {fields?.map((field: any, index: number) => {

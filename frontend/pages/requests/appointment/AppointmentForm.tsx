@@ -1,9 +1,9 @@
 import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { useAppointment } from './useAppointment'
 import { TitleText } from '@/pages/requests/components/TitleText'
-import { RequestFieldsEightTwelve } from '@/pages/requests/components/RequestFieldsEightTwelve'
+import { FieldsEightTwelve } from '@/pages/requests/components/FieldsEightTwelve'
 import { Box, Divider, Group, Text } from '@mantine/core'
-import { DisplayPickUpTimeList } from '../components/DisplayPickUpTimeList'
+import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
 
 const homeClinicsTest = [
     { name: 'スマイル', time: '10分' },
@@ -26,16 +26,13 @@ export function AppointmentForm() {
                 </Group>
                 {/* 診察関連 */}
                 <Divider label="診察関連" />
-                <RequestFieldsEightTwelve
-                    form={form}
-                    fields={fields.examination}
-                />
+                <FieldsEightTwelve form={form} fields={fields.examination} />
                 {/* 送迎関連 */}
                 <Divider label="送迎関連" />
-                <RequestFieldsEightTwelve form={form} fields={fields.pickUp} />
+                <FieldsEightTwelve form={form} fields={fields.pickUp} />
                 {/* FAX関連 */}
                 <Divider label="FAX関連" />
-                <RequestFieldsEightTwelve form={form} fields={fields.fax} />
+                <FieldsEightTwelve form={form} fields={fields.fax} />
             </Box>
         </RequestFormBase>
     )

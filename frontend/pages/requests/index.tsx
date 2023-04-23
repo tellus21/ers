@@ -1,4 +1,3 @@
-import { Box, Grid, Paper, Stack } from '@mantine/core'
 import { ModalAndDataTable } from '@/pages/components/ModalAndDataTable'
 import { ConditionForm } from './condition/ConditionForm'
 
@@ -8,6 +7,7 @@ import { InstractionForm } from './instruction/InstractionForm'
 import { InsuranceForm } from './insurance/InsuranceForm'
 import { useRequestFeature } from './useRequestFeature'
 import { RequestLayout } from './components/RequestLayout'
+import { RequestMetaData } from './components/MetaData'
 
 export default function Index() {
     const { logicalName, resource, columns, form, query } = useRequestFeature()
@@ -22,6 +22,7 @@ export default function Index() {
         >
             {/* モーダル部分 */}
             <RequestLayout
+                Top={<RequestMetaData />}
                 leftTop={<PatientInformation />}
                 leftCenter={<ConditionForm />}
                 leftBottom={<InsuranceForm />}

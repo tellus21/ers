@@ -3,15 +3,12 @@ import { RadioYesNo } from './RadioYesNo'
 import { Checkboxes } from './Checkboxes'
 import { Field } from '@/common/types'
 
-interface RequestFieldsFourTwelveProps {
+interface FieldsFourTwelveProps {
     form: any
     fields: Field[]
 }
 
-export function RequestFieldsFourTwelve({
-    form,
-    fields,
-}: RequestFieldsFourTwelveProps) {
+export function FieldsFourTwelve({ form, fields }: FieldsFourTwelveProps) {
     return (
         <Grid>
             {fields?.map((field, index: number) => {
