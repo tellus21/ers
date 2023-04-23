@@ -51,12 +51,13 @@ export function useRequestFeature() {
 
     // ---【API】---
     const { data: query } = useQueryBase(resource)
+
     // ---【Return】---
     return {
         logicalName,
         resource,
-        query,
         columns,
         form,
+        query,
     }
 }
