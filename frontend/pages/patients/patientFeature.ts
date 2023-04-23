@@ -46,7 +46,7 @@ export function usePatientFeature() {
     const resource = 'patients'
 
     // ---【InitialValues】---
-    const initialValues = {
+    const initialValues: PatientFormValues = {
         id: 0,
         home_care_clinic_id: 0,
         home_care_doctor_id: 0,

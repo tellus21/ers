@@ -28,7 +28,7 @@ export function useHomeCareClinicFeature() {
     const resource = 'home_care_clinics'
 
     // ---【InitialValues】---
-    const initialValues = {
+    const initialValues: HomeCareClinicFormValues = {
         id: 0,
         name: '',
         abbreviation: '',

@@ -28,7 +28,7 @@ export function useExaminationClinicFeature() {
     const resource = 'examination_clinics'
 
     // ---【InitialValues】---
-    const initialValues = {
+    const initialValues: ExaminationClinicFormValues = {
         id: 0,
         name: '',
         abbreviation: '',

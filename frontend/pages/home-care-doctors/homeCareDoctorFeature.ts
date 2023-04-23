@@ -23,7 +23,7 @@ export function useHomeCareDoctorFeature() {
     const resource = 'home_care_doctors'
 
     // ---【InitialValues】---
-    const initialValues = {
+    const initialValues: HomeCareDoctorFormValues = {
         id: 0,
         name: '',
         created_at: new Date(),

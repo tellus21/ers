@@ -25,6 +25,9 @@ export function PatientInformation() {
                     )
                 })}
             </Grid>
+            <Center>
+                <Button>更新</Button>
+            </Center>
         </>
     )
 }

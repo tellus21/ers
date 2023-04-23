@@ -4,6 +4,7 @@ import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 import { getNames } from '@/common/lib'
 
+// ---【Types】---
 export interface NursingHome {
     id: number
     name: string
@@ -21,13 +22,17 @@ export interface NursingHome {
     deleted_at: Date | null
 }
 
+// ---【FormValues】---
+export interface NursingHomeFormValues extends NursingHome {}
+
+// ---【Feature】---
 export function useNursingHomeFeature() {
     // ---【Name】---
     const logicalName = '入居施設'
     const resource = 'nursing_homes'
 
     // ---【InitialValues】---
-    const initialValues = {
+    const initialValues: NursingHomeFormValues = {
         id: 0,
         name: '',
         kana: '',
@@ -50,7 +55,7 @@ export function useNursingHomeFeature() {
     }
 
     // ---【Form】---
-    const form = useForm<NursingHome>({
+    const form = useForm<NursingHomeFormValues>({
         initialValues: initialValues,
         validate: validate,
     })

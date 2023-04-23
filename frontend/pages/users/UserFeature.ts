@@ -40,7 +40,7 @@ export function useUserFeature() {
     const resource = 'users'
 
     // ---【InitialValues】---
-    const initialValues = {
+    const initialValues: UserFormValues = {
         id: 0,
         home_care_clinic_id: null, //nullの場合もあるので
         examination_clinic_id: null, //nullの場合もあるので

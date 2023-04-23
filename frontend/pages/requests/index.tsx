@@ -1,7 +1,7 @@
 import { Box } from '@mantine/core'
 import { ModalAndDataTable } from '@/pages/components/ModalAndDataTable'
 import { GridItemsLayout } from '@/pages/components/layout/GridItemsLayout'
-import { useRequest } from './useRequest'
+import { useRequest } from './useRequestFeature'
 import { ConditionForm } from './condition/ConditionForm'
 
 import { AppointmentForm } from './appointment/AppointmentForm'
@@ -21,6 +21,7 @@ export default function Index(): React.ReactElement {
                 form={form}
                 tableColumns={columns}
             >
+                {/* モーダル部分 */}
                 <GridItemsLayout
                     leftTop={<PatientInformation />}
                     leftCenter={<ConditionForm />}
