@@ -1,6 +1,5 @@
-import { Box } from '@mantine/core'
+import { Box, Grid, Paper, Stack } from '@mantine/core'
 import { ModalAndDataTable } from '@/pages/components/ModalAndDataTable'
-import { GridItemsLayout } from '@/pages/components/layout/GridItemsLayout'
 import { ConditionForm } from './condition/ConditionForm'
 
 import { AppointmentForm } from './appointment/AppointmentForm'
@@ -8,6 +7,7 @@ import { PatientInformation } from './patient-information/PatientInformation'
 import { InstractionForm } from './instruction/InstractionForm'
 import { InsuranceForm } from './insurance/InsuranceForm'
 import { useRequestFeature } from './useRequestFeature'
+import { RequestLayout } from './components/RequestLayout'
 
 export default function Index() {
     const { logicalName, resource, columns, form, query } = useRequestFeature()
@@ -21,7 +21,7 @@ export default function Index() {
             query={query}
         >
             {/* モーダル部分 */}
-            <GridItemsLayout
+            <RequestLayout
                 leftTop={<PatientInformation />}
                 leftCenter={<ConditionForm />}
                 leftBottom={<InsuranceForm />}

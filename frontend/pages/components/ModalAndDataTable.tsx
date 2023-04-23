@@ -32,12 +32,6 @@ export function ModalAndDataTable({
     tableColumns,
 }: ModalAndDataTableProps) {
     const [modalOpened, modalHandlers] = useDisclosure(false)
-    // const { isLoading, error, data: query } = useQueryBase(resource)
-    // const allQuery = query?.[resource]
-
-    // isLoading ? <Loader /> : null
-    // error ? <Text>Errorです！</Text> : null
-
     const onModalCloseClick = () => modalHandlers.close()
     const onCreateButtonClick = () => {
         form.reset()

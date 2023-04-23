@@ -122,5 +122,11 @@ export const emsTheme: MantineThemeOverride = {
                 size: 'xs',
             },
         },
+        Paper: {
+            defaultProps: {
+                shadow: 'xs',
+                p: 'sm',
+            },
+        },
     },
 }

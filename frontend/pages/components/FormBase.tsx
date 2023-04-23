@@ -73,7 +73,7 @@ export function FormBase({ resource, form, children }: FormBaseProps) {
                             size="sm"
                             type="submit"
                             onClick={onClickDeleteButton}
-                            color="red.7"
+                            color="red"
                         >
                             {captionDelete}
                         </Button>
