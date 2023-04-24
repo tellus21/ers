@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
             // $table->foreignId('examination_clinic_id')->constrained()->nullable();
 
             //OKパターン
-            $table->foreignId('home_care_clinic_id')->nullable(); //nullの場合もあるのでnullable、外部キー制約はしない
-            $table->foreignId('examination_clinic_id')->nullable(); //nullの場合もあるのでnullable、外部キー制約はしない
+            $table->foreignId('home_care_clinic_id')->nullable()->constrained(); //nullの場合もあるのでnullable
+            $table->foreignId('examination_clinic_id')->nullable()->constrained(); //nullの場合もあるのでnullable
             $table->string('login_name')->unique();
             $table->string('password');
             $table->string('last_name');

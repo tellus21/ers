@@ -4,8 +4,8 @@ import { useForm } from '@mantine/form'
 // ---【Type】---
 export interface Request {
     id: number
-    user_id: number
-    patient_id: number
+    user_id: number | null
+    patient_id: number | null
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
@@ -23,8 +23,8 @@ export function useRequestFeature() {
     // ---【InitialValues】---
     const initialValues: RequestFormValues = {
         id: 0,
-        user_id: 0,
-        patient_id: 0,
+        user_id: null, //初回のpost時は、ログイン者のIDがはいるので、initialはnull
+        patient_id: null, //初回のpost時は、患者IDが決まってないので、initialはnull
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: null,
