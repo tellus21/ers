@@ -1,4 +1,9 @@
 import { Box, Button, Grid, Group, Paper, Stack } from '@mantine/core'
+import { useEffect } from 'react'
+import { PatientFormValues } from '../patients/patientFeature'
+import axios from 'axios'
+import { useMutateBase } from '@/common/hooks'
+import { RequestFormValues } from './useRequestFeature'
 
 interface RequestModalFormProps {
     form: any
@@ -22,10 +27,29 @@ export function RequestModalForm({
     //modal開いた時に行われる処理を作成して、ここでuse○○で呼べばよいか
     //user_idにログイン者のidを付与する。ログイン機能ができるまでは仮に1とかで
 
+    const resource = 'requests'
+    const { createNewDataMutation } = useMutateBase(resource)
+
+    //useEffectで、form.setFieldValue('user_id', 1)として、
+    //createNewDataMutation.mutate(form.values)とすると、
+    //user_idがnullになってしまう。なぜだろうか
+    const postData: RequestFormValues = {
+        id: 0,
+        user_id: 1, //ログイン者のidを入れる
+        patient_id: null,
+        created_at: new Date(),
+        updated_at: new Date(),
+        deleted_at: null,
+    }
+
+    useEffect(() => {
+        createNewDataMutation.mutate(postData)
+    }, [])
+
     return (
         <Box bg="gray.2" p={20}>
             <Grid>
-                <button onClick={() => console.log(form)}>dd</button>
+                <button onClick={() => console.log(postData)}>dd</button>
                 <Grid.Col span={12}>{top && <Paper>{top}</Paper>}</Grid.Col>
                 <Grid.Col span={4}>
                     <Stack>
