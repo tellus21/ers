@@ -7,7 +7,7 @@ import { InstractionForm } from './instruction/InstractionForm'
 import { InsuranceForm } from './insurance/InsuranceForm'
 import { useRequestFeature } from './useRequestFeature'
 import { RequestMetaData } from './components/MetaData'
-import { RequestModal } from './components/RequestModal'
+import { RequestModalForm } from './RequestForm'
 
 export default function Index() {
     const { logicalName, resource, columns, form, query } = useRequestFeature()
@@ -21,7 +21,7 @@ export default function Index() {
             query={query}
         >
             {/* モーダル部分 */}
-            <RequestModal
+            <RequestModalForm
                 form={form}
                 top={<RequestMetaData />}
                 // leftTop={<PatientInformation />}

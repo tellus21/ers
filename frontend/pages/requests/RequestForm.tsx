@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Group, Paper, Stack } from '@mantine/core'
 
-interface RequestModalProps {
+interface RequestModalFormProps {
     form: any
     top?: React.ReactNode
     leftTop?: React.ReactNode
@@ -10,7 +10,7 @@ interface RequestModalProps {
     rightButtom?: React.ReactNode
 }
 
-export function RequestModal({
+export function RequestModalForm({
     form,
     top,
     leftTop,
@@ -18,7 +18,7 @@ export function RequestModal({
     leftBottom,
     rightTop,
     rightButtom,
-}: RequestModalProps) {
+}: RequestModalFormProps) {
     //modal開いた時に行われる処理を作成して、ここでuse○○で呼べばよいか
     //user_idにログイン者のidを付与する。ログイン機能ができるまでは仮に1とかで
 
