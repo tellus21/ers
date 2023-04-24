@@ -1,4 +1,3 @@
-import React from 'react'
 import { Badge, Group, Text } from '@mantine/core'
 
 export function RequestMetaData() {

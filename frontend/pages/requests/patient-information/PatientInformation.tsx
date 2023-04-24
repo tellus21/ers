@@ -1,4 +1,4 @@
-import { Button, Center, Grid } from '@mantine/core'
+import { Button, Center, Grid, Group } from '@mantine/core'
 import { TextInputBorderBottom } from './TextInputBorderBottom'
 
 import { patientInformationData } from './patientInformationData'
@@ -10,9 +10,9 @@ export function PatientInformation() {
     return (
         <>
             <TitleText title="患者情報" />
-            <Center>
+            <Group position="right">
                 <Button>検索</Button>
-            </Center>
+            </Group>
             <Grid gutter={10}>
                 {data.map((item: any, index: number) => {
                     return (

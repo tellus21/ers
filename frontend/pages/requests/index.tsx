@@ -22,7 +22,8 @@ export default function Index() {
         >
             {/* モーダル部分 */}
             <RequestLayout
-                Top={<RequestMetaData />}
+                form={form}
+                top={<RequestMetaData />}
                 leftTop={<PatientInformation />}
                 leftCenter={<ConditionForm />}
                 leftBottom={<InsuranceForm />}
