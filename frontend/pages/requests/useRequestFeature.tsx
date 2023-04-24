@@ -42,11 +42,10 @@ export function useRequestFeature() {
     // ---【Table】---
     const columns = [
         { accessor: 'id', title: 'id' },
-        { accessor: 'name', title: '名前', width: 150 },
-        { accessor: 'postal_code', title: '郵便番号' },
-        { accessor: 'address', title: '住所' },
-        { accessor: 'phone_number', title: '電話番号' },
-        { accessor: 'fax_number', title: 'FAX番号' },
+        { accessor: '', title: '進捗ステータス' },
+        { accessor: 'user.name', title: '作成者' },
+        { accessor: 'patient.home_care_clinic', title: '患者施設' },
+        { accessor: 'patient.name', title: '対象患者名' },
     ]
 
     // ---【API】---

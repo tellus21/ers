@@ -1,13 +1,11 @@
 import { Box, Button, Grid, Group, Paper, Stack } from '@mantine/core'
-import { useEffect } from 'react'
-import { PatientFormValues } from '../patients/patientFeature'
-import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { useMutateBase } from '@/common/hooks'
 import { RequestFormValues } from './useRequestFeature'
+import { RequestMetaData } from './RequestMetaData'
 
-interface RequestModalFormProps {
+interface RequestFormProps {
     form: any
-    top?: React.ReactNode
     leftTop?: React.ReactNode
     leftCenter?: React.ReactNode
     leftBottom?: React.ReactNode
@@ -15,15 +13,14 @@ interface RequestModalFormProps {
     rightButtom?: React.ReactNode
 }
 
-export function RequestModalForm({
+export function RequestForm({
     form,
-    top,
     leftTop,
     leftCenter,
     leftBottom,
     rightTop,
     rightButtom,
-}: RequestModalFormProps) {
+}: RequestFormProps) {
     //modal開いた時に行われる処理を作成して、ここでuse○○で呼べばよいか
     //user_idにログイン者のidを付与する。ログイン機能ができるまでは仮に1とかで
 
@@ -42,15 +39,22 @@ export function RequestModalForm({
         deleted_at: null,
     }
 
+    const [request, setRequest] = useState<RequestFormValues>(postData)
+
     useEffect(() => {
-        createNewDataMutation.mutate(postData)
+        const newData = createNewDataMutation.mutate(postData)
+        setRequest(newData)
     }, [])
 
     return (
         <Box bg="gray.2" p={20}>
             <Grid>
-                <button onClick={() => console.log(postData)}>dd</button>
-                <Grid.Col span={12}>{top && <Paper>{top}</Paper>}</Grid.Col>
+                <Grid.Col span={12}>
+                    <Paper>
+                        <button onClick={() => console.log(request)}></button>
+                        <RequestMetaData form={form} />
+                    </Paper>
+                </Grid.Col>
                 <Grid.Col span={4}>
                     <Stack>
                         {leftTop && <Paper>{leftTop}</Paper>}

@@ -1,14 +1,20 @@
 import { Badge, Group, Text } from '@mantine/core'
 
-export function RequestMetaData() {
+interface RequestMetaDataProps {
+    form: any
+    // request: Request
+}
+
+export function RequestMetaData({ form }: RequestMetaDataProps) {
     return (
         <Group position="right">
+            <button onClick={() => console.log(form.values)}>dd</button>
             <Badge size="lg">予約進行中</Badge>
 
             <Group>
                 <Text size="md">作成日：</Text>
                 <Text size="md" td="underline">
-                    2023年5月5日
+                    {/* {form.values.created_at} */}
                 </Text>
             </Group>
 

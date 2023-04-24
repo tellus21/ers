@@ -9,7 +9,8 @@ class RequestController extends Controller
 {
     public function index()
     {
-        return Request::all();
+        $rquests = Request::with(['user', 'patient'])->get();
+        return response()->json($rquests);
     }
 
     public function store(RequestRequest $request)

@@ -16,7 +16,6 @@ class CreateRequestsTable extends Migration
 
             //OKパターン
             $table->foreignId('patient_id')->nullable()->constrained(); //nullの場合もあるのでnullable
-            $table->foreignId('examination_clinic_id')->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

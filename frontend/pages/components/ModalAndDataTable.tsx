@@ -38,6 +38,7 @@ export function ModalAndDataTable({
         modalHandlers.open()
     }
     const onTableRowClick = (rowData: any) => {
+        //birthdayをDate型に変換してからフォームに設定する
         form.setValues(convertDateProperty(rowData, 'birthday'))
         modalHandlers.open()
     }
