@@ -96,7 +96,7 @@ export const emsTheme: MantineThemeOverride = {
         },
         Select: {
             defaultProps: {
-                dropdownPosition: 'buttom',
+                // dropdownPosition: 'buttom',
                 size: 'xs',
                 clearable: true,
             },

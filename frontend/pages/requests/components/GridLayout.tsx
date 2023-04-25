@@ -1,11 +1,11 @@
 import { Box, Button, Grid, Group, Paper, Stack } from '@mantine/core'
 import { useEffect, useState } from 'react'
 import { useMutateBase } from '@/common/hooks'
-import { RequestFormValues } from './useRequestFeature'
-import { RequestMetaData } from './RequestMetaData'
+import { RequestFormValues } from '../requestFeature'
+import { RequestMetaData } from '../RequestMetaData'
 
-interface RequestFormProps {
-    form: any
+interface GridLayoutProps {
+    top?: React.ReactNode
     leftTop?: React.ReactNode
     leftCenter?: React.ReactNode
     leftBottom?: React.ReactNode
@@ -13,14 +13,14 @@ interface RequestFormProps {
     rightButtom?: React.ReactNode
 }
 
-export function RequestForm({
-    form,
+export function GridLayout({
+    top,
     leftTop,
     leftCenter,
     leftBottom,
     rightTop,
     rightButtom,
-}: RequestFormProps) {
+}: GridLayoutProps) {
     //modal開いた時に行われる処理を作成して、ここでuse○○で呼べばよいか
     //user_idにログイン者のidを付与する。ログイン機能ができるまでは仮に1とかで
 
@@ -49,12 +49,7 @@ export function RequestForm({
     return (
         <Box bg="gray.2" p={20}>
             <Grid>
-                <Grid.Col span={12}>
-                    <Paper>
-                        <button onClick={() => console.log(request)}></button>
-                        <RequestMetaData form={form} />
-                    </Paper>
-                </Grid.Col>
+                <Grid.Col span={12}>{top && <Paper>{top}</Paper>}</Grid.Col>
                 <Grid.Col span={4}>
                     <Stack>
                         {leftTop && <Paper>{leftTop}</Paper>}

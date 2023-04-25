@@ -24,6 +24,17 @@ export function FieldsFourTwelve({ form, fields }: FieldsFourTwelveProps) {
                                 />
                             </Grid.Col>
                         )
+                    case 'SearchableSelect':
+                        return (
+                            <Grid.Col span={6} key={index}>
+                                <Select
+                                    {...field.props}
+                                    {...form.getInputProps(field.formPath)}
+                                    searchable
+                                    nothingFound="該当の患者が存在しません。"
+                                />
+                            </Grid.Col>
+                        )
                     case 'TextInput':
                     case 'TextInputLong':
                         return (

@@ -1,6 +1,6 @@
 import { isNotEmpty, useForm } from '@mantine/form'
 import { genderOptions, isNotEmptyErrorMessage } from '@/common/constants'
-import { findIdByName } from '@/common/lib'
+import { findIdByName, getNames } from '@/common/lib'
 import { Field } from '@/common/types'
 import { useQueryBase } from '@/common/hooks'
 import { useHomeCareClinicFeature } from '../home-care-clinics/homeCareClinicFeature'
@@ -221,6 +221,7 @@ export function usePatientFeature() {
 
     // ---【API】---
     const { data: query } = useQueryBase(resource)
+    const patientNames = getNames(query)
 
     return {
         logicalName,
@@ -229,5 +230,6 @@ export function usePatientFeature() {
         form,
         fields,
         query,
+        patientNames,
     }
 }

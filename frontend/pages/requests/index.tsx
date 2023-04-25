@@ -2,31 +2,47 @@ import { ModalAndDataTable } from '@/pages/components/ModalAndDataTable'
 import { ConditionForm } from './condition/ConditionForm'
 
 import { AppointmentForm } from './appointment/AppointmentForm'
-import { PatientInformation } from './patient-information/PatientInformation'
 import { InstractionForm } from './instruction/InstractionForm'
 import { InsuranceForm } from './insurance/InsuranceForm'
-import { useRequestFeature } from './useRequestFeature'
-import { RequestForm } from './RequestForm'
+import { useRequestFeature } from './requestFeature'
+import { GridLayout } from './components/GridLayout'
+import { RequestMetaData } from './RequestMetaData'
+import { PatientInfomation } from './patient-information/PatientInfomation'
 
 export default function Index() {
-    const { logicalName, resource, columns, form, query } = useRequestFeature()
+    const {
+        logicalName,
+        resource,
+        columns,
+        form: requestForm,
+        query,
+        fields,
+    } = useRequestFeature()
+
+    const requestId = requestForm.values.id
 
     return (
         <ModalAndDataTable
             logicalName={logicalName}
             modalSize="100%"
-            form={form}
+            form={requestForm}
             tableColumns={columns}
             query={query}
         >
             {/* モーダル部分 */}
-            <RequestForm
-                form={form}
-                // leftTop={<PatientInformation />}
-                // leftCenter={<ConditionForm />}
-                // leftBottom={<InsuranceForm />}
-                // rightTop={<InstractionForm />}
-                // rightButtom={<AppointmentForm />}
+            <GridLayout
+                top={<RequestMetaData form={requestForm} />}
+                leftTop={
+                    <PatientInfomation
+                        resource={resource}
+                        form={requestForm}
+                        fields={fields}
+                    />
+                }
+                // leftCenter={<ConditionForm requestId={requestId} />}
+                // leftBottom={<InsuranceForm requestId={requestId} />}
+                // rightTop={<InstractionForm requestId={requestId} />}
+                // rightButtom={<AppointmentForm requestId={requestId} />}
             />
         </ModalAndDataTable>
     )

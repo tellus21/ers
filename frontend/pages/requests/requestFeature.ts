@@ -1,5 +1,8 @@
 import { useQueryBase } from '@/common/hooks'
+import { Field } from '@/common/types'
 import { useForm } from '@mantine/form'
+import { usePatientFeature } from '../patients/patientFeature'
+import { findIdByName } from '@/common/lib'
 
 // ---【Type】---
 export interface Request {
@@ -12,10 +15,14 @@ export interface Request {
 }
 
 // ---【FormValues】---
-export interface RequestFormValues extends Request {}
+export interface RequestFormValues extends Request {
+    patient: { name: string }
+}
 
 // ---【Feature】---
 export function useRequestFeature() {
+    const { query: patients, patientNames } = usePatientFeature()
+
     // ---【Name】---
     const logicalName = '検査依頼'
     const resource = 'requests'
@@ -28,15 +35,23 @@ export function useRequestFeature() {
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: null,
+        patient: { name: '' },
     }
 
     // ---【Validate】---
     const validate = {}
 
+    // ---【TransFormValues】---
+    const transformValues = (values: any): RequestFormValues => ({
+        ...values,
+        patient_id: findIdByName(patients, values.patient.name),
+    })
+
     // ---【Form】---
     const form = useForm<RequestFormValues>({
         initialValues: initialValues,
         validate: validate,
+        transformValues: transformValues,
     })
 
     // ---【Table】---
@@ -48,6 +63,19 @@ export function useRequestFeature() {
         { accessor: 'patient.name', title: '対象患者名' },
     ]
 
+    // ---【Fields】---
+    const fields: Field[] = [
+        {
+            formPath: 'patient.name',
+            component: 'SearchableSelect',
+            props: {
+                data: patientNames,
+                label: '患者名',
+                withAsterisk: true,
+            },
+        },
+    ]
+
     // ---【API】---
     const { data: query } = useQueryBase(resource)
 
@@ -57,6 +85,7 @@ export function useRequestFeature() {
         resource,
         columns,
         form,
+        fields,
         query,
     }
 }
