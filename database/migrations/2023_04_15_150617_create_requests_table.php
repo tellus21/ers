@@ -11,11 +11,8 @@ class CreateRequestsTable extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            //NGパターン
-            // $table->foreignId('patient_id')->constrained();
+            $table->foreignId('patient_id')->constrained();
 
-            //OKパターン
-            $table->foreignId('patient_id')->nullable()->constrained(); //nullの場合もあるのでnullable
             $table->timestamps();
             $table->softDeletes();
         });

@@ -10,7 +10,7 @@ class PatientRequest extends FormRequest
     {
         return [
             'home_care_clinic_id' => 'required|integer|exists:home_care_clinics,id',
-            'home_care_doctor_id' => 'required|integer|exists:home_care_doctors,id',
+            'home_care_doctor_id' => 'integer|exists:home_care_doctors,id',
             'nursing_home_id' => 'required|integer|exists:nursing_homes,id',
             'home_karte_number' => 'nullable|string',
             'last_name_kana' => 'nullable|string',

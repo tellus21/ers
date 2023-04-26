@@ -10,12 +10,7 @@ class RequestRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer|exists:users,id',
-
-            // NGパターン
-            // 'patient_id' => 'required|integer|exists:patients,id',
-
-            //OKパターン
-            'patient_id' => 'integer|nullable|exists:patients,id',
+            'patient_id' => 'required|integer|exists:patients,id',
         ];
     }
 }
