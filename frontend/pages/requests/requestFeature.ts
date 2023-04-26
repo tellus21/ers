@@ -65,15 +65,16 @@ export function useRequestFeature() {
 
     // ---【Fields】---
     const fields: Field[] = [
-        {
-            formPath: 'patient.name',
-            component: 'SearchableSelect',
-            props: {
-                data: patientNames,
-                label: '患者名',
-                withAsterisk: true,
-            },
-        },
+        // {
+        //     formPath: '',
+        //     component: 'SearchableSelect',
+        //     props: {
+        //         // data: patientNames,
+        //         data: ['dd'],
+        //         label: '患者名',
+        //         withAsterisk: true,
+        //     },
+        // },
     ]
 
     // ---【API】---
