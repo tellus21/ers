@@ -8,6 +8,7 @@ import { useRequestFeature } from './requestFeature'
 import { GridLayout } from './components/GridLayout'
 import { RequestMetaData } from './RequestMetaData'
 import { PatientInfomation } from './patient-information/PatientInfomation'
+import { RequestModalAndDataTable } from './RequestModalAndDataTable'
 
 export default function Index() {
     const {
@@ -22,7 +23,7 @@ export default function Index() {
     const requestId = requestForm.values.id
 
     return (
-        <ModalAndDataTable
+        <RequestModalAndDataTable
             logicalName={logicalName}
             modalSize="100%"
             form={requestForm}
@@ -44,6 +45,6 @@ export default function Index() {
                 // rightTop={<InstractionForm requestId={requestId} />}
                 // rightButtom={<AppointmentForm requestId={requestId} />}
             />
-        </ModalAndDataTable>
+        </RequestModalAndDataTable>
     )
 }
