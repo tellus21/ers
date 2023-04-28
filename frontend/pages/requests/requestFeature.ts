@@ -9,8 +9,8 @@ export interface Request {
     id: number
     user_id: number | null
     patient_id: number | null
-    created_at: Date
-    updated_at: Date
+    created_at: Date | null
+    updated_at: Date | null
     deleted_at: Date | null
 }
 

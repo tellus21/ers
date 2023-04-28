@@ -21,31 +21,6 @@ export function GridLayout({
     rightTop,
     rightButtom,
 }: GridLayoutProps) {
-    //modal開いた時に行われる処理を作成して、ここでuse○○で呼べばよいか
-    //user_idにログイン者のidを付与する。ログイン機能ができるまでは仮に1とかで
-
-    const resource = 'requests'
-    const { createNewDataMutation } = useMutateBase(resource)
-
-    //useEffectで、form.setFieldValue('user_id', 1)として、
-    //createNewDataMutation.mutate(form.values)とすると、
-    //user_idがnullになってしまう。なぜだろうか
-    const postData: RequestFormValues = {
-        id: 0,
-        user_id: 1, //ログイン者のidを入れる
-        patient_id: null,
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-    }
-
-    const [request, setRequest] = useState<RequestFormValues>(postData)
-
-    useEffect(() => {
-        const newData = createNewDataMutation.mutate(postData)
-        setRequest(newData)
-    }, [])
-
     return (
         <Box bg="gray.2" p={20}>
             <Grid>

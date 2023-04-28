@@ -38,6 +38,11 @@ export const findIdByName = (
     value: string
 ) => obj?.find((item) => item.name === value)?.id
 
+// データからidを指定してフィルターする関数
+export const filterById = (data: any[], id: string): object => {
+    return data.filter((item) => item.id === id)[0]
+}
+
 /**
  * 日付プロパティを変換する関数
  * @param obj 変換対象のオブジェクト
