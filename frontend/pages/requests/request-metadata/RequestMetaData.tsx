@@ -1,37 +1,38 @@
 import { Badge, Group, Text } from '@mantine/core'
+import { useContext } from 'react'
+import { EditedRequestContext } from '..'
 
-interface RequestMetaDataProps {
-    form: any
-    // request: Request
-}
+interface RequestMetaDataProps {}
 
-export function RequestMetaData({ form }: RequestMetaDataProps) {
+// リクエストのメタデータを表示するコンポーネント
+export function RequestMetaData({}: RequestMetaDataProps) {
+    const { editedRequest } = useContext(EditedRequestContext)
+
     return (
         <Group position="right">
-            <button onClick={() => console.log(form.values)}>dd</button>
             <Badge size="lg">予約進行中</Badge>
 
             <Group>
                 <Text size="md">作成日：</Text>
                 <Text size="md" td="underline">
-                    {/* {form.values.created_at} */}
+                    {editedRequest.created_at}
                 </Text>
             </Group>
 
             <Group>
                 <Text size="md">最終更新日：</Text>
                 <Text size="md" td="underline">
-                    2023年5月5日
+                    {editedRequest.updated_at}
                 </Text>
             </Group>
 
             <Group>
                 <Text size="md">作成者：</Text>
                 <Text size="md" td="underline">
-                    ひがし在宅
+                    {editedRequest.user_id}
                 </Text>
                 <Text size="md" td="underline">
-                    田中将大
+                    {editedRequest.id}
                 </Text>
             </Group>
         </Group>

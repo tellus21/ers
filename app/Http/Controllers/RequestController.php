@@ -21,7 +21,8 @@ class RequestController extends Controller
 
     public function show(Request $request)
     {
-        return $request;
+        $request = Request::with(['user', 'patient', 'patient.homeCareClinic', 'patient.homeCareDoctor', 'patient.nursingHome'])->find($request->id);
+        return response()->json($request);
     }
 
     public function update(RequestRequest $request, Request $requestModel)

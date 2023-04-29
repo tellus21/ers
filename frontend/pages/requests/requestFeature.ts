@@ -1,8 +1,6 @@
 import { useQueryBase } from '@/common/hooks'
-import { Field } from '@/common/types'
-import { useForm } from '@mantine/form'
-import { usePatientFeature } from '../patients/patientFeature'
-import { findIdByName } from '@/common/lib'
+import { Patient, usePatientFeature } from '../patients/patientFeature'
+import { User } from '../users/UserFeature'
 
 // ---【Type】---
 export interface Request {
@@ -12,47 +10,27 @@ export interface Request {
     created_at: Date | null
     updated_at: Date | null
     deleted_at: Date | null
+    user: User | null
+    patient: Patient | null
 }
 
-// ---【FormValues】---
-export interface RequestFormValues extends Request {
-    patient: { name: string }
+// ---【InitialValues】---
+export const requestInitialValue = {
+    id: 0,
+    user_id: 0,
+    patient_id: 0,
+    created_at: null,
+    updated_at: null,
+    deleted_at: null,
+    user: null,
+    patient: null,
 }
 
 // ---【Feature】---
 export function useRequestFeature() {
-    const { query: patients, patientNames } = usePatientFeature()
-
     // ---【Name】---
     const logicalName = '検査依頼'
     const resource = 'requests'
-
-    // ---【InitialValues】---
-    const initialValues: RequestFormValues = {
-        id: 0,
-        user_id: null, //初回のpost時は、ログイン者のIDがはいるので、initialはnull
-        patient_id: null, //初回のpost時は、患者IDが決まってないので、initialはnull
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-        patient: { name: '' },
-    }
-
-    // ---【Validate】---
-    const validate = {}
-
-    // ---【TransFormValues】---
-    const transformValues = (values: any): RequestFormValues => ({
-        ...values,
-        patient_id: findIdByName(patients, values.patient.name),
-    })
-
-    // ---【Form】---
-    const form = useForm<RequestFormValues>({
-        initialValues: initialValues,
-        validate: validate,
-        transformValues: transformValues,
-    })
 
     // ---【Table】---
     const columns = [
@@ -63,30 +41,13 @@ export function useRequestFeature() {
         { accessor: 'patient.name', title: '対象患者名' },
     ]
 
-    // ---【Fields】---
-    const fields: Field[] = [
-        // {
-        //     formPath: '',
-        //     component: 'SearchableSelect',
-        //     props: {
-        //         // data: patientNames,
-        //         data: ['dd'],
-        //         label: '患者名',
-        //         withAsterisk: true,
-        //     },
-        // },
-    ]
-
     // ---【API】---
     const { data: query } = useQueryBase(resource)
 
     // ---【Return】---
     return {
         logicalName,
-        resource,
         columns,
-        form,
-        fields,
         query,
     }
 }

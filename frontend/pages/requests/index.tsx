@@ -1,31 +1,27 @@
 import { Button, Container, Group, Modal, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { DataTableBase } from '../components/DataTableBase'
-import { Request, useRequestFeature } from './requestFeature'
-import { SearchPatientModal } from './SearchPatientModal'
+import {
+    Request,
+    requestInitialValue,
+    useRequestFeature,
+} from './requestFeature'
+import { createContext, useState } from 'react'
 import { CreateRequestModal } from './CreateRequestModal'
-import { useMutateBase } from '@/common/hooks'
-import { useState } from 'react'
+import { EditRequestModal } from './EditRequestModal'
+
+export const EditedRequestContext = createContext({})
 
 export default function Index() {
-    const { logicalName, resource, columns, form, fields, query } =
-        useRequestFeature()
+    const { logicalName, columns, query } = useRequestFeature()
 
-    const [displayRequest, setDisplayRequest] = useState<Request>({
-        id: 0,
-        user_id: 0,
-        patient_id: 0,
-        created_at: null,
-        updated_at: null,
-        deleted_at: null,
-    })
+    const [editedRequest, setEditedRequest] =
+        useState<Request>(requestInitialValue)
 
-    // searchPatientModalを開閉するためのハンドラーを取得
-    const [searchPatientModalOpend, searchPatientModalHandlers] =
+    const [createRequestModalOpend, createRequestModalHandlers] =
         useDisclosure(false)
 
-    // createRequestModalを開閉するためのハンドラーを取得
-    const [createRequestModalOpend, createRequestModalHandlers] =
+    const [editRequestModalOpend, editRequestModalHandlers] =
         useDisclosure(false)
 
     // テーブルの行がクリックされた時の処理
@@ -36,42 +32,37 @@ export default function Index() {
     }
 
     return (
-        <Container size="xl">
-            <Text size="md">{`${logicalName}一覧`}</Text>
+        <EditedRequestContext.Provider
+            value={{ editedRequest, setEditedRequest }}
+        >
+            <Container size="xl">
+                <Text size="md">{`${logicalName}一覧`}</Text>
 
-            {/* 患者検索モーダルを表示 */}
-            <SearchPatientModal
-                opened={searchPatientModalOpend}
-                close={searchPatientModalHandlers.close}
-                createRequestModalOpen={createRequestModalHandlers.open}
-                form={form}
-                displayRequest={displayRequest}
-                setDisplayRequest={setDisplayRequest}
-                requests={query}
-            />
+                {/* 依頼登録ボタンを表示 */}
+                <Group position="right">
+                    <Button size="sm" onClick={createRequestModalHandlers.open}>
+                        {'依頼患者検索'}
+                    </Button>
+                </Group>
 
-            {/* 依頼作成モーダルを表示 */}
-            <CreateRequestModal
-                opened={createRequestModalOpend}
-                close={createRequestModalHandlers.close}
-                resource={resource}
-                form={form}
-            />
+                <CreateRequestModal
+                    opened={createRequestModalOpend}
+                    close={createRequestModalHandlers.close}
+                    editRequestModalHandlersOpen={editRequestModalHandlers.open}
+                />
 
-            {/* 依頼登録ボタンを表示 */}
-            <Group position="right">
-                <Button
-                    size="sm"
-                    onClick={searchPatientModalHandlers.open}
-                >{`患者検索`}</Button>
-            </Group>
+                {/* 依頼一覧テーブルを表示 */}
+                <DataTableBase
+                    columns={columns}
+                    records={query}
+                    onRowClick={(rowData) => onTableRowClick(rowData)}
+                />
 
-            {/* 依頼一覧テーブルを表示 */}
-            <DataTableBase
-                columns={columns}
-                records={query}
-                onRowClick={(rowData) => onTableRowClick(rowData)}
-            />
-        </Container>
+                <EditRequestModal
+                    opened={editRequestModalOpend}
+                    close={editRequestModalHandlers.close}
+                />
+            </Container>
+        </EditedRequestContext.Provider>
     )
 }
