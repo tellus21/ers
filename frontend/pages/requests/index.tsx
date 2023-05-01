@@ -41,7 +41,7 @@ export default function Index() {
                 {/* 依頼登録ボタンを表示 */}
                 <Group position="right">
                     <Button size="sm" onClick={createRequestModalHandlers.open}>
-                        {'依頼患者検索'}
+                        {'患者検索'}
                     </Button>
                 </Group>
 

@@ -16,7 +16,7 @@ export function ConditionForm() {
             </Group>
             <FieldsFourTwelve form={form} fields={fields.condition_1} />
             <Box p={8} />
-            <FieldsFourTwelve form={form} fields={fields.condition_2} />
+            {/* <FieldsFourTwelve form={form} fields={fields.condition_2} /> */}
         </RequestFormBase>
     )
 }
