@@ -50,7 +50,7 @@ export function DisplayPatient() {
     // 患者情報を表示するコンポーネントを返す
     return (
         <Box m={12}>
-            <TitleText title={'患者'} />
+            <TitleText title={'対象患者'} />
             <button onClick={() => console.log(displayedPatient)}>dd</button>
 
             <Grid>

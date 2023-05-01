@@ -1,16 +1,14 @@
 import { Checkbox, Group, Text } from '@mantine/core'
 
-interface CheckboxProps {
-    label: string
-    checkboxProps: {
-        formPath: string
-        label: string
-    }[]
-}
-
 interface CheckboxesProps {
     form: any
-    props: CheckboxProps
+    props: {
+        label: string
+        checkboxProps: {
+            label: string
+            formPath: string
+        }[]
+    }
 }
 
 export const Checkboxes = ({ form, props }: CheckboxesProps) => (

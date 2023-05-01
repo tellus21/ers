@@ -1,11 +1,11 @@
 import { Box, Button, Group } from '@mantine/core'
 import { TitleText } from '../components/TitleText'
-import { useCondition } from './useCondition'
 import { RequestFormBase } from '../components/RequestFormBase'
 import { FieldsFourTwelve } from '../components/FieldsFourTwelve'
+import { useConditionFeature } from './conditionFeature'
 
 export function ConditionForm() {
-    const { logicalName, resource, form, fields } = useCondition()
+    const { logicalName, resource, form, query, fields } = useConditionFeature()
 
     return (
         <RequestFormBase resource={resource} form={form}>
@@ -16,7 +16,7 @@ export function ConditionForm() {
             </Group>
             <FieldsFourTwelve form={form} fields={fields.condition_1} />
             <Box p={8} />
-            {/* <FieldsFourTwelve form={form} fields={fields.condition_2} /> */}
+            <FieldsFourTwelve form={form} fields={fields.condition_2} />
         </RequestFormBase>
     )
 }

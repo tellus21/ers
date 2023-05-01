@@ -3,58 +3,55 @@ import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 
-export function useCondition() {
+// ---【Type】---
+export interface Condition {
+    id: number
+    request_id: number
+    walking_state: string
+    accompaniment: string
+    pickup: string
+    dementia: string
+    oxygen: string
+    oxygen_amount: string
+    allergy: string
+    allergy_content: string
+    infection: string
+    is_hbs_antigen: boolean
+    is_hcv: boolean
+    is_syphilis: boolean
+    is_hiv: boolean
+    is_mrsa: boolean
+    other_infection: string
+    intra_metal: string
+    intra_metal_content: string
+    is_alcohol_prohibiting: boolean
+    is_pace_maker: boolean
+    is_mon: boolean
+    is_tue: boolean
+    is_wed: boolean
+    is_thu: boolean
+    is_fri: boolean
+    diagnosis_day: string
+    surgery_history: string
+    other: string
+    anything_memo: string
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+}
+
+// ---【FormValues】---
+export interface ConditionFormValues extends Condition {}
+
+// ---【Feature】---
+export function useConditionFeature() {
     // ---【Name】---
     const logicalName = '患者状況'
-    const physicalName = 'condition'
     const resource = 'conditions'
 
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
-
-    // ---【Type】---
-    interface Condition {
-        id: number
-        request_id: number
-        walking_state: string
-        accompaniment: string
-        pickup: string
-        dementia: string
-        oxygen: string
-        oxygen_amount: string
-        allergy: string
-        allergy_content: string
-        infection: string
-        is_hbs_antigen: boolean
-        is_hcv: boolean
-        is_syphilis: boolean
-        is_hiv: boolean
-        is_mrsa: boolean
-        intra_metal: string
-        intra_metal_content: string
-        is_alcohol_prohibiting: boolean
-        is_pace_maker: boolean
-        is_mon: boolean
-        is_tue: boolean
-        is_wed: boolean
-        is_thu: boolean
-        is_fri: boolean
-        is_sat: boolean
-        is_sun: boolean
-        diagnosis_day: string
-        surgery_history: string
-        other: string
-        anything_memo: string
-        created_at: Date
-        updated_at: Date
-        deleted_at: Date | null
-    }
-
-    // ---【FormValues】---
-    type FormValues = Omit<Condition, 'id'>
-
     // ---【InitialValues】---
-    const initialValues: FormValues = {
+    const initialValues: ConditionFormValues = {
+        id: 0,
         request_id: 0,
         walking_state: '',
         accompaniment: '',
@@ -70,6 +67,7 @@ export function useCondition() {
         is_syphilis: false,
         is_hiv: false,
         is_mrsa: false,
+        other_infection: '',
         intra_metal: '',
         intra_metal_content: '',
         is_alcohol_prohibiting: false,
@@ -79,8 +77,6 @@ export function useCondition() {
         is_wed: false,
         is_thu: false,
         is_fri: false,
-        is_sat: false,
-        is_sun: false,
         diagnosis_day: '',
         surgery_history: '',
         other: '',
@@ -103,7 +99,7 @@ export function useCondition() {
     }
 
     // ---【Form】---
-    const form = useForm<FormValues>({
+    const form = useForm<ConditionFormValues>({
         initialValues: initialValues,
         validate: validate,
     })
@@ -205,11 +201,11 @@ export function useCondition() {
                 props: {
                     label: '感染症の種類',
                     checkboxProps: [
-                        { label: 'HBS抗原', formPath: 'is_hbs_antigen' },
-                        { label: 'HCV', formPath: 'is_hcv' },
-                        { label: '梅毒', formPath: 'is_syphilis' },
-                        { label: 'HIV', formPath: 'is_hiv' },
-                        { label: 'MRSA', formPath: 'is_mrsa' },
+                        { label: 'HBS抗原', formpath: 'is_hbs_antigen' }, // pathを小文字にしないとエラーになる
+                        { label: 'HCV', formpath: 'is_hcv' },
+                        { label: '梅毒', formpath: 'is_syphilis' },
+                        { label: 'HIV', formpath: 'is_hiv' },
+                        { label: 'MRSA', formpath: 'is_mrsa' },
                     ],
                 },
             },
@@ -242,11 +238,11 @@ export function useCondition() {
                     checkboxProps: [
                         {
                             label: 'アルコール禁',
-                            formPath: 'is_alcohol_prohibiting',
+                            formpath: 'is_alcohol_prohibiting',
                         },
                         {
                             label: 'ペースメーカー有',
-                            formPath: 'is_pace_maker',
+                            formpath: 'is_pace_maker',
                         },
                     ],
                 },
@@ -257,13 +253,11 @@ export function useCondition() {
                 props: {
                     label: 'デイの曜日',
                     checkboxProps: [
-                        { label: '月', formPath: 'is_mon' },
-                        { label: '火', formPath: 'is_tue' },
-                        { label: '水', formPath: 'is_wed' },
-                        { label: '木', formPath: 'is_thu' },
-                        { label: '金', formPath: 'is_fri' },
-                        { label: '土', formPath: 'is_sat' },
-                        { label: '日', formPath: 'is_sun' },
+                        { label: '月', formpath: 'is_mon' },
+                        { label: '火', formpath: 'is_tue' },
+                        { label: '水', formpath: 'is_wed' },
+                        { label: '木', formpath: 'is_thu' },
+                        { label: '金', formpath: 'is_fri' },
                     ],
                 },
             },
@@ -298,12 +292,14 @@ export function useCondition() {
         ],
     }
 
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+
     return {
         logicalName,
-        physicalName,
         resource,
-        query,
         form,
+        query,
         fields,
     }
 }

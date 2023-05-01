@@ -25,6 +25,7 @@ class CreateConditionsTable extends Migration
             $table->boolean('is_syphilis')->nullable();
             $table->boolean('is_hiv')->nullable();
             $table->boolean('is_mrsa')->nullable();
+            $table->string('other_infection')->nullable();
             $table->string('intra_metal')->nullable();
             $table->string('intra_metal_content')->nullable();
             $table->boolean('is_alcohol_prohibiting')->nullable();
@@ -34,8 +35,6 @@ class CreateConditionsTable extends Migration
             $table->boolean('is_wed')->nullable();
             $table->boolean('is_thu')->nullable();
             $table->boolean('is_fri')->nullable();
-            $table->boolean('is_sat')->nullable();
-            $table->boolean('is_sun')->nullable();
             $table->string('diagnosis_day')->nullable();
             $table->text('surgery_history')->nullable();
             $table->text('other')->nullable();
