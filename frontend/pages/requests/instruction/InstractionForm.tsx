@@ -1,11 +1,12 @@
 import { Box, Divider, Group, Space, Tabs, Text } from '@mantine/core'
 import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { FieldsEightTwelve } from '@/pages/requests/components/FieldsEightTwelve'
-import { useInstraction } from './useInstraction'
 import { TitleText } from '../components/TitleText'
+import { useInstractionFeature } from './instractionFeature'
 
 export function InstractionForm() {
-    const { logicalName, resource, form, fields } = useInstraction()
+    const { logicalName, resource, form, query, fields } =
+        useInstractionFeature()
 
     return (
         <RequestFormBase resource={resource} form={form}>

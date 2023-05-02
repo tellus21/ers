@@ -2,110 +2,110 @@ import { useQueryBase } from '@/common/hooks'
 import { useForm } from '@mantine/form'
 import { useInstractionFields } from './useInstructionFields'
 
-export function useInstraction() {
+// ---【Type】---
+export interface Instraction {
+    id: number
+    examination_clinic_id: number
+    home_care_doctor_id: number
+    request_id: number
+    appointment_content: string
+    candidate_month_1: Date | null
+    candidate_month_2: Date | null
+    has_ct_contrast: boolean
+    ct_creatinine_value: string
+    has_brain_pelvis: boolean
+    has_head: boolean
+    has_thoracic: boolean
+    has_abdomen: boolean
+    has_pelvis: boolean
+    has_lung_pelvis: boolean
+    has_cervical_spine: boolean
+    has_thoracic_spine: boolean
+    has_lumbar_spine: boolean
+    has_cta_head: boolean
+    has_cta_heart: boolean
+    has_cta_trunk: boolean
+    has_cta_lower_limb: boolean
+    has_ct_other: string
+    has_mri_contrast: boolean
+    mri_creatinine_value: string
+    has_head_mri: boolean
+    has_vsrad: boolean
+    has_head_neck: boolean
+    has_breast: boolean
+    has_liver_gallbladder_pancreas_spleen: boolean
+    has_kidney_adrenal: boolean
+    has_pelvis_bone: boolean
+    has_jaw_joint: boolean
+    has_shoulder_joint: boolean
+    has_elbow_joint: boolean
+    has_hand_joint: boolean
+    has_thigh_joint: boolean
+    has_knee_joint: boolean
+    has_foot_joint: boolean
+    has_cervical_spine_spinal_cord: boolean
+    has_thoracic_spine_spinal_cord: boolean
+    has_lumbar_spine_spinal_cord: boolean
+    has_mra_head: boolean
+    has_mra_neck: boolean
+    has_mra_kidney: boolean
+    has_mra_lower_limb: boolean
+    has_mri_other: string
+    has_thyroid: boolean
+    has_carotid_artery: boolean
+    has_heart: boolean
+    has_breast_mri: boolean
+    has_abdomen_mri: boolean
+    has_lower_limb_artery: boolean
+    has_lower_limb_vein: boolean
+    has_abi: boolean
+    has_us_other: string
+    has_brain_ecd: boolean
+    has_brain_imp_qualitative: boolean
+    has_brain_datscan: boolean
+    has_thyroid_tc: boolean
+    has_heart_mibg: boolean
+    has_bmipp: boolean
+    has_bone_scintigraphy: boolean
+    has_spect_other: string
+    has_diabetes: boolean
+    can_insulin_injection: boolean
+    blood_glucose_value: string
+    a1c: string
+    has_chest_simple_photography: boolean
+    has_blood_drawing: boolean
+    is_urgent: boolean
+    blood_drawing_set: string
+    blood_drawing_option: string
+    has_ecg: boolean
+    has_bmd: boolean
+    has_mmg: boolean
+    has_camera: boolean
+    camera_content: string
+    chief_complaint: string
+    examination_purpose: string
+    fasting: string
+    medication_stop: string
+    contact_information: string
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date
+}
+
+// ---【FormValues】---
+export interface InstractionFormValues extends Instraction {}
+
+export function useInstractionFeature() {
     // ---【Name】---
     const logicalName = '指示内容'
-    const physicalName = 'instruction'
     const resource = 'instructions'
-
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
-
-    // ---【Type】---
-    interface Instraction {
-        id: number
-        examination_clinic_id: number
-        home_care_doctor_id: number
-        request_id: number
-        appointment_content: string
-        candidate_month_1: Date | null
-        candidate_month_2: Date | null
-        has_ct_contrast: boolean
-        ct_creatinine_value: string
-        has_brain_pelvis: boolean
-        has_head: boolean
-        has_thoracic: boolean
-        has_abdomen: boolean
-        has_pelvis: boolean
-        has_lung_pelvis: boolean
-        has_cervical_spine: boolean
-        has_thoracic_spine: boolean
-        has_lumbar_spine: boolean
-        has_cta_head: boolean
-        has_cta_heart: boolean
-        has_cta_trunk: boolean
-        has_cta_lower_limb: boolean
-        has_ct_other: string
-        has_mri_contrast: boolean
-        mri_creatinine_value: string
-        has_head_mri: boolean
-        has_vsrad: boolean
-        has_head_neck: boolean
-        has_breast: boolean
-        has_liver_gallbladder_pancreas_spleen: boolean
-        has_kidney_adrenal: boolean
-        has_pelvis_bone: boolean
-        has_jaw_joint: boolean
-        has_shoulder_joint: boolean
-        has_elbow_joint: boolean
-        has_hand_joint: boolean
-        has_thigh_joint: boolean
-        has_knee_joint: boolean
-        has_foot_joint: boolean
-        has_cervical_spine_spinal_cord: boolean
-        has_thoracic_spine_spinal_cord: boolean
-        has_lumbar_spine_spinal_cord: boolean
-        has_mra_head: boolean
-        has_mra_neck: boolean
-        has_mra_kidney: boolean
-        has_mra_lower_limb: boolean
-        has_mri_other: string
-        has_thyroid: boolean
-        has_carotid_artery: boolean
-        has_heart: boolean
-        has_breast_mri: boolean
-        has_abdomen_mri: boolean
-        has_lower_limb_artery: boolean
-        has_lower_limb_vein: boolean
-        has_abi: boolean
-        has_us_other: string
-        has_brain_ecd: boolean
-        has_brain_imp_qualitative: boolean
-        has_brain_datscan: boolean
-        has_thyroid_tc: boolean
-        has_heart_mibg: boolean
-        has_bmipp: boolean
-        has_bone_scintigraphy: boolean
-        has_spect_other: string
-        has_diabetes: boolean
-        can_insulin_injection: boolean
-        blood_glucose_value: string
-        a1c: string
-        has_chest_simple_photography: boolean
-        has_blood_drawing: boolean
-        is_urgent: boolean
-        blood_drawing_set: string
-        blood_drawing_option: string
-        has_ecg: boolean
-        has_bmd: boolean
-        has_mmg: boolean
-        has_camera: boolean
-        camera_content: string
-        chief_complaint: string
-        examination_purpose: string
-        fasting: string
-        medication_stop: string
-        contact_information: string
-        created_at: Date
-        updated_at: Date
-        deleted_at: Date
-    }
 
     // ---【FormValues】---
     type FormValues = Omit<Instraction, 'id'>
 
     // ---【InitialValues】---
-    const initialValues: FormValues = {
+    const initialValues: InstractionFormValues = {
+        id: 0,
         examination_clinic_id: 0,
         home_care_doctor_id: 0,
         request_id: 0,
@@ -197,7 +197,7 @@ export function useInstraction() {
     const validate = {}
 
     // ---【Form】---
-    const form = useForm<FormValues>({
+    const form = useForm<InstractionFormValues>({
         initialValues: initialValues,
         validate: validate,
     })
@@ -206,12 +206,14 @@ export function useInstraction() {
     // ---【Fields】---
     const { fields } = useInstractionFields()
 
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+
     return {
         logicalName,
-        physicalName,
         resource,
-        query,
         form,
+        query,
         fields,
     }
 }
