@@ -1,36 +1,33 @@
-import { isNotEmptyErrorMessage } from '@/common/constants'
 import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
-import { isNotEmpty, useForm } from '@mantine/form'
+import { useForm } from '@mantine/form'
 
-export function useInsurance() {
+// ---【Type】---
+export interface Insurance {
+    id: number
+    request_id: number
+    insurance_type: string
+    public_expense: string
+    responsible_city_district: string
+    life_insurance_responsible_name: string
+    other_medical_insurance: string
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+}
+
+// ---【FormValues】---
+export interface InsuranceFormValues extends Insurance {}
+
+// ---【Feature】---
+export function useInsuranceFeature() {
     // ---【Name】---
     const logicalName = '保険情報'
-    const physicalName = 'insurance'
     const resource = 'insurances'
 
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
-
-    // ---【Type】---
-    interface Insurance {
-        id: number
-        request_id: number
-        insurance_type: string
-        public_expense: string
-        responsible_city_district: string
-        life_insurance_responsible_name: string
-        other_medical_insurance: string
-        created_at: Date
-        updated_at: Date
-        deleted_at: Date | null
-    }
-
-    // ---【FormValues】---
-    type FormValues = Omit<Insurance, 'id'>
-
     // ---【InitialValues】---
-    const initialValues: FormValues = {
+    const initialValues: InsuranceFormValues = {
+        id: 0,
         request_id: 0,
         insurance_type: '',
         public_expense: '',
@@ -45,7 +42,7 @@ export function useInsurance() {
     const validate = {}
 
     // ---【Form】---
-    const form = useForm<FormValues>({
+    const form = useForm<InsuranceFormValues>({
         initialValues: initialValues,
         validate: validate,
     })
@@ -116,12 +113,15 @@ export function useInsurance() {
             },
         },
     ]
+
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+
     return {
         logicalName,
-        physicalName,
         resource,
-        query,
         form,
+        query,
         fields,
     }
 }

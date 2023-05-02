@@ -7,8 +7,8 @@ import {
     useRequestFeature,
 } from './requestFeature'
 import { createContext, useState } from 'react'
-import { CreateRequestModal } from './CreateRequestModal'
-import { EditRequestModal } from './EditRequestModal'
+import { EditRequestModal } from './request/EditRequestModal'
+import { CreateRequestModal } from './request/CreateRequestModal'
 
 export const EditedRequestContext = createContext({})
 

@@ -4,7 +4,6 @@ import { useState } from 'react'
 
 const captionCreat = '登録'
 const captionUpdate = '更新'
-const captionDelete = '削除'
 
 interface RequestFormBaseProps {
     resource: string
@@ -17,11 +16,8 @@ export function RequestFormBase({
     form,
     children,
 }: RequestFormBaseProps) {
-    const {
-        createNewDataMutation,
-        updateSelectedDataMutation,
-        deleteSelectedDataMutation,
-    } = useMutateBase(resource)
+    const { createNewDataMutation, updateSelectedDataMutation } =
+        useMutateBase(resource)
     const [clickedButtonName, setClickedButtonName] = useState<string>('')
 
     const handleSubmit = (values: any) => {
@@ -29,8 +25,6 @@ export function RequestFormBase({
             ? createNewDataMutation.mutate(values)
             : clickedButtonName === 'update'
             ? updateSelectedDataMutation.mutate(values)
-            : clickedButtonName === 'delete'
-            ? deleteSelectedDataMutation.mutate(values)
             : null
     }
 

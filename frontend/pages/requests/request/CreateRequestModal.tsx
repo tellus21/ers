@@ -1,10 +1,11 @@
 import { Button, Group, Modal, Text } from '@mantine/core'
-import { DataTableBase } from '../components/DataTableBase'
-import { usePatientFeature } from '../patients/patientFeature'
+
 import { useContext, useState } from 'react'
 import { filterById } from '@/common/lib'
 import axios from 'axios'
-import { EditedRequestContext } from '.'
+import { usePatientFeature } from '@/pages/patients/patientFeature'
+import { DataTableBase } from '@/pages/components/DataTableBase'
+import { EditedRequestContext } from '..'
 
 interface CreateRequestModalProps {
     opened: boolean
@@ -59,6 +60,14 @@ export function CreateRequestModal({
         )
         // 受け取ったレスポンスを編集用のデータとしてセットする
         setEditedRequest(afterGetResponse.data)
+
+        //患者状況、保険情報、指示内容、予約情報をそれぞれrequestt_idをキーにして作成する
+        // const { createCondition } = useRequestMutation('conditions')
+        // createCondition(afterPostResponse.data.id)
+        // createInsurances(afterPostResponse.data.id)
+        // createInstructions(afterPostResponse.data.id)
+        // createReservations(afterPostResponse.data.id)
+
         // 依頼作成モーダルを閉じる
         close()
         // 依頼編集モーダルを開く
