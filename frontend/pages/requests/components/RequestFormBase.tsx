@@ -1,8 +1,8 @@
 import { useMutateBase } from '@/common/hooks'
 import { Box, Button, Group } from '@mantine/core'
 import { useState } from 'react'
+import { useRequestMutate } from '../hooks/useRequestMutate'
 
-const captionCreat = '登録'
 const captionUpdate = '更新'
 
 interface RequestFormBaseProps {
@@ -16,45 +16,26 @@ export function RequestFormBase({
     form,
     children,
 }: RequestFormBaseProps) {
-    const { createNewDataMutation, updateSelectedDataMutation } =
-        useMutateBase(resource)
+    const { updateSelectedDataMutation } = useRequestMutate(resource)
     const [clickedButtonName, setClickedButtonName] = useState<string>('')
-
     const handleSubmit = (values: any) => {
-        clickedButtonName === 'create'
-            ? createNewDataMutation.mutate(values)
-            : clickedButtonName === 'update'
-            ? updateSelectedDataMutation.mutate(values)
-            : null
+        updateSelectedDataMutation.mutate(values)
     }
 
     return (
         <Box>
             <form onSubmit={form.onSubmit(handleSubmit)}>
                 {children}
+                {/* <input type="hidden" {...form.register('id')} /> */}
 
                 <Group position="center" mt="sm">
-                    {
-                        // /* 新規の場合 */
-                        form.values.id === 0 ? (
-                            <Button
-                                size="sm"
-                                type="submit"
-                                onClick={() => setClickedButtonName('create')}
-                            >
-                                {captionCreat}
-                            </Button>
-                        ) : // /* 更新の場合 */
-                        form.values.id !== 0 ? (
-                            <Button
-                                size="sm"
-                                type="submit"
-                                onClick={() => setClickedButtonName('update')}
-                            >
-                                {captionUpdate}
-                            </Button>
-                        ) : null
-                    }
+                    <Button
+                        size="sm"
+                        type="submit"
+                        onClick={() => setClickedButtonName('update')}
+                    >
+                        {captionUpdate}
+                    </Button>
                 </Group>
             </form>
         </Box>

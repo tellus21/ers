@@ -61,6 +61,33 @@ export function CreateRequestModal({
         // 受け取ったレスポンスを編集用のデータとしてセットする
         setEditedRequest(afterGetResponse.data)
 
+        const insuranceData = {
+            request_id: afterPostResponse.data.id,
+            insurance_type: '',
+            public_expense: '',
+            responsible_city_district: '',
+            life_insurance_responsible_name: '',
+            other_medical_insurance: '',
+            created_at: new Date(),
+            updated_at: new Date(),
+            deleted_at: null,
+        }
+        // console.log(afterGetResponse.data.id)
+        console.log(insuranceData)
+
+        // 患者状況、保険情報、指示内容、予約情報をそれぞれrequestt_idをキーにして作成する
+        // POSTリクエストを送信し、レスポンスを受け取る
+        const afterPostInsurance = await axios.post(
+            `${API_URL}/${'insurances'}/`,
+            insuranceData
+        )
+        // // 受け取ったレスポンスからIDを取得し、GETリクエストを送信する
+        // const afterGetInsurance = await axios.get(
+        //     `${API_URL}/${'insurances'}/${afterPostInsurance.data.id}`
+        // )
+
+        // console.log(afterGetInsurance)
+
         //患者状況、保険情報、指示内容、予約情報をそれぞれrequestt_idをキーにして作成する
         // const { createCondition } = useRequestMutation('conditions')
         // createCondition(afterPostResponse.data.id)
