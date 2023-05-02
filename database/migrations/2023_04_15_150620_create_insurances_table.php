@@ -11,11 +11,11 @@ class CreateInsurancesTable extends Migration
         Schema::create('insurances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('request_id')->constrained();
-            $table->string('insurance_type');
-            $table->string('public_expense');
-            $table->string('responsible_city_district');
-            $table->string('life_insurance_responsible_name');
-            $table->string('other_medical_insurance');
+            $table->string('insurance_type')->nullable();
+            $table->string('public_expense')->nullable();
+            $table->string('responsible_city_district')->nullable();
+            $table->string('life_insurance_responsible_name')->nullable();
+            $table->string('other_medical_insurance')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

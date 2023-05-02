@@ -6,6 +6,7 @@ import axios from 'axios'
 import { usePatientFeature } from '@/pages/patients/patientFeature'
 import { DataTableBase } from '@/pages/components/DataTableBase'
 import { EditedRequestContext } from '..'
+import { useCreateRequest } from './useCreateRequest'
 
 interface CreateRequestModalProps {
     opened: boolean
@@ -29,18 +30,14 @@ export function CreateRequestModal({
 
     // テーブルの行がクリックされたときの処理
     const onRowClick = (rowData: any) => {
-        const patientId = rowData.id
-        const newPatient: any = filterById(patients, patientId)
+        const newPatient: any = filterById(patients, rowData.id)
         setSelectedPatient(newPatient)
     }
 
     // 依頼作成時に登録するデータ
-    const postData = {
+    const newRequestData = {
         user_id: 1, //ログイン中のユーザid
         patient_id: selectedPatient.id,
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
     }
 
     // APIのURLとリソース名を定義
@@ -49,56 +46,42 @@ export function CreateRequestModal({
 
     // 依頼作成ボタンがクリックされたときの処理
     const onCreateButtonClick = async () => {
-        // POSTリクエストを送信し、レスポンスを受け取る
-        const afterPostResponse = await axios.post(
-            `${API_URL}/${resource}/`,
-            postData
-        )
-        // 受け取ったレスポンスからIDを取得し、GETリクエストを送信する
-        const afterGetResponse = await axios.get(
-            `${API_URL}/${resource}/${afterPostResponse.data.id}`
-        )
-        // 受け取ったレスポンスを編集用のデータとしてセットする
-        setEditedRequest(afterGetResponse.data)
+        const { newRequestData } = await useCreateRequest(selectedPatient.id)
+        await setEditedRequest(newRequestData)
 
-        const insuranceData = {
-            request_id: afterPostResponse.data.id,
-            insurance_type: '',
-            public_expense: '',
-            responsible_city_district: '',
-            life_insurance_responsible_name: '',
-            other_medical_insurance: '',
-            created_at: new Date(),
-            updated_at: new Date(),
-            deleted_at: null,
-        }
-        // console.log(afterGetResponse.data.id)
-        console.log(insuranceData)
+        console.log(newRequestData)
 
-        // 患者状況、保険情報、指示内容、予約情報をそれぞれrequestt_idをキーにして作成する
-        // POSTリクエストを送信し、レスポンスを受け取る
-        const afterPostInsurance = await axios.post(
-            `${API_URL}/${'insurances'}/`,
-            insuranceData
-        )
-        // // 受け取ったレスポンスからIDを取得し、GETリクエストを送信する
-        // const afterGetInsurance = await axios.get(
-        //     `${API_URL}/${'insurances'}/${afterPostInsurance.data.id}`
+        // const { newInsuranceData } = await useCreateInsurance(newRequestData.id)
+
+        // // POSTリクエストを送信し、レスポンスを受け取る
+        // const afterPostResponse = await axios.post(
+        //     `${API_URL}/${resource}/`,
+        //     newRequestData
         // )
-
-        // console.log(afterGetInsurance)
-
-        //患者状況、保険情報、指示内容、予約情報をそれぞれrequestt_idをキーにして作成する
-        // const { createCondition } = useRequestMutation('conditions')
-        // createCondition(afterPostResponse.data.id)
-        // createInsurances(afterPostResponse.data.id)
-        // createInstructions(afterPostResponse.data.id)
-        // createReservations(afterPostResponse.data.id)
-
-        // 依頼作成モーダルを閉じる
-        close()
-        // 依頼編集モーダルを開く
-        editRequestModalHandlersOpen()
+        // // 受け取ったレスポンスからIDを取得し、GETリクエストを送信する
+        // const afterGetResponse = await axios.get(
+        //     `${API_URL}/${resource}/${afterPostResponse.data.id}`
+        // )
+        // // 受け取ったレスポンスを編集用のデータとしてセットする
+        // setEditedRequest(afterGetResponse.data)
+        // const insuranceData = {
+        //     request_id: afterPostResponse.data.id,
+        //     insurance_type: '',
+        //     public_expense: '',
+        //     responsible_city_district: '',
+        //     life_insurance_responsible_name: '',
+        //     other_medical_insurance: '',
+        // }
+        // // 患者状況、保険情報、指示内容、予約情報をそれぞれrequestt_idをキーにして作成する
+        // // POSTリクエストを送信し、レスポンスを受け取る
+        // const afterPostInsurance = await axios.post(
+        //     `${API_URL}/${'insurances'}/`,
+        //     insuranceData
+        // )
+        // // 依頼作成モーダルを閉じる
+        // close()
+        // // 依頼編集モーダルを開く
+        // editRequestModalHandlersOpen()
     }
 
     // モーダルの閉じるボタンがクリックされたときの処理
