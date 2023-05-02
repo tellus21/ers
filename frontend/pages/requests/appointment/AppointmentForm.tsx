@@ -1,9 +1,9 @@
 import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
-import { useAppointment } from './useAppointment'
 import { TitleText } from '@/pages/requests/components/TitleText'
 import { FieldsEightTwelve } from '@/pages/requests/components/FieldsEightTwelve'
 import { Box, Divider, Group, Text } from '@mantine/core'
 import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
+import { appointmentFeature } from './appointmentFeature'
 
 const homeClinicsTest = [
     { name: 'スマイル', time: '10分' },
@@ -14,7 +14,7 @@ const homeClinicsTest = [
 ]
 
 export function AppointmentForm() {
-    const { logicalName, resource, form, fields } = useAppointment()
+    const { logicalName, resource, form, query, fields } = appointmentFeature()
 
     return (
         <RequestFormBase resource={resource} form={form}>

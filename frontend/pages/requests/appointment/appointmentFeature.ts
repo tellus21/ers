@@ -3,44 +3,41 @@ import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 
-export function useAppointment() {
+// ---【Type】---
+export interface Appointment {
+    id: number
+    user_id: number
+    instruction_id: number
+    home_clinic_karte_number: string
+    examination_clinic_karte_number: string
+    facility_staff: string
+    scheduled_confirmation_date: Date | null
+    welcoming_time: string
+    start_time: string
+    return_home_time: string
+    accompanist: string
+    sender: string
+    receiver: string
+    fax_sender: string
+    transmission_date: Date | null
+    number_of_documents_sent: number
+    caution_on_the_day: string
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+}
+
+// ---【FormValues】---
+export interface AppointmentFormValues extends Appointment {}
+
+export function appointmentFeature() {
     // ---【Name】---
     const logicalName = '予約情報'
-    const physicalName = 'appointment'
     const resource = 'appointments'
 
-    // ---【API】---
-    const { data: query } = useQueryBase(resource)
-
-    // ---【Type】---
-    interface Appointment {
-        id: number
-        user_id: number
-        instruction_id: number
-        home_clinic_karte_number: string
-        examination_clinic_karte_number: string
-        facility_staff: string
-        scheduled_confirmation_date: Date | null
-        welcoming_time: string
-        start_time: string
-        return_home_time: string
-        accompanist: string
-        sender: string
-        receiver: string
-        fax_sender: string
-        transmission_date: Date | null
-        number_of_documents_sent: number
-        caution_on_the_day: string
-        created_at: Date
-        updated_at: Date
-        deleted_at: Date | null
-    }
-
-    // ---【FormValues】---
-    type FormValues = Omit<Appointment, 'id'>
-
     // ---【InitialValues】---
-    const initialValues: FormValues = {
+    const initialValues: AppointmentFormValues = {
+        id: 0,
         user_id: 0,
         instruction_id: 0,
         home_clinic_karte_number: '',
@@ -70,7 +67,7 @@ export function useAppointment() {
     }
 
     // ---【Form】---
-    const form = useForm<FormValues>({
+    const form = useForm<AppointmentFormValues>({
         initialValues: initialValues,
         validate: validate,
     })
@@ -203,9 +200,11 @@ export function useAppointment() {
         ],
     }
 
+    // ---【API】---
+    const { data: query } = useQueryBase(resource)
+
     return {
         logicalName,
-        physicalName,
         resource,
         query,
         form,
