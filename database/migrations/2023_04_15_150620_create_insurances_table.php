@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInsuranceTable extends Migration
+class CreateInsurancesTable extends Migration
 {
     public function up()
     {
-        Schema::create('insurance', function (Blueprint $table) {
+        Schema::create('insurances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('request_id')->constrained();
             $table->string('insurance_type');

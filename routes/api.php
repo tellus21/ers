@@ -38,7 +38,7 @@ Route::apiResource('nursing_homes', NursingHomeController::class);
 Route::apiResource('patients', PatientController::class);
 Route::apiResource('requests', RequestController::class);
 Route::apiResource('conditions', ConditionController::class);
-Route::apiResource('insurance', InsuranceController::class);
+Route::apiResource('insurances', InsuranceController::class);
 Route::apiResource('instructions', InstructionController::class);
 Route::apiResource('appointments', AppointmentController::class);
 Route::apiResource('examination_clinic_patients', ExaminationClinicPatientController::class);
