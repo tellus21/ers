@@ -7,6 +7,7 @@ import { usePatientFeature } from '@/pages/patients/patientFeature'
 import { DataTableBase } from '@/pages/components/DataTableBase'
 import { EditedRequestContext } from '..'
 import { useCreateRequest } from './useCreateRequest'
+import { useCreateInsurance } from '../insurance/useCreateInsurance'
 
 interface CreateRequestModalProps {
     opened: boolean
@@ -51,6 +52,8 @@ export function CreateRequestModal({
 
         console.log(newRequestData)
 
+        const { newInsuranceData } = await useCreateInsurance(newRequestData.id)
+        console.log(newInsuranceData)
         // const { newInsuranceData } = await useCreateInsurance(newRequestData.id)
 
         // // POSTリクエストを送信し、レスポンスを受け取る

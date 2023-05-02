@@ -1,9 +1,4 @@
-import { requestInitialValue } from './../requestFeature'
-import { usePatientFeature } from '@/pages/patients/patientFeature'
 import axios from 'axios'
-import { useContext, useState } from 'react'
-import { EditedRequestContext } from '..'
-import { useInsuranceFeature } from '../insurance/insuranceFeature'
 
 // APIのURLとリソース名を定義
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -37,13 +32,5 @@ export const useCreateRequest = async (patientId: number | undefined) => {
 
     const newRequestData = await newRequest.data
 
-    // const { initialValues } = useInsuranceFeature()
-
-    // const postInsurance = changeRequestId(initialValues, newRequestData.id)
-
-    // console.log(postInsurance)
-
     return { newRequestData }
 }
-
-const useRelationData = {}

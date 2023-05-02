@@ -16,6 +16,20 @@ export interface Insurance {
     deleted_at: Date | null
 }
 
+// ---【InitialValues】---
+export const initialValues: InsuranceFormValues = {
+    id: 0,
+    request_id: 0,
+    insurance_type: '',
+    public_expense: '',
+    responsible_city_district: '',
+    life_insurance_responsible_name: '',
+    other_medical_insurance: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+}
+
 // ---【FormValues】---
 export interface InsuranceFormValues extends Insurance {}
 
@@ -24,20 +38,6 @@ export function useInsuranceFeature() {
     // ---【Name】---
     const logicalName = '保険情報'
     const resource = 'insurances'
-
-    // ---【InitialValues】---
-    const initialValues: InsuranceFormValues = {
-        id: 0,
-        request_id: 0,
-        insurance_type: '',
-        public_expense: '',
-        responsible_city_district: '',
-        life_insurance_responsible_name: '',
-        other_medical_insurance: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-    }
 
     const validate = {}
 
