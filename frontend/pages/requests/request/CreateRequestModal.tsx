@@ -8,6 +8,9 @@ import { DataTableBase } from '@/pages/components/DataTableBase'
 import { EditedRequestContext } from '..'
 import { useCreateRequest } from './useCreateRequest'
 import { useCreateInsurance } from '../insurance/useCreateInsurance'
+import { useCreateRelationData } from './useCreateRelationData'
+import { insuranceInitialValues } from '../insurance/insuranceFeature'
+import { ConditionInitialValues } from '../condition/conditionFeature'
 
 interface CreateRequestModalProps {
     opened: boolean
@@ -50,10 +53,28 @@ export function CreateRequestModal({
         const { newRequestData } = await useCreateRequest(selectedPatient.id)
         await setEditedRequest(newRequestData)
 
-        console.log(newRequestData)
+        // console.log(newRequestData)
 
-        const { newInsuranceData } = await useCreateInsurance(newRequestData.id)
-        console.log(newInsuranceData)
+        const { newCreatedData: newConditionValues } =
+            await useCreateRelationData(
+                'conditions',
+                ConditionInitialValues,
+                newRequestData.id
+            )
+
+        console.log(newConditionValues)
+
+        // const { newCreatedData: newInsuranceValues } =
+        //     await useCreateRelationData(
+        //         'insurances',
+        //         insuranceInitialValues,
+        //         newRequestData.id
+        //     )
+
+        // console.log(newInsuranceValues)
+
+        // const { newInsuranceData } = await useCreateInsurance(newRequestData.id)
+        // console.log(newInsuranceData)
         // const { newInsuranceData } = await useCreateInsurance(newRequestData.id)
 
         // // POSTリクエストを送信し、レスポンスを受け取る

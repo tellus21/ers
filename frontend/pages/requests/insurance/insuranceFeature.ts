@@ -17,7 +17,7 @@ export interface Insurance {
 }
 
 // ---【InitialValues】---
-export const initialValues: InsuranceFormValues = {
+export const insuranceInitialValues: InsuranceFormValues = {
     id: 0,
     request_id: 0,
     insurance_type: '',
@@ -43,7 +43,7 @@ export function useInsuranceFeature() {
 
     // ---【Form】---
     const form = useForm<InsuranceFormValues>({
-        initialValues: initialValues,
+        initialValues: insuranceInitialValues,
         validate: validate,
     })
 

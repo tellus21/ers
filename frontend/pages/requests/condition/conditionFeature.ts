@@ -40,6 +40,43 @@ export interface Condition {
     deleted_at: Date | null
 }
 
+// ---【InitialValues】---
+export const ConditionInitialValues: ConditionFormValues = {
+    id: 0,
+    request_id: 0,
+    walking_state: '',
+    accompaniment: '',
+    pickup: '',
+    dementia: '',
+    oxygen: '',
+    oxygen_amount: '',
+    allergy: '',
+    allergy_content: '',
+    infection: '',
+    is_hbs_antigen: false,
+    is_hcv: false,
+    is_syphilis: false,
+    is_hiv: false,
+    is_mrsa: false,
+    other_infection: '',
+    intra_metal: '',
+    intra_metal_content: '',
+    is_alcohol_prohibiting: false,
+    is_pace_maker: false,
+    is_mon: false,
+    is_tue: false,
+    is_wed: false,
+    is_thu: false,
+    is_fri: false,
+    diagnosis_day: '',
+    surgery_history: '',
+    other: '',
+    anything_memo: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+}
+
 // ---【FormValues】---
 export interface ConditionFormValues extends Condition {}
 
@@ -48,43 +85,6 @@ export function useConditionFeature() {
     // ---【Name】---
     const logicalName = '患者状況'
     const resource = 'conditions'
-
-    // ---【InitialValues】---
-    const initialValues: ConditionFormValues = {
-        id: 0,
-        request_id: 0,
-        walking_state: '',
-        accompaniment: '',
-        pickup: '',
-        dementia: '',
-        oxygen: '',
-        oxygen_amount: '',
-        allergy: '',
-        allergy_content: '',
-        infection: '',
-        is_hbs_antigen: false,
-        is_hcv: false,
-        is_syphilis: false,
-        is_hiv: false,
-        is_mrsa: false,
-        other_infection: '',
-        intra_metal: '',
-        intra_metal_content: '',
-        is_alcohol_prohibiting: false,
-        is_pace_maker: false,
-        is_mon: false,
-        is_tue: false,
-        is_wed: false,
-        is_thu: false,
-        is_fri: false,
-        diagnosis_day: '',
-        surgery_history: '',
-        other: '',
-        anything_memo: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-    }
 
     // ---【Validate】---
     const validate = {
@@ -100,7 +100,7 @@ export function useConditionFeature() {
 
     // ---【Form】---
     const form = useForm<ConditionFormValues>({
-        initialValues: initialValues,
+        initialValues: ConditionInitialValues,
         validate: validate,
     })
 
