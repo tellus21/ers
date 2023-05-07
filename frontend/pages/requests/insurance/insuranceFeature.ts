@@ -118,7 +118,6 @@ export function useInsuranceFeature() {
     const { data: query } = useQueryBase(resource)
 
     return {
-        initialValues,
         logicalName,
         resource,
         form,

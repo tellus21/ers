@@ -10,29 +10,11 @@ interface RequestFormBaseProps {
     children: React.ReactNode
 }
 
-export function getIdByRequestId(targetData: {}, request_id: number): number {
-    const insurance = targetData.find(
-        (targetData) => targetData.request_id === request_id
+export function getDataByRequestId(relatedData: {}, request_id: number): any {
+    const relatedDataItem = relatedData.find(
+        (relatedData) => relatedData.request_id === request_id
     )
-    return insurance ? insurance.id : null
-}
-
-// export function getIdByRequestId(request_id: number): number {
-//     const insurance = Insurance.find(
-//         (insurance) => insurance.request_id === request_id
-//     )
-//     return insurance ? insurance.id : null
-// }
-
-function changeIdAndRequestId(
-    valuses: InsuranceFormValues,
-    id: number,
-    request_id: number
-): InsuranceFormValues {
-    const newValues = { ...valuses }
-    newValues.id = id
-    newValues.request_id = request_id
-    return newValues
+    return relatedDataItem ? relatedDataItem : null
 }
 
 export function RequestFormBase({
@@ -42,9 +24,13 @@ export function RequestFormBase({
 }: RequestFormBaseProps) {
     const { updateSelectedDataMutation } = useRequestMutate(resource)
     const handleSubmit = (values: any) => {
-        const changeValues = changeIdAndRequestId(values, 1, 2)
-        console.log(changeValues)
-        updateSelectedDataMutation.mutate(changeValues)
+        console.log(values)
+        const relatedData = getDataByRequestId(values, 1)
+        console.log(relatedData)
+
+        // const changeValues = changeIdAndRequestId(values, 1)
+        // console.log(changeValues)
+        // updateSelectedDataMutation.mutate(changeValues)
     }
 
     return (
