@@ -8,7 +8,7 @@ export function InsuranceForm() {
     const { logicalName, resource, form, query, fields } = useInsuranceFeature()
 
     return (
-        <RequestFormBase resource={resource} form={form}>
+        <RequestFormBase resource={resource} form={form} query={query}>
             <Box m={12}>
                 <TitleText title={logicalName} />
                 <FieldsFourTwelve form={form} fields={fields} />

@@ -19,7 +19,7 @@ export function EditRequestModal({ opened, close }: EditRequestModalProps) {
             <GridLayout
                 top={<RequestMetaData />}
                 leftTop={<DisplayPatient />}
-                // leftCenter={<ConditionForm />} //依頼idを渡す必要がありそう
+                leftCenter={<ConditionForm />} //依頼idを渡す必要がありそう
                 leftBottom={<InsuranceForm />}
                 // rightTop={<InstractionForm />}
                 // rightButtom={<AppointmentForm />}

@@ -59,3 +59,25 @@ export const convertDateProperty = (
     }
     return newObj
 }
+
+interface Data {
+    [key: string]: any
+    request_id: number
+    id: number
+}
+
+/**
+ * request_idを指定して、dataオブジェクトからidを取得する関数
+ * @param data Dataオブジェクト
+ * @param request_id 検索対象のrequest_id
+ * @returns idを取得できた場合はnumber型、取得できなかった場合はnullを返す
+ */
+export function findIdByRequestId(
+    data: Data,
+    request_id: number
+): number | null {
+    const item = Object.values(data).find(
+        (data) => data.request_id === request_id
+    )
+    return item ? item.id : null
+}

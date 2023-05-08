@@ -8,7 +8,7 @@ export function ConditionForm() {
     const { logicalName, resource, form, query, fields } = useConditionFeature()
 
     return (
-        <RequestFormBase resource={resource} form={form}>
+        <RequestFormBase resource={resource} form={form} query={query}>
             <TitleText title={logicalName} />
             <Group position="apart">
                 <Button>在宅システム検索</Button>
