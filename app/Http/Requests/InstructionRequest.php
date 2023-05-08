@@ -10,9 +10,9 @@ class InstructionRequest extends FormRequest
     {
         return array_merge(
             $this->basicRules(),
-            // $this->ctRules(),
-            // $this->mriRules(),
-            // $this->usRules(),
+            $this->ctRules(),
+            $this->mriRules(),
+            $this->usRules(),
             // $this->spectRules(),
             // $this->otherRules()
         );
