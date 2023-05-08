@@ -69,7 +69,6 @@ export function usePatientFeature() {
     // ---【Validate】---
     const validate = {
         home_care_clinic_id: isNotEmpty(isNotEmptyErrorMessage),
-        home_karte_number: isNotEmpty(isNotEmptyErrorMessage),
         nursing_home_id: isNotEmpty(isNotEmptyErrorMessage),
         last_name_kana: isNotEmpty(isNotEmptyErrorMessage),
         first_name_kana: isNotEmpty(isNotEmptyErrorMessage),

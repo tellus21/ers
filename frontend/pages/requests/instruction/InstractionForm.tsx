@@ -9,7 +9,7 @@ export function InstractionForm() {
         useInstractionFeature()
 
     return (
-        <RequestFormBase resource={resource} form={form}>
+        <RequestFormBase resource={resource} form={form} query={query}>
             <Box px={12}>
                 <TitleText title={logicalName} />
                 <Tabs defaultValue="gallery">

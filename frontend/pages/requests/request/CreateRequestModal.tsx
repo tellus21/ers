@@ -7,8 +7,9 @@ import { DataTableBase } from '@/pages/components/DataTableBase'
 import { EditedRequestContext } from '..'
 import { useCreateRequest } from './useCreateRequest'
 import { useCreateRelationData } from './useCreateRelationData'
-import { ConditionInitialValues } from '../condition/conditionFeature'
 import { insuranceInitialValues } from '../insurance/insuranceFeature'
+import { conditionInitialValues } from '../condition/conditionFeature'
+import { instractionInitialValues } from '../instruction/instractionFeature'
 
 interface CreateRequestModalProps {
     opened: boolean
@@ -41,21 +42,24 @@ export function CreateRequestModal({
         const { newRequestData } = await useCreateRequest(selectedPatient.id)
         await setEditedRequest(newRequestData)
 
-        // console.log(newRequestData)
+        // const { newCreatedData: newConditionValues } =
+        //     await useCreateRelationData(
+        //         'conditions',
+        //         conditionInitialValues,
+        //         newRequestData.id
+        //     )
 
-        const { newCreatedData: newConditionValues } =
+        // const { newCreatedData: newInsuranceValues } =
+        //     await useCreateRelationData(
+        //         'insurances',
+        //         insuranceInitialValues,
+        //         newRequestData.id
+        //     )
+
+        const { newCreatedData: newInstructionValues } =
             await useCreateRelationData(
-                'conditions',
-                ConditionInitialValues,
-                newRequestData.id
-            )
-
-        console.log(newConditionValues)
-
-        const { newCreatedData: newInsuranceValues } =
-            await useCreateRelationData(
-                'insurances',
-                insuranceInitialValues,
+                'instructions',
+                instractionInitialValues,
                 newRequestData.id
             )
 

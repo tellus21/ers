@@ -10,6 +10,7 @@ class ConditionRequest extends FormRequest
     {
         return [
             'request_id' => 'required|integer|exists:requests,id',
+            //??
             'id' => 'required|integer',
             'walking_state' => 'nullable|string',
             'accompaniment' => 'nullable|string',

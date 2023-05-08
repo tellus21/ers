@@ -41,7 +41,7 @@ export interface Condition {
 }
 
 // ---【InitialValues】---
-export const ConditionInitialValues: ConditionFormValues = {
+export const conditionInitialValues: ConditionFormValues = {
     id: 0,
     request_id: 0,
     walking_state: '',
@@ -100,7 +100,7 @@ export function useConditionFeature() {
 
     // ---【Form】---
     const form = useForm<ConditionFormValues>({
-        initialValues: ConditionInitialValues,
+        initialValues: conditionInitialValues,
         validate: validate,
     })
 

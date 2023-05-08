@@ -9,7 +9,7 @@ class InstructionController extends Controller
 {
     public function index()
     {
-        return Instruction::with('examinationClinic', 'homeCareDoctor', 'request')->get();
+        return Instruction::all();
     }
 
     public function store(InstructionRequest $request)
