@@ -13,8 +13,8 @@ class InstructionRequest extends FormRequest
             $this->ctRules(),
             $this->mriRules(),
             $this->usRules(),
-            // $this->spectRules(),
-            // $this->otherRules()
+            $this->spectRules(),
+            $this->otherRules()
         );
     }
 

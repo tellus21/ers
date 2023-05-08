@@ -27,37 +27,38 @@ export interface Appointment {
     deleted_at: Date | null
 }
 
+// ---【InitialValues】---
+export const appointmentInitialValues: AppointmentFormValues = {
+    id: 0,
+    user_id: 0,
+    instruction_id: 0,
+    home_clinic_karte_number: '',
+    examination_clinic_karte_number: '',
+    facility_staff: '',
+    scheduled_confirmation_date: null,
+    welcoming_time: '',
+    start_time: '',
+    return_home_time: '',
+    accompanist: '',
+    sender: '',
+    receiver: '',
+    fax_sender: '',
+    transmission_date: null,
+    number_of_documents_sent: 0,
+    caution_on_the_day: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+}
+
 // ---【FormValues】---
 export interface AppointmentFormValues extends Appointment {}
 
-export function appointmentFeature() {
+// ---【Feature】---
+export function useAppointmentFeature() {
     // ---【Name】---
     const logicalName = '予約情報'
     const resource = 'appointments'
-
-    // ---【InitialValues】---
-    const initialValues: AppointmentFormValues = {
-        id: 0,
-        user_id: 0,
-        instruction_id: 0,
-        home_clinic_karte_number: '',
-        examination_clinic_karte_number: '',
-        facility_staff: '',
-        scheduled_confirmation_date: null,
-        welcoming_time: '',
-        start_time: '',
-        return_home_time: '',
-        accompanist: '',
-        sender: '',
-        receiver: '',
-        fax_sender: '',
-        transmission_date: null,
-        number_of_documents_sent: 0,
-        caution_on_the_day: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-    }
 
     // ---【Validate】---
     const validate = {
@@ -68,7 +69,7 @@ export function appointmentFeature() {
 
     // ---【Form】---
     const form = useForm<AppointmentFormValues>({
-        initialValues: initialValues,
+        initialValues: appointmentInitialValues,
         validate: validate,
     })
 

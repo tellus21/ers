@@ -5,11 +5,13 @@ import { filterById } from '@/common/lib'
 import { usePatientFeature } from '@/pages/patients/patientFeature'
 import { DataTableBase } from '@/pages/components/DataTableBase'
 import { EditedRequestContext } from '..'
-import { useCreateRequest } from './useCreateRequest'
-import { useCreateRelationData } from './useCreateRelationData'
 import { insuranceInitialValues } from '../insurance/insuranceFeature'
 import { conditionInitialValues } from '../condition/conditionFeature'
 import { instractionInitialValues } from '../instruction/instractionFeature'
+import {
+    useCreateRequestValues,
+    useRequestRelationDataValues,
+} from './useCreateRequest'
 
 interface CreateRequestModalProps {
     opened: boolean
@@ -39,25 +41,27 @@ export function CreateRequestModal({
 
     // 依頼作成ボタンがクリックされたときの処理
     const onCreateButtonClick = async () => {
-        const { newRequestData } = await useCreateRequest(selectedPatient.id)
+        const { newRequestData } = await useCreateRequestValues(
+            selectedPatient.id
+        )
         await setEditedRequest(newRequestData)
 
-        // const { newCreatedData: newConditionValues } =
-        //     await useCreateRelationData(
-        //         'conditions',
-        //         conditionInitialValues,
-        //         newRequestData.id
-        //     )
+        const { newCreatedData: newConditionValues } =
+            await useRequestRelationDataValues(
+                'conditions',
+                conditionInitialValues,
+                newRequestData.id
+            )
 
-        // const { newCreatedData: newInsuranceValues } =
-        //     await useCreateRelationData(
-        //         'insurances',
-        //         insuranceInitialValues,
-        //         newRequestData.id
-        //     )
+        const { newCreatedData: newInsuranceValues } =
+            await useRequestRelationDataValues(
+                'insurances',
+                insuranceInitialValues,
+                newRequestData.id
+            )
 
         const { newCreatedData: newInstructionValues } =
-            await useCreateRelationData(
+            await useRequestRelationDataValues(
                 'instructions',
                 instractionInitialValues,
                 newRequestData.id

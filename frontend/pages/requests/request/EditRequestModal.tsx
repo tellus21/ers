@@ -21,7 +21,7 @@ export function EditRequestModal({ opened, close }: EditRequestModalProps) {
                 leftTop={<DisplayPatient />}
                 leftCenter={<ConditionForm />} //依頼idを渡す必要がありそう
                 leftBottom={<InsuranceForm />}
-                // rightTop={<InstractionForm />}
+                rightTop={<InstractionForm />}
                 // rightButtom={<AppointmentForm />}
             />
         </Modal>

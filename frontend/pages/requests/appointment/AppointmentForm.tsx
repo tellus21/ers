@@ -3,7 +3,7 @@ import { TitleText } from '@/pages/requests/components/TitleText'
 import { FieldsEightTwelve } from '@/pages/requests/components/FieldsEightTwelve'
 import { Box, Divider, Group, Text } from '@mantine/core'
 import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
-import { appointmentFeature } from './appointmentFeature'
+import { useAppointmentFeature } from './appointmentFeature'
 
 const homeClinicsTest = [
     { name: 'スマイル', time: '10分' },
@@ -14,10 +14,11 @@ const homeClinicsTest = [
 ]
 
 export function AppointmentForm() {
-    const { logicalName, resource, form, query, fields } = appointmentFeature()
+    const { logicalName, resource, form, query, fields } =
+        useAppointmentFeature()
 
     return (
-        <RequestFormBase resource={resource} form={form}>
+        <RequestFormBase resource={resource} form={form} query={query}>
             <TitleText title={logicalName} />
             <Box px={12}>
                 <Group position="apart">

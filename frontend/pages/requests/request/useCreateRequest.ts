@@ -9,7 +9,7 @@ function changeRequestId(values: any, request_id: number) {
     return newValues
 }
 
-export const useCreateRequest = async (patientId: number | undefined) => {
+export const useCreateRequestValues = async (patientId: number | undefined) => {
     //ログイン中ユーザを取得するcontext
     console.log(patientId)
 
@@ -33,4 +33,26 @@ export const useCreateRequest = async (patientId: number | undefined) => {
     const newRequestData = await newRequest.data
 
     return { newRequestData }
+}
+
+export const useRequestRelationDataValues = async (
+    resource: string,
+    initialValues: any,
+    request_id: number
+) => {
+    // postするデータ
+    const postData = changeRequestId(initialValues, request_id)
+
+    // POSTリクエストを送信し、レスポンスを受け取る
+    const response = await axios.post(`${API_URL}/${resource}/`, postData)
+
+    // 受け取ったレスポンスからIDを取得し、GETリクエストを送信する
+    const createdData = await axios.get(
+        `${API_URL}/${resource}/${response.data.id}`
+    )
+
+    // Data部分を取得
+    const newCreatedData = await createdData.data
+
+    return { newCreatedData }
 }

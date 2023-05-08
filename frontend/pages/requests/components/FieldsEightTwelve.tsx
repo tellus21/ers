@@ -40,6 +40,7 @@ export function FieldsEightTwelve({ form, fields }: FieldsEightTwelveProps) {
                     case 'etcTextInput':
                         return (
                             <TextInput
+                                key={index}
                                 {...field.props}
                                 {...form.getInputProps(field.formPath)}
                             />
