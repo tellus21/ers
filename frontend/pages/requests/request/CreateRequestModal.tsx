@@ -7,13 +7,13 @@ import { DataTableBase } from '@/pages/components/DataTableBase'
 import { EditedRequestContext } from '..'
 import { insuranceInitialValues } from '../insurance/insuranceFeature'
 import { conditionInitialValues } from '../condition/conditionFeature'
-import { instructionInitialValues } from '../instruction/instructionFeature'
 import {
     useCreateRequestValues,
     useInstructionRelationDataValues,
     useRequestRelationDataValues,
 } from './useCreateRequest'
 import { appointmentInitialValues } from '../appointment/appointmentFeature'
+import { instructionInitialValues } from '../instruction/instractionFeature'
 
 interface CreateRequestModalProps {
     opened: boolean
