@@ -10,8 +10,10 @@ import { conditionInitialValues } from '../condition/conditionFeature'
 import { instractionInitialValues } from '../instruction/instractionFeature'
 import {
     useCreateRequestValues,
+    useInstructionRelationDataValues,
     useRequestRelationDataValues,
 } from './useCreateRequest'
+import { appointmentInitialValues } from '../appointment/appointmentFeature'
 
 interface CreateRequestModalProps {
     opened: boolean
@@ -67,6 +69,15 @@ export function CreateRequestModal({
                 newRequestData.id
             )
 
+        const { newCreatedData: newAppointmentValues } =
+            await useInstructionRelationDataValues(
+                'appointments',
+                appointmentInitialValues,
+                newInstructionValues.id,
+                1 // 1は仮の値。ログインユーザーのidを取得する必要がある
+            )
+
+        console.log(newAppointmentValues)
         // 依頼作成モーダルを閉じる
         close()
         // 依頼編集モーダルを開く

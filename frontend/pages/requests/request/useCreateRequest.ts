@@ -9,6 +9,19 @@ function changeRequestId(values: any, request_id: number) {
     return newValues
 }
 
+function changeInstructionId(values: any, instruction_id: number) {
+    const newValues = { ...values }
+    newValues.instruction_id = instruction_id
+    return newValues
+}
+
+function changeUserId(values: any, user_id: number) {
+    const newValues = { ...values }
+    newValues.user_id = user_id
+    return newValues
+}
+
+//共通部分を関数化して使い回せるようにしたいけど、うまくいかない
 export const useCreateRequestValues = async (patientId: number | undefined) => {
     //ログイン中ユーザを取得するcontext
     console.log(patientId)
@@ -38,10 +51,10 @@ export const useCreateRequestValues = async (patientId: number | undefined) => {
 export const useRequestRelationDataValues = async (
     resource: string,
     initialValues: any,
-    request_id: number
+    requestId: number
 ) => {
     // postするデータ
-    const postData = changeRequestId(initialValues, request_id)
+    const postData = changeRequestId(initialValues, requestId)
 
     // POSTリクエストを送信し、レスポンスを受け取る
     const response = await axios.post(`${API_URL}/${resource}/`, postData)
@@ -50,6 +63,36 @@ export const useRequestRelationDataValues = async (
     const createdData = await axios.get(
         `${API_URL}/${resource}/${response.data.id}`
     )
+
+    // Data部分を取得
+    const newCreatedData = await createdData.data
+
+    return { newCreatedData }
+}
+
+export const useInstructionRelationDataValues = async (
+    resource: string,
+    initialValues: any,
+    instructionId: number,
+    userId: number
+) => {
+    const changeInstructionData = changeInstructionId(
+        initialValues,
+        instructionId
+    )
+
+    // postするデータ
+    const postData = changeUserId(changeInstructionData, userId)
+
+    console.log('post', postData)
+    // POSTリクエストを送信し、レスポンスを受け取る
+    const response = await axios.post(`${API_URL}/${resource}/`, postData)
+    console.log('res', response)
+    // 受け取ったレスポンスからIDを取得し、GETリクエストを送信する
+    const createdData = await axios.get(
+        `${API_URL}/${resource}/${response.data.id}`
+    )
+    console.log('created', createdData)
 
     // Data部分を取得
     const newCreatedData = await createdData.data
