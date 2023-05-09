@@ -74,10 +74,20 @@ interface Data {
  */
 export function findIdByRequestId(
     data: Data,
-    request_id: number
+    requestId: number
 ): number | null {
     const item = Object.values(data).find(
-        (data) => data.request_id === request_id
+        (data) => data.request_id === requestId
+    )
+    return item ? item.id : null
+}
+
+export function findIdByInstructionId(
+    data: Data,
+    instructionId: number
+): number | null {
+    const item = Object.values(data).find(
+        (data) => data.instruction_id === instructionId
     )
     return item ? item.id : null
 }

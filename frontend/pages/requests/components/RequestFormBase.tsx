@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Button, Group } from '@mantine/core'
-import { findIdByRequestId } from '@/common/lib'
+import { findIdByInstructionId, findIdByRequestId } from '@/common/lib'
 import { useRequestMutate } from '../hooks/useRequestMutate'
 import { EditedInstructContext, EditedRequestContext } from '..'
 
@@ -21,16 +21,26 @@ export function RequestFormBase({
 }: RequestFormBaseProps) {
     const { editedRequest } = useContext(EditedRequestContext)
     const { editedInstruction } = useContext(EditedInstructContext)
-    console.log('instruction', editedInstruction)
     const { updateSelectedDataMutation } = useRequestMutate(resource)
 
     const handleSubmit = (values: any) => {
-        const ownId = findIdByRequestId(query, editedRequest.id)
-
-        const newValues = {
-            ...values,
-            id: ownId,
-            request_id: editedRequest.id,
+        let ownId
+        let newValues
+        if (resource === 'appointments') {
+            ownId = findIdByInstructionId(query, editedInstruction.id)
+            newValues = {
+                ...values,
+                id: ownId,
+                user_id: 1, //仮
+                instruction_id: editedInstruction.id,
+            }
+        } else {
+            ownId = findIdByRequestId(query, editedRequest.id)
+            newValues = {
+                ...values,
+                id: ownId,
+                request_id: editedRequest.id,
+            }
         }
         console.log(newValues)
         updateSelectedDataMutation.mutate(newValues)
