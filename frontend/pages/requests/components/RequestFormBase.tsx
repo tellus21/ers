@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Button, Group } from '@mantine/core'
 import { findIdByRequestId } from '@/common/lib'
 import { useRequestMutate } from '../hooks/useRequestMutate'
-import { EditedRequestContext } from '..'
+import { EditedInstructContext, EditedRequestContext } from '..'
 
 const captionUpdate = '更新'
 
@@ -20,6 +20,8 @@ export function RequestFormBase({
     children,
 }: RequestFormBaseProps) {
     const { editedRequest } = useContext(EditedRequestContext)
+    const { editedInstruction } = useContext(EditedInstructContext)
+    console.log('instruction', editedInstruction)
     const { updateSelectedDataMutation } = useRequestMutate(resource)
 
     const handleSubmit = (values: any) => {

@@ -4,7 +4,7 @@ import { useContext, useState } from 'react'
 import { filterById } from '@/common/lib'
 import { usePatientFeature } from '@/pages/patients/patientFeature'
 import { DataTableBase } from '@/pages/components/DataTableBase'
-import { EditedRequestContext } from '..'
+import { EditedInstructContext, EditedRequestContext } from '..'
 import { insuranceInitialValues } from '../insurance/insuranceFeature'
 import { conditionInitialValues } from '../condition/conditionFeature'
 import {
@@ -34,6 +34,11 @@ export function CreateRequestModal({
 
     // 編集中の依頼を保持するcontext
     const { editedRequest, setEditedRequest } = useContext(EditedRequestContext)
+
+    // 編集中の依頼を保持するcontext
+    const { editedInstruction, setEditedInstruction } = useContext(
+        EditedInstructContext
+    )
 
     // テーブルの行がクリックされたときの処理
     const onRowClick = (rowData: any) => {
@@ -68,6 +73,8 @@ export function CreateRequestModal({
                 instructionInitialValues,
                 newRequestData.id
             )
+
+        await setEditedInstruction(newInstructionValues)
 
         const { newCreatedData: newAppointmentValues } =
             await useInstructionRelationDataValues(
