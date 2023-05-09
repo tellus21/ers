@@ -2,7 +2,6 @@ import { Modal } from '@mantine/core'
 import { GridLayout } from '../components/GridLayout'
 import { RequestMetaData } from '../request-metadata/RequestMetaData'
 import { AppointmentForm } from '../appointment/AppointmentForm'
-import { Request, useRequestFeature } from '../requestFeature'
 import { DisplayPatient } from '../patient/DisplayPatient'
 import { ConditionForm } from '../condition/ConditionForm'
 import { InsuranceForm } from '../insurance/InsuranceForm'
@@ -19,7 +18,7 @@ export function EditRequestModal({ opened, close }: EditRequestModalProps) {
             <GridLayout
                 top={<RequestMetaData />}
                 leftTop={<DisplayPatient />}
-                leftCenter={<ConditionForm />} //依頼idを渡す必要がありそう
+                leftCenter={<ConditionForm />}
                 leftBottom={<InsuranceForm />}
                 rightTop={<InstructionForm />}
                 rightButtom={<AppointmentForm />}

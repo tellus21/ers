@@ -22,7 +22,7 @@ export function DisplayPatient() {
             label: '在宅クリニック',
             data: displayedPatient.home_care_clinic.name,
         },
-        // { label: '主治医', data: displayedPatient.home_care_doctor.name },
+        { label: '主治医', data: displayedPatient.home_care_doctor?.name },
         { label: 'カルテ番号(在宅)', data: displayedPatient.home_karte_number },
         { label: 'カルテ番号(検査)', data: '111(仮)' },
         { label: '姓(フリガナ)', data: displayedPatient.last_name_kana },
@@ -31,27 +31,26 @@ export function DisplayPatient() {
         { label: '名', data: displayedPatient.first_name },
         { label: '生年月日', data: displayedPatient.birthday },
         { label: '性別', data: displayedPatient.gender },
-        { label: '入居施設', data: displayedPatient.home_care_clinic.name },
+        { label: '入居施設', data: displayedPatient.home_care_clinic?.name },
         {
             label: '電話番号',
-            data: displayedPatient.home_care_clinic.phone_number,
+            data: displayedPatient.home_care_clinic?.phone_number,
         },
         {
             label: 'FAX番号',
-            data: displayedPatient.home_care_clinic.fax_number,
+            data: displayedPatient.home_care_clinic?.fax_number,
         },
         {
             label: '郵便番号',
-            data: displayedPatient.home_care_clinic.postal_code,
+            data: displayedPatient.home_care_clinic?.postal_code,
         },
-        { label: '住所', data: displayedPatient.home_care_clinic.address },
+        { label: '住所', data: displayedPatient.home_care_clinic?.address },
     ]
 
     // 患者情報を表示するコンポーネントを返す
     return (
         <Box m={12}>
             <TitleText title={'対象患者'} />
-            <button onClick={() => console.log(displayedPatient)}>dd</button>
 
             <Grid>
                 {patientInformations.map((information, index) => (
