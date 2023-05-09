@@ -9,14 +9,23 @@ import {
 import { createContext, useState } from 'react'
 import { EditRequestModal } from './request/EditRequestModal'
 import { CreateRequestModal } from './request/CreateRequestModal'
+import {
+    Instruction,
+    instructionInitialValues,
+} from './instruction/instractionFeature'
 
 export const EditedRequestContext = createContext({})
+export const EditedInstructContext = createContext({})
 
 export default function Index() {
     const { logicalName, columns, query } = useRequestFeature()
 
     const [editedRequest, setEditedRequest] =
         useState<Request>(requestInitialValue)
+
+    const [editedInstruction, setEditedInstruction] = useState<Instruction>(
+        instructionInitialValues
+    )
 
     const [createRequestModalOpend, createRequestModalHandlers] =
         useDisclosure(false)
@@ -35,34 +44,43 @@ export default function Index() {
         <EditedRequestContext.Provider
             value={{ editedRequest, setEditedRequest }}
         >
-            <Container size="xl">
-                <Text size="md">{`${logicalName}一覧`}</Text>
+            <EditedInstructContext.Provider
+                value={{ editedInstruction, setEditedInstruction }}
+            >
+                <Container size="xl">
+                    <Text size="md">{`${logicalName}一覧`}</Text>
 
-                {/* 依頼登録ボタンを表示 */}
-                <Group position="right">
-                    <Button size="sm" onClick={createRequestModalHandlers.open}>
-                        {'患者検索'}
-                    </Button>
-                </Group>
+                    {/* 依頼登録ボタンを表示 */}
+                    <Group position="right">
+                        <Button
+                            size="sm"
+                            onClick={createRequestModalHandlers.open}
+                        >
+                            {'患者検索'}
+                        </Button>
+                    </Group>
 
-                <CreateRequestModal
-                    opened={createRequestModalOpend}
-                    close={createRequestModalHandlers.close}
-                    editRequestModalHandlersOpen={editRequestModalHandlers.open}
-                />
+                    <CreateRequestModal
+                        opened={createRequestModalOpend}
+                        close={createRequestModalHandlers.close}
+                        editRequestModalHandlersOpen={
+                            editRequestModalHandlers.open
+                        }
+                    />
 
-                {/* 依頼一覧テーブルを表示 */}
-                <DataTableBase
-                    columns={columns}
-                    records={query}
-                    onRowClick={(rowData) => onTableRowClick(rowData)}
-                />
+                    {/* 依頼一覧テーブルを表示 */}
+                    <DataTableBase
+                        columns={columns}
+                        records={query}
+                        onRowClick={(rowData) => onTableRowClick(rowData)}
+                    />
 
-                <EditRequestModal
-                    opened={editRequestModalOpend}
-                    close={editRequestModalHandlers.close}
-                />
-            </Container>
+                    <EditRequestModal
+                        opened={editRequestModalOpend}
+                        close={editRequestModalHandlers.close}
+                    />
+                </Container>
+            </EditedInstructContext.Provider>
         </EditedRequestContext.Provider>
     )
 }

@@ -1,15 +1,15 @@
 import { Box, Center, Group, Tabs, Text } from '@mantine/core'
 
-import { InstractionForm } from '../InstractionForm'
+import { InstructionForm } from '../InstructionForm'
 
 import { useState } from 'react'
 import { TitleText } from '@/pages/requests/components/TitleText'
-import { useInstraction } from '../instractionFeature'
+import { useInstruction } from '../instructionFeature'
 
 export function TabsSelectInstruction() {
     const [activeTab, setActiveTab] = useState<string | null>('request')
     const { logicalName, physicalName, resource, query, form } =
-        useInstraction()
+        useInstruction()
 
     return (
         <Box>
@@ -29,7 +29,7 @@ export function TabsSelectInstruction() {
 
                 <Tabs.Panel value="request" pt="xs">
                     <Group position="right">○○年○○月○○日　依頼: 関</Group>
-                    <InstractionForm
+                    <InstructionForm
                         resource={resource}
                         form={form}
                         activeTab={activeTab}
@@ -38,7 +38,7 @@ export function TabsSelectInstruction() {
 
                 <Tabs.Panel value="reservation" pt="xs">
                     <Group position="right">○○年○○月○○日　依頼: 亀谷</Group>
-                    <InstractionForm
+                    <InstructionForm
                         resource={resource}
                         form={activeTab}
                         activeTab={activeTab}

@@ -7,7 +7,7 @@ import { DataTableBase } from '@/pages/components/DataTableBase'
 import { EditedRequestContext } from '..'
 import { insuranceInitialValues } from '../insurance/insuranceFeature'
 import { conditionInitialValues } from '../condition/conditionFeature'
-import { instractionInitialValues } from '../instruction/instractionFeature'
+import { instructionInitialValues } from '../instruction/instructionFeature'
 import {
     useCreateRequestValues,
     useInstructionRelationDataValues,
@@ -65,7 +65,7 @@ export function CreateRequestModal({
         const { newCreatedData: newInstructionValues } =
             await useRequestRelationDataValues(
                 'instructions',
-                instractionInitialValues,
+                instructionInitialValues,
                 newRequestData.id
             )
 

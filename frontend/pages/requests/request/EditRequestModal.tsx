@@ -6,7 +6,7 @@ import { Request, useRequestFeature } from '../requestFeature'
 import { DisplayPatient } from '../patient/DisplayPatient'
 import { ConditionForm } from '../condition/ConditionForm'
 import { InsuranceForm } from '../insurance/InsuranceForm'
-import { InstractionForm } from '../instruction/InstractionForm'
+import { InstructionForm } from '../instruction/InstructionForm'
 
 interface EditRequestModalProps {
     opened: boolean
@@ -21,7 +21,7 @@ export function EditRequestModal({ opened, close }: EditRequestModalProps) {
                 leftTop={<DisplayPatient />}
                 leftCenter={<ConditionForm />} //依頼idを渡す必要がありそう
                 leftBottom={<InsuranceForm />}
-                rightTop={<InstractionForm />}
+                rightTop={<InstructionForm />}
                 rightButtom={<AppointmentForm />}
             />
         </Modal>

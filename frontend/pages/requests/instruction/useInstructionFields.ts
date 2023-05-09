@@ -1,4 +1,4 @@
-export function useInstractionFields() {
+export function useInstructionFields() {
     const metaData = useMetaData()
 
     const fields = {

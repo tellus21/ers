@@ -1,9 +1,9 @@
 import { useQueryBase } from '@/common/hooks'
 import { useForm } from '@mantine/form'
-import { useInstractionFields } from './useInstructionFields'
+import { useInstructionFields } from './useInstructionFields'
 
 // ---【Type】---
-export interface Instraction {
+export interface Instruction {
     id: number
     examination_clinic_id: number | null
     home_care_doctor_id: number | null
@@ -93,7 +93,7 @@ export interface Instraction {
 }
 
 // ---【InitialValues】---
-export const instractionInitialValues: InstractionFormValues = {
+export const instructionInitialValues: InstructionFormValues = {
     id: 0,
     examination_clinic_id: null,
     home_care_doctor_id: null,
@@ -183,28 +183,28 @@ export const instractionInitialValues: InstractionFormValues = {
 }
 
 // ---【FormValues】---
-export interface InstractionFormValues extends Instraction {}
+export interface InstructionFormValues extends Instruction {}
 
-export function useInstractionFeature() {
+export function useInstructionFeature() {
     // ---【Name】---
     const logicalName = '指示内容'
     const resource = 'instructions'
 
     // ---【FormValues】---
-    type FormValues = Omit<Instraction, 'id'>
+    type FormValues = Omit<Instruction, 'id'>
 
     // ---【Validate】---
     const validate = {}
 
     // ---【Form】---
-    const form = useForm<InstractionFormValues>({
-        initialValues: instractionInitialValues,
+    const form = useForm<InstructionFormValues>({
+        initialValues: instructionInitialValues,
         validate: validate,
     })
 
     //データが多いため、別ファイルに記載
     // ---【Fields】---
-    const { fields } = useInstractionFields()
+    const { fields } = useInstructionFields()
 
     // ---【API】---
     const { data: query } = useQueryBase(resource)
