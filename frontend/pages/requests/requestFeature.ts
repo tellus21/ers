@@ -1,6 +1,7 @@
 import { useQueryBase } from '@/common/hooks'
 import { Patient, usePatientFeature } from '../patients/patientFeature'
 import { User } from '../users/UserFeature'
+import dayjs from 'dayjs'
 
 // ---【Type】---
 export interface Request {
@@ -35,10 +36,32 @@ export function useRequestFeature() {
     // ---【Table】---
     const columns = [
         { accessor: 'id', title: 'id' },
-        { accessor: '', title: '進捗ステータス' },
-        { accessor: 'user.name', title: '作成者' },
-        { accessor: 'patient.home_care_clinic', title: '患者施設' },
-        { accessor: 'patient.name', title: '対象患者名' },
+        { accessor: 'is_confirmed', title: '確認済' },
+        { accessor: 'status', title: '進捗ステータス' },
+        { accessor: 'request_date', title: '依頼日' },
+        { accessor: 'user.last_name', title: '作成者' },
+        {
+            accessor: 'patient.home_care_clinic.name',
+            title: '在宅クリニック名',
+        },
+        { accessor: 'patient.home_karte_number', title: '在宅ID' },
+        { accessor: 'patient.nursing_home.name', title: '入居先' },
+        { accessor: 'patient.name', title: '患者氏名' },
+        //年齢がちゃんと取得できない。。。
+        // {
+        //     accessor: 'patient.birthday',
+        //     title: '年齢',
+        //     render: ({ birthday }: { birthday: Date }) =>
+        //         dayjs(birthday).format('YYYY/MM/DD'),
+        // },
+        { accessor: 'patient.gender', title: '性別' },
+        // { accessor: '', title: '保険種別' },
+        // { accessor: '', title: '問診票有無' },
+        // { accessor: '', title: '検査施設' },
+        // { accessor: '', title: '検査施設ID' },
+        // { accessor: '', title: '検査内容' },
+        // { accessor: '', title: '予約日' },
+        // { accessor: '', title: '検査確定' },
     ]
 
     // ---【API】---

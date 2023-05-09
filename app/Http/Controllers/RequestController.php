@@ -9,7 +9,7 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $rquests = Request::with(['user', 'patient'])->get();
+        $rquests = Request::with(['user', 'patient','patient.homeCareClinic','patient.nursingHome'])->get();
         return response()->json($rquests);
     }
 
@@ -21,7 +21,7 @@ class RequestController extends Controller
 
     public function show(Request $request)
     {
-        $request = Request::with(['user', 'patient', 'patient.homeCareClinic', 'patient.homeCareDoctor', 'patient.nursingHome'])->find($request->id);
+        $request = Request::with(['user', 'patient',  'patient.homeCareDoctor', 'patient.nursingHome'])->find($request->id);
         return response()->json($request);
     }
 

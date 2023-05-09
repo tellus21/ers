@@ -1,5 +1,5 @@
 import { Modal } from '@mantine/core'
-import { GridLayout } from '../components/GridLayout'
+import { GridLayout } from './GridLayout'
 import { RequestMetaData } from '../request-metadata/RequestMetaData'
 import { AppointmentForm } from '../appointment/AppointmentForm'
 import { DisplayPatient } from '../patient/DisplayPatient'

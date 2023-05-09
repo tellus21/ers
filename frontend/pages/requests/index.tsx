@@ -1,37 +1,29 @@
-import { Button, Container, Group, Modal, Text } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
+import { createContext } from 'react'
+import { Button, Container, Group, Text } from '@mantine/core'
 import { DataTableBase } from '../components/DataTableBase'
-import {
-    Request,
-    requestInitialValue,
-    useRequestFeature,
-} from './requestFeature'
-import { createContext, useState } from 'react'
-import { EditRequestModal } from './request/EditRequestModal'
+import { EditRequestModal } from './components/EditRequestModal'
 import { CreateRequestModal } from './request/CreateRequestModal'
-import {
-    Instruction,
-    instructionInitialValues,
-} from './instruction/instractionFeature'
+import { useRequestsIndex } from './useRequestsIndex'
 
+// ReactのContext APIを使用して、編集中の依頼と指示を保持するためのコンテキストを作成
 export const EditedRequestContext = createContext({})
 export const EditedInstructContext = createContext({})
 
 export default function Index() {
-    const { logicalName, columns, query } = useRequestFeature()
-
-    const [editedRequest, setEditedRequest] =
-        useState<Request>(requestInitialValue)
-
-    const [editedInstruction, setEditedInstruction] = useState<Instruction>(
-        instructionInitialValues
-    )
-
-    const [createRequestModalOpend, createRequestModalHandlers] =
-        useDisclosure(false)
-
-    const [editRequestModalOpend, editRequestModalHandlers] =
-        useDisclosure(false)
+    // 依頼一覧に関する情報を取得
+    const {
+        logicalName,
+        columns,
+        query,
+        editedRequest,
+        setEditedRequest,
+        editedInstruction,
+        setEditedInstruction,
+        createRequestModalOpend,
+        createRequestModalHandlers,
+        editRequestModalOpend,
+        editRequestModalHandlers,
+    } = useRequestsIndex()
 
     // テーブルの行がクリックされた時の処理
     const onTableRowClick = (rowData: any) => {
@@ -60,6 +52,7 @@ export default function Index() {
                         </Button>
                     </Group>
 
+                    {/* 患者検索モーダルを表示 */}
                     <CreateRequestModal
                         opened={createRequestModalOpend}
                         close={createRequestModalHandlers.close}
@@ -75,6 +68,7 @@ export default function Index() {
                         onRowClick={(rowData) => onTableRowClick(rowData)}
                     />
 
+                    {/* 依頼編集モーダルを表示 */}
                     <EditRequestModal
                         opened={editRequestModalOpend}
                         close={editRequestModalHandlers.close}
