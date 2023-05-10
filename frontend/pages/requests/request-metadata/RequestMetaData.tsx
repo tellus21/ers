@@ -1,10 +1,10 @@
 import { Badge, Group, Text } from '@mantine/core'
-import { useContext } from 'react'
-import { EditedRequestContext } from '..'
+import { useAtomValue } from 'jotai'
+import { editedRequestAtom } from '../../requestContext'
 
 // リクエストのメタデータを表示するコンポーネント
 export function RequestMetaData() {
-    const { editedRequest } = useContext(EditedRequestContext)
+    const editedRequest = useAtomValue(editedRequestAtom)
 
     return (
         <Group position="apart">

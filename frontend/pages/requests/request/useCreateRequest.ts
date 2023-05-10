@@ -1,7 +1,8 @@
 import { usePatientFeature } from '@/pages/patients/patientFeature'
 import axios from 'axios'
-import { useContext, useState } from 'react'
-import { EditedInstructContext, EditedRequestContext } from '..'
+import { useState } from 'react'
+import { useSetAtom } from 'jotai'
+import { editedInstructionAtom, editedRequestAtom } from '../../requestContext'
 
 // APIのURLとリソース名を定義
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -87,15 +88,12 @@ export const useInstructionRelationDataValues = async (
     // postするデータ
     const postData = changeUserId(changeInstructionData, userId)
 
-    console.log('post', postData)
     // POSTリクエストを送信し、レスポンスを受け取る
     const response = await axios.post(`${API_URL}/${resource}/`, postData)
-    console.log('res', response)
     // 受け取ったレスポンスからIDを取得し、GETリクエストを送信する
     const createdData = await axios.get(
         `${API_URL}/${resource}/${response.data.id}`
     )
-    console.log('created', createdData)
 
     // Data部分を取得
     const newCreatedData = await createdData.data
@@ -110,22 +108,18 @@ export const useCreateRequestModal = () => {
     // 選択された患者を保持するstate
     const [selectedPatient, setSelectedPatient] = useState({ id: undefined })
 
-    // 編集中の依頼を保持するcontext
-    const { editedRequest, setEditedRequest } = useContext(EditedRequestContext)
+    // 編集中の依頼を保持するstate
+    const setEditedRequest = useSetAtom(editedRequestAtom)
 
-    // 編集中の依頼を保持するcontext
-    const { editedInstruction, setEditedInstruction } = useContext(
-        EditedInstructContext
-    )
+    // 編集中の指示を保持するstate
+    const setEditedInstruction = useSetAtom(editedInstructionAtom)
 
     return {
         patients,
         columns,
         selectedPatient,
         setSelectedPatient,
-        editedRequest,
         setEditedRequest,
-        editedInstruction,
         setEditedInstruction,
     }
 }

@@ -15,8 +15,11 @@ export interface Request {
     patient: Patient | null
 }
 
+// ---【FormValues】---
+export interface RequestFormValues extends Request {}
+
 // ---【InitialValues】---
-export const requestInitialValue = {
+export const requestInitialValue: RequestFormValues = {
     id: 0,
     user_id: 0,
     patient_id: 0,
@@ -54,14 +57,14 @@ export function useRequestFeature() {
         //     render: ({ birthday }: { birthday: Date }) =>
         //         dayjs(birthday).format('YYYY/MM/DD'),
         // },
-        { accessor: 'patient.gender', title: '性別' },
-        { accessor: 'condition.insurance_type', title: '保険種別' },
-        { accessor: '', title: '問診票有無' },
-        { accessor: '', title: '検査施設' },
-        { accessor: 'patient.exam_karte_number', title: '検査施設ID' },
-        { accessor: '', title: '検査内容' },
-        { accessor: '', title: '予約日' },
-        { accessor: '', title: '検査確定' },
+        // { accessor: 'patient.gender', title: '性別' },
+        // { accessor: 'condition.insurance_type', title: '保険種別' },
+        // { accessor: '', title: '問診票有無' },
+        // { accessor: '', title: '検査施設' },
+        // { accessor: 'patient.exam_karte_number', title: '検査施設ID' },
+        // { accessor: '', title: '検査内容' },
+        // { accessor: '', title: '予約日' },
+        // { accessor: '', title: '検査確定' },
     ]
 
     // ---【API】---
