@@ -1,4 +1,7 @@
+import { usePatientFeature } from '@/pages/patients/patientFeature'
 import axios from 'axios'
+import { useContext, useState } from 'react'
+import { EditedInstructContext, EditedRequestContext } from '..'
 
 // APIのURLとリソース名を定義
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -98,4 +101,31 @@ export const useInstructionRelationDataValues = async (
     const newCreatedData = await createdData.data
 
     return { newCreatedData }
+}
+
+export const useCreateRequestModal = () => {
+    // 患者情報を取得するためのhook
+    const { query: patients, columns } = usePatientFeature()
+
+    // 選択された患者を保持するstate
+    const [selectedPatient, setSelectedPatient] = useState({ id: undefined })
+
+    // 編集中の依頼を保持するcontext
+    const { editedRequest, setEditedRequest } = useContext(EditedRequestContext)
+
+    // 編集中の依頼を保持するcontext
+    const { editedInstruction, setEditedInstruction } = useContext(
+        EditedInstructContext
+    )
+
+    return {
+        patients,
+        columns,
+        selectedPatient,
+        setSelectedPatient,
+        editedRequest,
+        setEditedRequest,
+        editedInstruction,
+        setEditedInstruction,
+    }
 }

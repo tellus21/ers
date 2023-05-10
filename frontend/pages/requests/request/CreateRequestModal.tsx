@@ -1,19 +1,16 @@
-import { Button, Group, Modal, Text } from '@mantine/core'
-
-import { useContext, useState } from 'react'
 import { filterById } from '@/common/lib'
-import { usePatientFeature } from '@/pages/patients/patientFeature'
 import { DataTableBase } from '@/pages/components/DataTableBase'
-import { EditedInstructContext, EditedRequestContext } from '..'
 import { insuranceInitialValues } from '../insurance/insuranceFeature'
 import { conditionInitialValues } from '../condition/conditionFeature'
 import {
+    useCreateRequestModal,
     useCreateRequestValues,
     useInstructionRelationDataValues,
     useRequestRelationDataValues,
 } from './useCreateRequest'
 import { appointmentInitialValues } from '../appointment/appointmentFeature'
 import { instructionInitialValues } from '../instruction/instractionFeature'
+import { Button, Group, Modal, Text } from '@mantine/core'
 
 interface CreateRequestModalProps {
     opened: boolean
@@ -26,19 +23,14 @@ export function CreateRequestModal({
     close,
     editRequestModalHandlersOpen,
 }: CreateRequestModalProps) {
-    // 患者情報を取得するためのhook
-    const { query: patients, columns } = usePatientFeature()
-
-    // 選択された患者を保持するstate
-    const [selectedPatient, setSelectedPatient] = useState({ id: undefined })
-
-    // 編集中の依頼を保持するcontext
-    const { editedRequest, setEditedRequest } = useContext(EditedRequestContext)
-
-    // 編集中の依頼を保持するcontext
-    const { editedInstruction, setEditedInstruction } = useContext(
-        EditedInstructContext
-    )
+    const {
+        patients,
+        columns,
+        selectedPatient,
+        setSelectedPatient,
+        setEditedRequest,
+        setEditedInstruction,
+    } = useCreateRequestModal()
 
     // テーブルの行がクリックされたときの処理
     const onRowClick = (rowData: any) => {
@@ -51,8 +43,12 @@ export function CreateRequestModal({
         const { newRequestData } = await useCreateRequestValues(
             selectedPatient.id
         )
+
+        //新しく依頼を作成したあとに、そのidに紐づけた、患者状況、保険情報、指示を作成する
+        // 編集中の依頼を更新
         await setEditedRequest(newRequestData)
 
+        // 患者状況を作成
         const { newCreatedData: newConditionValues } =
             await useRequestRelationDataValues(
                 'conditions',
@@ -60,6 +56,7 @@ export function CreateRequestModal({
                 newRequestData.id
             )
 
+        // 保険情報を作成
         const { newCreatedData: newInsuranceValues } =
             await useRequestRelationDataValues(
                 'insurances',
@@ -67,6 +64,7 @@ export function CreateRequestModal({
                 newRequestData.id
             )
 
+        // 指示を作成
         const { newCreatedData: newInstructionValues } =
             await useRequestRelationDataValues(
                 'instructions',
@@ -74,8 +72,11 @@ export function CreateRequestModal({
                 newRequestData.id
             )
 
+        //指示を作成したあとに、そのidに紐づけた、予約を作成する
+        //編集中の指示を更新
         await setEditedInstruction(newInstructionValues)
 
+        // 予約を作成
         const { newCreatedData: newAppointmentValues } =
             await useInstructionRelationDataValues(
                 'appointments',
@@ -84,9 +85,9 @@ export function CreateRequestModal({
                 1 // 1は仮の値。ログインユーザーのidを取得する必要がある
             )
 
-        console.log(newAppointmentValues)
         // 依頼作成モーダルを閉じる
         close()
+
         // 依頼編集モーダルを開く
         editRequestModalHandlersOpen()
     }
