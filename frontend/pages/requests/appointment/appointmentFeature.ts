@@ -27,6 +27,9 @@ export interface Appointment {
     deleted_at: Date | null
 }
 
+// ---【FormValues】---
+export interface AppointmentFormValues extends Appointment {}
+
 // ---【InitialValues】---
 export const appointmentInitialValues: AppointmentFormValues = {
     id: 0,
@@ -50,9 +53,6 @@ export const appointmentInitialValues: AppointmentFormValues = {
     updated_at: new Date(),
     deleted_at: null,
 }
-
-// ---【FormValues】---
-export interface AppointmentFormValues extends Appointment {}
 
 // ---【Feature】---
 export function useAppointmentFeature() {

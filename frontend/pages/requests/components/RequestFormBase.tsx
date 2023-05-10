@@ -5,7 +5,7 @@ import { useAtomValue } from 'jotai'
 import {
     editedInstructionAtom,
     editedRequestAtom,
-} from '../request/requestContext'
+} from '../../../common/contexts'
 
 const captionUpdate = '更新'
 

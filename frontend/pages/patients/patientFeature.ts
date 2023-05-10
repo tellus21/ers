@@ -33,6 +33,27 @@ export interface PatientFormValues extends Patient {
     nursing_home: { name: string }
 }
 
+// ---【InitialValues】---
+export const patientInitialValues: PatientFormValues = {
+    id: 0,
+    home_care_clinic_id: 0,
+    home_care_doctor_id: 0,
+    nursing_home_id: 0,
+    home_karte_number: '',
+    last_name_kana: '',
+    first_name_kana: '',
+    last_name: '',
+    first_name: '',
+    birthday: new Date(1850, 0, 1), //この辺が生年月日の患者が多そうだと推測
+    gender: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+    home_care_clinic: { name: '' },
+    home_care_doctor: { name: '' },
+    nursing_home: { name: '' },
+}
+
 // ---【Feature】---
 export function usePatientFeature() {
     const { query: homeCareClinics, homeCareClinicNames } =
@@ -44,27 +65,6 @@ export function usePatientFeature() {
     // ---【Name】---
     const logicalName = '患者'
     const resource = 'patients'
-
-    // ---【InitialValues】---
-    const initialValues: PatientFormValues = {
-        id: 0,
-        home_care_clinic_id: 0,
-        home_care_doctor_id: 0,
-        nursing_home_id: 0,
-        home_karte_number: '',
-        last_name_kana: '',
-        first_name_kana: '',
-        last_name: '',
-        first_name: '',
-        birthday: new Date(1850, 0, 1), //この辺が生年月日の患者が多そうだと推測
-        gender: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-        home_care_clinic: { name: '' },
-        home_care_doctor: { name: '' },
-        nursing_home: { name: '' },
-    }
 
     // ---【Validate】---
     const validate = {
@@ -94,7 +94,7 @@ export function usePatientFeature() {
 
     // ---【Form】---
     const form = useForm<PatientFormValues>({
-        initialValues: initialValues,
+        initialValues: patientInitialValues,
         validate: validate,
         transformValues: transformValues,
     })

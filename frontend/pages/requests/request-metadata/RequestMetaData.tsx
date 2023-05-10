@@ -1,6 +1,6 @@
 import { Badge, Group, Text } from '@mantine/core'
 import { useAtomValue } from 'jotai'
-import { editedRequestAtom } from '../request/requestContext'
+import { editedRequestAtom } from '../../../common/contexts'
 
 // リクエストのメタデータを表示するコンポーネント
 export function RequestMetaData() {

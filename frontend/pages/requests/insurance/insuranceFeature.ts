@@ -16,6 +16,9 @@ export interface Insurance {
     deleted_at: Date | null
 }
 
+// ---【FormValues】---
+export interface InsuranceFormValues extends Insurance {}
+
 // ---【InitialValues】---
 export const insuranceInitialValues: InsuranceFormValues = {
     id: 0,
@@ -29,9 +32,6 @@ export const insuranceInitialValues: InsuranceFormValues = {
     updated_at: new Date(),
     deleted_at: null,
 }
-
-// ---【FormValues】---
-export interface InsuranceFormValues extends Insurance {}
 
 // ---【Feature】---
 export function useInsuranceFeature() {

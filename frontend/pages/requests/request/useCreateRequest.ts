@@ -2,7 +2,10 @@ import { usePatientFeature } from '@/pages/patients/patientFeature'
 import axios from 'axios'
 import { useState } from 'react'
 import { useSetAtom } from 'jotai'
-import { editedInstructionAtom, editedRequestAtom } from './requestContext'
+import {
+    editedInstructionAtom,
+    editedRequestAtom,
+} from '../../../common/contexts'
 
 // APIのURLとリソース名を定義
 const API_URL = process.env.NEXT_PUBLIC_API_URL

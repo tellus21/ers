@@ -21,25 +21,25 @@ export interface HomeCareClinic {
 // ---【FormValues】---
 export interface HomeCareClinicFormValues extends HomeCareClinic {}
 
+// ---【InitialValues】---
+export const homeCareClinicinItialValues: HomeCareClinicFormValues = {
+    id: 0,
+    name: '',
+    abbreviation: '',
+    postal_code: '',
+    address: '',
+    phone_number: '',
+    fax_number: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+}
+
 // ---【Feature】---
 export function useHomeCareClinicFeature() {
     // ---【Name】---
     const logicalName = '在宅クリニック'
     const resource = 'home_care_clinics'
-
-    // ---【InitialValues】---
-    const initialValues: HomeCareClinicFormValues = {
-        id: 0,
-        name: '',
-        abbreviation: '',
-        postal_code: '',
-        address: '',
-        phone_number: '',
-        fax_number: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-    }
 
     // ---【Validate】---
     const validate = {
@@ -48,7 +48,7 @@ export function useHomeCareClinicFeature() {
 
     // ---【Form】---
     const form = useForm<HomeCareClinicFormValues>({
-        initialValues: initialValues,
+        initialValues: homeCareClinicinItialValues,
         validate: validate,
     })
 

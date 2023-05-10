@@ -16,20 +16,20 @@ export interface HomeCareDoctor {
 // ---【FormValues】---
 export interface HomeCareDoctorFormValues extends HomeCareDoctor {}
 
+// ---【InitialValues】---
+export const homeCareDoctorInitialValues: HomeCareDoctorFormValues = {
+    id: 0,
+    name: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+}
+
 // ---【Feature】---
 export function useHomeCareDoctorFeature() {
     // ---【Name】---
     const logicalName = '在宅医師'
     const resource = 'home_care_doctors'
-
-    // ---【InitialValues】---
-    const initialValues: HomeCareDoctorFormValues = {
-        id: 0,
-        name: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-    }
 
     // ---【Validate】---
     const validate = {
@@ -38,7 +38,7 @@ export function useHomeCareDoctorFeature() {
 
     // ---【Form】---
     const form = useForm<HomeCareDoctorFormValues>({
-        initialValues: initialValues,
+        initialValues: homeCareDoctorInitialValues,
         validate: validate,
     })
 

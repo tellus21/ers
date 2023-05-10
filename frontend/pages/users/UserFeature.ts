@@ -28,6 +28,24 @@ export interface UserFormValues extends User {
     examination_clinic: { name: string }
 }
 
+// ---【InitialValues】---
+export const initialValues: UserFormValues = {
+    id: 0,
+    home_care_clinic_id: null, //nullの場合もあるので
+    examination_clinic_id: null, //nullの場合もあるので
+    login_name: '',
+    password: '',
+    last_name: '',
+    first_name: '',
+    authority: '',
+    email_address: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+    home_care_clinic: { name: '' },
+    examination_clinic: { name: '' },
+}
+
 // ---【Feature】---
 export function useUserFeature() {
     const { query: homeCareClinics, homeCareClinicNames } =
@@ -38,24 +56,6 @@ export function useUserFeature() {
     // ---【Name】---
     const logicalName = 'ユーザ'
     const resource = 'users'
-
-    // ---【InitialValues】---
-    const initialValues: UserFormValues = {
-        id: 0,
-        home_care_clinic_id: null, //nullの場合もあるので
-        examination_clinic_id: null, //nullの場合もあるので
-        login_name: '',
-        password: '',
-        last_name: '',
-        first_name: '',
-        authority: '',
-        email_address: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-        home_care_clinic: { name: '' },
-        examination_clinic: { name: '' },
-    }
 
     // ---【Validate】---
     const validate = {

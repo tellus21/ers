@@ -25,29 +25,29 @@ export interface NursingHome {
 // ---【FormValues】---
 export interface NursingHomeFormValues extends NursingHome {}
 
+// ---【InitialValues】---
+export const nursingHomeInitialValues: NursingHomeFormValues = {
+    id: 0,
+    name: '',
+    kana: '',
+    company_name: '',
+    postal_code: '',
+    address: '',
+    phone_number: '',
+    fax_number: '',
+    main_contact: '',
+    sub_contact: '',
+    pickup_time: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+}
+
 // ---【Feature】---
 export function useNursingHomeFeature() {
     // ---【Name】---
     const logicalName = '入居施設'
     const resource = 'nursing_homes'
-
-    // ---【InitialValues】---
-    const initialValues: NursingHomeFormValues = {
-        id: 0,
-        name: '',
-        kana: '',
-        company_name: '',
-        postal_code: '',
-        address: '',
-        phone_number: '',
-        fax_number: '',
-        main_contact: '',
-        sub_contact: '',
-        pickup_time: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-    }
 
     // ---【Validate】---
     const validate = {
@@ -56,7 +56,7 @@ export function useNursingHomeFeature() {
 
     // ---【Form】---
     const form = useForm<NursingHomeFormValues>({
-        initialValues: initialValues,
+        initialValues: nursingHomeInitialValues,
         validate: validate,
     })
 

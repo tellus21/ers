@@ -92,6 +92,9 @@ export interface Instruction {
     deleted_at: Date
 }
 
+// ---【FormValues】---
+export interface InstructionFormValues extends Instruction {}
+
 // ---【InitialValues】---
 export const instructionInitialValues: InstructionFormValues = {
     id: 0,
@@ -182,9 +185,7 @@ export const instructionInitialValues: InstructionFormValues = {
     deleted_at: new Date(),
 }
 
-// ---【FormValues】---
-export interface InstructionFormValues extends Instruction {}
-
+// ---【Feature】---
 export function useInstructionFeature() {
     // ---【Name】---
     const logicalName = '指示内容'

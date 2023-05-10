@@ -21,25 +21,25 @@ export interface ExaminationClinic {
 // ---【FormValues】---
 export interface ExaminationClinicFormValues extends ExaminationClinic {}
 
+// ---【InitialValues】---
+export const examinationClinicInitialValues: ExaminationClinicFormValues = {
+    id: 0,
+    name: '',
+    abbreviation: '',
+    postal_code: '',
+    address: '',
+    phone_number: '',
+    fax_number: '',
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+}
+
 // ---【Feature】---
 export function useExaminationClinicFeature() {
     // ---【Name】---
     const logicalName = '検査クリニック'
     const resource = 'examination_clinics'
-
-    // ---【InitialValues】---
-    const initialValues: ExaminationClinicFormValues = {
-        id: 0,
-        name: '',
-        abbreviation: '',
-        postal_code: '',
-        address: '',
-        phone_number: '',
-        fax_number: '',
-        created_at: new Date(),
-        updated_at: new Date(),
-        deleted_at: null,
-    }
 
     // ---【Validate】---
     const validate = {
@@ -48,7 +48,7 @@ export function useExaminationClinicFeature() {
 
     // ---【Form】---
     const form = useForm<ExaminationClinicFormValues>({
-        initialValues: initialValues,
+        initialValues: examinationClinicInitialValues,
         validate: validate,
     })
 

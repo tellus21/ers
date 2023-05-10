@@ -40,6 +40,9 @@ export interface Condition {
     deleted_at: Date | null
 }
 
+// ---【FormValues】---
+export interface ConditionFormValues extends Condition {}
+
 // ---【InitialValues】---
 export const conditionInitialValues: ConditionFormValues = {
     id: 0,
@@ -76,9 +79,6 @@ export const conditionInitialValues: ConditionFormValues = {
     updated_at: new Date(),
     deleted_at: null,
 }
-
-// ---【FormValues】---
-export interface ConditionFormValues extends Condition {}
 
 // ---【Feature】---
 export function useConditionFeature() {
