@@ -9,7 +9,7 @@ class HomeCareDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:home_care_doctors,name',
+            'name' => 'required|string',
         ];
     }
 }

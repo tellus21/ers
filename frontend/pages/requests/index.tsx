@@ -5,6 +5,7 @@ import { EditRequestModal } from './request/EditRequestModal'
 import { CreateRequestModal } from './request/CreateRequestModal'
 import { useRequestsIndex } from './useRequestsIndex'
 import { Request } from './requestFeature'
+import { Condition } from './condition/conditionFeature'
 
 // ReactのContext APIを使用して、編集中の依頼と指示を保持するためのコンテキストを作成
 export const EditedRequestContext = createContext({})
@@ -29,8 +30,12 @@ export default function Index() {
             (request: Request) => request.id === rowData.id
         )
         setEditedRequest(selectedRequest)
-        //requestのidを取得して、conditionを変更する
 
+        //requestのidを取得して、conditionをsetValuesする
+        const selctedCondition = selectedRequest.conditions.map(
+            (condition: Condition) => condition.id
+        )
+        console.log('cond', selctedCondition)
         editRequestModalHandlers.open()
     }
 

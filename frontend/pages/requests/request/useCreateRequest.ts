@@ -1,7 +1,7 @@
-import { usePatientFeature } from '@/pages/patients/patientFeature'
-import axios from 'axios'
 import { useState } from 'react'
+import axios from 'axios'
 import { useSetAtom } from 'jotai'
+import { usePatientFeature } from '@/pages/patients/patientFeature'
 import {
     editedInstructionAtom,
     editedRequestAtom,
@@ -93,6 +93,7 @@ export const useInstructionRelationDataValues = async (
 
     // POSTリクエストを送信し、レスポンスを受け取る
     const response = await axios.post(`${API_URL}/${resource}/`, postData)
+
     // 受け取ったレスポンスからIDを取得し、GETリクエストを送信する
     const createdData = await axios.get(
         `${API_URL}/${resource}/${response.data.id}`

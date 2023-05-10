@@ -9,7 +9,7 @@ class ExaminationClinicRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:examination_clinics',
+            'name' => 'required',
             'abbreviation' => 'nullable',
             'postal_code' => 'nullable',
             'address' => 'nullable',

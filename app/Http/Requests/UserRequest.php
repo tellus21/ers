@@ -18,7 +18,7 @@ class UserRequest extends FormRequest
             //OKパターン
             'home_care_clinic_id' => 'integer|nullable|exists:home_care_clinics,id',
             'examination_clinic_id' => 'integer|nullable|exists:examination_clinics,id',
-            'login_name' => 'required|unique:users',
+            'login_name' => 'required',
             'password' => 'required',
             'last_name' => 'required',
             'first_name' => 'required',

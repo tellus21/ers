@@ -9,7 +9,7 @@ class NursingHomeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:nursing_homes,name',
+            'name' => 'required|string',
             'kana' => 'nullable|string',
             'company_name' => 'nullable|string',
             'postal_code' => 'nullable|string',
