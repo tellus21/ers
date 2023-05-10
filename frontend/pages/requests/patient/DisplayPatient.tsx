@@ -1,7 +1,7 @@
 import { Box, Grid, Text, createStyles } from '@mantine/core'
 import { TitleText } from '../components/TitleText'
-import { useAtom } from 'jotai'
-import { editedRequestAtom } from '../../requestContext'
+import { useAtomValue } from 'jotai'
+import { editedRequestAtom } from '../request/requestContext'
 
 const useStyles = createStyles((theme) => ({
     label: { fontSize: theme.fontSizes.xs, color: theme.colors.gray[7] },
@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
 
 export function DisplayPatient() {
     const { classes } = useStyles()
-    const editedRequest = useAtom(editedRequestAtom)
+    const editedRequest = useAtomValue(editedRequestAtom)
     const displayedPatient = editedRequest.patient
 
     // 患者情報を表示するための配列

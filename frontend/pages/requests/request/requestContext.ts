@@ -1,12 +1,9 @@
 import { atom } from 'jotai'
-import {
-    RequestFormValues,
-    requestInitialValue,
-} from './requests/requestFeature'
+import { RequestFormValues, requestInitialValue } from '../requestFeature'
 import {
     InstructionFormValues,
     instructionInitialValues,
-} from './requests/instruction/instractionFeature'
+} from '../instruction/instractionFeature'
 
 export const editedRequestAtom = atom<RequestFormValues>(requestInitialValue)
 export const editedInstructionAtom = atom<InstructionFormValues>(

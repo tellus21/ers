@@ -12,17 +12,6 @@ interface ModalAndDataTableProps {
     tableColumns: any
 }
 
-/**
- * ModalAndDataTableコンポーネントは、モーダルとテーブルを表示するためのReactコンポーネントです。
- * モーダルを開いてフォームを入力したり、テーブルの行をクリックしてフォームに値を設定したりできます。
- *
- * @param query 検索結果のデータ
- * @param logicalName 表示するロジカル名
- * @param modalSize モーダルのサイズ
- * @param children モーダル内に表示する子要素
- * @param form フォーム
- * @param tableColumns テーブルの列
- */
 export function ModalAndDataTable({
     query,
     logicalName,
@@ -38,8 +27,10 @@ export function ModalAndDataTable({
         modalHandlers.open()
     }
     const onTableRowClick = (rowData: any) => {
+        const selectedData = query.find((item: any) => item.id === rowData.id)
         //birthdayをDate型に変換してからフォームに設定する
-        form.setValues(convertDateProperty(rowData, 'birthday'))
+        console.log(selectedData)
+        form.setValues(convertDateProperty(selectedData, 'birthday'))
         modalHandlers.open()
     }
 

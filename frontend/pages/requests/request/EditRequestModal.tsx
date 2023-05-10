@@ -17,11 +17,11 @@ export function EditRequestModal({ opened, close }: EditRequestModalProps) {
         <Modal opened={opened} onClose={close} title="検査依頼作成" size="100%">
             <GridLayout
                 top={<RequestMetaData />}
-                // leftTop={<DisplayPatient />}
-                // leftCenter={<ConditionForm />}
-                // leftBottom={<InsuranceForm />}
-                // rightTop={<InstructionForm />}
-                // rightButtom={<AppointmentForm />}
+                leftTop={<DisplayPatient />}
+                leftCenter={<ConditionForm />}
+                leftBottom={<InsuranceForm />}
+                rightTop={<InstructionForm />}
+                rightButtom={<AppointmentForm />}
             />
         </Modal>
     )

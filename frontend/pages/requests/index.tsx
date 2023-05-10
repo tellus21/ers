@@ -29,6 +29,8 @@ export default function Index() {
             (request: Request) => request.id === rowData.id
         )
         setEditedRequest(selectedRequest)
+        //requestのidを取得して、conditionを変更する
+
         editRequestModalHandlers.open()
     }
 
