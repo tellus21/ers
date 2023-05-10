@@ -24,4 +24,8 @@ class Request extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+    public function condition()
+    {
+        return $this->hasOne(Condition::class);
+    }
 }

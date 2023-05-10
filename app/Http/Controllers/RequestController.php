@@ -9,7 +9,7 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $rquests = Request::with(['user', 'patient','patient.homeCareClinic','patient.nursingHome'])->get();
+        $rquests = Request::with(['user', 'patient','patient.homeCareClinic','patient.nursingHome','condition'])->get();
         return response()->json($rquests);
     }
 

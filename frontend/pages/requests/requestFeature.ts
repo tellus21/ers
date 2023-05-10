@@ -1,5 +1,5 @@
 import { useQueryBase } from '@/common/hooks'
-import { Patient, usePatientFeature } from '../patients/patientFeature'
+import { Patient } from '../patients/patientFeature'
 import { User } from '../users/UserFeature'
 import dayjs from 'dayjs'
 
@@ -55,13 +55,13 @@ export function useRequestFeature() {
         //         dayjs(birthday).format('YYYY/MM/DD'),
         // },
         { accessor: 'patient.gender', title: '性別' },
-        // { accessor: '', title: '保険種別' },
-        // { accessor: '', title: '問診票有無' },
-        // { accessor: '', title: '検査施設' },
-        // { accessor: '', title: '検査施設ID' },
-        // { accessor: '', title: '検査内容' },
-        // { accessor: '', title: '予約日' },
-        // { accessor: '', title: '検査確定' },
+        { accessor: 'condition.insurance_type', title: '保険種別' },
+        { accessor: '', title: '問診票有無' },
+        { accessor: '', title: '検査施設' },
+        { accessor: 'patient.exam_karte_number', title: '検査施設ID' },
+        { accessor: '', title: '検査内容' },
+        { accessor: '', title: '予約日' },
+        { accessor: '', title: '検査確定' },
     ]
 
     // ---【API】---
