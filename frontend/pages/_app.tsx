@@ -9,6 +9,7 @@ import 'dayjs/locale/ja'
 import { AppShellLayout } from '@/pages/components/layout/AppShellLayout'
 import { emsTheme } from '@/common/theme'
 import { Notifications } from '@mantine/notifications'
+import { Provider } from 'jotai'
 
 export default function App(props: AppProps) {
     const queryClient = new QueryClient()
@@ -25,13 +26,15 @@ export default function App(props: AppProps) {
             </Head>
 
             <MantineProvider theme={emsTheme} withGlobalStyles withNormalizeCSS>
-                <Notifications />
-                <QueryClientProvider client={queryClient}>
-                    <AppShellLayout>
-                        <Component {...pageProps} />
-                    </AppShellLayout>
-                    <ReactQueryDevtools initialIsOpen={false} />
-                </QueryClientProvider>
+                <Provider>
+                    <Notifications />
+                    <QueryClientProvider client={queryClient}>
+                        <AppShellLayout>
+                            <Component {...pageProps} />
+                        </AppShellLayout>
+                        <ReactQueryDevtools initialIsOpen={false} />
+                    </QueryClientProvider>
+                </Provider>
             </MantineProvider>
         </>
     )

@@ -108,10 +108,10 @@ export const useCreateRequestModal = () => {
     // 選択された患者を保持するstate
     const [selectedPatient, setSelectedPatient] = useState({ id: undefined })
 
-    // 編集中の依頼を保持するstate
+    // 編集中のRequestを変更する関数を取得
     const setEditedRequest = useSetAtom(editedRequestAtom)
 
-    // 編集中の指示を保持するstate
+    // 編集中のInstructionを変更する関数を取得
     const setEditedInstruction = useSetAtom(editedInstructionAtom)
 
     return {

@@ -1,10 +1,15 @@
 import { useRequestFeature } from './requestFeature'
 import { useDisclosure } from '@mantine/hooks'
+import { useSetAtom } from 'jotai'
+import { editedRequestAtom } from '../requestContext'
 
 // Requestのindexを使用するためのカスタムフック
 export const useRequestsIndex = () => {
     // Requestから論理名、列、クエリを取得
-    const { logicalName, columns, query } = useRequestFeature()
+    const { logicalName, columns, query: requests } = useRequestFeature()
+
+    // 編集中のRequestを変更する関数を取得
+    const setEditedRequest = useSetAtom(editedRequestAtom)
 
     // Request作成モーダルを開閉するための状態を保持
     const [createRequestModalOpend, createRequestModalHandlers] =
@@ -17,7 +22,8 @@ export const useRequestsIndex = () => {
     return {
         logicalName,
         columns,
-        query,
+        requests,
+        setEditedRequest,
         createRequestModalOpend,
         createRequestModalHandlers,
         editRequestModalOpend,
