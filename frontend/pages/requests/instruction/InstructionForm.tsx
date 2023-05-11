@@ -2,12 +2,22 @@ import { Box, Divider, Group, Space, Tabs, Text } from '@mantine/core'
 import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { FieldsEightTwelve } from '@/pages/requests/components/FieldsEightTwelve'
 import { TitleText } from '../components/TitleText'
-import { useInstructionFeature } from './instractionFeature'
 
-export function InstructionForm() {
-    const { logicalName, resource, form, query, fields } =
-        useInstructionFeature()
+interface InstructionFormProps {
+    logicalName: string
+    resource: any
+    form: any
+    query: any
+    fields: any
+}
 
+export function InstructionForm({
+    logicalName,
+    resource,
+    form,
+    query,
+    fields,
+}: InstructionFormProps) {
     return (
         <RequestFormBase resource={resource} form={form} query={query}>
             <Box px={12}>

@@ -2,11 +2,22 @@ import { Box, Button, Group } from '@mantine/core'
 import { TitleText } from '../components/TitleText'
 import { RequestFormBase } from '../components/RequestFormBase'
 import { FieldsFourTwelve } from '../components/FieldsFourTwelve'
-import { useConditionFeature } from './conditionFeature'
 
-export function ConditionForm() {
-    const { logicalName, resource, form, query, fields } = useConditionFeature()
+interface ConditionFormProps {
+    logicalName: string
+    resource: any
+    form: any
+    query: any
+    fields: any
+}
 
+export function ConditionForm({
+    logicalName,
+    resource,
+    form,
+    query,
+    fields,
+}: ConditionFormProps) {
     return (
         <RequestFormBase resource={resource} form={form} query={query}>
             <TitleText title={logicalName} />

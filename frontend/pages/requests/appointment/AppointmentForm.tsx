@@ -13,10 +13,21 @@ const homeClinicsTest = [
     { name: 'きた高速', time: '50分' },
 ]
 
-export function AppointmentForm() {
-    const { logicalName, resource, form, query, fields } =
-        useAppointmentFeature()
+interface AppointmentFormProps {
+    logicalName: string
+    resource: any
+    form: any
+    query: any
+    fields: any
+}
 
+export function AppointmentForm({
+    logicalName,
+    resource,
+    form,
+    query,
+    fields,
+}: AppointmentFormProps) {
     return (
         <RequestFormBase resource={resource} form={form} query={query}>
             <TitleText title={logicalName} />

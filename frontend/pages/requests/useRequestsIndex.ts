@@ -17,32 +17,51 @@ import { useAppointmentFeature } from './appointment/appointmentFeature'
 
 // Requestのindexを使用するためのカスタムフック
 export const useRequestsIndex = () => {
-    // Requestから論理名、列、クエリを取得
-    const { logicalName, columns, query: requests } = useRequestFeature()
-    // 編集中のRequestを変更する関数を取得
-    // const setEditedRequest = useSetAtom(editedRequestAtom)
-    const [editedRequest, setEditedRequest] = useAtom(editedRequestAtom)
+    const {
+        logicalName: requestLogicalName,
+        columns: requestColumns,
+        query: requestsQuery,
+    } = useRequestFeature()
 
-    const { query: patients } = usePatientFeature()
-    const [displayPatient, setDisplayPatient] = useAtom(displayPatientAtom)
+    const {
+        logicalName: patientLogicalName,
+        resource: patientResource,
+        form: patientForm,
+        query: patientsQuery,
+        fields: patientFields,
+    } = usePatientFeature()
 
-    const { query: conditions, form: conditionForm } = useConditionFeature()
-    const [editedCondition, setEditedCondition] = useAtom(editedConditionAtom)
+    const {
+        logicalName: conditionLogicalName,
+        resource: conditionResource,
+        form: conditionForm,
+        query: conditionsQuery,
+        fields: conditionFields,
+    } = useConditionFeature()
 
-    const { query: insurances, form: insuranceForm } = useInsuranceFeature()
-    const [editedInsurance, setEditedInsurance] = useAtom(editedInsuranceAtom)
+    const {
+        logicalName: insuranceLogicalName,
+        resource: insuranceResource,
+        form: insuranceForm,
+        query: insurancesQuery,
+        fields: insuranceFields,
+    } = useInsuranceFeature()
 
-    const { query: instructions, form: instructionForm } =
-        useInstructionFeature()
-    const [editedInstruction, setEditedInstruction] = useAtom(
-        editedInstructionAtom
-    )
+    const {
+        logicalName: instructionLogicalName,
+        resource: instructionResource,
+        form: instructionForm,
+        query: instructionsQuery,
+        fields: instructionFields,
+    } = useInstructionFeature()
 
-    const { query: appointments, form: appointmentForm } =
-        useAppointmentFeature()
-    const [editedAppointment, setEditedAppointment] = useAtom(
-        editedAppointmentAtom
-    )
+    const {
+        logicalName: appointmentLogicalName,
+        resource: appointmentResource,
+        form: appointmentForm,
+        query: appointmentsQuery,
+        fields: appointmentFields,
+    } = useAppointmentFeature()
 
     // Request作成モーダルを開閉するための状態を保持
     const [createRequestModalOpend, createRequestModalHandlers] =
@@ -52,34 +71,41 @@ export const useRequestsIndex = () => {
     const [editRequestModalOpend, editRequestModalHandlers] =
         useDisclosure(false)
 
+    const setEditedRequest = useSetAtom(editedRequestAtom)
+
     return {
-        logicalName,
-        columns,
-        requests,
-        editedRequest,
-        setEditedRequest,
-        patients,
-        displayPatient,
-        setDisplayPatient,
-        conditions,
+        requestLogicalName,
+        requestColumns,
+        requestsQuery,
+        patientLogicalName,
+        patientResource,
+        patientForm,
+        patientsQuery,
+        patientFields,
+        conditionLogicalName,
+        conditionResource,
         conditionForm,
-        editedCondition,
-        setEditedCondition,
-        insurances,
+        conditionsQuery,
+        conditionFields,
+        insuranceLogicalName,
+        insuranceResource,
         insuranceForm,
-        editedInsurance,
-        setEditedInsurance,
-        instructions,
+        insurancesQuery,
+        insuranceFields,
+        instructionLogicalName,
+        instructionResource,
         instructionForm,
-        editedInstruction,
-        setEditedInstruction,
-        appointments,
+        instructionsQuery,
+        instructionFields,
+        appointmentLogicalName,
+        appointmentResource,
         appointmentForm,
-        editedAppointment,
-        setEditedAppointment,
+        appointmentsQuery,
+        appointmentFields,
         createRequestModalOpend,
         createRequestModalHandlers,
         editRequestModalOpend,
         editRequestModalHandlers,
+        setEditedRequest,
     }
 }

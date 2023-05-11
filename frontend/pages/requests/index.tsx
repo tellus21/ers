@@ -17,81 +17,70 @@ export const EditedInstructContext = createContext({})
 export default function Index() {
     // 依頼一覧に関する情報を取得
     const {
-        logicalName,
-        columns,
-        requests,
-        editedRequest,
-        setEditedRequest,
-        patients,
-        displayPatient,
-        setDisplayPatient,
-        conditions,
+        requestLogicalName,
+        requestColumns,
+        requestsQuery,
+        patientLogicalName,
+        patientResource,
+        patientForm,
+        patientsQuery,
+        patientFields,
+        conditionLogicalName,
+        conditionResource,
         conditionForm,
-        editedCondition,
-        setEditedCondition,
-        insurances,
+        conditionsQuery,
+        conditionFields,
+        insuranceLogicalName,
+        insuranceResource,
         insuranceForm,
-        editedInsurance,
-        setEditedInsurance,
-        instructions,
+        insurancesQuery,
+        insuranceFields,
+        instructionLogicalName,
+        instructionResource,
         instructionForm,
-        editedInstruction,
-        setEditedInstruction,
-        appointments,
+        instructionsQuery,
+        instructionFields,
+        appointmentLogicalName,
+        appointmentResource,
         appointmentForm,
-        editedAppointment,
-        setEditedAppointment,
+        appointmentsQuery,
+        appointmentFields,
         createRequestModalOpend,
         createRequestModalHandlers,
         editRequestModalOpend,
         editRequestModalHandlers,
+        setEditedRequest,
     } = useRequestsIndex()
 
     // テーブルの行がクリックされた時の処理
     const onTableRowClick = (rowData: any) => {
         // クリックされた行のデータをInsuranceInsurance依頼としてセットする
-        const selectedRequest = requests.find(
+        const selectedRequest = requestsQuery.find(
             (request: Request) => request.id === rowData.id
         )
         setEditedRequest(selectedRequest)
-        const conditionValues = conditions.find(
-            (condition: Condition) => condition.id === selectedRequest.id
-        )
-        const insuranceValues = insurances.find(
+
+        const insuranceValues = insurancesQuery.find(
             (insurance: Insurance) => insurance.id === selectedRequest.id
         )
-        insuranceForm.setValues(insuranceValues)
-        // insuranceForm.setValues((prev) => ({ ...prev, ...insuranceValues }))
-        console.log('insuranceValues', insuranceValues)
-        console.log('insuranceForm', insuranceForm.values)
 
-        const instructionValues = instructions.find(
+        insuranceForm.setValues(insuranceValues)
+
+        const instructionValues = instructionsQuery.find(
             (instruction: Instruction) => instruction.id === selectedRequest.id
         )
-        const appointmentValues = appointments.find(
+
+        const appointmentValues = appointmentsQuery.find(
             (appointment: Appointment) => appointment.id === selectedRequest.id
         )
-        //各フォームにsetValuesする
-
-        // setEditedCondition(conditionValues)
-        // setEditedInsurance(insuranceValues)
-        // setEditedInstruction(instructionValues)
-        // setEditedAppointment(appointmentValues)
-
-        // const selectedData = query.find((item: any) => item.id === rowData.id)
-        // //birthdayをDate型に変換してからフォームに設定する
-        // form.setValues(convertDateProperty(selectedData, 'birthday'))
-
         //requestのidを取得して、conditionをsetValuesする
         //その際に、一旦取得時のデータを取得して、比較して、差異があれば、だれかデータ更新したっていう通知だす。
-        // const selctedCondition = (condition: Condition) => condition.id
-        // console.log('cond', selctedCondition)
         editRequestModalHandlers.open()
     }
 
     return (
         <Container size="xl">
-            <Text size="md">{`${logicalName}一覧`}</Text>
+            <Text size="md">{`${requestLogicalName}一覧`}</Text>
 
             {/* 依頼登録ボタンを表示 */}
             <Group position="right">
@@ -109,8 +98,8 @@ export default function Index() {
 
             {/* 依頼一覧テーブルを表示 */}
             <DataTableBase
-                columns={columns}
-                records={requests}
+                columns={requestColumns}
+                records={requestsQuery}
                 onRowClick={(rowData) => onTableRowClick(rowData)}
             />
 
@@ -118,6 +107,26 @@ export default function Index() {
             <EditRequestModal
                 opened={editRequestModalOpend}
                 close={editRequestModalHandlers.close}
+                conditionLogicalName={conditionLogicalName}
+                conditionResource={conditionResource}
+                conditionForm={conditionForm}
+                conditionsQuery={conditionsQuery}
+                conditionFields={conditionFields}
+                insuranceLogicalName={insuranceLogicalName}
+                insuranceResource={insuranceResource}
+                insuranceForm={insuranceForm}
+                insurancesQuery={insurancesQuery}
+                insuranceFields={insuranceFields}
+                instructionLogicalName={instructionLogicalName}
+                instructionResource={instructionResource}
+                instructionForm={instructionForm}
+                instructionsQuery={instructionsQuery}
+                instructionFields={instructionFields}
+                appointmentLogicalName={appointmentLogicalName}
+                appointmentResource={appointmentResource}
+                appointmentForm={appointmentForm}
+                appointmentsQuery={appointmentsQuery}
+                appointmentFields={appointmentFields}
             />
         </Container>
     )
