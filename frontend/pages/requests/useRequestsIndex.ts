@@ -1,14 +1,7 @@
 import { useRequestFeature } from './requestFeature'
 import { useDisclosure } from '@mantine/hooks'
 import { useAtom, useSetAtom } from 'jotai'
-import {
-    displayPatientAtom,
-    editedAppointmentAtom,
-    editedConditionAtom,
-    editedInstructionAtom,
-    editedInsuranceAtom,
-    editedRequestAtom,
-} from './contexts/requestContexts'
+import { editedRequestAtom } from './contexts/requestContexts'
 import { useConditionFeature } from './condition/conditionFeature'
 import { usePatientFeature } from '../patients/patientFeature'
 import { useInsuranceFeature } from './insurance/insuranceFeature'
@@ -17,12 +10,14 @@ import { useAppointmentFeature } from './appointment/appointmentFeature'
 
 // Requestのindexを使用するためのカスタムフック
 export const useRequestsIndex = () => {
+    // Requestのindexを使用するためのカスタムフック
     const {
         logicalName: requestLogicalName,
         columns: requestColumns,
         query: requestsQuery,
     } = useRequestFeature()
 
+    // Patient用のFeatureを使用するためのカスタムフック
     const {
         logicalName: patientLogicalName,
         resource: patientResource,
@@ -31,6 +26,7 @@ export const useRequestsIndex = () => {
         fields: patientFields,
     } = usePatientFeature()
 
+    // Condition用のFeatureを使用するためのカスタムフック
     const {
         logicalName: conditionLogicalName,
         resource: conditionResource,
@@ -39,6 +35,7 @@ export const useRequestsIndex = () => {
         fields: conditionFields,
     } = useConditionFeature()
 
+    // Insurance用のFeatureを使用するためのカスタムフック
     const {
         logicalName: insuranceLogicalName,
         resource: insuranceResource,
@@ -47,6 +44,7 @@ export const useRequestsIndex = () => {
         fields: insuranceFields,
     } = useInsuranceFeature()
 
+    // Instruction用のFeatureを使用するためのカスタムフック
     const {
         logicalName: instructionLogicalName,
         resource: instructionResource,
@@ -55,6 +53,7 @@ export const useRequestsIndex = () => {
         fields: instructionFields,
     } = useInstructionFeature()
 
+    // Appointment用のFeatureを使用するためのカスタムフック
     const {
         logicalName: appointmentLogicalName,
         resource: appointmentResource,
@@ -71,7 +70,8 @@ export const useRequestsIndex = () => {
     const [editRequestModalOpend, editRequestModalHandlers] =
         useDisclosure(false)
 
-    const setEditedRequest = useSetAtom(editedRequestAtom)
+    // 編集中のRequestを保持するための状態を保持
+    const [editedRequest, setEditedRequest] = useAtom(editedRequestAtom)
 
     return {
         requestLogicalName,
@@ -106,6 +106,7 @@ export const useRequestsIndex = () => {
         createRequestModalHandlers,
         editRequestModalOpend,
         editRequestModalHandlers,
+        editedRequest,
         setEditedRequest,
     }
 }
