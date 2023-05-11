@@ -26,15 +26,15 @@ export default function Index() {
 
     // テーブルの行がクリックされた時の処理
     const onTableRowClick = (rowData: any) => {
+        // クリックされた行のデータを取得して、編集中の依頼としてセットする
         const selectedRequest = requests.find(
             (request: Request) => request.id === rowData.id
         )
         setEditedRequest(selectedRequest)
 
         //requestのidを取得して、conditionをsetValuesする
-        const selctedCondition = selectedRequest.conditions.map(
-            (condition: Condition) => condition.id
-        )
+        //その際に、一旦取得時のデータを取得して、比較して、差異があれば、だれかデータ更新したっていう通知だす。
+        const selctedCondition = (condition: Condition) => condition.id
         console.log('cond', selctedCondition)
         editRequestModalHandlers.open()
     }

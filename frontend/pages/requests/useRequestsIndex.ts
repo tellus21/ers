@@ -1,7 +1,7 @@
 import { useRequestFeature } from './requestFeature'
 import { useDisclosure } from '@mantine/hooks'
 import { useSetAtom } from 'jotai'
-import { editedRequestAtom } from '../../common/contexts'
+import { editedRequestAtom } from './contexts/requestContexts'
 import { useConditionFeature } from './condition/conditionFeature'
 
 // Requestのindexを使用するためのカスタムフック

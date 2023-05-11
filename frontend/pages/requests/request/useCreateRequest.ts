@@ -5,7 +5,7 @@ import { usePatientFeature } from '@/pages/patients/patientFeature'
 import {
     editedInstructionAtom,
     editedRequestAtom,
-} from '../../../common/contexts'
+} from '../contexts/requestContexts'
 
 // APIのURLとリソース名を定義
 const API_URL = process.env.NEXT_PUBLIC_API_URL
@@ -87,7 +87,6 @@ export const useInstructionRelationDataValues = async (
         initialValues,
         instructionId
     )
-
     // postするデータ
     const postData = changeUserId(changeInstructionData, userId)
 
