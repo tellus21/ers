@@ -23,7 +23,7 @@ export function RequestFormBase({
     query,
     children,
 }: RequestFormBaseProps) {
-    // 編集中のリクエストとインストラクションを取得します
+    // 編集中のrequestとinstructionを取得します
     const editedRequest = useAtomValue(editedRequestAtom)
     const editedInstruction = useAtomValue(editedInstructionAtom)
     const { updateSelectedDataMutation } = useRequestMutate(resource)

@@ -103,7 +103,7 @@ export function CreateRequestModal({
             opened={opened}
             onClose={onCloseClick}
             title="患者検索"
-            size="70%"
+            size="80%"
         >
             <Group position="apart">
                 <Text size="sm">

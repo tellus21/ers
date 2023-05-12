@@ -27,7 +27,7 @@ export function useInstructionFields() {
 const useMetaData = () => {
     return [
         {
-            formPath: 'examination_clinic_id',
+            formPath: 'examination_clinic.name',
             component: 'Select',
             props: {
                 label: '検査クリニック',
@@ -41,7 +41,7 @@ const useMetaData = () => {
             },
         },
         {
-            formPath: 'home_care_doctor_id',
+            formPath: 'home_care_doctor.name',
             component: 'Select',
             props: {
                 label: '指示医師',

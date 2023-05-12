@@ -56,6 +56,7 @@ export const patientInitialValues: PatientFormValues = {
 
 // ---【Feature】---
 export function usePatientFeature() {
+    // ---【Query】---
     const { query: homeCareClinics, homeCareClinicNames } =
         useHomeCareClinicFeature()
     const { query: homeCareDoctors, homeCareDoctorNames } =

@@ -9,6 +9,7 @@ import { Condition } from './condition/conditionFeature'
 import { Insurance } from './insurance/insuranceFeature'
 import { Instruction } from './instruction/instractionFeature'
 import { Appointment } from './appointment/appointmentFeature'
+import { convertDateProperty } from '@/common/lib'
 
 // ReactのContext APIを使用して、編集中の依頼と指示を保持するためのコンテキストを作成
 export const EditedRequestContext = createContext({})
@@ -74,9 +75,21 @@ export default function Index() {
         insuranceForm.setValues(insuranceValues)
 
         // クリックされた行のデータを指示としてセットする
-        const instructionValues = instructionsQuery.find(
+        let instructionValues = instructionsQuery.find(
             (instruction: Instruction) => instruction.id === selectedRequest.id
         )
+        if (instructionValues.candidate_month_1 !== null) {
+            instructionValues = convertDateProperty(
+                instructionValues,
+                'candidate_month_1'
+            )
+        }
+        if (instructionValues.candidate_month_2 !== null) {
+            instructionValues = convertDateProperty(
+                instructionValues,
+                'candidate_month_2'
+            )
+        }
         instructionForm.setValues(instructionValues)
 
         // クリックされた行のデータを予約情報としてセットする

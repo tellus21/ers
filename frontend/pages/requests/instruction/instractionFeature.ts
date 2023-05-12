@@ -1,6 +1,9 @@
 import { useQueryBase } from '@/common/hooks'
 import { useForm } from '@mantine/form'
 import { useInstructionFields } from './useInstructionFields'
+import { useExaminationClinicFeature } from '@/pages/examination-clinics/examinationClinicFeature'
+import { useHomeCareDoctorFeature } from '@/pages/home-care-doctors/homeCareDoctorFeature'
+import { findIdByName } from '@/common/lib'
 
 // ---【Type】---
 export interface Instruction {
@@ -93,7 +96,10 @@ export interface Instruction {
 }
 
 // ---【FormValues】---
-export interface InstructionFormValues extends Instruction {}
+export interface InstructionFormValues extends Instruction {
+    examination_clinic: { name: string }
+    home_care_doctor: { name: string }
+}
 
 // ---【InitialValues】---
 export const instructionInitialValues: InstructionFormValues = {
@@ -183,24 +189,43 @@ export const instructionInitialValues: InstructionFormValues = {
     created_at: new Date(),
     updated_at: new Date(),
     deleted_at: new Date(),
+    examination_clinic: { name: '' },
+    home_care_doctor: { name: '' },
 }
 
 // ---【Feature】---
 export function useInstructionFeature() {
+    // ---【Query】---
+    const { query: examinationClinics, examinationClinicNames } =
+        useExaminationClinicFeature()
+    const { query: homeCareDoctors, homeCareDoctorNames } =
+        useHomeCareDoctorFeature()
+
     // ---【Name】---
     const logicalName = '指示内容'
     const resource = 'instructions'
 
-    // ---【FormValues】---
-    type FormValues = Omit<Instruction, 'id'>
-
     // ---【Validate】---
     const validate = {}
+
+    // ---【TransFormValues】---
+    const transformValues = (values: any): InstructionFormValues => ({
+        ...values,
+        examination_clinic_id: findIdByName(
+            examinationClinics,
+            values.examination_clinic.name
+        ),
+        home_care_doctor_id: findIdByName(
+            homeCareDoctors,
+            values.home_care_doctor.name
+        ),
+    })
 
     // ---【Form】---
     const form = useForm<InstructionFormValues>({
         initialValues: instructionInitialValues,
         validate: validate,
+        transformValues: transformValues,
     })
 
     //データが多いため、別ファイルに記載
