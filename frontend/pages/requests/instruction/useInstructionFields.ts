@@ -1,3 +1,6 @@
+import { useExaminationClinicFeature } from '@/pages/examination-clinics/examinationClinicFeature'
+import { useHomeCareDoctorFeature } from '@/pages/home-care-doctors/homeCareDoctorFeature'
+
 export function useInstructionFields() {
     const metaData = useMetaData()
 
@@ -25,18 +28,16 @@ export function useInstructionFields() {
 }
 
 const useMetaData = () => {
+    const { examinationClinicNames } = useExaminationClinicFeature()
+    const { homeCareDoctorNames } = useHomeCareDoctorFeature()
+
     return [
         {
             formPath: 'examination_clinic.name',
             component: 'Select',
             props: {
                 label: '検査クリニック',
-                data: [
-                    'LSI札幌クリニック',
-                    'きた在宅クリニック',
-                    'スマイル健康クリニック',
-                ], //サンプル
-                // data:examination_clinic.name???
+                data: examinationClinicNames,
                 withAsterisk: true,
             },
         },
@@ -45,7 +46,7 @@ const useMetaData = () => {
             component: 'Select',
             props: {
                 label: '指示医師',
-                data: ['杉江先生', '深浦先生'], //サンプル
+                data: homeCareDoctorNames,
                 withAsterisk: true,
             },
         },
