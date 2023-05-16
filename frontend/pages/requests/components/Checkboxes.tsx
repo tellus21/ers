@@ -6,7 +6,7 @@ interface CheckboxesProps {
         label: string
         checkboxProps: {
             label: string
-            formPath: string
+            formpath: string
         }[]
     }
 }
@@ -20,7 +20,9 @@ export const Checkboxes = ({ form, props }: CheckboxesProps) => (
             {props?.checkboxProps?.map((checkboxProp, index) => (
                 <Checkbox
                     {...checkboxProp}
-                    {...form.getInputProps(checkboxProp.formPath)}
+                    {...form.getInputProps(checkboxProp.formpath, {
+                        type: 'checkbox',
+                    })}
                     key={index}
                 />
             ))}

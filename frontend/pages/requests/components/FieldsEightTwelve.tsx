@@ -32,7 +32,9 @@ export function FieldsEightTwelve({ form, fields }: FieldsEightTwelveProps) {
                                 key={index}
                                 p={6}
                                 {...field.props}
-                                {...form.getInputProps(field.formPath)}
+                                {...form.getInputProps(field.formPath, {
+                                    type: 'checkbox',
+                                })}
                             />
                         )
                     case 'Text':
