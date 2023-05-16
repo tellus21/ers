@@ -24,7 +24,7 @@ class AppointmentRequest extends FormRequest
             'fax_sender' => 'nullable|string',
             'transmission_date' => 'nullable|string',
             'number_of_documents_sent' => 'nullable|integer',
-            'caution_on_the_day' => 'nullable|text',
+            'caution_on_the_day' => 'nullable|string',
         ];
     }
 }

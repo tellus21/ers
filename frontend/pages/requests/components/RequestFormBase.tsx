@@ -23,12 +23,12 @@ export function RequestFormBase({
     query,
     children,
 }: RequestFormBaseProps) {
-    // 編集中のrequestとinstructionを取得します
+    // フォームの基本的なプロパティを受け取ります
     const editedRequest = useAtomValue(editedRequestAtom)
     const editedInstruction = useAtomValue(editedInstructionAtom)
     const { updateSelectedDataMutation } = useRequestMutate(resource)
 
-    // フォームが提出されたときに実行される関数を定義します
+    // フォームを提出する関数を定義します
     const handleSubmit = (values: any) => {
         let ownId
         let newValues

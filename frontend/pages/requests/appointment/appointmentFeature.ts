@@ -136,7 +136,7 @@ export function useAppointmentFeature() {
                 component: 'Blank',
             },
             {
-                formPath: 'timeaccompanist',
+                formPath: 'accompanist',
                 component: 'TextInput',
                 props: {
                     label: '付添者',

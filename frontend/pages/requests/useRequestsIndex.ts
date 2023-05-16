@@ -1,7 +1,10 @@
 import { useRequestFeature } from './requestFeature'
 import { useDisclosure } from '@mantine/hooks'
 import { useAtom, useSetAtom } from 'jotai'
-import { editedRequestAtom } from './contexts/requestContexts'
+import {
+    editedInstructionAtom,
+    editedRequestAtom,
+} from './contexts/requestContexts'
 import { useConditionFeature } from './condition/conditionFeature'
 import { usePatientFeature } from '../patients/patientFeature'
 import { useInsuranceFeature } from './insurance/insuranceFeature'
@@ -70,8 +73,11 @@ export const useRequestsIndex = () => {
     const [editRequestModalOpend, editRequestModalHandlers] =
         useDisclosure(false)
 
-    // 編集中のRequestを保持するための状態を保持
-    const [editedRequest, setEditedRequest] = useAtom(editedRequestAtom)
+    // 編集中のRequestを変更する関数を取得
+    const setEditedRequest = useSetAtom(editedRequestAtom)
+
+    // 編集中のInstructionを変更する関数を取得
+    const setEditedInstruction = useSetAtom(editedInstructionAtom)
 
     return {
         requestLogicalName,
@@ -106,7 +112,7 @@ export const useRequestsIndex = () => {
         createRequestModalHandlers,
         editRequestModalOpend,
         editRequestModalHandlers,
-        editedRequest,
         setEditedRequest,
+        setEditedInstruction,
     }
 }

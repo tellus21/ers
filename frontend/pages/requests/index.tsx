@@ -14,7 +14,6 @@ import { convertDateProperty } from '@/common/lib'
 // ReactのContext APIを使用して、編集中の依頼と指示を保持するためのコンテキストを作成
 export const EditedRequestContext = createContext({})
 export const EditedInstructContext = createContext({})
-
 export default function Index() {
     // 依頼一覧に関する情報を取得
     const {
@@ -50,41 +49,44 @@ export default function Index() {
         createRequestModalHandlers,
         editRequestModalOpend,
         editRequestModalHandlers,
-        editedRequest,
         setEditedRequest,
+        setEditedInstruction,
     } = useRequestsIndex()
 
     // テーブルの行がクリックされた時の処理
     const onTableRowClick = (rowData: any) => {
         // クリックされた行のデータを依頼としてセットする
-        const selectedRequest = requestsQuery.find(
+        const selectedRequest = requestsQuery?.find(
             (request: Request) => request.id === rowData.id
         )
+
+        // 編集中のrequestを更新
         setEditedRequest(selectedRequest)
 
         // クリックされた行のデータを患者状況としてセットする
-        const conditionValues = conditionsQuery.find(
+        const conditionValues = conditionsQuery?.find(
             (condition: Condition) => condition.id === selectedRequest.id
         )
         conditionForm.setValues(conditionValues)
 
         // クリックされた行のデータを保険情報としてセットする
-        const insuranceValues = insurancesQuery.find(
+        const insuranceValues = insurancesQuery?.find(
             (insurance: Insurance) => insurance.id === selectedRequest.id
         )
         insuranceForm.setValues(insuranceValues)
 
         // クリックされた行のデータを指示としてセットする
-        let instructionValues = instructionsQuery.find(
+        let instructionValues = instructionsQuery?.find(
             (instruction: Instruction) => instruction.id === selectedRequest.id
         )
-        if (instructionValues.candidate_month_1 !== null) {
+        // instructionValuesの日付型のプロパティを変換
+        if (instructionValues?.candidate_month_1 !== null) {
             instructionValues = convertDateProperty(
                 instructionValues,
                 'candidate_month_1'
             )
         }
-        if (instructionValues.candidate_month_2 !== null) {
+        if (instructionValues?.candidate_month_2 !== null) {
             instructionValues = convertDateProperty(
                 instructionValues,
                 'candidate_month_2'
@@ -92,10 +94,26 @@ export default function Index() {
         }
         instructionForm.setValues(instructionValues)
 
+        // 編集中のinstructionを更新
+        setEditedInstruction(instructionValues)
+
         // クリックされた行のデータを予約情報としてセットする
-        const appointmentValues = appointmentsQuery.find(
+        let appointmentValues = appointmentsQuery?.find(
             (appointment: Appointment) => appointment.id === selectedRequest.id
         )
+        // appointmentValuesの日付型のプロパティを変換
+        if (appointmentValues?.scheduled_confirmation_date !== null) {
+            appointmentValues = convertDateProperty(
+                appointmentValues,
+                'scheduled_confirmation_date'
+            )
+        }
+        if (appointmentValues?.transmission_date !== null) {
+            appointmentValues = convertDateProperty(
+                appointmentValues,
+                'transmission_date'
+            )
+        }
         appointmentForm.setValues(appointmentValues)
 
         //requestのidを取得して、conditionをsetValuesする

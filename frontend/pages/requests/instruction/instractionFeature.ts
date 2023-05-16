@@ -196,10 +196,8 @@ export const instructionInitialValues: InstructionFormValues = {
 // ---【Feature】---
 export function useInstructionFeature() {
     // ---【Query】---
-    const { query: examinationClinics, examinationClinicNames } =
-        useExaminationClinicFeature()
-    const { query: homeCareDoctors, homeCareDoctorNames } =
-        useHomeCareDoctorFeature()
+    const { query: examinationClinics } = useExaminationClinicFeature()
+    const { query: homeCareDoctors } = useHomeCareDoctorFeature()
 
     // ---【Name】---
     const logicalName = '指示内容'
