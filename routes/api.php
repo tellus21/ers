@@ -3,9 +3,7 @@
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\ExaminationClinicController;
-use App\Http\Controllers\ExaminationClinicPatientController;
 use App\Http\Controllers\HomeCareClinicController;
-use App\Http\Controllers\HomeCareClinicNursingHomeController;
 use App\Http\Controllers\HomeCareDoctorController;
 use App\Http\Controllers\InstructionController;
 use App\Http\Controllers\InsuranceController;
@@ -41,5 +39,3 @@ Route::apiResource('conditions', ConditionController::class);
 Route::apiResource('insurances', InsuranceController::class);
 Route::apiResource('instructions', InstructionController::class);
 Route::apiResource('appointments', AppointmentController::class);
-Route::apiResource('examination_clinic_patients', ExaminationClinicPatientController::class);
-Route::apiResource('home_care_clinic_nursing_homes', HomeCareClinicNursingHomeController::class);
