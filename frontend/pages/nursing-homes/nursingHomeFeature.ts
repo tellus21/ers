@@ -16,7 +16,11 @@ export interface NursingHome {
     fax_number: string
     main_contact: string
     sub_contact: string
-    pickup_time: string
+    pickup_time_lsi: string
+    pickup_time_smile: string
+    pickup_time_kotoni: string
+    pickup_time_kita: string
+    pickup_time_kita_highway: string
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
@@ -37,7 +41,11 @@ export const nursingHomeInitialValues: NursingHomeFormValues = {
     fax_number: '',
     main_contact: '',
     sub_contact: '',
-    pickup_time: '',
+    pickup_time_lsi: '',
+    pickup_time_smile: '',
+    pickup_time_kotoni: '',
+    pickup_time_kita: '',
+    pickup_time_kita_highway: '',
     created_at: new Date(),
     updated_at: new Date(),
     deleted_at: null,
@@ -70,7 +78,11 @@ export function useNursingHomeFeature() {
         { accessor: 'fax_number', title: 'FAX番号' },
         { accessor: 'main_contact', title: '主担当' },
         { accessor: 'sub_contact', title: '副担当' },
-        { accessor: 'pick_up_time', title: '送迎時間' },
+        { accessor: 'pickup_time_lsi', title: 'LSI' },
+        { accessor: 'pickup_time_smile', title: 'スマイル' },
+        { accessor: 'pickup_time_kotoni', title: 'ことに' },
+        { accessor: 'pickup_time_kita', title: 'きた' },
+        { accessor: 'pickup_time_kita_highway', title: 'きた高速' },
     ]
 
     // ---【Fields】---
@@ -144,10 +156,41 @@ export function useNursingHomeFeature() {
             },
         },
         {
-            formPath: 'pickup_time',
+            component: 'Blank',
+        },
+        {
+            formPath: 'pickup_time_lsi',
             component: 'TextInput',
             props: {
-                label: '送迎時間',
+                label: '送迎時間(LSI)',
+            },
+        },
+        {
+            formPath: 'pickup_time_smile',
+            component: 'TextInput',
+            props: {
+                label: '送迎時間(スマイル)',
+            },
+        },
+        {
+            formPath: 'pickup_time_kotoni',
+            component: 'TextInput',
+            props: {
+                label: '送迎時間(ことに)',
+            },
+        },
+        {
+            formPath: 'pickup_time_kita',
+            component: 'TextInput',
+            props: {
+                label: '送迎時間(きた)',
+            },
+        },
+        {
+            formPath: 'pickup_time_kita_highway',
+            component: 'TextInput',
+            props: {
+                label: '送迎時間(きた高速)',
             },
         },
     ]

@@ -2,16 +2,7 @@ import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { TitleText } from '@/pages/requests/components/TitleText'
 import { FieldsEightTwelve } from '@/pages/requests/components/FieldsEightTwelve'
 import { Box, Divider, Group, Text } from '@mantine/core'
-import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
-import { useAppointmentFeature } from './appointmentFeature'
-
-const homeClinicsTest = [
-    { name: 'スマイル', time: '10分' },
-    { name: 'ひがし', time: '20分' },
-    { name: 'ことに', time: '30分' },
-    { name: 'きた', time: '100分' },
-    { name: 'きた高速', time: '50分' },
-]
+import { DisplayPickUpTimes } from './components/DisplayPickUpTimeList'
 
 interface AppointmentFormProps {
     logicalName: string
@@ -33,9 +24,11 @@ export function AppointmentForm({
             <TitleText title={logicalName} />
             <Box px={12}>
                 <Group position="apart">
-                    <DisplayPickUpTimeList homeClinics={homeClinicsTest} />
+                    {/* 送迎時間 */}
+                    <DisplayPickUpTimes />
                     <Text size="md">最終更新日：〇〇、記載者：〇〇</Text>
                 </Group>
+
                 {/* 診察関連 */}
                 <Divider label="診察関連" />
                 <FieldsEightTwelve form={form} fields={fields.examination} />

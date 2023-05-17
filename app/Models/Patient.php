@@ -15,18 +15,16 @@ class Patient extends Model
         'home_care_doctor_id',
         'nursing_home_id',
         'karte_number_home',
-        'karte_number_home',
-        'karte_number_lsi',
-        'karte_number_smile',
-        'karte_number_kotoni',
-        'karte_number_kita',
-        'karte_number_kita_highway',
         'last_name_kana',
         'first_name_kana',
         'last_name',
         'first_name',
         'birthday',
         'gender',
+        'karte_number_lsi',
+        'karte_number_smile',
+        'karte_number_kotoni',
+        'karte_number_kita',
     ];
 
     public function homeCareClinic()

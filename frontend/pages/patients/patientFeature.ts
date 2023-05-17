@@ -21,6 +21,10 @@ export interface Patient {
     first_name: string
     birthday: Date | null
     gender: string
+    karte_number_lsi: string
+    karte_number_smile: string
+    karte_number_kotoni: string
+    karte_number_kita: string
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
@@ -46,6 +50,10 @@ export const patientInitialValues: PatientFormValues = {
     first_name: '',
     birthday: new Date(1850, 0, 1), //この辺が生年月日の患者が多そうだと推測
     gender: '',
+    karte_number_lsi: '',
+    karte_number_smile: '',
+    karte_number_kotoni: '',
+    karte_number_kita: '',
     created_at: new Date(),
     updated_at: new Date(),
     deleted_at: null,
@@ -106,7 +114,6 @@ export function usePatientFeature() {
         { accessor: 'home_care_clinic.name', title: '在宅クリニック' },
         { accessor: 'home_care_doctor.name', title: '主治医' },
         { accessor: 'karte_number_home', title: 'カルテ番号(在宅)' },
-        { accessor: '', title: 'カルテ番号(検査)' },
         { accessor: 'last_name_kana', title: '姓(フリガナ)' },
         { accessor: 'first_name_kana', title: '名(フリガナ)' },
         { accessor: 'last_name', title: '姓' },
@@ -119,6 +126,10 @@ export function usePatientFeature() {
         },
         { accessor: 'gender', title: '性別' },
         { accessor: 'nursing_home.name', title: '入居施設', width: 150 },
+        { accessor: 'karte_number_lsi', title: 'カルテ(LSI)' },
+        { accessor: 'karte_number_smile', title: 'カルテ(スマイル)' },
+        { accessor: 'karte_number_kotoni', title: 'カルテ(ことに)' },
+        { accessor: 'karte_number_kita', title: 'カルテ(きた)' },
     ]
 
     // ---【Fields】---
@@ -148,16 +159,8 @@ export function usePatientFeature() {
                 maxLength: 6,
             },
         },
-        // {
-        //     formPath: 'examination_karte_number',
-        //     component: 'TextInput',
-        //     props: {
-        //         label: 'カルテ番号(検査)',
-        //         maxLength: 6,
-        //     },
-        // },
         {
-            component: 'Blank',
+            component: 'BlankLong',
         },
         {
             formPath: 'last_name_kana',
@@ -215,6 +218,41 @@ export function usePatientFeature() {
                 data: nursingHomeNames,
                 label: '入居施設',
                 withAsterisk: true,
+            },
+        },
+        {
+            component: 'Blank',
+        },
+        {
+            formPath: 'karte_number_lsi',
+            component: 'TextInput',
+            props: {
+                label: 'カルテ番号(LSI)',
+                maxLength: 6,
+            },
+        },
+        {
+            formPath: 'karte_number_smile',
+            component: 'TextInput',
+            props: {
+                label: 'カルテ番号(スマイル)',
+                maxLength: 6,
+            },
+        },
+        {
+            formPath: 'karte_number_kotoni',
+            component: 'TextInput',
+            props: {
+                label: 'カルテ番号(ことに)',
+                maxLength: 6,
+            },
+        },
+        {
+            formPath: 'karte_number_kita',
+            component: 'TextInput',
+            props: {
+                label: 'カルテ番号(きた)',
+                maxLength: 6,
             },
         },
     ]
