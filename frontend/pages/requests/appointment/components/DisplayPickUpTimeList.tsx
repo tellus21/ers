@@ -34,7 +34,9 @@ export function DisplayPickUpTimes() {
                         <Group spacing="xs">
                             <Text size="xs">{pickupTime.name}</Text>
                             <Box bg="gray.0" p={5}>
-                                <Text>{pickupTime.time}分</Text>
+                                {pickupTime.time && (
+                                    <Text>{pickupTime.time}分</Text>
+                                )}
                             </Box>
                             <Divider size="xs" orientation="vertical" />
                         </Group>

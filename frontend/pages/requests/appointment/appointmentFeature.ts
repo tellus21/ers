@@ -62,7 +62,7 @@ export function useAppointmentFeature() {
 
     // ---【Validate】---
     const validate = {
-        //うまくいかない
+        //うまくいかないinput側で文字数制限かければ不要かも
         // home_clinic_karte_number: (value: string) =>
         //     value.toString.length < 5 ? 'Invalid email' : null,
     }
