@@ -47,7 +47,7 @@ export function useRequestFeature() {
             accessor: 'patient.home_care_clinic.name',
             title: '在宅クリニック名',
         },
-        { accessor: 'patient.home_karte_number', title: '在宅ID' },
+        { accessor: 'patient.karte_number_home', title: '在宅ID' },
         { accessor: 'patient.nursing_home.name', title: '入居先' },
         { accessor: 'patient.name', title: '患者氏名' },
         //年齢がちゃんと取得できない。。。

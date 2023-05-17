@@ -13,8 +13,12 @@ class CreatePatientsTable extends Migration
             $table->foreignId('home_care_clinic_id')->constrained();
             $table->foreignId('home_care_doctor_id')->nullable()->constrained(); //nullの場合もあるのでnullable
             $table->foreignId('nursing_home_id')->constrained();
-            $table->string('home_karte_number')->nullable();
-            $table->string('exam_karte_number')->nullable();
+            $table->string('karte_number_home')->nullable();
+            $table->string('karte_number_lsi')->nullable();
+            $table->string('karte_number_smile')->nullable();
+            $table->string('karte_number_kotoni')->nullable();
+            $table->string('karte_number_kita')->nullable();
+            $table->string('karte_number_kita_highway')->nullable();
             $table->string('last_name_kana')->nullable();
             $table->string('first_name_kana')->nullable();
             $table->string('last_name')->nullable();

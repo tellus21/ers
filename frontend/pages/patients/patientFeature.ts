@@ -14,7 +14,7 @@ export interface Patient {
     home_care_clinic_id: number
     home_care_doctor_id: number
     nursing_home_id: number
-    home_karte_number: string
+    karte_number_home: string
     last_name_kana: string
     first_name_kana: string
     last_name: string
@@ -39,7 +39,7 @@ export const patientInitialValues: PatientFormValues = {
     home_care_clinic_id: 0,
     home_care_doctor_id: 0,
     nursing_home_id: 0,
-    home_karte_number: '',
+    karte_number_home: '',
     last_name_kana: '',
     first_name_kana: '',
     last_name: '',
@@ -105,7 +105,7 @@ export function usePatientFeature() {
         { accessor: 'id', title: 'id' },
         { accessor: 'home_care_clinic.name', title: '在宅クリニック' },
         { accessor: 'home_care_doctor.name', title: '主治医' },
-        { accessor: 'home_karte_number', title: 'カルテ番号(在宅)' },
+        { accessor: 'karte_number_home', title: 'カルテ番号(在宅)' },
         { accessor: '', title: 'カルテ番号(検査)' },
         { accessor: 'last_name_kana', title: '姓(フリガナ)' },
         { accessor: 'first_name_kana', title: '名(フリガナ)' },
@@ -141,7 +141,7 @@ export function usePatientFeature() {
             },
         },
         {
-            formPath: 'home_karte_number',
+            formPath: 'karte_number_home',
             component: 'TextInput',
             props: {
                 label: 'カルテ番号(在宅)',

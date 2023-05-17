@@ -20,6 +20,10 @@ class NursingHome extends Model
         'fax_number',
         'main_contact',
         'sub_contact',
-        'pickup_time',
+        'pickup_time_lsi',
+        'pickup_time_smile',
+        'pickup_time_kotoni',
+        'pickup_time_kita',
+        'pickup_time_kita_highway',
     ];
 }

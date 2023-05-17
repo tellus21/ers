@@ -23,7 +23,7 @@ export function DisplayPatient() {
             data: displayedPatient.home_care_clinic?.name,
         },
         { label: '主治医', data: displayedPatient.home_care_doctor?.name },
-        { label: 'カルテ番号(在宅)', data: displayedPatient.home_karte_number },
+        { label: 'カルテ番号(在宅)', data: displayedPatient.karte_number_home },
         { label: 'カルテ番号(検査)', data: '111(仮)' },
         { label: '姓(フリガナ)', data: displayedPatient.last_name_kana },
         { label: '名(フリガナ)', data: displayedPatient.first_name_kana },
