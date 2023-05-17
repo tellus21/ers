@@ -1,13 +1,14 @@
 import { useQueryBase } from '@/common/hooks'
 import { Patient } from '../patients/patientFeature'
 import { User } from '../users/UserFeature'
-import dayjs from 'dayjs'
 
 // ---【Type】---
 export interface Request {
     id: number
     user_id: number | null
     patient_id: number | null
+    progress_status: string
+    alert_level: string
     created_at: Date | null
     updated_at: Date | null
     deleted_at: Date | null
@@ -23,6 +24,8 @@ export const requestInitialValue: RequestFormValues = {
     id: 0,
     user_id: 0,
     patient_id: 0,
+    progress_status: '依頼中',
+    alert_level: '問題なし',
     created_at: null,
     updated_at: null,
     deleted_at: null,
@@ -40,7 +43,8 @@ export function useRequestFeature() {
     const columns = [
         { accessor: 'id', title: 'id' },
         { accessor: 'is_confirmed', title: '確認済' },
-        { accessor: 'status', title: '進捗ステータス' },
+        { accessor: 'progress_status', title: '進捗状況' },
+        { accessor: 'alert_level', title: '注意レベル' },
         { accessor: 'request_date', title: '依頼日' },
         { accessor: 'user.last_name', title: '作成者' },
         {

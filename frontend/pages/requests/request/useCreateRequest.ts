@@ -36,10 +36,12 @@ export const useCreateRequestValues = async (patientId: number | undefined) => {
     //---【requestの作成】---
     let resource = 'requests'
 
-    // 依頼作成時にpostするデータ
+    // ★★テストデータ！！依頼作成時にpostするデータ
     const postRequest = {
         user_id: 1, //ログイン中のユーザid
         patient_id: patientId,
+        progress_status: '依頼中',
+        alert_level: '問題なし',
     }
 
     // POSTリクエストを送信し、レスポンスを受け取る
