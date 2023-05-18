@@ -1,4 +1,15 @@
-import { Box, Button, Grid, Group, Modal, Paper, Stack } from '@mantine/core'
+import {
+    Badge,
+    Box,
+    Button,
+    Center,
+    Grid,
+    Group,
+    Modal,
+    Paper,
+    Stack,
+    Text,
+} from '@mantine/core'
 import { RequestMetaData } from '../request-metadata/RequestMetaData'
 import { DisplayPatient } from '../patient/DisplayPatient'
 import { ConditionForm } from '../condition/ConditionForm'
@@ -59,6 +70,13 @@ export function EditRequestModal({
         <Modal opened={opened} onClose={close} title="検査依頼作成" size="100%">
             <Box bg="gray.2" p={20}>
                 <Grid>
+                    {/* <Grid.Col span={12}>
+                        <Paper bg="green.0">
+                            <Center>
+                                <Text size="lg">保留中</Text>
+                            </Center>
+                        </Paper>
+                    </Grid.Col> */}
                     <Grid.Col span={12}>
                         <Paper>
                             <RequestMetaData />

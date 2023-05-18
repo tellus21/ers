@@ -1,18 +1,28 @@
-import { Badge, Group, Text } from '@mantine/core'
+import { Button, Group, Paper, Text } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { editedRequestAtom } from '../contexts/requestContexts'
+import { Request } from '../requestFeature'
 
 // リクエストのメタデータを表示するコンポーネント
 export function RequestMetaData() {
-    const editedRequest = useAtomValue(editedRequestAtom)
+    const editedRequest: Request = useAtomValue(editedRequestAtom)
+    const bgColorMap: { [key: string]: string } = {
+        依頼中: 'blue.1',
+        予約確定: 'red.1',
+        保留中: 'green.1',
+    }
 
     return (
         <Group position="apart">
             <Group>
-                <Badge size="lg">予約進行中</Badge>
-                <Text size="md">依頼番号：</Text>
+                <Button variant="outline" color="blue" size="sm">
+                    保留にする
+                </Button>
+                <Paper p={4} bg={bgColorMap[editedRequest.progress_status]}>
+                    {editedRequest.progress_status}
+                </Paper>
                 <Text size="md" td="underline">
-                    {editedRequest.id}
+                    No. {editedRequest.id}
                 </Text>
             </Group>
 
@@ -33,12 +43,12 @@ export function RequestMetaData() {
 
                 <Group>
                     <Text size="md">作成者：</Text>
-                    <Text size="md" td="underline">
-                        {editedRequest.user_id}
-                    </Text>
-                    <Text size="md" td="underline">
-                        {editedRequest.id}
-                    </Text>
+                    {editedRequest.user && (
+                        <Text size="md" td="underline">
+                            {editedRequest.user.last_name}{' '}
+                            {editedRequest.user.first_name}
+                        </Text>
+                    )}
                 </Group>
             </Group>
         </Group>

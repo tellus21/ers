@@ -1,4 +1,4 @@
-import { Box, Divider, Group, Space, Tabs, Text } from '@mantine/core'
+import { Box, Divider, Space, Tabs, Text } from '@mantine/core'
 import { RequestFormBase } from '@/pages/requests/components/RequestFormBase'
 import { FieldsEightTwelve } from '@/pages/requests/components/FieldsEightTwelve'
 import { TitleText } from '../components/TitleText'
@@ -40,9 +40,7 @@ export function InstructionForm({
                     <Tabs.Panel value="2" pt="xs"></Tabs.Panel>
                     <Tabs.Panel value="3" pt="xs"></Tabs.Panel>
                 </Tabs>
-                <Group position="right">
-                    <Text size="md">最終更新日：〇〇、記載者：〇〇</Text>
-                </Group>
+                <Box p={12} pt={24} bg="gray.0"></Box>
                 <FieldsEightTwelve form={form} fields={fields.metaData} />
                 {/* CT */}
                 <Divider label={'CT'} />
