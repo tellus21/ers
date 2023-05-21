@@ -6,10 +6,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import 'dayjs/locale/ja'
 
-import { AppShellLayout } from '@/pages/components/layout/AppShellLayout'
 import { emsTheme } from '@/common/theme'
 import { Notifications } from '@mantine/notifications'
 import { Provider } from 'jotai'
+import { AppShellLayout } from '@/feature/components/layout/AppShellLayout'
 
 export default function App(props: AppProps) {
     const queryClient = new QueryClient()
