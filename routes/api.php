@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ConditionController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\ExaminationClinicController;
 use App\Http\Controllers\HomeCareClinicController;
 use App\Http\Controllers\HomeCareDoctorController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\NursingHomeController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,8 +36,16 @@ Route::apiResource('home_care_clinics', HomeCareClinicController::class);
 Route::apiResource('home_care_doctors', HomeCareDoctorController::class);
 Route::apiResource('nursing_homes', NursingHomeController::class);
 Route::apiResource('patients', PatientController::class);
+
 Route::apiResource('requests', RequestController::class);
 Route::apiResource('conditions', ConditionController::class);
 Route::apiResource('insurances', InsuranceController::class);
 Route::apiResource('instructions', InstructionController::class);
 Route::apiResource('appointments', AppointmentController::class);
+
+// ファイルダウンロード関連
+define('DOWNLOAD_PATH', 'download/');
+
+Route::get(DOWNLOAD_PATH . 'fax', [DownloadController::class, 'fax']);
+Route::get(DOWNLOAD_PATH . 'medical_info', [DownloadController::class, 'medicalInformation']);
+Route::get(DOWNLOAD_PATH . 'medical_questionnaire', [DownloadController::class, 'medicalQuestionnaire']);

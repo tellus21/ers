@@ -1,4 +1,4 @@
-import { Box, Divider, Group, Text } from '@mantine/core'
+import { Box, Divider, Group, Text, Button } from '@mantine/core'
 import { DisplayPickUpTimes } from './components/DisplayPickUpTimeList'
 import { RequestFormBase } from '../components/RequestFormBase'
 import { TitleText } from '../components/TitleText'
@@ -37,6 +37,10 @@ export function AppointmentForm({
                 <FieldsEightTwelve form={form} fields={fields.pickUp} />
                 {/* FAX関連 */}
                 <Divider label="FAX関連" />
+                <Group position="right">
+                    <Button color="gray.6">dd</Button>
+                </Group>
+
                 <FieldsEightTwelve form={form} fields={fields.fax} />
             </Box>
         </RequestFormBase>
