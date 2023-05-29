@@ -7,18 +7,9 @@ use App\Models\Appointment;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-// ファイルダウンロード関連
-// define('DOWNLOAD_DIR', 'download/');
+define('DOWNLOAD_DIR', 'download/');
 
-/**
- * xlsxファイルの文字列を置換する
- *
- * @param string $filePath
- * @param array $keyValueArray
- * @param string $savaPath
- * @return void
- */
-function replaceStringInXlsx(string $filePath, array $keyValueArray, string $savaPath)
+function replaceStringInXlsx(string $filePath, array $keyValueArray)
 {
     // xlsxファイルを読み込む
     $reader = IOFactory::createReader('Xlsx');
@@ -42,7 +33,7 @@ function replaceStringInXlsx(string $filePath, array $keyValueArray, string $sav
 
     // 編集内容を保存する
     $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-    $writer->save($savaPath);
+    $writer->save(DOWNLOAD_DIR . "aFAX.xlsx");
 }
 
 class AppointmentController extends Controller
@@ -77,11 +68,7 @@ class AppointmentController extends Controller
 
     public function download_fax($id)
     {
-        // 指定されたIDのデータを取得
         $appointment = Appointment::find($id);
-
-        // xlsxファイルのパスを取得
-        $filePath = public_path(config('constants.DOWNLOAD_DIR') . "FAX.xlsx");
 
         // 置換する文字列を配列で保存
         $keyValueArray = [
@@ -89,13 +76,11 @@ class AppointmentController extends Controller
             '$fax_sender' => $appointment->welcoming_time,
         ];
 
-        // ダウンロードするファイルの名前を指定
-        $fileName = 'FAX.xlsx';
+        // xlsxファイルのパスを取得
+        $filePath = public_path('download/FAX.xlsx');
 
-        // xlsxファイルの文字列を置換する
-        replaceStringInXlsx($filePath, $keyValueArray, config('constants.DOWNLOAD_DIR') . $fileName);
+        replaceStringInXlsx($filePath, $keyValueArray);
 
-        // ファイルをダウンロードする
-        return response()->download(public_path(config('constants.DOWNLOAD_DIR') . $fileName));
+        return response()->download(public_path(DOWNLOAD_DIR . "aFAX.xlsx"));
     }
 }
