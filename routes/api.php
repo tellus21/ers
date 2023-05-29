@@ -42,6 +42,8 @@ Route::apiResource('conditions', ConditionController::class);
 Route::apiResource('insurances', InsuranceController::class);
 Route::apiResource('instructions', InstructionController::class);
 Route::apiResource('appointments', AppointmentController::class);
+Route::get('appointments/{appointment}/download_fax', [AppointmentController::class, 'download_fax']);
+
 
 // ファイルダウンロード関連
 define('DOWNLOAD_PATH', 'download/');
