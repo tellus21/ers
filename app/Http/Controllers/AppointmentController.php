@@ -9,7 +9,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 
 define('DOWNLOAD_DIR', 'download/');
 
-function replaceStringInXlsx($filePath, $searchString, $replaceString)
+function replaceStringInXlsx(string $filePath, array $keyValueArray)
 {
     // xlsxファイルを読み込む
     $reader = IOFactory::createReader('Xlsx');
@@ -20,8 +20,12 @@ function replaceStringInXlsx($filePath, $searchString, $replaceString)
         foreach ($sheet->getRowIterator() as $row) {
             foreach ($row->getCellIterator() as $cell) {
                 $cellValue = $cell->getValue();
-                if (strpos($cellValue, $searchString) !== false) {
-                    $cell->setValue(str_replace($searchString, $replaceString, $cellValue));
+
+                // keyvalue型のオブジェクトの配列を取得する
+                foreach ($keyValueArray as $key => $value) {
+                    if (strpos($cellValue, $key) !== false) {
+                        $cell->setValue(str_replace($key, $value, $cellValue));
+                    }
                 }
             }
         }
@@ -68,14 +72,14 @@ class AppointmentController extends Controller
 
         // 置換する文字列を配列で保存
         $keyValueArray = [
-            '{nursing_home.name}' => 'replaced_string1',
-            '{fax_sender}' => 'replaced_string2',
+            '$nursing_home.name' => $appointment->id,
+            '$fax_sender' => $appointment->welcoming_time,
         ];
 
         // xlsxファイルのパスを取得
         $filePath = public_path('download/FAX.xlsx');
 
-        replaceStringInXlsx($filePath, '$nursing_home.name', $appointment->id);
+        replaceStringInXlsx($filePath, $keyValueArray);
 
         return response()->download(public_path(DOWNLOAD_DIR . "aFAX.xlsx"));
     }

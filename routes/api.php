@@ -45,9 +45,9 @@ Route::apiResource('appointments', AppointmentController::class);
 Route::get('appointments/{appointment}/download_fax', [AppointmentController::class, 'download_fax']);
 
 
-// ファイルダウンロード関連
-define('DOWNLOAD_PATH', 'download/');
+// // ファイルダウンロード関連
+// define('DOWNLOAD_PATH', 'download/');
 
-Route::get(DOWNLOAD_PATH . 'fax', [DownloadController::class, 'fax']);
-Route::get(DOWNLOAD_PATH . 'medical_info', [DownloadController::class, 'medicalInformation']);
-Route::get(DOWNLOAD_PATH . 'medical_questionnaire', [DownloadController::class, 'medicalQuestionnaire']);
+// Route::get(DOWNLOAD_PATH . 'fax', [DownloadController::class, 'fax']);
+// Route::get(DOWNLOAD_PATH . 'medical_info', [DownloadController::class, 'medicalInformation']);
+// Route::get(DOWNLOAD_PATH . 'medical_questionnaire', [DownloadController::class, 'medicalQuestionnaire']);
