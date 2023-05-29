@@ -2,39 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\MyHelper;
 use App\Http\Requests\AppointmentRequest;
 use App\Models\Appointment;
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 define('DOWNLOAD_DIR', 'download/');
-
-function replaceStringInXlsx(string $filePath, array $keyValueArray, string $savePath = null)
-{
-    // xlsxファイルを読み込む
-    $reader = IOFactory::createReader('Xlsx');
-    $spreadsheet = $reader->load($filePath);
-
-    // シート毎に全件検索し、文字列を置換する
-    foreach ($spreadsheet->getAllSheets() as $sheet) {
-        foreach ($sheet->getRowIterator() as $row) {
-            foreach ($row->getCellIterator() as $cell) {
-                $cellValue = $cell->getValue();
-
-                // keyvalue型のオブジェクトの配列を取得する
-                foreach ($keyValueArray as $key => $value) {
-                    if (strpos($cellValue, $key) !== false) {
-                        $cell->setValue(str_replace($key, $value, $cellValue));
-                    }
-                }
-            }
-        }
-    }
-
-    // 編集内容を保存する
-    $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-    $writer->save($savePath);
-}
 
 class AppointmentController extends Controller
 {
@@ -78,12 +52,13 @@ class AppointmentController extends Controller
         ];
 
         // テンプレートのファイルパスを指定
-        $filePath = public_path(DOWNLOAD_DIR . 'FAX.xlsx');
+        $templatePath = public_path(DOWNLOAD_DIR . 'FAX.xlsx');
 
         // 保存先のファイルパスを指定
         $savePath = public_path(DOWNLOAD_DIR . 'FAX_' . $appointment->id . '.xlsx');
 
-        replaceStringInXlsx($filePath, $keyValueArray, $savePath);
+        // ファイルを置換して保存
+        replaceStringInXlsx($templatePath, $keyValueArray, $savePath);
 
         return response()->download($savePath);
     }
