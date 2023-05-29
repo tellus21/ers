@@ -4,6 +4,7 @@ import { RequestFormBase } from '../components/RequestFormBase'
 import { TitleText } from '../components/TitleText'
 import { FieldsEightTwelve } from '../components/FieldsEightTwelve'
 import axios from 'axios'
+import { MedicalInformationSheet } from './components/MedicalInformationSheet'
 
 interface AppointmentFormProps {
     logicalName: string
@@ -49,6 +50,11 @@ export function AppointmentForm({
                 </Group>
                 {/* 診察関連 */}
                 <Divider label="診察関連" />
+                <Group position="right">
+                    <Button color="gray.6" onClick={onClickFaxButton}>
+                        診情印刷
+                    </Button>
+                </Group>
                 <FieldsEightTwelve form={form} fields={fields.examination} />
                 {/* 送迎関連 */}
                 <Divider label="送迎関連" />
@@ -57,11 +63,9 @@ export function AppointmentForm({
                         ※予定確定日後に「更新」を行うと、ステータスが「予約確定」になります。
                     </Text>
                     <Group>
+                        <MedicalInformationSheet />
                         <Button color="gray.6" onClick={onClickFaxButton}>
-                            診情作成
-                        </Button>
-                        <Button color="gray.6" onClick={onClickFaxButton}>
-                            診情印刷
+                            問診印刷
                         </Button>
                     </Group>
                 </Group>
