@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\MyHelper;
 use App\Http\Requests\AppointmentRequest;
 use App\Models\Appointment;
-
-use PhpOffice\PhpSpreadsheet\IOFactory;
-
-define('DOWNLOAD_DIR', 'download/');
 
 class AppointmentController extends Controller
 {
@@ -43,6 +38,7 @@ class AppointmentController extends Controller
     public function download_fax($id)
     {
 
+        // データベースからデータを取得
         $appointment = Appointment::find($id);
 
         // 置換する文字列を配列で保存
@@ -52,10 +48,10 @@ class AppointmentController extends Controller
         ];
 
         // テンプレートのファイルパスを指定
-        $templatePath = public_path(DOWNLOAD_DIR . 'FAX.xlsx');
+        $templatePath = public_path('templates/' . 'template_fax.xlsx');
 
         // 保存先のファイルパスを指定
-        $savePath = public_path(DOWNLOAD_DIR . 'FAX_' . $appointment->id . '.xlsx');
+        $savePath = public_path('downloads/' . 'FAX_' . $appointment->id . '.xlsx');
 
         // ファイルを置換して保存
         replaceStringInXlsx($templatePath, $keyValueArray, $savePath);
