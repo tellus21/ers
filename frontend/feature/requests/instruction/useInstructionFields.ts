@@ -622,29 +622,29 @@ const spect = [
 
 const petCt = [
     {
-        component: 'RadioYesNo',
         formPath: 'has_diabetes',
+        component: 'RadioYesNo',
         props: {
             label: '保険適応/悪性腫瘍(早期胃がん除く)糖尿病',
         },
     },
     {
-        component: 'RadioYesNo',
         formPath: 'can_insulin_injection',
+        component: 'RadioYesNo',
         props: {
             label: 'インシュリン注射',
         },
     },
     {
-        component: 'TextInput',
         formPath: 'blood_glucose_value',
+        component: 'TextInput',
         props: {
             label: '血糖値(mg/dL)',
         },
     },
     {
-        component: 'TextInput',
         formPath: 'a1c',
+        component: 'TextInput',
         props: {
             label: 'A1C(%)',
         },

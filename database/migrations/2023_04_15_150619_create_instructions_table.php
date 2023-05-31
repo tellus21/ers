@@ -73,8 +73,8 @@ class CreateInstructionsTable extends Migration
             $table->boolean('has_bmipp')->nullable();
             $table->boolean('has_bone_scintigraphy')->nullable();
             $table->string('has_spect_other')->nullable();
-            $table->boolean('has_diabetes')->nullable();
-            $table->boolean('can_insulin_injection')->nullable();
+            $table->string('has_diabetes')->nullable();
+            $table->string('can_insulin_injection')->nullable();
             $table->string('blood_glucose_value')->nullable();
             $table->string('a1c')->nullable();
             $table->boolean('has_chest_simple_photography')->nullable();

@@ -115,8 +115,8 @@ class InstructionRequest extends FormRequest
     private function otherRules()
     {
         return [
-            'has_diabetes' => 'required|boolean',
-            'can_insulin_injection' => 'required|boolean',
+            'has_diabetes' => 'nullable|string',
+            'can_insulin_injection' => 'nullable|string',
             'blood_glucose_value' => 'nullable|string|max:255',
             'a1c' => 'nullable|string|max:255',
             'has_chest_simple_photography' => 'required|boolean',

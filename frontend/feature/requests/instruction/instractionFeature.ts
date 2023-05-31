@@ -71,8 +71,8 @@ export interface Instruction {
     has_bmipp: boolean
     has_bone_scintigraphy: boolean
     has_spect_other: string
-    has_diabetes: boolean
-    can_insulin_injection: boolean
+    has_diabetes: string
+    can_insulin_injection: string
     blood_glucose_value: string
     a1c: string
     has_chest_simple_photography: boolean
@@ -167,8 +167,8 @@ export const instructionInitialValues: InstructionFormValues = {
     has_bmipp: false,
     has_bone_scintigraphy: false,
     has_spect_other: '',
-    has_diabetes: false,
-    can_insulin_injection: false,
+    has_diabetes: '',
+    can_insulin_injection: '',
     blood_glucose_value: '',
     a1c: '',
     has_chest_simple_photography: false,
