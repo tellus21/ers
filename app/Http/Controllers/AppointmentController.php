@@ -171,7 +171,8 @@ class AppointmentController extends Controller
             }
         }
         $display_examination_ct = implode(',', $display_examination_ct);
-        $faxItems['$display_examination_ct'] = "CT($display_examination_ct)";
+        $faxItems['$display_examination_ct'] = $display_examination_ct ? "CT($display_examination_ct)" : '';
+
 
         // MRI検査項目の表示
         $display_examination_mri = [];
@@ -181,7 +182,7 @@ class AppointmentController extends Controller
             }
         }
         $display_examination_mri = implode(',', $display_examination_mri);
-        $faxItems['$display_examination_mri'] = "MRI($display_examination_mri)";
+        $faxItems['$display_examination_mri'] = $display_examination_mri ? "MRI($display_examination_mri)" : '';
 
         // US(エコー)検査項目の表示
         $display_examination_us = [];
@@ -191,7 +192,7 @@ class AppointmentController extends Controller
             }
         }
         $display_examination_us = implode(',', $display_examination_us);
-        $faxItems['$display_examination_us'] = "エコー($display_examination_us)";
+        $faxItems['$display_examination_us'] = $display_examination_us ? "US($display_examination_us)" : '';
 
         // SPECT/シンチグラム検査項目の表示
         $display_examination_spect = [];
@@ -201,7 +202,7 @@ class AppointmentController extends Controller
             }
         }
         $display_examination_spect = implode(',', $display_examination_spect);
-        $faxItems['$display_examination_spect'] = "RI($display_examination_spect)";
+        $faxItems['$display_examination_spect'] = $display_examination_spect ? "SPECT($display_examination_spect)" : '';
 
         // $display_examination_etc = [];
         // foreach ($examination_etc as $key => $value) {
