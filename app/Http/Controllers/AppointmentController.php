@@ -42,8 +42,9 @@ class AppointmentController extends Controller
         $instruction = $appointment->instruction;
         $request = $instruction->request;
         $patient = $request->patient;
+        $nursing_home = $patient->nursingHome;
         $homeCareClinic = $patient->homeCareClinic;
-
+        $examinationClinic = $instruction->examinationClinic;
 
         // CTの検査項目
         $examination_ct = [
@@ -133,21 +134,33 @@ class AppointmentController extends Controller
 
         // 置換する文字列を配列で保存
         //　適当なので、見直す！！！！！！！！！！！！！
+        // last_nameとfirst_nameは、伏字が必要になるので、別途処理が必要
         $faxItems = [
-            '$fax_sender' => $appointment->fax_sender,
-            '$nursing_home.name' => $homeCareClinic->name,
-            '$fax_number' => $appointment->fax_number,
+            '$transmission_date' => convertISO8601ToDate($appointment->transmission_date),
+            '$nursing_home.name' => $nursing_home->name,
+            '$nursing_home.fax_number' => $nursing_home->fax_number,
             '$number_of_documents_sent' => $appointment->number_of_documents_sent,
-            '$postal_code' => $homeCareClinic->postal_code,
-            '$address' => $homeCareClinic->address,
-            '$phone_number' => $homeCareClinic->phone_number,
-            '$fax_number' => $homeCareClinic->fax_number,
-            '$nursing_home.name' => $homeCareClinic->name,
-            '$last_name' => $patient->last_name,
-            '$first_name' => $patient->first_name,
-            '$scheduled_confirmation_date' => $appointment->scheduled_confirmation_date,
+            '$home_care_clinic.name' => $homeCareClinic->name,
+            '$home_care_clinic.postal_code' => $homeCareClinic->postal_code,
+            '$home_care_clinic.address' => $homeCareClinic->address,
+            '$home_care_clinic.phone_number' => $homeCareClinic->phone_number,
+            '$home_care_clinic.fax_number' => $homeCareClinic->fax_number,
+            '$nursing_home.name' => $nursing_home->name,
+            '$last_name' => hideSecondCharacter($patient->last_name),
+            '$first_name' => hideSecondCharacter($patient->first_name),
+            '$scheduled_confirmation_date' => convertISO8601ToDate($appointment->scheduled_confirmation_date),
             '$start_time' => $appointment->start_time,
             '$examination_clinic.name' => $instruction->examinationClinic->name,
+
+
+
+            // '$examination_clinic.name' => $instruction->examinationClinic->name,
+            // '$postal_code' => $examinationClinic->postal_code,
+            // '$address' => $homeCareClinic->address,
+            // '$phone_number' => $homeCareClinic->phone_number,
+            // '$fax_number' => $homeCareClinic->fax_number,
+            // '$nursing_home.name' => $homeCareClinic->name,
+
         ];
 
         // CT検査項目の表示
@@ -208,6 +221,10 @@ class AppointmentController extends Controller
 
         // ファイルを置換して保存
         replaceStringInXlsx($templatePath, $faxItems, $savePath);
+
+        // 同じセルに複数回置換する場合は、複数回呼び出す
+        replaceStringInXlsx($savePath, $faxItems, $savePath);
+        replaceStringInXlsx($savePath, $faxItems, $savePath);
 
         return response()->download($savePath);
     }
