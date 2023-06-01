@@ -132,9 +132,67 @@ class AppointmentController extends Controller
             // 'camera_content' => 'カメラ内容',
         ];
 
+        // 検査項目を格納する配列
+        $examination_contents = [];
+
+        // CT検査項目の表示
+        $display_examination_ct = [];
+        foreach ($examination_ct as $key => $value) {
+            if ($instruction->$key == true) {
+                array_push($display_examination_ct, $value);
+            }
+        }
+        $display_examination_ct = implode(',', $display_examination_ct);
+        if ($display_examination_ct) {
+            $examination_contents[] = "CT($display_examination_ct)";
+        }
+
+        // MRI検査項目の表示
+        $display_examination_mri = [];
+        foreach ($examination_mri as $key => $value) {
+            if ($instruction->$key == true) {
+                array_push($display_examination_mri, $value);
+            }
+        }
+        $display_examination_mri = implode(',', $display_examination_mri);
+        if ($display_examination_mri) {
+            $examination_contents[] = "MRI($display_examination_mri)";
+        }
+
+        // US(エコー)検査項目の表示
+        $display_examination_us = [];
+        foreach ($examination_us as $key => $value) {
+            if ($instruction->$key == true) {
+                array_push($display_examination_us, $value);
+            }
+        }
+        $display_examination_us = implode(',', $display_examination_us);
+        if (true === $display_examination_us) {
+            $examination_contents[] = "US($display_examination_us)";
+        }
+
+        // SPECT/シンチグラム検査項目の表示
+        $display_examination_spect = [];
+        foreach ($examination_spect as $key => $value) {
+            if ($instruction->$key == true) {
+                array_push($display_examination_spect, $value);
+            }
+        }
+        $display_examination_spect = implode(',', $display_examination_spect);
+        $examination_contents[] = $display_examination_spect ? "SPECT($display_examination_spect)" : '';
+
+        $examination_contents = implode(',', $examination_contents);
+
+        // $display_examination_etc = [];
+        // foreach ($examination_etc as $key => $value) {
+        //     if ($instruction->$key == true) {
+        //         array_push($display_examination_etc, $value);
+        //     }
+        // }
+        // $display_examination_etc = implode(',', $display_examination_etc);
+        // $faxItems['$display_examination_etc'] = $display_examination_etc;
+
         // 置換する文字列を配列で保存
-        //　適当なので、見直す！！！！！！！！！！！！！
-        // last_nameとfirst_nameは、伏字が必要になるので、別途処理が必要
         $faxItems = [
             '$transmission_date' => convertISO8601ToDate($appointment->transmission_date),
             '$nursing_home.name' => $nursing_home->name,
@@ -151,68 +209,8 @@ class AppointmentController extends Controller
             '$scheduled_confirmation_date' => convertISO8601ToDate($appointment->scheduled_confirmation_date),
             '$start_time' => $appointment->start_time,
             '$examination_clinic.name' => $instruction->examinationClinic->name,
-
-
-
-            // '$examination_clinic.name' => $instruction->examinationClinic->name,
-            // '$postal_code' => $examinationClinic->postal_code,
-            // '$address' => $homeCareClinic->address,
-            // '$phone_number' => $homeCareClinic->phone_number,
-            // '$fax_number' => $homeCareClinic->fax_number,
-            // '$nursing_home.name' => $homeCareClinic->name,
-
+            '$examination_contents' => $examination_contents,
         ];
-
-        // CT検査項目の表示
-        $display_examination_ct = [];
-        foreach ($examination_ct as $key => $value) {
-            if ($instruction->$key == true) {
-                array_push($display_examination_ct, $value);
-            }
-        }
-        $display_examination_ct = implode(',', $display_examination_ct);
-        $faxItems['$display_examination_ct'] = $display_examination_ct ? "CT($display_examination_ct)" : '';
-
-
-        // MRI検査項目の表示
-        $display_examination_mri = [];
-        foreach ($examination_mri as $key => $value) {
-            if ($instruction->$key == true) {
-                array_push($display_examination_mri, $value);
-            }
-        }
-        $display_examination_mri = implode(',', $display_examination_mri);
-        $faxItems['$display_examination_mri'] = $display_examination_mri ? "MRI($display_examination_mri)" : '';
-
-        // US(エコー)検査項目の表示
-        $display_examination_us = [];
-        foreach ($examination_us as $key => $value) {
-            if ($instruction->$key == true) {
-                array_push($display_examination_us, $value);
-            }
-        }
-        $display_examination_us = implode(',', $display_examination_us);
-        $faxItems['$display_examination_us'] = $display_examination_us ? "US($display_examination_us)" : '';
-
-        // SPECT/シンチグラム検査項目の表示
-        $display_examination_spect = [];
-        foreach ($examination_spect as $key => $value) {
-            if ($instruction->$key == true) {
-                array_push($display_examination_spect, $value);
-            }
-        }
-        $display_examination_spect = implode(',', $display_examination_spect);
-        $faxItems['$display_examination_spect'] = $display_examination_spect ? "SPECT($display_examination_spect)" : '';
-
-        // $display_examination_etc = [];
-        // foreach ($examination_etc as $key => $value) {
-        //     if ($instruction->$key == true) {
-        //         array_push($display_examination_etc, $value);
-        //     }
-        // }
-        // $display_examination_etc = implode(',', $display_examination_etc);
-        // $faxItems['$display_examination_etc'] = $display_examination_etc;
-
 
         // テンプレートのファイルパスを指定
         $templatePath = public_path('templates/' . 'template_fax.xlsx');
