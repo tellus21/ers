@@ -41,6 +41,7 @@ export function OrderFormBase({
                 user_id: 1, //仮
                 instruction_id: editedInstruction.id,
             }
+            console.log(newValues)
         } else {
             // リクエストIDから自分のIDを取得します
             ownId = findIdByOrderId(query, editedOrder.id)
