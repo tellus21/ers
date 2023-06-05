@@ -1,7 +1,7 @@
 import { Box, Checkbox, Grid, Select, Textarea, TextInput } from '@mantine/core'
 import { DateInput } from '@mantine/dates'
 import { IconCalendar } from '@tabler/icons-react'
-import { RadioYesNo } from '../requests/components/RadioYesNo'
+import { RadioYesNo } from '../orders/components/RadioYesNo'
 
 interface NormalFieldsProps {
     form: any

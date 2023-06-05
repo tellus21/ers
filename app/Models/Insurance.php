@@ -21,6 +21,6 @@ class Insurance extends Model
 
     public function order()
     {
-        return $this->belongsTo(Request::class);
+        return $this->belongsTo(Order::class);
     }
 }

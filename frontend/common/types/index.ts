@@ -22,7 +22,7 @@ export interface useObject {
     logicalName: string
     physicalName: string
     resource: string
-    query: Request[]
+    query: Order[]
     columns?: { accessor: string; title: string; width?: number }[]
     form: UseFormInput<
         Record<string, unknown>,
