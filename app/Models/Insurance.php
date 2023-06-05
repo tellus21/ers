@@ -11,7 +11,7 @@ class Insurance extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'request_id',
+        'order_id',
         'insurance_type',
         'public_expense',
         'responsible_city_district',
@@ -19,7 +19,7 @@ class Insurance extends Model
         'other_medical_insurance',
     ];
 
-    public function request()
+    public function order()
     {
         return $this->belongsTo(Request::class);
     }

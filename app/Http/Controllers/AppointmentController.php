@@ -9,7 +9,7 @@ class AppointmentController extends Controller
 {
     public function index()
     {
-        return Appointment::with('user', 'instruction.request.patient.homeCareClinic')->get();
+        return Appointment::with('user', 'instruction.order.patient.homeCareClinic')->get();
     }
 
     public function store(AppointmentRequest $request)
@@ -20,7 +20,7 @@ class AppointmentController extends Controller
 
     public function show(Appointment $appointment)
     {
-        return $appointment->with('user', 'instruction.request.patient.homeCareClinic')->first();
+        return $appointment->with('user', 'instruction.order.patient.homeCareClinic')->first();
     }
 
     public function update(AppointmentRequest $request, Appointment $appointment)
@@ -38,9 +38,9 @@ class AppointmentController extends Controller
     public function download_fax($id)
     {
         // データベースからデータを取得
-        $appointment = Appointment::find($id)->with('instruction.request.patient.homeCareClinic', 'instruction.examinationClinic')->first();
+        $appointment = Appointment::find($id)->with('instruction.order.patient.homeCareClinic', 'instruction.examinationClinic')->first();
         $instruction = $appointment->instruction;
-        $request = $instruction->request;
+        $request = $instruction->order;
         $patient = $request->patient;
         $nursing_home = $patient->nursingHome;
         $homeCareClinic = $patient->homeCareClinic;

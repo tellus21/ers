@@ -9,7 +9,7 @@ class InsuranceRequest extends FormRequest
     public function rules()
     {
         return [
-            'request_id' => 'required|integer|exists:requests,id',
+            'order_id' => 'required|integer|exists:orders,id',
             'insurance_type' => 'nullable|string',
             'public_expense' => 'nullable|string',
             'responsible_city_district' => 'nullable|string',

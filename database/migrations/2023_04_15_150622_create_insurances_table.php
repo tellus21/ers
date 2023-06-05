@@ -10,7 +10,7 @@ class CreateInsurancesTable extends Migration
     {
         Schema::create('insurances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('request_id')->constrained();
+            $table->foreignId('order_id')->constrained();
             $table->string('insurance_type')->nullable();
             $table->string('public_expense')->nullable();
             $table->string('responsible_city_district')->nullable();

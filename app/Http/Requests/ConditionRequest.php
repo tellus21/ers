@@ -9,7 +9,7 @@ class ConditionRequest extends FormRequest
     public function rules()
     {
         return [
-            'request_id' => 'required|integer|exists:requests,id',
+            'order_id' => 'required|integer|exists:orders,id',
             //??
             'id' => 'required|integer',
             'walking_state' => 'nullable|string',

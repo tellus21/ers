@@ -10,7 +10,7 @@ class CreateConditionsTable extends Migration
     {
         Schema::create('conditions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('request_id')->constrained();
+            $table->foreignId('order_id')->constrained();
             $table->string('walking_state')->nullable();
             $table->string('accompaniment')->nullable();
             $table->string('pickup')->nullable();

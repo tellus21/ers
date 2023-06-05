@@ -24,7 +24,7 @@ class InstructionRequest extends FormRequest
             'id' => 'required|integer',
             'examination_clinic_id' => 'nullable|integer|exists:examination_clinics,id',
             'home_care_doctor_id' => 'nullable|integer|exists:home_care_doctors,id',
-            'request_id' => 'required|integer|exists:requests,id',
+            'order_id' => 'required|integer|exists:orders,id',
             'appointment_content' => 'nullable|string|max:255',
             'candidate_month_1' => 'nullable|date',
             'candidate_month_2' => 'nullable|date',

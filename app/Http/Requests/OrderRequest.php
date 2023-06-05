@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     public function rules()
     {
@@ -12,7 +12,7 @@ class RequestRequest extends FormRequest
             'user_id' => 'required|integer|exists:users,id',
             'patient_id' => 'required|integer|exists:patients,id',
             'progress_status' => 'required|string',
-            'alert_level'=> 'required|string',
+            'alert_level' => 'required|string',
         ];
     }
 }

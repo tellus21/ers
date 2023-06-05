@@ -13,7 +13,7 @@ class Instruction extends Model
     protected $fillable = [
         'examination_clinic_id',
         'home_care_doctor_id',
-        'request_id',
+        'order_id',
         'appointment_content',
         'candidate_month_1',
         'candidate_month_2',
@@ -105,7 +105,7 @@ class Instruction extends Model
         return $this->belongsTo(HomeCareDoctor::class);
     }
 
-    public function request()
+    public function order()
     {
         return $this->belongsTo(Request::class);
     }

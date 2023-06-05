@@ -12,7 +12,7 @@ class CreateInstructionsTable extends Migration
             $table->id();
             $table->foreignId('examination_clinic_id')->nullable()->constrained('examination_clinics');
             $table->foreignId('home_care_doctor_id')->nullable()->constrained('home_care_doctors');
-            $table->foreignId('request_id')->constrained();
+            $table->foreignId('order_id')->constrained();
             $table->string('appointment_content')->nullable();
             $table->timestamp('candidate_month_1')->nullable();
             $table->timestamp('candidate_month_2')->nullable();

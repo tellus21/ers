@@ -11,7 +11,7 @@ class Condition extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'request_id',
+        'order_id',
         'walking_state',
         'accompaniment',
         'pickup',
@@ -42,7 +42,7 @@ class Condition extends Model
         'anything_memo',
     ];
 
-    public function request()
+    public function order()
     {
         return $this->belongsTo(Request::class);
     }
