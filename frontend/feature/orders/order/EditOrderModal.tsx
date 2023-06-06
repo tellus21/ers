@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Group, Modal, Paper, Stack } from '@mantine/core'
-import { OrderMetaData } from '../order-metadata/OrderMetaData'
+import { OrderMetaData } from './OrderMetaData'
 import { DisplayPatient } from '../patient/DisplayPatient'
 import { ConditionForm } from '../condition/ConditionForm'
 import { InsuranceForm } from '../insurance/InsuranceForm'
@@ -56,21 +56,14 @@ export function EditOrderModal({
     appointmentFields,
 }: EditOrderModalProps) {
     return (
-        <Modal opened={opened} onClose={close} title="検査依頼作成" size="100%">
+        <Modal
+            opened={opened}
+            onClose={close}
+            title={<OrderMetaData />}
+            size="100%"
+        >
             <Box bg="gray.2" p={20}>
                 <Grid>
-                    {/* <Grid.Col span={12}>
-                        <Paper bg="green.0">
-                            <Center>
-                                <Text size="lg">保留中</Text>
-                            </Center>
-                        </Paper>
-                    </Grid.Col> */}
-                    <Grid.Col span={12}>
-                        <Paper>
-                            <OrderMetaData />
-                        </Paper>
-                    </Grid.Col>
                     <Grid.Col span={4}>
                         <Stack>
                             <Paper>

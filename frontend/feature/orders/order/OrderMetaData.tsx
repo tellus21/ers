@@ -1,4 +1,4 @@
-import { Button, Group, Paper, Text } from '@mantine/core'
+import { Button, Group, Paper, Space, Text } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { editedOrderAtom } from '../contexts/orderContexts'
 
@@ -6,18 +6,19 @@ import { editedOrderAtom } from '../contexts/orderContexts'
 export function OrderMetaData() {
     const editedOrder: any = useAtomValue(editedOrderAtom)
     const bgColorMap: { [key: string]: string } = {
-        依頼中: 'blue.1',
-        予約確定: 'red.1',
-        保留中: 'green.1',
+        依頼中: 'blue.2',
+        予約確定: 'red.2',
+        保留中: 'green.2',
     }
 
     return (
-        <Group position="apart">
+        <Group>
             <Group>
-                <Button variant="outline" color="blue" size="sm">
-                    保留にする
-                </Button>
-                <Paper p={4} bg={bgColorMap[editedOrder.progress_status]}>
+                <Paper
+                    px={12}
+                    py={4}
+                    bg={bgColorMap[editedOrder.progress_status]}
+                >
                     {editedOrder.progress_status}
                 </Paper>
                 <Text size="md" td="underline">

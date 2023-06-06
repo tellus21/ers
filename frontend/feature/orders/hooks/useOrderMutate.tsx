@@ -28,28 +28,31 @@ export function useOrderMutate(resource: string) {
         onSuccess: (data, variables, context) => {
             queryClient.invalidateQueries({ queryKey: [resource] })
 
-            //予約情報の予約確定日が入力されていれば、進捗状況を、予定確定に変更する
+            // 予約情報の進捗状況が保留中でなければ、更新成功の通知を表示する
             if (editedOrder.progress_status !== '保留中') {
-                axios
-                    .put(`${API_URL}/orders/${editedOrder.id}`, {
-                        user_id: 1, //ログイン中のユーザid
-                        patient_id: editedOrder.patient_id,
-                        progress_status: '予約確定',
-                        alert_level: '問題なし',
-                    })
+                //予約情報の予約確定日が入力されていれば、進捗状況を、予定確定に変更する
+                if (data.data.scheduled_confirmation_date === null) {
+                    axios
+                        .patch(`${API_URL}/orders/${editedOrder.id}`, {
+                            user_id: 1, //ログイン中のユーザid
+                            patient_id: editedOrder.patient_id,
+                            progress_status: '予約確定',
+                            alert_level: '問題なし',
+                        })
 
-                    .then((response) => {
-                        console.log('PUT order successful:', response)
-                    })
-                    .catch((error) => {
-                        console.log('PUT order failed:', error)
-                    })
+                        .then((response) => {
+                            console.log('PATCH order successful:', response)
+                        })
+                        .catch((error) => {
+                            console.log('PATCH order failed:', error)
+                        })
+                }
+
+                notifications.show({
+                    title: '更新成功😄  ',
+                    message: `${context!.name}を更新しました！`,
+                })
             }
-
-            notifications.show({
-                title: '更新成功😄  ',
-                message: `${context!.name}を更新しました！`,
-            })
         },
 
         onSettled: (data, error, variables, context) => {
