@@ -18,6 +18,7 @@ class NursingHomeRequest extends FormRequest
             'fax_number' => 'nullable|string',
             'main_contact' => 'nullable|string',
             'sub_contact' => 'nullable|string',
+            'alert_level' => 'nullable|string',
             'pickup_time_lsi' => 'nullable|string',
             'pickup_time_smile' => 'nullable|string',
             'pickup_time_kotoni' => 'nullable|string',

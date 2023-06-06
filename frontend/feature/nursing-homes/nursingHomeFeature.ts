@@ -16,6 +16,7 @@ export interface NursingHome {
     fax_number: string
     main_contact: string
     sub_contact: string
+    alert_level: string
     pickup_time_lsi: string
     pickup_time_smile: string
     pickup_time_kotoni: string
@@ -46,6 +47,7 @@ export const nursingHomeInitialValues: NursingHomeFormValues = {
     fax_number: '',
     main_contact: '',
     sub_contact: '',
+    alert_level: '',
     pickup_time_lsi: '',
     pickup_time_smile: '',
     pickup_time_kotoni: '',
@@ -88,6 +90,7 @@ export function useNursingHomeFeature() {
         { accessor: 'fax_number', title: 'FAX番号' },
         { accessor: 'main_contact', title: '主担当' },
         { accessor: 'sub_contact', title: '副担当' },
+        { accessor: 'alert_level', title: '警戒レベル' },
         { accessor: 'pickup_time_lsi', title: 'LSI' },
         { accessor: 'pickup_time_smile', title: 'スマイル' },
         { accessor: 'pickup_time_kotoni', title: 'ことに' },
@@ -166,7 +169,12 @@ export function useNursingHomeFeature() {
             },
         },
         {
-            component: 'Blank',
+            formPath: 'alert_level',
+            component: 'Select',
+            props: {
+                label: '警戒レベル',
+                data: ['問題なし', '予約時難', '送迎時難', '要注意', '要警戒'],
+            },
         },
         {
             formPath: 'pickup_time_lsi',

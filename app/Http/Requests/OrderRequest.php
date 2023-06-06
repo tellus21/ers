@@ -12,7 +12,6 @@ class OrderRequest extends FormRequest
             'user_id' => 'required|integer|exists:users,id',
             'patient_id' => 'required|integer|exists:patients,id',
             'progress_status' => 'required|string',
-            'alert_level' => 'required|string',
         ];
     }
 }

@@ -20,6 +20,7 @@ class NursingHome extends Model
         'fax_number',
         'main_contact',
         'sub_contact',
+        'alert_level',
         'pickup_time_lsi',
         'pickup_time_smile',
         'pickup_time_kotoni',

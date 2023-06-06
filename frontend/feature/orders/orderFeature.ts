@@ -44,7 +44,6 @@ export function useOrderFeature() {
         { accessor: 'id', title: 'id' },
         { accessor: 'is_confirmed', title: '確認済' },
         { accessor: 'progress_status', title: '進捗状況' },
-        { accessor: 'alert_level', title: '注意レベル' },
         { accessor: 'order_date', title: '依頼日' },
         { accessor: 'user.last_name', title: '作成者' },
         {
@@ -53,6 +52,7 @@ export function useOrderFeature() {
         },
         { accessor: 'patient.karte_number_home', title: '在宅ID' },
         { accessor: 'patient.nursing_home.name', title: '入居先' },
+        { accessor: 'patient.nursing_home.alert_level', title: '警戒レベル' },
         { accessor: 'patient.name', title: '患者氏名' },
         //年齢がちゃんと取得できない。。。
         // {

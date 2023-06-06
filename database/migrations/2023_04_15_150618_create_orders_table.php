@@ -13,7 +13,6 @@ class CreateOrdersTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('patient_id')->constrained();
             $table->string('progress_status');
-            $table->string('alert_level');
 
             $table->timestamps();
             $table->softDeletes();

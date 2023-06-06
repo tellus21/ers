@@ -14,7 +14,6 @@ class Order extends Model
         'user_id',
         'patient_id',
         'progress_status',
-        'alert_level',
     ];
 
     public function user()

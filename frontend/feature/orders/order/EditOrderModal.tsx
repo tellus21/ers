@@ -114,7 +114,13 @@ export function EditOrderModal({
                 </Grid>
                 <Group position="right">
                     <Button color="red" size="sm">
-                        依頼削除
+                        保留
+                    </Button>{' '}
+                    <Button color="red" size="sm">
+                        中止
+                    </Button>
+                    <Button color="red" size="sm">
+                        チェック済
                     </Button>
                 </Group>
             </Box>

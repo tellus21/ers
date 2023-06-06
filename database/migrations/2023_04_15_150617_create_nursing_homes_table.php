@@ -19,6 +19,7 @@ class CreateNursingHomesTable extends Migration
             $table->string('fax_number')->nullable();
             $table->string('main_contact')->nullable();
             $table->string('sub_contact')->nullable();
+            $table->string('alert_level')->nullable();
             $table->string('pickup_time_lsi')->nullable();
             $table->string('pickup_time_smile')->nullable();
             $table->string('pickup_time_kotoni')->nullable();
