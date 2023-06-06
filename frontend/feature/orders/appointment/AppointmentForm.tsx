@@ -1,10 +1,12 @@
-import { Box, Divider, Group, Text, Button } from '@mantine/core'
-import { DisplayPickUpTimes } from './components/DisplayPickUpTimeList'
+import { Box, Divider, Group, Text, Button, Space } from '@mantine/core'
+
 import { OrderFormBase } from '../components/OrderFormBase'
 import { TitleText } from '../components/TitleText'
 import { FieldsEightTwelve } from '../components/FieldsEightTwelve'
 import axios from 'axios'
 import { MedicalInformationSheet } from './components/MedicalInformationSheet'
+import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
+import { DisplayPickUpDistanceList } from './components/DisplayPickUpDistanceList'
 
 interface AppointmentFormProps {
     logicalName: string
@@ -43,11 +45,12 @@ export function AppointmentForm({
         <OrderFormBase resource={resource} form={form} query={query}>
             <TitleText title={logicalName} />
             <Box px={12}>
-                <Group position="apart">
-                    {/* 送迎時間 */}
-                    <DisplayPickUpTimes />
+                {/* 送迎時間 */}
+                <Group position="right">
                     <Text size="md">最終更新日：〇〇、記載者：〇〇</Text>
                 </Group>
+                <DisplayPickUpTimeList />
+                <DisplayPickUpDistanceList />
                 {/* 診察関連 */}
                 <Divider label="診察関連" />
                 <Group position="right">

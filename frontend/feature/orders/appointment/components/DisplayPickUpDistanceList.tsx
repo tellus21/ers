@@ -3,8 +3,8 @@ import { useAtomValue } from 'jotai'
 import { editedOrderAtom } from '../../contexts/orderContexts'
 import { Patient, usePatientFeature } from '@/feature/patients/patientFeature'
 
-// パターンのPickUpTimesを表示するコンポーネント
-export function DisplayPickUpTimeList() {
+// パターンのPickUpDistancesを表示するコンポーネント
+export function DisplayPickUpDistanceList() {
     const { query: patients } = usePatientFeature()
     const editedOrder = useAtomValue(editedOrderAtom)
     const displayedPatient = editedOrder.patient
@@ -12,15 +12,21 @@ export function DisplayPickUpTimeList() {
         (patient: Patient) => patient.id === displayedPatient?.id
     )
 
-    // PickupTimesを配列に格納
-    const pickupTimes = [
-        { name: 'LSI', time: patient?.nursing_home.pickup_time_lsi },
-        { name: 'スマイル', time: patient?.nursing_home.pickup_time_smile },
-        { name: 'ことに', time: patient?.nursing_home.pickup_time_kotoni },
-        { name: 'きた', time: patient?.nursing_home.pickup_time_kita },
+    // PickupDistancesを配列に格納
+    const pickupDistances = [
+        { name: 'LSI', distance: patient?.nursing_home.pickup_distance_lsi },
+        {
+            name: 'スマイル',
+            distance: patient?.nursing_home.pickup_distance_smile,
+        },
+        {
+            name: 'ことに',
+            distance: patient?.nursing_home.pickup_distance_kotoni,
+        },
+        { name: 'きた', distance: patient?.nursing_home.pickup_distance_kita },
         {
             name: 'きた高速',
-            time: patient?.nursing_home.pickup_time_kita_highway,
+            distance: patient?.nursing_home.pickup_distance_kita_highway,
         },
     ]
 
@@ -28,14 +34,14 @@ export function DisplayPickUpTimeList() {
     return (
         <Group>
             <Divider orientation="vertical" />
-            {pickupTimes.map((pickupTime, index) => (
+            {pickupDistances.map((pickupDistance, index) => (
                 <Box key={index}>
                     <Stack spacing="xs" align="center">
                         <Group spacing="xs">
-                            <Text size="xs">{pickupTime.name}</Text>
+                            <Text size="xs">{pickupDistance.name}</Text>
                             <Box bg="gray.0" p={5}>
-                                {pickupTime.time && (
-                                    <Text>{pickupTime.time}分</Text>
+                                {pickupDistance.distance && (
+                                    <Text>{pickupDistance.distance}km</Text>
                                 )}
                             </Box>
                             <Divider size="xs" orientation="vertical" />
