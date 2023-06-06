@@ -27,6 +27,7 @@ export function DisplayPickUpTimeList() {
     // 配列から取得した情報を表示する
     return (
         <Group>
+            <Text size="sm">送迎時間</Text>
             <Divider orientation="vertical" />
             {pickupTimes.map((pickupTime, index) => (
                 <Box key={index}>

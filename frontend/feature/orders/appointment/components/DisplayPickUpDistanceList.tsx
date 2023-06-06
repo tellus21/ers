@@ -33,6 +33,7 @@ export function DisplayPickUpDistanceList() {
     // 配列から取得した情報を表示する
     return (
         <Group>
+            <Text size="sm">送迎距離</Text>
             <Divider orientation="vertical" />
             {pickupDistances.map((pickupDistance, index) => (
                 <Box key={index}>
