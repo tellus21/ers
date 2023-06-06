@@ -21,6 +21,11 @@ export interface NursingHome {
     pickup_time_kotoni: string
     pickup_time_kita: string
     pickup_time_kita_highway: string
+    pickup_distance_lsi: string
+    pickup_distance_smile: string
+    pickup_distance_kotoni: string
+    pickup_distance_kita: string
+    pickup_distance_kita_highway: string
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
@@ -46,6 +51,11 @@ export const nursingHomeInitialValues: NursingHomeFormValues = {
     pickup_time_kotoni: '',
     pickup_time_kita: '',
     pickup_time_kita_highway: '',
+    pickup_distance_lsi: '',
+    pickup_distance_smile: '',
+    pickup_distance_kotoni: '',
+    pickup_distance_kita: '',
+    pickup_distance_kita_highway: '',
     created_at: new Date(),
     updated_at: new Date(),
     deleted_at: null,
@@ -191,6 +201,41 @@ export function useNursingHomeFeature() {
             component: 'TextInput',
             props: {
                 label: '送迎時間(きた高速)',
+            },
+        },
+        {
+            formPath: 'pickup_distance_lsi',
+            component: 'TextInput',
+            props: {
+                label: '送迎距離(LSI)',
+            },
+        },
+        {
+            formPath: 'pickup_distance_smile',
+            component: 'TextInput',
+            props: {
+                label: '送迎距離(スマイル)',
+            },
+        },
+        {
+            formPath: 'pickup_distance_kotoni',
+            component: 'TextInput',
+            props: {
+                label: '送迎距離(ことに)',
+            },
+        },
+        {
+            formPath: 'pickup_distance_kita',
+            component: 'TextInput',
+            props: {
+                label: '送迎距離(きた)',
+            },
+        },
+        {
+            formPath: 'pickup_distance_kita_highway',
+            component: 'TextInput',
+            props: {
+                label: '送迎距離(きた高速)',
             },
         },
     ]

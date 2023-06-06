@@ -24,6 +24,11 @@ class CreateNursingHomesTable extends Migration
             $table->string('pickup_time_kotoni')->nullable();
             $table->string('pickup_time_kita')->nullable();
             $table->string('pickup_time_kita_highway')->nullable();
+            $table->string('pickup_distance_lsi')->nullable();
+            $table->string('pickup_distance_smile')->nullable();
+            $table->string('pickup_distance_kotoni')->nullable();
+            $table->string('pickup_distance_kita')->nullable();
+            $table->string('pickup_distance_kita_highway')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

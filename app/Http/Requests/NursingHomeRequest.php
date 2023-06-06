@@ -23,6 +23,11 @@ class NursingHomeRequest extends FormRequest
             'pickup_time_kotoni' => 'nullable|string',
             'pickup_time_kita' => 'nullable|string',
             'pickup_time_kita_highway' => 'nullable|string',
+            'pickup_distance_lsi' => 'nullable|string',
+            'pickup_distance_smile' => 'nullable|string',
+            'pickup_distance_kotoni' => 'nullable|string',
+            'pickup_distance_kita' => 'nullable|string',
+            'pickup_distance_kita_highway' => 'nullable|string',
         ];
     }
 }

@@ -25,5 +25,10 @@ class NursingHome extends Model
         'pickup_time_kotoni',
         'pickup_time_kita',
         'pickup_time_kita_highway',
+        'pickup_distance_lsi',
+        'pickup_distance_smile',
+        'pickup_distance_kotoni',
+        'pickup_distance_kita',
+        'pickup_distance_kita_highway',
     ];
 }
