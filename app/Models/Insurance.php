@@ -13,7 +13,11 @@ class Insurance extends Model
     protected $fillable = [
         'order_id',
         'insurance_type',
-        'public_expense',
+        'is_old_first',
+        'is_disabled_first',
+        'is_special_medical_expense',
+        'is_old_tax',
+        'is_disabled_tax',
         'responsible_city_district',
         'life_insurance_responsible_name',
         'other_medical_insurance',

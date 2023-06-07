@@ -12,7 +12,11 @@ class CreateInsurancesTable extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained();
             $table->string('insurance_type')->nullable();
-            $table->string('public_expense')->nullable();
+            $table->boolean('is_old_first')->nullable();
+            $table->boolean('is_disabled_first')->nullable();
+            $table->boolean('is_special_medical_expense')->nullable();
+            $table->boolean('is_old_tax')->nullable();
+            $table->boolean('is_disabled_tax')->nullable();
             $table->string('responsible_city_district')->nullable();
             $table->string('life_insurance_responsible_name')->nullable();
             $table->string('other_medical_insurance')->nullable();
