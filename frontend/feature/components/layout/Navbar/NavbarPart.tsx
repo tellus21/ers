@@ -18,6 +18,20 @@ import {
     IconDatabaseImport,
     IconSwitchHorizontal,
     IconLogout,
+    IconExclamationMark,
+    IconBook,
+    IconNotes,
+    IconSelect,
+    IconHeart,
+    IconHomeHeart,
+    IconHeartHandshake,
+    IconBuildingHospital,
+    IconHome2,
+    IconStethoscope,
+    IconBuildingArch,
+    IconFileAlert,
+    IconHeartRateMonitor,
+    IconOld,
 } from '@tabler/icons-react'
 import Link from 'next/link'
 
@@ -105,20 +119,25 @@ const useStyles = createStyles((theme) => ({
 }))
 
 const data = [
-    { link: '/orders', label: '検査', icon: IconBellRinging },
-    { link: '/patients', label: '患者', icon: IconReceipt },
-    { link: '/nursing-homes', label: '入居施設', icon: IconFingerprint },
-    { link: '/home-care-doctors', label: '在宅医師', icon: IconKey },
-    { link: '/home-care-clinics', label: '在宅クリニック', icon: IconKey },
+    { link: '/orders', label: '検査', icon: IconHeartRateMonitor },
+    { link: '/patients', label: '患者', icon: IconOld },
+    { link: '/nursing-homes', label: '入居施設', icon: IconBuildingArch },
+    { link: '/home-care-doctors', label: '在宅医師', icon: IconStethoscope },
+    {
+        link: '/home-care-clinics',
+        label: '在宅クリニック',
+        icon: IconHomeHeart,
+    },
     {
         link: '/examination-clinics',
         label: '検査クリニック',
-        icon: IconDatabaseImport,
+        icon: IconBuildingHospital,
     },
     { link: '/users', label: 'ユーザ', icon: IconFaceId },
-    { link: '', label: '個人設定', icon: IconSettings },
-    { link: '', label: '操作マニュアル', icon: IconSettings },
-    { link: '', label: '操作お試しページ', icon: IconSettings },
+    { link: '/important-points', label: '注意事項', icon: IconFileAlert },
+    // { link: '', label: '個人設定', icon: IconSettings },
+    { link: '', label: '操作マニュアル', icon: IconBook },
+    { link: '', label: '操作お試しページ', icon: IconNotes },
 ]
 
 export function NavbarPart() {
