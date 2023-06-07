@@ -81,7 +81,7 @@ export function NormalFields({ form, fields }: NormalFieldsProps) {
                         )
                     case 'Checkbox':
                         return (
-                            <Box my={30} p={2}>
+                            <Box my={30} p={2} key={index}>
                                 <Checkbox
                                     size="sm"
                                     {...field.props}

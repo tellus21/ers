@@ -10,6 +10,7 @@ class HomeCareDoctorRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'is_retired' => 'required|boolean'
         ];
     }
 }

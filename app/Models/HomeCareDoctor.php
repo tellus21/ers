@@ -12,5 +12,6 @@ class HomeCareDoctor extends Model
 
     protected $fillable = [
         'name',
+        'is_retired'
     ];
 }

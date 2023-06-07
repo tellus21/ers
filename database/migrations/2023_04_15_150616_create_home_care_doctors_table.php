@@ -11,6 +11,7 @@ class CreateHomeCareDoctorsTable extends Migration
         Schema::create('home_care_doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->boolean('is_retired')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

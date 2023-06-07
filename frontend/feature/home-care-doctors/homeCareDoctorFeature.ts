@@ -8,6 +8,7 @@ import { getNames } from '@/common/lib'
 export interface HomeCareDoctor {
     id: number
     name: string
+    is_retired: boolean
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
@@ -20,6 +21,7 @@ export interface HomeCareDoctorFormValues extends HomeCareDoctor {}
 export const homeCareDoctorInitialValues: HomeCareDoctorFormValues = {
     id: 0,
     name: '',
+    is_retired: false,
     created_at: new Date(),
     updated_at: new Date(),
     deleted_at: null,
@@ -46,6 +48,12 @@ export function useHomeCareDoctorFeature() {
     const columns = [
         { accessor: 'id', title: 'id', width: 50, textAlignment: 'center' },
         { accessor: 'name', title: '名前', textaligment: 'center' },
+        {
+            accessor: 'is_retired',
+            title: '退職済',
+            textaligment: 'center',
+            render: (row: HomeCareDoctor) => (row.is_retired ? '○' : '×'),
+        },
     ]
 
     // ---【Fields】---
@@ -56,6 +64,13 @@ export function useHomeCareDoctorFeature() {
             props: {
                 label: '名前',
                 withAsterisk: true,
+            },
+        },
+        {
+            formPath: 'is_retired',
+            component: 'Checkbox',
+            props: {
+                label: '退職済',
             },
         },
         {
