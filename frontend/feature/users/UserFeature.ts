@@ -1,5 +1,5 @@
 import { isNotEmptyErrorMessage } from '@/common/constants'
-import { useQueryBase } from '@/common/hooks'
+import { useQueryBase } from '@/common/hooks/NormalMutate'
 import { Field } from '@/common/types'
 import { isNotEmpty, useForm } from '@mantine/form'
 import { useHomeCareClinicFeature } from '../home-care-clinics/homeCareClinicFeature'

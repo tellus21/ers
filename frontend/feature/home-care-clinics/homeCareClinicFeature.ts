@@ -1,8 +1,8 @@
 import { isNotEmpty, useForm } from '@mantine/form'
 import { isNotEmptyErrorMessage } from '@/common/constants'
-import { useQueryBase } from '@/common/hooks'
 import { Field } from '@/common/types'
 import { getNames } from '@/common/lib'
+import { useQueryBase } from '@/common/hooks/NormalMutate'
 
 // ---【Types】---
 export interface HomeCareClinic {

@@ -27,7 +27,6 @@ export function useOrderMutate(resource: string) {
 
         onSuccess: (data, variables, context) => {
             queryClient.invalidateQueries({ queryKey: [resource] })
-
             // 予約情報の進捗状況が保留中でなければ、更新成功の通知を表示する
             if (editedOrder.progress_status !== '保留中') {
                 //予約情報の予約確定日が入力されていれば、進捗状況を、予定確定に変更する

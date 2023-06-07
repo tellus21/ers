@@ -1,4 +1,4 @@
-import { useQueryBase } from '@/common/hooks'
+import { useQueryBase } from '@/common/hooks/NormalMutate'
 import { Patient } from '../patients/patientFeature'
 import { User } from '../users/UserFeature'
 

@@ -1,6 +1,6 @@
 import { isNotEmpty, useForm } from '@mantine/form'
 import { isNotEmptyErrorMessage } from '@/common/constants'
-import { useQueryBase } from '@/common/hooks'
+import { useQueryBase } from '@/common/hooks/NormalMutate'
 import { Field } from '@/common/types'
 import { getNames } from '@/common/lib'
 

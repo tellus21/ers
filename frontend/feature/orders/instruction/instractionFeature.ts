@@ -1,4 +1,4 @@
-import { useQueryBase } from '@/common/hooks'
+import { useQueryBase } from '@/common/hooks/NormalMutate'
 import { useForm } from '@mantine/form'
 import { useInstructionFields } from './useInstructionFields'
 import { findIdByName } from '@/common/lib'
