@@ -7,7 +7,11 @@ export interface Insurance {
     id: number
     order_id: number
     insurance_type: string
-    public_expense: string
+    is_old_first: boolean
+    is_disabled_first: boolean
+    is_special_medical_expense: boolean
+    is_old_tax: boolean
+    is_disabled_tax: boolean
     responsible_city_district: string
     life_insurance_responsible_name: string
     other_medical_insurance: string
@@ -24,7 +28,11 @@ export const insuranceInitialValues: InsuranceFormValues = {
     id: 0,
     order_id: 0,
     insurance_type: '',
-    public_expense: '',
+    is_old_first: false,
+    is_disabled_first: false,
+    is_special_medical_expense: false,
+    is_old_tax: false,
+    is_disabled_tax: false,
     responsible_city_district: '',
     life_insurance_responsible_name: '',
     other_medical_insurance: '',
@@ -69,11 +77,19 @@ export function useInsuranceFeature() {
             },
         },
         {
-            formPath: 'public_expense',
-            component: 'Select',
+            component: 'Checkboxes',
             props: {
                 label: '公費負担',
-                data: ['老初', '障初', '特定医療費', '老課', '障課'],
+                checkboxProps: [
+                    { label: '老初', formpath: 'is_old_first' }, // pathを小文字にしないとエラーになる
+                    { label: '障初', formpath: 'is_disabled_first' },
+                    {
+                        label: '特定医療費',
+                        formpath: 'is_special_medical_expense',
+                    },
+                    { label: '老課', formpath: 'is_old_tax' },
+                    { label: '障課', formpath: 'is_disabled_tax' },
+                ],
             },
         },
         {
