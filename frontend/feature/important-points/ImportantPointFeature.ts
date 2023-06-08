@@ -58,7 +58,7 @@ export function useImportPointFeature() {
             formPath: 'important_point',
             component: 'Textarea',
             props: {
-                label: '注意事項',
+                label: '特記事項',
                 withAsterisk: true,
             },
         },

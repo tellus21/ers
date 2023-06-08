@@ -20,7 +20,9 @@ class AppointmentController extends Controller
 
     public function show(Appointment $appointment)
     {
-        return $appointment->with('user', 'instruction.order.patient.homeCareClinic')->first();
+        // return $appointment->with('user', 'instruction.order.patient.homeCareClinic')->first();
+        $appointment = Appointment::with(['user', 'instruction.order.patient.homeCareClinic'])->find($appointment->id);
+        return response()->json($appointment);
     }
 
     public function update(AppointmentRequest $request, Appointment $appointment)
