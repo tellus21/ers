@@ -1,6 +1,7 @@
-import { Button, Group, Paper, Space, Text } from '@mantine/core'
+import { Group, Paper, Text } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import { editedOrderAtom } from '../contexts/orderContexts'
+import { convertIso8601ToDate } from '@/common/lib'
 
 // リクエストのメタデータを表示するコンポーネント
 export function OrderMetaData() {
@@ -30,14 +31,14 @@ export function OrderMetaData() {
                 <Group>
                     <Text size="md">作成日：</Text>
                     <Text size="md" td="underline">
-                        {editedOrder.created_at}
+                        {convertIso8601ToDate(editedOrder.created_at)}
                     </Text>
                 </Group>
 
                 <Group>
                     <Text size="md">最終更新日：</Text>
                     <Text size="md" td="underline">
-                        {editedOrder.updated_at}
+                        {convertIso8601ToDate(editedOrder.updated_at)}
                     </Text>
                 </Group>
 

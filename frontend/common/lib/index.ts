@@ -86,3 +86,16 @@ export function findIdByInstructionId(
     )
     return item ? item.id : null
 }
+
+/**
+ * convertIso8601ToDate関数は、ISO 8601形式の日付文字列を日本語表記の年月日に変換します。
+ * @param iso8601 ISO 8601形式の日付文字列
+ * @returns 日本語表記の年月日
+ */
+export function convertIso8601ToDate(iso8601: string): string {
+    const date = new Date(iso8601)
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    return `${year}年${month}月${day}日`
+}
