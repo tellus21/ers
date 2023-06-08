@@ -7,7 +7,11 @@ import axios from 'axios'
 import { MedicalInformationSheet } from './components/MedicalInformationSheet'
 import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
 import { DisplayPickUpDistanceList } from './components/DisplayPickUpDistanceList'
-
+import { useAtomValue } from 'jotai'
+import {
+    editedInstructionAtom,
+    editedOrderAtom,
+} from '../contexts/orderContexts'
 interface AppointmentFormProps {
     logicalName: string
     resource: any
@@ -23,6 +27,11 @@ export function AppointmentForm({
     query,
     fields,
 }: AppointmentFormProps) {
+    //将来的に更新時間をする時に使う
+    const editedInstruction = useAtomValue(editedInstructionAtom)
+    const onclickButton = () => {
+        console.log(editedInstruction.id)
+    }
     const onClickFaxButton = () => {
         axios
             .get(`http://localhost:8000/api/appointments/2/download_fax`, {
@@ -41,13 +50,17 @@ export function AppointmentForm({
                 link.click()
             })
     }
+
     return (
         <OrderFormBase resource={resource} form={form} query={query}>
             <TitleText title={logicalName} />
             <Box px={12}>
                 {/* 送迎時間 */}
                 <Group position="right">
-                    <Text size="md">最終更新日：〇〇、記載者：〇〇</Text>
+                    <Button color="gray.6" onClick={onclickButton}>
+                        fff
+                    </Button>
+                    <Text size="md"></Text>
                 </Group>
                 <DisplayPickUpTimeList />
                 <DisplayPickUpDistanceList />

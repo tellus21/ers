@@ -95,7 +95,8 @@ export function IndexOrders() {
 
         // クリックされた行のデータを予約情報としてセットする
         let appointmentValues = appointmentsQuery?.find(
-            (appointment: Appointment) => appointment.id === selectedOrder.id
+            (appointment: Appointment) =>
+                appointment.id === instructionValues.id
         )
         // appointmentValuesの日付型のプロパティを変換
         if (appointmentValues?.scheduled_confirmation_date !== null) {

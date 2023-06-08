@@ -1,4 +1,13 @@
-import { Box, Button, Grid, Group, Modal, Paper, Stack } from '@mantine/core'
+import {
+    Box,
+    Button,
+    Grid,
+    Group,
+    Modal,
+    Paper,
+    Space,
+    Stack,
+} from '@mantine/core'
 import { OrderMetaData } from './OrderMetaData'
 import { DisplayPatient } from '../patient/DisplayPatient'
 import { ConditionForm } from '../condition/ConditionForm'
@@ -112,15 +121,16 @@ export function EditOrderModal({
                         </Stack>
                     </Grid.Col>
                 </Grid>
+                <Space h={10} />
                 <Group position="right">
-                    <Button color="red" size="sm">
+                    <Button color="yellow" size="sm">
                         保留
                     </Button>{' '}
-                    <Button color="red" size="sm">
+                    <Button color="gray" size="sm">
                         中止
                     </Button>
-                    <Button color="red" size="sm">
-                        チェック済
+                    <Button color="violet" size="sm">
+                        依頼者チェック済
                     </Button>
                 </Group>
             </Box>
