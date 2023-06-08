@@ -5,6 +5,7 @@ use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\ExaminationClinicController;
 use App\Http\Controllers\HomeCareClinicController;
 use App\Http\Controllers\HomeCareDoctorController;
+use App\Http\Controllers\ImportantPointController;
 use App\Http\Controllers\InstructionController;
 use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\NursingHomeController;
@@ -40,6 +41,7 @@ Route::apiResource('conditions', ConditionController::class);
 Route::apiResource('insurances', InsuranceController::class);
 Route::apiResource('instructions', InstructionController::class);
 Route::apiResource('appointments', AppointmentController::class);
+Route::apiResource('important_points', ImportantPointController::class);
 Route::get('appointments/{appointment}/download_fax', [AppointmentController::class, 'download_fax']);
 
 

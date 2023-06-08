@@ -29,7 +29,7 @@ export const importantPointInitialValues: ImportPointFormValues = {
 export function useImportPointFeature() {
     // ---【Name】---
     const logicalName = '注意事項'
-    const resource = 'import_points'
+    const resource = 'important_points'
 
     // ---【Validate】---
     const validate = {
@@ -56,7 +56,7 @@ export function useImportPointFeature() {
     const fields: Field[] = [
         {
             formPath: 'important_point',
-            component: 'TextInput',
+            component: 'Textarea',
             props: {
                 label: '注意事項',
                 withAsterisk: true,
