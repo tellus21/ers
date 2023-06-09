@@ -46,8 +46,17 @@ export function useHomeCareDoctorFeature() {
 
     // ---【DataTable】---
     const columns = [
-        { accessor: 'id', title: 'id', width: 50, textAlignment: 'center' },
-        { accessor: 'name', title: '名前', textaligment: 'center' },
+        {
+            accessor: 'id',
+            title: 'id',
+            width: 50,
+            textAlignment: 'center',
+        },
+        {
+            accessor: 'name',
+            title: '名前',
+            textaligment: 'center',
+        },
         {
             accessor: 'is_retired',
             title: '退職済',

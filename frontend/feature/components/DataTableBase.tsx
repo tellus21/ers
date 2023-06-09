@@ -1,5 +1,9 @@
+import { Space, TextInput } from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
+import { IconSearch } from '@tabler/icons-react'
 import dayjs from 'dayjs'
 import { DataTable } from 'mantine-datatable'
+import { useEffect, useState } from 'react'
 
 const dateColumns = [
     {
@@ -23,31 +27,68 @@ interface DataTableBaseProps {
     records: any
     onRowClick: (rowData: any) => void
 }
-/**
- * DataTableBaseコンポーネントは、テーブルを表示するためのReactコンポーネント。
- * テーブルには、指定された列と日付列が含まれています。
- * 日付列は、作成日と更新日のフォーマットをYYYY/MM/DD形式に変換して表示します。
- */
+
 export function DataTableBase({
     columns,
-    records,
+    records: initialRecords,
     onRowClick,
 }: DataTableBaseProps) {
+    const [records, setRecords] = useState(initialRecords)
+    const [query, setQuery] = useState('')
+    const [debouncedQuery] = useDebouncedValue(query, 200)
+
+    useEffect(() => {
+        if (debouncedQuery === '') {
+            setRecords(initialRecords)
+        } else {
+            const filteredRecords = initialRecords.filter((record) => {
+                return Object.values(record).some((value) => {
+                    if (
+                        typeof value === 'object' &&
+                        value !== null &&
+                        value !== undefined
+                    ) {
+                        return Object.values(value).some(
+                            (innerValue) =>
+                                typeof innerValue === 'string' &&
+                                innerValue.includes(debouncedQuery)
+                        )
+                    }
+                    return (
+                        typeof value === 'string' &&
+                        value.includes(debouncedQuery)
+                    )
+                })
+            })
+            setRecords(filteredRecords)
+        }
+    }, [debouncedQuery, initialRecords])
+
     return (
-        <DataTable
-            withBorder
-            borderRadius="sm"
-            shadow="sm"
-            withColumnBorders
-            striped
-            highlightOnHover
-            horizontalSpacing="xs"
-            verticalSpacing="xs"
-            fontSize="xs"
-            verticalAlignment="center"
-            columns={[...columns, ...dateColumns]}
-            records={records}
-            onRowClick={onRowClick}
-        />
+        <>
+            <TextInput
+                placeholder="文字列検索"
+                size="sm"
+                icon={<IconSearch />}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+            />
+            <Space h="xs" />
+            <DataTable
+                withBorder
+                borderRadius="sm"
+                shadow="sm"
+                withColumnBorders
+                striped
+                highlightOnHover
+                horizontalSpacing="xs"
+                verticalSpacing="xs"
+                fontSize="xs"
+                verticalAlignment="center"
+                columns={[...columns, ...dateColumns]}
+                records={records}
+                onRowClick={onRowClick}
+            />
+        </>
     )
 }
