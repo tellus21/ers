@@ -1,4 +1,4 @@
-import { Button, Container, Group, Text } from '@mantine/core'
+import { Button, Container, Group, Space, Text } from '@mantine/core'
 import { DataTableBase } from '../components/DataTableBase'
 import { EditOrderModal } from './order/EditOrderModal'
 import { CreateOrderModal } from './order/CreateOrderModal'
@@ -122,19 +122,30 @@ export function IndexOrders() {
         <Container size="xl">
             <Text size="md">{`${orderLogicalName}一覧`}</Text>
 
-            {/* 依頼登録ボタンを表示 */}
-            <Group position="right">
-                <Button size="sm" onClick={createOrderModalHandlers.open}>
-                    {'患者検索'}
-                </Button>
-            </Group>
-
             {/* 依頼作成(患者検索モーダル)を表示 */}
             <CreateOrderModal
                 opened={createOrderModalOpend}
                 close={createOrderModalHandlers.close}
                 editOrderModalHandlersOpen={editOrderModalHandlers.open}
             />
+            <Group position="apart">
+                {/* 依頼状況ボタンを表示 */}
+                <Group>
+                    <Button color="yellow">依頼中</Button>
+                    <Button color="">予約中？</Button>
+                    <Button color="cyan">予約確定</Button>
+                    <Button color="green">保留中</Button>
+                    <Button color="gray">中止</Button>
+                </Group>
+                {/* 依頼登録ボタンを表示 */}
+                <Group>
+                    <Button size="sm" onClick={createOrderModalHandlers.open}>
+                        患者検索(依頼登録)
+                    </Button>
+                </Group>
+            </Group>
+
+            <Space h="xs" />
 
             {/* 依頼一覧テーブルを表示 */}
             <DataTableBase
@@ -142,7 +153,6 @@ export function IndexOrders() {
                 records={ordersQuery}
                 onRowClick={(rowData) => onTableRowClick(rowData)}
             />
-
             {/* 依頼編集モーダルを表示 */}
             <EditOrderModal
                 opened={editOrderModalOpend}

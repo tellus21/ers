@@ -123,9 +123,9 @@ export function EditOrderModal({
                 </Grid>
                 <Space h={10} />
                 <Group position="right">
-                    <Button color="yellow" size="sm">
+                    <Button color="green" size="sm">
                         保留
-                    </Button>{' '}
+                    </Button>
                     <Button color="gray" size="sm">
                         中止
                     </Button>

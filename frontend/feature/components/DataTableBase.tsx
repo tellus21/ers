@@ -72,8 +72,11 @@ export function DataTableBase({
                 icon={<IconSearch />}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
+                w={400}
             />
+
             <Space h="xs" />
+
             <DataTable
                 withBorder
                 borderRadius="sm"
