@@ -7,9 +7,12 @@ import { convertIso8601ToDate } from '@/common/lib'
 export function OrderMetaData() {
     const editedOrder: any = useAtomValue(editedOrderAtom)
     const bgColorMap: { [key: string]: string } = {
-        依頼中: 'blue.2',
-        予約確定: 'red.2',
+        依頼中: 'yellow.2',
+        予約中: 'blue.2',
+        予約確定: 'cyan.2',
+        依頼者チェック済: 'violet.2',
         保留中: 'green.2',
+        中止: 'gray.2',
     }
 
     return (
