@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 import { DataTable } from 'mantine-datatable'
 import { useEffect, useState } from 'react'
 
+// 日付表示用のカラムを定義
 const dateColumns = [
     {
         accessor: 'created_at',
@@ -22,21 +23,27 @@ const dateColumns = [
     },
 ]
 
+// テーブルの基本的なプロパティを定義
 interface DataTableBaseProps {
     columns: any
     records: any
     onRowClick: (rowData: any) => void
 }
 
+// テーブルをレンダリングする関数を定義
 export function DataTableBase({
     columns,
     records: initialRecords,
     onRowClick,
 }: DataTableBaseProps) {
+    // テーブルに表示するレコードを管理するstateを定義
     const [records, setRecords] = useState(initialRecords)
+    // 検索文字列を管理するstateを定義
     const [query, setQuery] = useState('')
+    // 検索文字列を遅延させるためのhookを使用
     const [debouncedQuery] = useDebouncedValue(query, 200)
 
+    // 検索文字列が変更されたときに、テーブルに表示するレコードをフィルタリング
     useEffect(() => {
         if (debouncedQuery === '') {
             setRecords(initialRecords)
@@ -64,6 +71,7 @@ export function DataTableBase({
         }
     }, [debouncedQuery, initialRecords])
 
+    // テーブルをレンダリング
     return (
         <>
             <TextInput

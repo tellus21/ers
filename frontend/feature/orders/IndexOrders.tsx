@@ -9,6 +9,7 @@ import { Insurance } from './insurance/insuranceFeature'
 import { Instruction } from './instruction/instractionFeature'
 import { Appointment } from './appointment/appointmentFeature'
 import { convertDateProperty } from '@/common/lib'
+import { useEffect, useState } from 'react'
 
 export function IndexOrders() {
     // 依頼一覧に関する情報を取得
@@ -48,6 +49,21 @@ export function IndexOrders() {
         setEditedOrder,
         setEditedInstruction,
     } = useOrdersIndex()
+
+    const [filteredOrders, setFilteredOrders] = useState(ordersQuery)
+
+    // ordersQueryが変更されたら、フィルターされたを再設定する
+    useEffect(() => {
+        setFilteredOrders(ordersQuery)
+    }, [ordersQuery])
+
+    // ステータスをクリックしたときに、フィルターされた依頼を更新する
+    const onClickStatus = (orders: Order[], status: string) => {
+        const updatedOrders = orders?.filter(
+            (order) => order.progress_status === status
+        )
+        setFilteredOrders(updatedOrders)
+    }
 
     // テーブルの行がクリックされた時の処理
     const onTableRowClick = (rowData: any) => {
@@ -131,11 +147,36 @@ export function IndexOrders() {
             <Group position="apart">
                 {/* 依頼状況ボタンを表示 */}
                 <Group>
-                    <Button color="yellow">依頼中</Button>
-                    <Button color="">予約中？</Button>
-                    <Button color="cyan">予約確定</Button>
-                    <Button color="green">保留中</Button>
-                    <Button color="gray">中止</Button>
+                    <Button
+                        color="yellow"
+                        onClick={() => onClickStatus(ordersQuery, '依頼中')}
+                    >
+                        依頼中
+                    </Button>
+                    <Button
+                        color=""
+                        onClick={() => onClickStatus(ordersQuery, '予約中')}
+                    >
+                        予約中
+                    </Button>
+                    <Button
+                        color="cyan"
+                        onClick={() => onClickStatus(ordersQuery, '予約確定')}
+                    >
+                        予約確定
+                    </Button>
+                    <Button
+                        color="green"
+                        onClick={() => onClickStatus(ordersQuery, '保留中')}
+                    >
+                        予約確定
+                    </Button>
+                    <Button
+                        color="gray"
+                        onClick={() => onClickStatus(ordersQuery, '中止')}
+                    >
+                        中止
+                    </Button>
                 </Group>
                 {/* 依頼登録ボタンを表示 */}
                 <Group>
@@ -150,7 +191,7 @@ export function IndexOrders() {
             {/* 依頼一覧テーブルを表示 */}
             <DataTableBase
                 columns={orderColumns}
-                records={ordersQuery}
+                records={filteredOrders}
                 onRowClick={(rowData) => onTableRowClick(rowData)}
             />
             {/* 依頼編集モーダルを表示 */}
