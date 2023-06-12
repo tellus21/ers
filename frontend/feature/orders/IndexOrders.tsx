@@ -1,4 +1,12 @@
-import { Button, Container, Group, Space, Text } from '@mantine/core'
+import {
+    Button,
+    Container,
+    Group,
+    Space,
+    Text,
+    useMantineColorScheme,
+    useMantineTheme,
+} from '@mantine/core'
 import { DataTableBase } from '../components/DataTableBase'
 import { EditOrderModal } from './order/EditOrderModal'
 import { CreateOrderModal } from './order/CreateOrderModal'
@@ -10,8 +18,29 @@ import { Instruction } from './instruction/instractionFeature'
 import { Appointment } from './appointment/appointmentFeature'
 import { convertDateProperty } from '@/common/lib'
 import { useEffect, useState } from 'react'
+import { ProgressStatus } from '@/common/constants'
 
 export function IndexOrders() {
+    const theme = useMantineTheme()
+    const rowStyle = ({ progress_status }: { progress_status: string }) => {
+        switch (progress_status) {
+            case ProgressStatus.REQUESTING:
+                return { backgroundColor: theme.colors.yellow[0] }
+            case ProgressStatus.RESERVING:
+                return { backgroundColor: theme.colors.blue[0] }
+            case ProgressStatus.RESERVATION_CONFIRMED:
+                return { backgroundColor: theme.colors.cyan[0] }
+            case ProgressStatus.CHECKED:
+                return { backgroundColor: theme.colors.violet[0] }
+            case ProgressStatus.HOLDING:
+                return { backgroundColor: theme.colors.gleen[0] }
+            case ProgressStatus.CANCELLED:
+                return { backgroundColor: theme.colors.black[0] }
+            default:
+                return undefined
+        }
+    }
+
     // 依頼一覧に関する情報を取得
     const {
         orderLogicalName,
@@ -65,6 +94,11 @@ export function IndexOrders() {
         setFilteredOrders(updatedOrders)
     }
 
+    // フィルターを解除する関数
+    const resetFilter = (orders: Order[]) => {
+        setFilteredOrders(orders)
+    }
+
     // テーブルの行がクリックされた時の処理
     const onTableRowClick = (rowData: any) => {
         // クリックされた行のデータを依頼としてセットする
@@ -91,6 +125,7 @@ export function IndexOrders() {
         let instructionValues = instructionsQuery?.find(
             (instruction: Instruction) => instruction.id === selectedOrder.id
         )
+
         // instructionValuesの日付型のプロパティを変換
         if (instructionValues?.candidate_month_1 !== null) {
             instructionValues = convertDateProperty(
@@ -148,34 +183,64 @@ export function IndexOrders() {
                 {/* 依頼状況ボタンを表示 */}
                 <Group>
                     <Button
-                        color="yellow"
-                        onClick={() => onClickStatus(ordersQuery, '依頼中')}
+                        color="blue"
+                        onClick={() => resetFilter(ordersQuery)}
                     >
-                        依頼中
+                        全て
+                    </Button>
+                    <Button
+                        color="yellow"
+                        onClick={() =>
+                            onClickStatus(
+                                ordersQuery,
+                                ProgressStatus.REQUESTING
+                            )
+                        }
+                    >
+                        {ProgressStatus.REQUESTING}
                     </Button>
                     <Button
                         color=""
-                        onClick={() => onClickStatus(ordersQuery, '予約中')}
+                        onClick={() =>
+                            onClickStatus(ordersQuery, ProgressStatus.RESERVING)
+                        }
                     >
-                        予約中
+                        {ProgressStatus.RESERVING}
                     </Button>
                     <Button
                         color="cyan"
-                        onClick={() => onClickStatus(ordersQuery, '予約確定')}
+                        onClick={() =>
+                            onClickStatus(
+                                ordersQuery,
+                                ProgressStatus.RESERVATION_CONFIRMED
+                            )
+                        }
                     >
-                        予約確定
+                        {ProgressStatus.RESERVATION_CONFIRMED}
+                    </Button>
+                    <Button
+                        color="violet"
+                        onClick={() =>
+                            onClickStatus(ordersQuery, ProgressStatus.CHECKED)
+                        }
+                    >
+                        {ProgressStatus.CHECKED}
                     </Button>
                     <Button
                         color="green"
-                        onClick={() => onClickStatus(ordersQuery, '保留中')}
+                        onClick={() =>
+                            onClickStatus(ordersQuery, ProgressStatus.HOLDING)
+                        }
                     >
-                        予約確定
+                        {ProgressStatus.HOLDING}
                     </Button>
                     <Button
                         color="gray"
-                        onClick={() => onClickStatus(ordersQuery, '中止')}
+                        onClick={() =>
+                            onClickStatus(ordersQuery, ProgressStatus.CANCELLED)
+                        }
                     >
-                        中止
+                        {ProgressStatus.CANCELLED}
                     </Button>
                 </Group>
                 {/* 依頼登録ボタンを表示 */}
@@ -193,7 +258,9 @@ export function IndexOrders() {
                 columns={orderColumns}
                 records={filteredOrders}
                 onRowClick={(rowData) => onTableRowClick(rowData)}
+                rowStyle={rowStyle}
             />
+
             {/* 依頼編集モーダルを表示 */}
             <EditOrderModal
                 opened={editOrderModalOpend}

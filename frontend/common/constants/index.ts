@@ -4,3 +4,12 @@ export const karteNumberLengthErrorMessage =
 
 export const genderOptions = ['男', '女', 'その他', '不明']
 export const authorityOptions = ['管理者', '検査依頼', '検査予約', '送迎']
+
+export enum ProgressStatus {
+    REQUESTING = '依頼中',
+    RESERVING = '予約中',
+    RESERVATION_CONFIRMED = '予約確定',
+    CHECKED = '依頼者チェック済み',
+    HOLDING = '保留中',
+    CANCELLED = '中止',
+}

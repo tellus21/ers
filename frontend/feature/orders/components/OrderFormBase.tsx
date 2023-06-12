@@ -32,6 +32,7 @@ export function OrderFormBase({
     const handleSubmit = (values: any) => {
         let ownId
         let newValues
+        // リソースがappointemtsの場合の処理
         if (resource === 'appointments') {
             // インストラクションIDから自分のIDを取得します
             ownId = findIdByInstructionId(query, editedInstruction.id)

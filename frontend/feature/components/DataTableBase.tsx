@@ -28,6 +28,7 @@ interface DataTableBaseProps {
     columns: any
     records: any
     onRowClick: (rowData: any) => void
+    rowStyle?: any
 }
 
 // テーブルをレンダリングする関数を定義
@@ -35,6 +36,7 @@ export function DataTableBase({
     columns,
     records: initialRecords,
     onRowClick,
+    rowStyle,
 }: DataTableBaseProps) {
     // テーブルに表示するレコードを管理するstateを定義
     const [records, setRecords] = useState(initialRecords)
@@ -99,6 +101,7 @@ export function DataTableBase({
                 columns={[...columns, ...dateColumns]}
                 records={records}
                 onRowClick={onRowClick}
+                rowStyle={rowStyle}
             />
         </>
     )
