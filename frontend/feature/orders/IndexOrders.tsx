@@ -33,9 +33,9 @@ export function IndexOrders() {
             case ProgressStatus.CHECKED:
                 return { backgroundColor: theme.colors.violet[0] }
             case ProgressStatus.HOLDING:
-                return { backgroundColor: theme.colors.gleen[0] }
+                return { backgroundColor: theme.colors.green[0] }
             case ProgressStatus.CANCELLED:
-                return { backgroundColor: theme.colors.black[0] }
+                return { backgroundColor: theme.colors.gray[3] }
             default:
                 return undefined
         }

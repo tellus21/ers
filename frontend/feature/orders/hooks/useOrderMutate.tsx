@@ -12,7 +12,7 @@ export function useOrderMutate(resource: string) {
 
     const updateSelectedDataMutation = useMutation({
         mutationFn: (patchData: any) =>
-            axios.put(`${API_URL}/${resource}/${patchData.id}`, patchData),
+            axios.patch(`${API_URL}/${resource}/${patchData.id}`, patchData),
         onMutate: (variables) => ({ name: variables.name }),
 
         onError: (error, variables, context) => {

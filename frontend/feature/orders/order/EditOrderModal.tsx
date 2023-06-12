@@ -7,6 +7,7 @@ import {
     Paper,
     Space,
     Stack,
+    Text,
 } from '@mantine/core'
 import { OrderMetaData } from './OrderMetaData'
 import { DisplayPatient } from '../patient/DisplayPatient'
@@ -14,6 +15,10 @@ import { ConditionForm } from '../condition/ConditionForm'
 import { InsuranceForm } from '../insurance/InsuranceForm'
 import { InstructionForm } from '../instruction/InstructionForm'
 import { AppointmentForm } from '../appointment/AppointmentForm'
+import { useAtom } from 'jotai'
+import { editedOrderAtom } from '../contexts/orderContexts'
+import { useProgressStatusMutate } from './hooks/useProgressStatusMutate'
+import { ProgressStatus } from '@/common/constants'
 
 interface EditOrderModalProps {
     opened: boolean
@@ -64,6 +69,31 @@ export function EditOrderModal({
     appointmentsQuery,
     appointmentFields,
 }: EditOrderModalProps) {
+    const { updateEditedOrderMutate } = useProgressStatusMutate()
+    const onClickChangeProgressStatus = (progress_status: any) => {
+        updateEditedOrderMutate.mutate(progress_status)
+    }
+
+    const onClickHoldingButton = () => {
+        onClickChangeProgressStatus(ProgressStatus.HOLDING)
+    }
+
+    const onClickCancelledButton = () => {
+        onClickChangeProgressStatus(ProgressStatus.CANCELLED)
+    }
+
+    const onClickRequestingButton = () => {
+        onClickChangeProgressStatus(ProgressStatus.REQUESTING)
+    }
+
+    const onClickReservationConfirmedButton = () => {
+        onClickChangeProgressStatus(ProgressStatus.RESERVATION_CONFIRMED)
+    }
+
+    const onClickCheckedButton = () => {
+        onClickChangeProgressStatus(ProgressStatus.CHECKED)
+    }
+
     return (
         <Modal
             opened={opened}
@@ -122,16 +152,53 @@ export function EditOrderModal({
                     </Grid.Col>
                 </Grid>
                 <Space h={10} />
+                <Group position="apart">
+                    <Group>
+                        <Button
+                            color="green"
+                            size="sm"
+                            onClick={onClickHoldingButton}
+                        >
+                            {ProgressStatus.HOLDING}
+                        </Button>
+                        <Button
+                            color="gray"
+                            size="sm"
+                            onClick={onClickCancelledButton}
+                        >
+                            {ProgressStatus.CANCELLED}
+                        </Button>
+                    </Group>
+                    <Group>
+                        <Button
+                            color="yellow"
+                            size="sm"
+                            onClick={onClickRequestingButton}
+                        >
+                            {ProgressStatus.REQUESTING}に戻す
+                        </Button>
+                        <Button
+                            color="cyan"
+                            size="sm"
+                            onClick={onClickReservationConfirmedButton}
+                        >
+                            {ProgressStatus.RESERVATION_CONFIRMED}
+                        </Button>
+                        <Button
+                            color="violet"
+                            size="sm"
+                            onClick={onClickCheckedButton}
+                        >
+                            {ProgressStatus.CHECKED}
+                        </Button>
+                    </Group>
+                </Group>
+                <Space h={10} />
                 <Group position="right">
-                    <Button color="green" size="sm">
-                        保留
-                    </Button>
-                    <Button color="gray" size="sm">
-                        中止
-                    </Button>
-                    <Button color="violet" size="sm">
-                        依頼者チェック済
-                    </Button>
+                    <Text size="md" color="red.6">
+                        ※「保留中」「中止」「依頼中に戻す」「予約確定」「依頼者チェック済」ボタンは、クリック直後に反映されます。
+                        (更新ボタンを押す必要はありません)
+                    </Text>
                 </Group>
             </Box>
         </Modal>
