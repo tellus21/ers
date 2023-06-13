@@ -50,7 +50,7 @@ export function DataTableBase({
         if (debouncedQuery === '') {
             setRecords(initialRecords)
         } else {
-            const filteredRecords = initialRecords.filter((record) => {
+            const filteredRecords = initialRecords.filter((record: any) => {
                 return Object.values(record).some((value) => {
                     if (
                         typeof value === 'object' &&

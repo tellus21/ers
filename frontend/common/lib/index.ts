@@ -92,7 +92,7 @@ export function findIdByInstructionId(
  * @param iso8601 ISO 8601形式の日付文字列
  * @returns 日本語表記の年月日
  */
-export function convertIso8601ToDate(iso8601: string): string {
+export function convertIso8601ToDate(iso8601: Date): string {
     const date = new Date(iso8601)
     const year = date.getFullYear()
     const month = date.getMonth() + 1
