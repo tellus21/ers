@@ -1,11 +1,12 @@
 import { Group, Paper, Text } from '@mantine/core'
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { editedOrderAtom } from '../contexts/orderContexts'
 import { convertIso8601ToDate } from '@/common/lib'
 
 // リクエストのメタデータを表示するコンポーネント
 export function OrderMetaData() {
-    const editedOrder: any = useAtomValue(editedOrderAtom)
+    const [editedOrder, setEditedOrder] = useAtom(editedOrderAtom)
+    // const editedOrder: any = useAtomValue(eddditedOrderAtom)
     const bgColorMap: { [key: string]: string } = {
         依頼中: 'yellow.2',
         予約中: 'blue.2',
@@ -34,14 +35,18 @@ export function OrderMetaData() {
                 <Group>
                     <Text size="md">作成日：</Text>
                     <Text size="md" td="underline">
-                        {convertIso8601ToDate(editedOrder.created_at)}
+                        {editedOrder.created_at
+                            ? convertIso8601ToDate(editedOrder.created_at)
+                            : ''}
                     </Text>
                 </Group>
 
                 <Group>
                     <Text size="md">最終更新日：</Text>
                     <Text size="md" td="underline">
-                        {convertIso8601ToDate(editedOrder.updated_at)}
+                        {editedOrder.updated_at
+                            ? convertIso8601ToDate(editedOrder.updated_at)
+                            : ''}
                     </Text>
                 </Group>
 

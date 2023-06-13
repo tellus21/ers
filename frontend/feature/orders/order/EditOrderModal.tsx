@@ -15,10 +15,10 @@ import { ConditionForm } from '../condition/ConditionForm'
 import { InsuranceForm } from '../insurance/InsuranceForm'
 import { InstructionForm } from '../instruction/InstructionForm'
 import { AppointmentForm } from '../appointment/AppointmentForm'
-import { useAtom } from 'jotai'
-import { editedOrderAtom } from '../contexts/orderContexts'
 import { useProgressStatusMutate } from './hooks/useProgressStatusMutate'
 import { ProgressStatus } from '@/common/constants'
+import { editedOrderAtom } from '../contexts/orderContexts'
+import { useAtom } from 'jotai'
 
 interface EditOrderModalProps {
     opened: boolean
@@ -70,28 +70,31 @@ export function EditOrderModal({
     appointmentFields,
 }: EditOrderModalProps) {
     const { updateEditedOrderMutate } = useProgressStatusMutate()
-    const onClickChangeProgressStatus = (progress_status: any) => {
+    const [editedOrder, setEditedOrder] = useAtom(editedOrderAtom)
+
+    const changeProgressStatus = (progress_status: any) => {
         updateEditedOrderMutate.mutate(progress_status)
+        setEditedOrder({ ...editedOrder, progress_status: progress_status })
     }
 
     const onClickHoldingButton = () => {
-        onClickChangeProgressStatus(ProgressStatus.HOLDING)
+        changeProgressStatus(ProgressStatus.HOLDING)
     }
 
     const onClickCancelledButton = () => {
-        onClickChangeProgressStatus(ProgressStatus.CANCELLED)
+        changeProgressStatus(ProgressStatus.CANCELLED)
     }
 
     const onClickRequestingButton = () => {
-        onClickChangeProgressStatus(ProgressStatus.REQUESTING)
+        changeProgressStatus(ProgressStatus.REQUESTING)
     }
 
     const onClickReservationConfirmedButton = () => {
-        onClickChangeProgressStatus(ProgressStatus.RESERVATION_CONFIRMED)
+        changeProgressStatus(ProgressStatus.RESERVATION_CONFIRMED)
     }
 
     const onClickCheckedButton = () => {
-        onClickChangeProgressStatus(ProgressStatus.CHECKED)
+        changeProgressStatus(ProgressStatus.CHECKED)
     }
 
     return (
