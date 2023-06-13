@@ -72,9 +72,12 @@ export function EditOrderModal({
     const { updateEditedOrderMutate } = useProgressStatusMutate()
     const [editedOrder, setEditedOrder] = useAtom(editedOrderAtom)
 
-    const changeProgressStatus = (progress_status: any) => {
-        updateEditedOrderMutate.mutate(progress_status)
-        setEditedOrder({ ...editedOrder, progress_status: progress_status })
+    const changeProgressStatus = (changed_progress_status: any) => {
+        updateEditedOrderMutate.mutate(changed_progress_status)
+        setEditedOrder({
+            ...editedOrder,
+            progress_status: changed_progress_status,
+        })
     }
 
     const onClickHoldingButton = () => {
@@ -199,7 +202,7 @@ export function EditOrderModal({
                 <Space h={10} />
                 <Group position="right">
                     <Text size="sm" color="red.6">
-                        ※「保留中」「中止」「依頼中に戻す」「予約確定」「依頼者チェック済」ボタンは、クリック直後に反映されます。
+                        ※「保留」「中止」「依頼中に戻す」「予約確定」「依頼者チェック済」ボタンは、クリック直後に反映されます。
                         (更新ボタンを押す必要はありません)
                     </Text>
                 </Group>

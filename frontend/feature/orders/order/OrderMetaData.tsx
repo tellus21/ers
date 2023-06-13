@@ -12,7 +12,7 @@ export function OrderMetaData() {
         予約中: 'blue.2',
         予約確定: 'cyan.2',
         依頼者チェック済: 'violet.2',
-        保留中: 'green.2',
+        保留: 'green.2',
         中止: 'gray.2',
     }
 
@@ -54,8 +54,7 @@ export function OrderMetaData() {
                     <Text size="md">作成者：</Text>
                     {editedOrder.user && (
                         <Text size="md" td="underline">
-                            {editedOrder.user.last_name}{' '}
-                            {editedOrder.user.first_name}
+                            {`${editedOrder.user.last_name}　${editedOrder.user.first_name}`}
                         </Text>
                     )}
                 </Group>

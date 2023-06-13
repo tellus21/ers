@@ -1,4 +1,4 @@
-import { Box, Divider, Group, Text, Button, Space } from '@mantine/core'
+import { Box, Divider, Group, Text, Button, createStyles } from '@mantine/core'
 
 import { OrderFormBase } from '../components/OrderFormBase'
 import { TitleText } from '../components/TitleText'
@@ -12,6 +12,17 @@ import {
     editedInstructionAtom,
     editedOrderAtom,
 } from '../contexts/orderContexts'
+import { ProgressStatus } from '@/common/constants'
+import { notifications } from '@mantine/notifications'
+
+const useStyles = createStyles((theme) => ({
+    label: { fontSize: theme.fontSizes.xs, color: theme.colors.gray[7] },
+    data: {
+        fontSize: theme.fontSizes.md,
+        borderBottom: '1px solid #cccccc',
+    },
+}))
+
 interface AppointmentFormProps {
     logicalName: string
     resource: any
@@ -27,12 +38,25 @@ export function AppointmentForm({
     query,
     fields,
 }: AppointmentFormProps) {
-    //将来的に更新時間をする時に使う
+    const { classes } = useStyles()
+    //将来的に送迎時間更新をする時に使う
     const editedInstruction = useAtomValue(editedInstructionAtom)
+    const editedOrder = useAtomValue(editedOrderAtom)
     const onclickButton = () => {
         console.log(editedInstruction.id)
     }
     const onClickFaxButton = () => {
+        if (
+            editedOrder.progress_status !== ProgressStatus.RESERVATION_CONFIRMED
+        ) {
+            notifications.show({
+                title: 'FAX印刷エラー',
+                message: '「予約確定」中にしかFAX印刷はできません。🤔',
+                color: 'red',
+            })
+            return
+        }
+
         axios
             .get(`http://localhost:8000/api/appointments/2/download_fax`, {
                 responseType: 'arraybuffer',
@@ -57,10 +81,19 @@ export function AppointmentForm({
             <Box px={12}>
                 {/* 送迎時間 */}
                 <Group position="right">
-                    <Button color="gray.6" onClick={onclickButton}>
+                    <Button
+                        color="gray.6"
+                        onClick={() => console.log(form.values.user.last_name)}
+                    >
                         fff
                     </Button>
                     <Text size="md"></Text>
+                    <Text size="sm">予約記載者：</Text>
+                    <Text className={classes.data}>
+                        {`${editedOrder.user!.last_name}　${
+                            editedOrder.user!.first_name
+                        }`}
+                    </Text>
                 </Group>
                 <DisplayPickUpTimeList />
                 <DisplayPickUpDistanceList />
@@ -74,10 +107,7 @@ export function AppointmentForm({
                 <FieldsEightTwelve form={form} fields={fields.examination} />
                 {/* 送迎関連 */}
                 <Divider label="送迎関連" />
-                <Group position="apart">
-                    <Text size="xs" color="red">
-                        ※予定確定日後に「更新」を行うと、ステータスが「予約確定」になります。
-                    </Text>
+                <Group position="right">
                     <Group>
                         <MedicalInformationSheet />
                         <Button color="gray.6" onClick={onClickFaxButton}>

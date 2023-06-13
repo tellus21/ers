@@ -10,6 +10,6 @@ export const ProgressStatus = {
     RESERVING: '予約中',
     RESERVATION_CONFIRMED: '予約確定',
     CHECKED: '依頼者チェック済',
-    HOLDING: '保留中',
+    HOLDING: '保留',
     CANCELLED: '中止',
 } as const
