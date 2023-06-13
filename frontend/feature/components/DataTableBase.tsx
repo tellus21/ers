@@ -2,8 +2,9 @@ import { Space, TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { IconSearch } from '@tabler/icons-react'
 import dayjs from 'dayjs'
-import { DataTable } from 'mantine-datatable'
+import { DataTable, DataTableSortStatus } from 'mantine-datatable'
 import { useEffect, useState } from 'react'
+import sortBy from 'lodash/sortBy'
 
 // 日付表示用のカラムを定義
 const dateColumns = [
@@ -40,17 +41,26 @@ export function DataTableBase({
 }: DataTableBaseProps) {
     // テーブルに表示するレコードを管理するstateを定義
     const [records, setRecords] = useState(initialRecords)
+    // 並び替えのステータスを管理するstateを定義
+    const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
+        columnAccessor: 'id',
+        direction: 'asc',
+    })
     // 検索文字列を管理するstateを定義
     const [query, setQuery] = useState('')
     // 検索文字列を遅延させるためのhookを使用
     const [debouncedQuery] = useDebouncedValue(query, 200)
 
-    // 検索文字列が変更されたときに、テーブルに表示するレコードをフィルタリング
+    // 検索文字列が変更されたとき、または並び替えのステータスが変更されたときに、テーブルに表示するレコードをフィルタリング・ソートする
     useEffect(() => {
+        // 並び替えのステータスに従ってレコードをソート
+        const sortedRecord = sortBy(initialRecords, sortStatus.columnAccessor)
+        let filteredRecords
+        // 検索文字列が入力されている場合は、レコードをフィルタリング
         if (debouncedQuery === '') {
-            setRecords(initialRecords)
+            filteredRecords = sortedRecord
         } else {
-            const filteredRecords = initialRecords.filter((record: any) => {
+            filteredRecords = initialRecords.filter((record: any) => {
                 return Object.values(record).some((value) => {
                     if (
                         typeof value === 'object' &&
@@ -69,9 +79,14 @@ export function DataTableBase({
                     )
                 })
             })
-            setRecords(filteredRecords)
         }
-    }, [debouncedQuery, initialRecords])
+        // 並び替えのステータスに従ってレコードをソート
+        setRecords(
+            sortStatus.direction === 'desc'
+                ? filteredRecords.reverse()
+                : filteredRecords
+        )
+    }, [debouncedQuery, initialRecords, sortStatus])
 
     // テーブルをレンダリング
     return (
@@ -102,6 +117,8 @@ export function DataTableBase({
                 records={records}
                 onRowClick={onRowClick}
                 rowStyle={rowStyle}
+                sortStatus={sortStatus}
+                onSortStatusChange={setSortStatus}
             />
         </>
     )

@@ -41,9 +41,9 @@ export function useOrderFeature() {
 
     // ---【Table】---
     const columns = [
-        { accessor: 'id', title: 'id' },
+        { accessor: 'id', title: 'id', sortable: true },
         { accessor: 'is_confirmed', title: '確認済' },
-        { accessor: 'progress_status', title: '進捗状況' },
+        { accessor: 'progress_status', title: '進捗状況', sortable: true },
         { accessor: 'order_date', title: '依頼日' },
         { accessor: 'user.last_name', title: '作成者' },
         {
