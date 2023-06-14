@@ -784,7 +784,7 @@ const contact = [
     },
     {
         formPath: 'medication_content',
-        component: 'HalfTextarea',
+        component: 'TextareaHalf',
         props: {
             label: '内服内容',
         },

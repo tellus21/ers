@@ -136,7 +136,7 @@ export function FieldsEightTwelve({ form, fields }: FieldsEightTwelveProps) {
                                 />
                             </Grid.Col>
                         )
-                    case 'HalfTextarea':
+                    case 'TextareaHalf':
                         return (
                             <Grid.Col span={12} key={index}>
                                 <Textarea
