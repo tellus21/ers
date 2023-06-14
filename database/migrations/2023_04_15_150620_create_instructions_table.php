@@ -91,6 +91,7 @@ class CreateInstructionsTable extends Migration
             $table->text('examination_purpose')->nullable();
             $table->string('fasting')->nullable();
             $table->string('medication_stop')->nullable();
+            $table->text('medication_content')->nullable();
             $table->text('contact_information')->nullable();
             $table->timestamps();
             $table->softDeletes();

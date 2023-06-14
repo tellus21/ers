@@ -89,6 +89,7 @@ export interface Instruction {
     examination_purpose: string
     fasting: string
     medication_stop: string
+    medication_content: string
     contact_information: string
     created_at: Date
     updated_at: Date
@@ -185,6 +186,7 @@ export const instructionInitialValues: InstructionFormValues = {
     examination_purpose: '',
     fasting: '',
     medication_stop: '',
+    medication_content: '',
     contact_information: '',
     created_at: new Date(),
     updated_at: new Date(),

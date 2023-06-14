@@ -133,6 +133,7 @@ class InstructionRequest extends FormRequest
             'examination_purpose' => 'nullable|string',
             'fasting' => 'nullable|string|max:255',
             'medication_stop' => 'nullable|string|max:255',
+            'medication_content' => 'nullable|string',
             'contact_information' => 'nullable|string',
             'created_at' => 'nullable|date',
             'updated_at' => 'nullable|date',

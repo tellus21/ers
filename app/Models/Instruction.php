@@ -92,6 +92,7 @@ class Instruction extends Model
         'examination_purpose',
         'fasting',
         'medication_stop',
+        'medication_content',
         'contact_information'
     ];
 

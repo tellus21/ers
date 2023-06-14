@@ -779,7 +779,14 @@ const contact = [
         formPath: 'medication_stop',
         component: 'RadioMorningDaytime',
         props: {
-            label: '服止め',
+            label: '内服中止',
+        },
+    },
+    {
+        formPath: 'medication_content',
+        component: 'HalfTextarea',
+        props: {
+            label: '内服内容',
         },
     },
     {

@@ -127,6 +127,15 @@ export function FieldsEightTwelve({ form, fields }: FieldsEightTwelveProps) {
                                 />
                             </Grid.Col>
                         )
+                    case 'HalfTextarea':
+                        return (
+                            <Grid.Col span={12} key={index}>
+                                <Textarea
+                                    {...field.props}
+                                    {...form.getInputProps(field.formPath)}
+                                />
+                            </Grid.Col>
+                        )
                     case 'RadioYesNo':
                         return (
                             <Grid.Col span={6} key={index}>
