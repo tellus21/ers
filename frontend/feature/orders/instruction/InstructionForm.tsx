@@ -18,6 +18,23 @@ export function InstructionForm({
     query,
     fields,
 }: InstructionFormProps) {
+    const {
+        metaData,
+        ct_1,
+        ct_2,
+        ct_3,
+        mri_1,
+        mri_2,
+        mri_3,
+        mri_4,
+        us,
+        spect,
+        petCt,
+        etc_1,
+        etc_2,
+        text,
+        contact,
+    } = fields
     return (
         <OrderFormBase resource={resource} form={form} query={query}>
             <Box px={12}>
@@ -44,40 +61,41 @@ export function InstructionForm({
                 {/* メタデータ */}
                 <Divider label={'基本情報'} />
                 <Box p={12} pt={24} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.metaData} />
+                    <FieldsEightTwelve form={form} fields={metaData} />
                 </Box>
 
                 {/* CT */}
                 <Divider label={'CT'} />
                 <Box p={12} pt={6}>
-                    <FieldsEightTwelve form={form} fields={fields.ct_1} />
+                    <FieldsEightTwelve form={form} fields={ct_1} />
                 </Box>
                 <Box p={12} pt={18} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.ct_2} />
+                    <FieldsEightTwelve form={form} fields={ct_2} />
                 </Box>
                 <Box p={12} pb={24} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.ct_3} />
+                    <FieldsEightTwelve form={form} fields={ct_3} />
                 </Box>
 
                 {/* MRI */}
                 <Divider label={'MRI'} />
+
                 <Box p={12} pt={6}>
-                    <FieldsEightTwelve form={form} fields={fields.mri_1} />
+                    <FieldsEightTwelve form={form} fields={mri_1} />
                 </Box>
                 <Box p={12} pt={18} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.mri_2} />
+                    <FieldsEightTwelve form={form} fields={mri_2} />
                 </Box>
                 <Box p={12} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.mri_3} />
+                    <FieldsEightTwelve form={form} fields={mri_3} />
                 </Box>
                 <Box p={12} pb={24} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.mri_4} />
+                    <FieldsEightTwelve form={form} fields={mri_4} />
                 </Box>
 
                 {/* US */}
                 <Divider label={'US'} />
                 <Box p={12} py={24} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.us} />
+                    <FieldsEightTwelve form={form} fields={us} />
                 </Box>
 
                 {/* RI*/}
@@ -86,7 +104,7 @@ export function InstructionForm({
                 {/* SPECT/シンチグラム */}
                 <Text>■SPECT/シンチグラム</Text>
                 <Box p={12} py={24} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.spect} />
+                    <FieldsEightTwelve form={form} fields={spect} />
                 </Box>
                 <Space h={10} />
                 <Text>■PET/CT</Text>
@@ -98,26 +116,26 @@ export function InstructionForm({
                         ※検査当日に食事や血糖降下薬の服用(インシュリン注射も含む)等を行うと検査中止になります。
                     </Text>
 
-                    <FieldsEightTwelve form={form} fields={fields.petCt} />
+                    <FieldsEightTwelve form={form} fields={petCt} />
                 </Box>
-                <Divider label={'その他検査'} />
 
                 {/* その他検査 */}
+                <Divider label={'その他検査'} />
                 <Box p={12} pt={18} pb={12} bg="gray.0">
-                    <FieldsEightTwelve form={form} fields={fields.etc_1} />
-                    <FieldsEightTwelve form={form} fields={fields.etc_2} />
+                    <FieldsEightTwelve form={form} fields={etc_1} />
+                    <FieldsEightTwelve form={form} fields={etc_2} />
                 </Box>
 
                 {/* 主訴・目的 */}
                 <Divider label={'主訴・目的'} />
                 <Box pl={12}>
-                    <FieldsEightTwelve form={form} fields={fields.text} />
+                    <FieldsEightTwelve form={form} fields={text} />
                 </Box>
 
                 {/* 連絡 */}
+                <Divider label={'連絡関連'} />
                 <Box pl={12}>
-                    <Divider label={'連絡関連'} />
-                    <FieldsEightTwelve form={form} fields={fields.contact} />
+                    <FieldsEightTwelve form={form} fields={contact} />
                     <Text color="red.6">
                         ※診療情報提供書には表示されません。
                     </Text>
