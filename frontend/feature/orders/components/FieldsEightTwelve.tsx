@@ -66,6 +66,15 @@ export function FieldsEightTwelve({ form, fields }: FieldsEightTwelveProps) {
                                 />
                             </Grid.Col>
                         )
+                    case 'LongTextInput':
+                        return (
+                            <Grid.Col span={12} key={index}>
+                                <TextInput
+                                    {...field.props}
+                                    {...form.getInputProps(field.formPath)}
+                                />
+                            </Grid.Col>
+                        )
                     case 'NumberInput':
                         return (
                             <Grid.Col span={4} key={index}>

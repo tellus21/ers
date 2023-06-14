@@ -753,7 +753,7 @@ const etc_2 = [
 const text = [
     {
         formPath: 'chief_complaint',
-        component: 'Textarea',
+        component: 'LongTextInput',
         props: {
             label: '主訴',
         },
