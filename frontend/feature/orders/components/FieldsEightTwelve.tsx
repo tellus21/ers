@@ -66,7 +66,7 @@ export function FieldsEightTwelve({ form, fields }: FieldsEightTwelveProps) {
                                 />
                             </Grid.Col>
                         )
-                    case 'LongTextInput':
+                    case 'TextInputLong':
                         return (
                             <Grid.Col span={12} key={index}>
                                 <TextInput
