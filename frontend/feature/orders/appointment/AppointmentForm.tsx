@@ -89,11 +89,12 @@ export function AppointmentForm({
                     </Button>
                     <Text size="md"></Text>
                     <Text size="sm">予約記載者：</Text>
+                    {/*                     
                     <Text className={classes.data}>
                         {`${editedOrder.user!.last_name}　${
                             editedOrder.user!.first_name
                         }`}
-                    </Text>
+                    </Text> */}
                 </Group>
                 <DisplayPickUpTimeList />
                 <DisplayPickUpDistanceList />

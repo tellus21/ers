@@ -79,6 +79,15 @@ const useMetaData = () => {
 
 const ct_1 = [
     {
+        component: 'Blank',
+    },
+    {
+        component: 'Blank',
+    },
+    {
+        component: 'BlankShort',
+    },
+    {
         formPath: 'has_ct_contrast',
         component: 'Checkbox',
         props: {
@@ -244,6 +253,15 @@ const ct_3 = [
 ]
 
 const mri_1 = [
+    {
+        component: 'Blank',
+    },
+    {
+        component: 'Blank',
+    },
+    {
+        component: 'BlankShort',
+    },
     {
         formPath: 'has_mri_contrast',
         component: 'Checkbox',

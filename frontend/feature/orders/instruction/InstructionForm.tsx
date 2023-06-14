@@ -40,25 +40,31 @@ export function InstructionForm({
                     <Tabs.Panel value="2" pt="xs"></Tabs.Panel>
                     <Tabs.Panel value="3" pt="xs"></Tabs.Panel> */}
                 </Tabs>
-                <Box p={12} pt={24} bg="gray.0"></Box>
-                <FieldsEightTwelve form={form} fields={fields.metaData} />
+
+                {/* メタデータ */}
+                <Divider label={'基本情報'} />
+                <Box p={12} pt={24} bg="gray.0">
+                    <FieldsEightTwelve form={form} fields={fields.metaData} />
+                </Box>
+
                 {/* CT */}
                 <Divider label={'CT'} />
-                <Box p={12} pt={24} bg="gray.0">
+                <Box p={12} pt={6}>
                     <FieldsEightTwelve form={form} fields={fields.ct_1} />
                 </Box>
-                <Box p={12} bg="gray.0">
+                <Box p={12} pt={18} bg="gray.0">
                     <FieldsEightTwelve form={form} fields={fields.ct_2} />
                 </Box>
                 <Box p={12} pb={24} bg="gray.0">
                     <FieldsEightTwelve form={form} fields={fields.ct_3} />
                 </Box>
+
                 {/* MRI */}
                 <Divider label={'MRI'} />
-                <Box p={12} pt={24} bg="gray.0">
+                <Box p={12} pt={6}>
                     <FieldsEightTwelve form={form} fields={fields.mri_1} />
                 </Box>
-                <Box p={12} bg="gray.0">
+                <Box p={12} pt={18} bg="gray.0">
                     <FieldsEightTwelve form={form} fields={fields.mri_2} />
                 </Box>
                 <Box p={12} bg="gray.0">
@@ -67,13 +73,16 @@ export function InstructionForm({
                 <Box p={12} pb={24} bg="gray.0">
                     <FieldsEightTwelve form={form} fields={fields.mri_4} />
                 </Box>
+
                 {/* US */}
                 <Divider label={'US'} />
                 <Box p={12} py={24} bg="gray.0">
                     <FieldsEightTwelve form={form} fields={fields.us} />
                 </Box>
+
                 {/* RI*/}
                 <Divider label={'RI'} />
+
                 {/* SPECT/シンチグラム */}
                 <Text>■SPECT/シンチグラム</Text>
                 <Box p={12} py={24} bg="gray.0">
@@ -92,17 +101,19 @@ export function InstructionForm({
                     <FieldsEightTwelve form={form} fields={fields.petCt} />
                 </Box>
                 <Divider label={'その他検査'} />
+
                 {/* その他検査 */}
-                <Space h={10} />
-                <Box p={12} py={12} bg="gray.0">
+                <Box p={12} pt={18} pb={12} bg="gray.0">
                     <FieldsEightTwelve form={form} fields={fields.etc_1} />
                     <FieldsEightTwelve form={form} fields={fields.etc_2} />
                 </Box>
+
                 {/* 主訴・目的 */}
                 <Divider label={'主訴・目的'} />
                 <Box pl={12}>
                     <FieldsEightTwelve form={form} fields={fields.text} />
                 </Box>
+
                 {/* 連絡 */}
                 <Box pl={12}>
                     <Divider label={'連絡関連'} />

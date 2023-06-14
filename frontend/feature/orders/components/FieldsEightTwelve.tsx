@@ -48,6 +48,8 @@ export function FieldsEightTwelve({ form, fields }: FieldsEightTwelveProps) {
                         )
                     case 'Blank':
                         return <Grid.Col span={4} key={index} />
+                    case 'BlankShort':
+                        return <Grid.Col span={2} key={index} />
                     case 'Select':
                         return (
                             <Grid.Col span={4} key={index}>
