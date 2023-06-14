@@ -20,8 +20,8 @@ class CreateAppointmentTable extends Migration
             $table->string('start_time')->nullable();
             $table->string('return_home_time')->nullable();
             $table->string('accompanist')->nullable();
-            $table->string('sender')->nullable();
             $table->string('receiver')->nullable();
+            $table->string('sender')->nullable();
             $table->string('fax_sender')->nullable();
             $table->string('transmission_date')->nullable();
             $table->integer('number_of_documents_sent')->nullable();

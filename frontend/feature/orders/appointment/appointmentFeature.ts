@@ -143,17 +143,17 @@ export function useAppointmentFeature() {
                 },
             },
             {
+                formPath: 'receiver',
+                component: 'TextInput',
+                props: {
+                    label: '送迎者 or 迎者',
+                },
+            },
+            {
                 formPath: 'sender',
                 component: 'TextInput',
                 props: {
                     label: '送者',
-                },
-            },
-            {
-                formPath: 'receiver',
-                component: 'TextInput',
-                props: {
-                    label: '迎者',
                 },
             },
         ],
