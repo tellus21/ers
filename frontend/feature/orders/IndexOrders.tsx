@@ -182,12 +182,15 @@ export function IndexOrders() {
             <Group position="apart">
                 {/* 依頼状況ボタンを表示 */}
                 <Group>
+                    {/* 全てボタン */}
                     <Button
                         color="blue"
                         onClick={() => resetFilter(ordersQuery)}
                     >
                         全て
                     </Button>
+
+                    {/* 依頼中ボタン */}
                     <Button
                         color="yellow"
                         onClick={() =>
@@ -199,14 +202,18 @@ export function IndexOrders() {
                     >
                         {ProgressStatus.REQUESTING}
                     </Button>
-                    <Button
+
+                    {/* 予約中ボタン */}
+                    {/* <Button
                         color=""
                         onClick={() =>
                             onClickStatus(ordersQuery, ProgressStatus.RESERVING)
                         }
                     >
                         {ProgressStatus.RESERVING}
-                    </Button>
+                    </Button> */}
+
+                    {/* 予約確定ボタン */}
                     <Button
                         color="cyan"
                         onClick={() =>
@@ -218,6 +225,8 @@ export function IndexOrders() {
                     >
                         {ProgressStatus.RESERVATION_CONFIRMED}
                     </Button>
+
+                    {/* 依頼者チェックボタン */}
                     <Button
                         color="violet"
                         onClick={() =>
@@ -226,6 +235,8 @@ export function IndexOrders() {
                     >
                         {ProgressStatus.CHECKED}
                     </Button>
+
+                    {/* 保留ボタン */}
                     <Button
                         color="green"
                         onClick={() =>
@@ -234,6 +245,8 @@ export function IndexOrders() {
                     >
                         {ProgressStatus.HOLDING}
                     </Button>
+
+                    {/* 中止ボタン */}
                     <Button
                         color="gray"
                         onClick={() =>
@@ -243,7 +256,8 @@ export function IndexOrders() {
                         {ProgressStatus.CANCELLED}
                     </Button>
                 </Group>
-                {/* 依頼登録ボタンを表示 */}
+
+                {/* 患者検索ボタンを表示 */}
                 <Group>
                     <Button size="sm" onClick={createOrderModalHandlers.open}>
                         患者検索(依頼登録)
