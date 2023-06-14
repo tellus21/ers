@@ -14,6 +14,7 @@ const dateColumns = [
         textaligment: 'center',
         render: ({ created_at }: { created_at: Date }) =>
             dayjs(created_at).format('YYYY/MM/DD'),
+        sortable: true,
     },
     {
         accessor: 'updated_at',
@@ -21,6 +22,7 @@ const dateColumns = [
         textaligment: 'center',
         render: ({ updated_at }: { updated_at: Date }) =>
             dayjs(updated_at).format('YYYY/MM/DD'),
+        sortable: true,
     },
 ]
 
@@ -43,8 +45,8 @@ export function DataTableBase({
     const [records, setRecords] = useState(initialRecords)
     // 並び替えのステータスを管理するstateを定義
     const [sortStatus, setSortStatus] = useState<DataTableSortStatus>({
-        columnAccessor: 'id',
-        direction: 'asc',
+        columnAccessor: 'updated_at',
+        direction: 'desc',
     })
     // 検索文字列を管理するstateを定義
     const [query, setQuery] = useState('')

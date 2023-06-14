@@ -42,18 +42,31 @@ export function useOrderFeature() {
     // ---【Table】---
     const columns = [
         { accessor: 'id', title: 'id', sortable: true },
-        { accessor: 'is_confirmed', title: '確認済' },
+        { accessor: 'is_confirmed', title: '確認済', sortable: true },
         { accessor: 'progress_status', title: '進捗状況', sortable: true },
-        { accessor: 'order_date', title: '依頼日' },
-        { accessor: 'user.last_name', title: '作成者' },
+        { accessor: 'order_date', title: '依頼日', sortable: true },
+        { accessor: 'user.last_name', title: '作成者', sortable: true },
         {
             accessor: 'patient.home_care_clinic.name',
             title: '在宅クリニック名',
+            sortable: true,
         },
-        { accessor: 'patient.karte_number_home', title: '在宅ID' },
-        { accessor: 'patient.nursing_home.name', title: '入居先' },
-        { accessor: 'patient.nursing_home.alert_level', title: '警戒レベル' },
-        { accessor: 'patient.name', title: '患者氏名' },
+        {
+            accessor: 'patient.karte_number_home',
+            title: '在宅ID',
+            sortable: true,
+        },
+        {
+            accessor: 'patient.nursing_home.name',
+            title: '入居先',
+            sortable: true,
+        },
+        {
+            accessor: 'patient.nursing_home.alert_level',
+            title: '警戒レベル',
+            sortable: true,
+        },
+        { accessor: 'patient.name', title: '患者氏名', sortable: true },
         //年齢がちゃんと取得できない。。。
         // {
         //     accessor: 'patient.birthday',
