@@ -102,12 +102,11 @@ export function InstructionForm({
                 <Divider label={'RI'} />
 
                 {/* SPECT/シンチグラム */}
-                <Text>■SPECT/シンチグラム</Text>
-                <Box p={12} py={24} bg="gray.0">
+                <Text p={6}>■SPECT/シンチグラム</Text>
+                <Box p={12} bg="gray.0">
                     <FieldsEightTwelve form={form} fields={spect} />
                 </Box>
-                <Space h={10} />
-                <Text>■PET/CT</Text>
+                <Text p={6}>■PET/CT</Text>
                 <Box p={12} bg="gray.0">
                     <Text color="red.6">
                         ※３カ月以内にCTを実施した方のみ保険適用可能です。
