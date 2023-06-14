@@ -44,11 +44,18 @@ export function useImportPointFeature() {
 
     // ---【DataTable】---
     const columns = [
-        { accessor: 'id', title: 'id', width: 50, textAlignment: 'center' },
+        {
+            accessor: 'id',
+            title: 'id',
+            width: 50,
+            textAlignment: 'center',
+            sortable: true,
+        },
         {
             accessor: 'important_point',
             title: '注意事項',
             textaligment: 'center',
+            sortable: true,
         },
     ]
 

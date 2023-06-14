@@ -82,20 +82,24 @@ export function useNursingHomeFeature() {
 
     // ---【DataTable】---
     const columns = [
-        { accessor: 'id', title: 'id' },
-        { accessor: 'name', title: '名前', width: 150 },
-        { accessor: 'postal_code', title: '郵便番号' },
-        { accessor: 'address', title: '住所' },
-        { accessor: 'phone_number', title: '電話番号' },
-        { accessor: 'fax_number', title: 'FAX番号' },
-        { accessor: 'main_contact', title: '主担当' },
-        { accessor: 'sub_contact', title: '副担当' },
-        { accessor: 'alert_level', title: '警戒レベル' },
-        { accessor: 'pickup_time_lsi', title: 'LSI' },
-        { accessor: 'pickup_time_smile', title: 'スマイル' },
-        { accessor: 'pickup_time_kotoni', title: 'ことに' },
-        { accessor: 'pickup_time_kita', title: 'きた' },
-        { accessor: 'pickup_time_kita_highway', title: 'きた高速' },
+        { accessor: 'id', title: 'id', sortable: true },
+        { accessor: 'name', title: '名前', width: 150, sortable: true },
+        { accessor: 'postal_code', title: '郵便番号', sortable: true },
+        { accessor: 'address', title: '住所', sortable: true },
+        { accessor: 'phone_number', title: '電話番号', sortable: true },
+        { accessor: 'fax_number', title: 'FAX番号', sortable: true },
+        { accessor: 'main_contact', title: '主担当', sortable: true },
+        { accessor: 'sub_contact', title: '副担当', sortable: true },
+        { accessor: 'alert_level', title: '警戒レベル', sortable: true },
+        { accessor: 'pickup_time_lsi', title: 'LSI', sortable: true },
+        { accessor: 'pickup_time_smile', title: 'スマイル', sortable: true },
+        { accessor: 'pickup_time_kotoni', title: 'ことに', sortable: true },
+        { accessor: 'pickup_time_kita', title: 'きた', sortable: true },
+        {
+            accessor: 'pickup_time_kita_highway',
+            title: 'きた高速',
+            sortable: true,
+        },
     ]
 
     // ---【Fields】---

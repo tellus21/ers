@@ -110,26 +110,52 @@ export function usePatientFeature() {
 
     // ---【DataTable】---
     const columns = [
-        { accessor: 'id', title: 'id' },
-        { accessor: 'home_care_clinic.name', title: '在宅クリニック' },
-        { accessor: 'home_care_doctor.name', title: '主治医' },
-        { accessor: 'karte_number_home', title: 'カルテ番号(在宅)' },
-        { accessor: 'last_name_kana', title: '姓(フリガナ)' },
-        { accessor: 'first_name_kana', title: '名(フリガナ)' },
-        { accessor: 'last_name', title: '姓' },
-        { accessor: 'first_name', title: '名' },
+        { accessor: 'id', title: 'id', sortable: true },
+        {
+            accessor: 'home_care_clinic.name',
+            title: '在宅クリニック',
+            sortable: true,
+        },
+        { accessor: 'home_care_doctor.name', title: '主治医', sortable: true },
+        {
+            accessor: 'karte_number_home',
+            title: 'カルテ番号(在宅)',
+            sortable: true,
+        },
+        { accessor: 'last_name_kana', title: '姓(フリガナ)', sortable: true },
+        { accessor: 'first_name_kana', title: '名(フリガナ)', sortable: true },
+        { accessor: 'last_name', title: '姓', sortable: true },
+        { accessor: 'first_name', title: '名', sortable: true },
         {
             accessor: 'birthday',
             title: '生年月日',
             render: ({ birthday }: { birthday: Date }) =>
                 dayjs(birthday).format('YYYY/MM/DD'),
+            sortable: true,
         },
-        { accessor: 'gender', title: '性別' },
-        { accessor: 'nursing_home.name', title: '入居施設', width: 150 },
-        { accessor: 'karte_number_lsi', title: 'カルテ(LSI)' },
-        { accessor: 'karte_number_smile', title: 'カルテ(スマイル)' },
-        { accessor: 'karte_number_kotoni', title: 'カルテ(ことに)' },
-        { accessor: 'karte_number_kita', title: 'カルテ(きた)' },
+        { accessor: 'gender', title: '性別', sortable: true },
+        {
+            accessor: 'nursing_home.name',
+            title: '入居施設',
+            width: 150,
+            sortable: true,
+        },
+        { accessor: 'karte_number_lsi', title: 'カルテ(LSI)', sortable: true },
+        {
+            accessor: 'karte_number_smile',
+            title: 'カルテ(スマイル)',
+            sortable: true,
+        },
+        {
+            accessor: 'karte_number_kotoni',
+            title: 'カルテ(ことに)',
+            sortable: true,
+        },
+        {
+            accessor: 'karte_number_kita',
+            title: 'カルテ(きた)',
+            sortable: true,
+        },
     ]
 
     // ---【Fields】---

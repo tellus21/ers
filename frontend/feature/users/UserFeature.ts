@@ -88,14 +88,22 @@ export function useUserFeature() {
 
     // ---【DataTable】---
     const columns = [
-        { accessor: 'id', title: 'id' },
-        { accessor: 'home_care_clinic.name', title: '在宅クリニック' },
-        { accessor: 'examination_clinic.name', title: '検査クリニック' },
-        { accessor: 'login_name', title: 'ログイン名' },
-        { accessor: 'last_name', title: '姓' },
-        { accessor: 'first_name', title: '名' },
-        { accessor: 'authority', title: '権限' },
-        { accessor: 'email_address', title: 'メールアドレス' },
+        { accessor: 'id', title: 'id', sortable: true },
+        {
+            accessor: 'home_care_clinic.name',
+            title: '在宅クリニック',
+            sortable: true,
+        },
+        {
+            accessor: 'examination_clinic.name',
+            title: '検査クリニック',
+            sortable: true,
+        },
+        { accessor: 'login_name', title: 'ログイン名', sortable: true },
+        { accessor: 'last_name', title: '姓', sortable: true },
+        { accessor: 'first_name', title: '名', sortable: true },
+        { accessor: 'authority', title: '権限', sortable: true },
+        { accessor: 'email_address', title: 'メールアドレス', sortable: true },
     ]
 
     // ---【Fields】---

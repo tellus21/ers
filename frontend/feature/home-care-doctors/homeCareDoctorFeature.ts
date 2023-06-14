@@ -51,17 +51,20 @@ export function useHomeCareDoctorFeature() {
             title: 'id',
             width: 50,
             textAlignment: 'center',
+            sortable: true,
         },
         {
             accessor: 'name',
             title: '名前',
             textaligment: 'center',
+            sortable: true,
         },
         {
             accessor: 'is_retired',
             title: '退職済',
             textaligment: 'center',
             render: (row: HomeCareDoctor) => (row.is_retired ? '○' : '×'),
+            sortable: true,
         },
     ]
 
