@@ -1,7 +1,5 @@
+import { API_URL } from '@/common/constants'
 import axios from 'axios'
-
-// APIのURLとリソース名を定義
-const API_URL = process.env.NEXT_PUBLIC_API_URL
 
 function changeOrderId(values: any, order_id: number) {
     const newValues = { ...values }

@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { editedOrderAtom } from '../../contexts/orderContexts'
 import { useAtomValue } from 'jotai'
+import { API_URL } from '@/common/constants'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL
 const resource = 'orders'
 
 export function useProgressStatusMutate() {

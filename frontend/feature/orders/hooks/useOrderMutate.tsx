@@ -3,8 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import { editedOrderAtom } from '../contexts/orderContexts'
 import { useAtomValue } from 'jotai'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL
+import { API_URL } from '@/common/constants'
 
 export function useOrderMutate(resource: string) {
     const queryClient = useQueryClient()

@@ -1,8 +1,7 @@
 import { notifications } from '@mantine/notifications'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL
+import { API_URL } from '../constants'
 
 /**
  * 与えられたresourceをもとにAPIからデータを取得するhook
