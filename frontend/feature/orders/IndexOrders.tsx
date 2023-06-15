@@ -4,7 +4,6 @@ import {
     Group,
     Space,
     Text,
-    useMantineColorScheme,
     useMantineTheme,
 } from '@mantine/core'
 import { DataTableBase } from '../components/DataTableBase'

@@ -29,7 +29,7 @@ export interface UserFormValues extends User {
 }
 
 // ---【InitialValues】---
-export const initialValues: UserFormValues = {
+export const userInitialValues: UserFormValues = {
     id: 0,
     home_care_clinic_id: null, //nullの場合もあるので
     examination_clinic_id: null, //nullの場合もあるので
@@ -81,7 +81,7 @@ export function useUserFeature() {
 
     // ---【Form】---
     const form = useForm<UserFormValues>({
-        initialValues: initialValues,
+        initialValues: userInitialValues,
         validate: validate,
         transformValues: transformValues,
     })

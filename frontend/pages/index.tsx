@@ -7,16 +7,21 @@ import {
     Container,
     Button,
     Space,
+    Group,
 } from '@mantine/core'
 import axios from 'axios'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { User } from '@/feature/users/UserFeature'
+import { loginUserAtom } from '@/common/contexts'
+import { useSetAtom } from 'jotai'
+import { notifications } from '@mantine/notifications'
 
 export default function AuthenticationTitle() {
     const [loginName, setLoginName] = useState('')
     const [password, setPassword] = useState('')
     const [errorMessage, setErrorMessage] = useState('')
+    const setLoginUser = useSetAtom(loginUserAtom)
 
     const router = useRouter()
 
@@ -30,10 +35,19 @@ export default function AuthenticationTitle() {
                         user.password === password
                 )
                 if (user) {
-                    console.log('OK')
+                    notifications.show({
+                        title: 'ログイン成功😄',
+                        message: '画面が切り替わるまでお待ちください！',
+                    })
+                    setLoginUser(user)
                     router.push('/orders')
                 } else {
-                    console.log('NG')
+                    notifications.show({
+                        title: 'ログイン失敗😥',
+                        message: 'ログイン名またはパスワードが違います。',
+                        color: 'red',
+                    })
+                    setErrorMessage('ログイン名またはパスワードが違います。')
                 }
             })
             .catch((err) => {
@@ -52,10 +66,17 @@ export default function AuthenticationTitle() {
             <Title align="center" fw={700}>
                 検査依頼システム
             </Title>
+
             <Text color="dimmed" size="sm" align="center" mt={5}>
-                パスワードが分からない場合は管理者にご確認ください。
+                ログイン名が不明な場合は施設の管理者にご確認ください。
             </Text>
-            {errorMessage && <Text color="danger">{errorMessage}</Text>}
+
+            {errorMessage && (
+                <Group position="center">
+                    <Text color="red">{errorMessage}</Text>
+                </Group>
+            )}
+
             <Paper withBorder shadow="md" p={30} mt={30} radius="md">
                 <TextInput
                     label="ログイン名"
@@ -67,6 +88,7 @@ export default function AuthenticationTitle() {
                     onChange={(e) => setLoginName(e.target.value)}
                     onKeyDown={handleKeyDown}
                 />
+
                 <PasswordInput
                     label="パスワード"
                     placeholder="m-yoshidaxxxx"
