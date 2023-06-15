@@ -16,18 +16,21 @@ import { User } from '@/feature/users/UserFeature'
 import { loginUserAtom } from '@/common/contexts'
 import { useSetAtom } from 'jotai'
 import { notifications } from '@mantine/notifications'
+import { API_URL } from '@/common/constants'
 
+// ログイン画面のタイトルを表示するコンポーネント
 export default function AuthenticationTitle() {
-    const [loginName, setLoginName] = useState('')
-    const [password, setPassword] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
-    const setLoginUser = useSetAtom(loginUserAtom)
+    const [loginName, setLoginName] = useState('') // ログイン名を保持するstate
+    const [password, setPassword] = useState('') // パスワードを保持するstate
+    const [errorMessage, setErrorMessage] = useState('') // エラーメッセージを保持するstate
+    const setLoginUser = useSetAtom(loginUserAtom) // ログインユーザーを保持するatom
 
-    const router = useRouter()
+    const router = useRouter() // ルーティングを扱うhook
 
+    // ログイン処理を行う関数
     const handleSubmit = () => {
         axios
-            .get('http://localhost:8000/api/users')
+            .get(`${API_URL}/users`)
             .then((res) => {
                 const user = res.data.find(
                     (user: User) =>
@@ -55,6 +58,7 @@ export default function AuthenticationTitle() {
             })
     }
 
+    // Enterキーが押されたときの処理
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             handleSubmit()
