@@ -23,6 +23,8 @@ import {
     IconOld,
 } from '@tabler/icons-react'
 import Link from 'next/link'
+import { VERSION } from 'lodash'
+import { CREATION_VERSION } from '@/common/constants'
 
 const useStyles = createStyles((theme) => ({
     navbar: {
@@ -158,26 +160,14 @@ export function NavbarPart() {
             <Navbar.Section grow>
                 <Group className={classes.header} position="apart">
                     {/* <MantineLogo size={28} inverted /> */}
-                    <Code className={classes.version}>v0.0.4</Code>
+                    <Code className={classes.version}>{CREATION_VERSION}</Code>
                 </Group>
                 {links}
             </Navbar.Section>
 
             <Navbar.Section className={classes.footer}>
                 <a
-                    href="#"
-                    className={classes.link}
-                    onClick={(event) => event.preventDefault()}
-                >
-                    <IconSwitchHorizontal
-                        className={classes.linkIcon}
-                        stroke={1.5}
-                    />
-                    <span>Change account</span>
-                </a>
-
-                <a
-                    href="#"
+                    href="/"
                     className={classes.link}
                     onClick={(event) => event.preventDefault()}
                 >

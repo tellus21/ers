@@ -1,4 +1,6 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL
+export const API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL
+export const CREATION_VERSION: string = '0.8.5'
+
 export const isNotEmptyErrorMessage = '入力は必須です。'
 export const karteNumberLengthErrorMessage =
     'カルテ番号は5桁 or 6桁で入力してください。'
