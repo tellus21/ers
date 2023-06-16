@@ -28,7 +28,7 @@ const dateColumns = [
 
 // テーブルの基本的なプロパティを定義
 interface DataTableBaseProps {
-    create_button?: any
+    button?: any
     columns: any
     records: any
     onRowClick: (rowData: any) => void
@@ -37,7 +37,7 @@ interface DataTableBaseProps {
 
 // テーブルをレンダリングする関数を定義
 export function DataTableBase({
-    create_button,
+    button,
     columns,
     records: initialRecords,
     onRowClick,
@@ -105,7 +105,7 @@ export function DataTableBase({
                     w={400}
                 />
 
-                {create_button}
+                {button}
             </Group>
 
             <Space h="xs" />

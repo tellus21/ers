@@ -1,4 +1,13 @@
-import { Box, Divider, Group, Text, Button, createStyles } from '@mantine/core'
+import {
+    Box,
+    Divider,
+    Group,
+    Text,
+    Button,
+    createStyles,
+    Textarea,
+    Space,
+} from '@mantine/core'
 
 import { OrderFormBase } from '../components/OrderFormBase'
 import { TitleText } from '../components/TitleText'
@@ -12,6 +21,8 @@ import { useAtomValue } from 'jotai'
 import { API_URL, ProgressStatus } from '@/common/constants'
 import { notifications } from '@mantine/notifications'
 import { editedInstructionAtom, editedOrderAtom } from '@/common/contexts'
+import { useDisclosure } from '@mantine/hooks'
+import { CautionOnTheDayLabel } from './components/CautionOnTheDayLabel'
 
 const useStyles = createStyles((theme) => ({
     label: { fontSize: theme.fontSizes.xs, color: theme.colors.gray[7] },
@@ -40,10 +51,8 @@ export function AppointmentForm({
     //将来的に送迎時間更新をする時に使う
     const editedInstruction = useAtomValue(editedInstructionAtom)
     const editedOrder = useAtomValue(editedOrderAtom)
+    const [opened, { open, close }] = useDisclosure(false)
 
-    const onclickButton = () => {
-        console.log(editedInstruction.id)
-    }
     const onClickFaxButton = () => {
         if (
             editedOrder.progress_status !== ProgressStatus.RESERVATION_CONFIRMED
@@ -80,14 +89,9 @@ export function AppointmentForm({
             <Box px={12}>
                 {/* 送迎時間 */}
                 <Group position="right">
-                    <Button
-                        color="gray.6"
-                        onClick={() => console.log(form.values.user.last_name)}
-                    >
-                        fff
-                    </Button>
-                    <Text size="md"></Text>
                     <Text size="sm">予約記載者：</Text>
+                    <Text size="sm">予約最終更新者：</Text>
+                    <Text size="sm">予約最終更新日：</Text>
 
                     <Text className={classes.data}>
                         {`${editedOrder.user!.last_name}　${
@@ -127,6 +131,19 @@ export function AppointmentForm({
                     </Button>
                 </Group>
                 <FieldsEightTwelve form={form} fields={fields.fax} />
+
+                <Space h="md" />
+
+                <Textarea
+                    label={
+                        <CautionOnTheDayLabel
+                            opened={opened}
+                            open={open}
+                            close={close}
+                        />
+                    }
+                    {...form.getInputProps('caution_on_the_day')}
+                />
             </Box>
         </OrderFormBase>
     )

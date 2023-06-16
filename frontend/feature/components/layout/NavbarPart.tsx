@@ -6,11 +6,10 @@ import {
     Code,
     rem,
     getStylesRef,
+    Text,
 } from '@mantine/core'
 
 import {
-    IconFaceId,
-    IconSwitchHorizontal,
     IconLogout,
     IconBook,
     IconNotes,
@@ -21,9 +20,9 @@ import {
     IconFileAlert,
     IconHeartRateMonitor,
     IconOld,
+    IconUser,
 } from '@tabler/icons-react'
 import Link from 'next/link'
-import { VERSION } from 'lodash'
 import { CREATION_VERSION } from '@/common/constants'
 
 const useStyles = createStyles((theme) => ({
@@ -124,9 +123,8 @@ const data = [
         label: '検査クリニック',
         icon: IconBuildingHospital,
     },
-    { link: '/users', label: 'ユーザ', icon: IconFaceId },
-    { link: '/important-points', label: '注意事項', icon: IconFileAlert },
-    // { link: '', label: '個人設定', icon: IconSettings },
+    { link: '/users', label: 'ユーザ', icon: IconUser },
+    { link: '/important-points', label: '特記事項作成', icon: IconFileAlert },
     { link: '', label: '操作マニュアル', icon: IconBook },
     { link: '', label: '操作お試しページ', icon: IconNotes },
 ]
@@ -159,7 +157,9 @@ export function NavbarPart() {
         <Navbar width={{ sm: 230 }} p="md" className={classes.navbar}>
             <Navbar.Section grow>
                 <Group className={classes.header} position="apart">
-                    {/* <MantineLogo size={28} inverted /> */}
+                    <Text size="md" color="white">
+                        検査システム
+                    </Text>
                     <Code className={classes.version}>{CREATION_VERSION}</Code>
                 </Group>
                 {links}

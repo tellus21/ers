@@ -8,7 +8,7 @@ import {
 } from '@mantine/core'
 import { DataTableBase } from '../components/DataTableBase'
 import { EditOrderModal } from './order/EditOrderModal'
-import { CreateOrderModal } from './order/CreateOrderModal'
+import { CreateOrderModal } from './components/CreateOrderModal'
 import { useOrdersIndex } from './useOrdersIndex'
 import { Order } from './orderFeature'
 import { Condition } from './condition/conditionFeature'
@@ -170,7 +170,10 @@ export function IndexOrders() {
 
     return (
         <Container size="xl">
+            {/* ページタイトルを表示 */}
             <Text size="md">{`${orderLogicalName}一覧`}</Text>
+
+            <Space h="xs" />
 
             {/* 依頼作成(患者検索モーダル)を表示 */}
             <CreateOrderModal
@@ -261,7 +264,7 @@ export function IndexOrders() {
 
             {/* 依頼一覧テーブルを表示 */}
             <DataTableBase
-                create_button={
+                button={
                     <Button size="sm" onClick={createOrderModalHandlers.open}>
                         患者検索(依頼登録)
                     </Button>

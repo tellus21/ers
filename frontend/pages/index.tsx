@@ -29,33 +29,27 @@ export default function AuthenticationTitle() {
 
     // ログイン処理を行う関数
     const handleSubmit = () => {
-        axios
-            .get(`${API_URL}/users`)
-            .then((res) => {
-                const user = res.data.find(
-                    (user: User) =>
-                        user.login_name === loginName &&
-                        user.password === password
-                )
-                if (user) {
-                    notifications.show({
-                        title: 'ログイン成功😄',
-                        message: '画面が切り替わるまでお待ちください！',
-                    })
-                    setLoginUser(user)
-                    router.push('/orders')
-                } else {
-                    notifications.show({
-                        title: 'ログイン失敗😥',
-                        message: 'ログイン名またはパスワードが違います。',
-                        color: 'red',
-                    })
-                    setErrorMessage('ログイン名またはパスワードが違います。')
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        axios.get(`${API_URL}/users`).then((res) => {
+            const user = res.data.find(
+                (user: User) =>
+                    user.login_name === loginName && user.password === password
+            )
+            if (user) {
+                notifications.show({
+                    title: 'ログイン成功😄',
+                    message: '画面が切り替わるまでお待ちください！',
+                })
+                setLoginUser(user)
+                router.push('/orders')
+            } else {
+                notifications.show({
+                    title: 'ログイン失敗😥',
+                    message: 'ログイン名またはパスワードが違います。',
+                    color: 'red',
+                })
+                setErrorMessage('ログイン名またはパスワードが違います。')
+            }
+        })
     }
 
     // Enterキーが押されたときの処理
@@ -68,7 +62,7 @@ export default function AuthenticationTitle() {
     return (
         <Container size={420} my={160}>
             <Title align="center" fw={700}>
-                検査依頼システム
+                検査システム
             </Title>
 
             <Text color="dimmed" size="sm" align="center" mt={5}>

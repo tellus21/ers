@@ -191,13 +191,13 @@ export function useAppointmentFeature() {
             {
                 component: 'Blank',
             },
-            {
-                formPath: 'caution_on_the_day',
-                component: 'Textarea',
-                props: {
-                    label: '当日特記事項',
-                },
-            },
+            // {
+            //     formPath: 'caution_on_the_day',
+            //     component: 'Textarea',
+            //     props: {
+            //         label: '当日特記事項',
+            //     },
+            // },
         ],
     }
 

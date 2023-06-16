@@ -1,9 +1,5 @@
-import { useState } from 'react'
 import { AppShell, useMantineTheme } from '@mantine/core'
-
 import { NavbarPart } from './NavbarPart'
-import { useAtomValue } from 'jotai'
-import { loginUserAtom } from '@/common/contexts'
 import { HeaderPart } from './HeaderPart'
 
 interface AppShellLayoutProps {
@@ -12,7 +8,6 @@ interface AppShellLayoutProps {
 
 export function AppShellLayout({ children }: AppShellLayoutProps) {
     const theme = useMantineTheme()
-    const loginUser = useAtomValue(loginUserAtom)
 
     return (
         <AppShell
@@ -24,7 +19,7 @@ export function AppShellLayout({ children }: AppShellLayoutProps) {
             navbarOffsetBreakpoint="sm"
             asideOffsetBreakpoint="sm"
             navbar={<NavbarPart />}
-            header={<HeaderPart loginName={loginUser.login_name} />}
+            header={<HeaderPart />}
         >
             {children}
         </AppShell>

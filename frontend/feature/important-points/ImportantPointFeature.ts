@@ -28,7 +28,7 @@ export const importantPointInitialValues: ImportPointFormValues = {
 // ---【Feature】---
 export function useImportPointFeature() {
     // ---【Name】---
-    const logicalName = '注意事項'
+    const logicalName = '特記事項'
     const resource = 'important_points'
 
     // ---【Validate】---
@@ -53,7 +53,7 @@ export function useImportPointFeature() {
         },
         {
             accessor: 'important_point',
-            title: '注意事項',
+            title: '特記事項',
             textaligment: 'center',
             sortable: true,
         },

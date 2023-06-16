@@ -1,7 +1,7 @@
 import { filterById } from '@/common/lib'
 import { insuranceInitialValues } from '../insurance/insuranceFeature'
 import { conditionInitialValues } from '../condition/conditionFeature'
-import { useCreateOrderModal } from './useCreateOrder'
+import { useCreateOrderModal } from '../order/useCreateOrder'
 import { appointmentInitialValues } from '../appointment/appointmentFeature'
 import { instructionInitialValues } from '../instruction/instractionFeature'
 import { Button, Group, Modal, Text } from '@mantine/core'
@@ -9,7 +9,7 @@ import {
     CreateInstructionRelationDataValues,
     CreateOrderRelationDataValues,
     CreateOrderValues,
-} from './libs'
+} from '../order/libs'
 import { patientInitialValues } from '@/feature/patients/patientFeature'
 import { DataTableBase } from '@/feature/components/DataTableBase'
 

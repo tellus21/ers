@@ -49,7 +49,7 @@ export function ModalAndDataTable({
             </Modal>
 
             <DataTableBase
-                create_button={
+                button={
                     <Group position="right">
                         <Button
                             size="sm"
