@@ -28,7 +28,7 @@ export const importantPointInitialValues: ImportantPointFormValues = {
 // ---【Feature】---
 export function useImportantPointFeature() {
     // ---【Name】---
-    const logicalName = '当日注意事項'
+    const logicalName = '当日ImportantPoint'
     const resource = 'important_points'
 
     // ---【Validate】---
@@ -53,7 +53,7 @@ export function useImportantPointFeature() {
         },
         {
             accessor: 'important_point',
-            title: '当日注意事項',
+            title: 'ImportantPoint',
             textaligment: 'center',
             sortable: true,
         },
@@ -65,7 +65,7 @@ export function useImportantPointFeature() {
             formPath: 'important_point',
             component: 'Textarea',
             props: {
-                label: '当日注意事項',
+                label: 'ImportantPoint',
                 withAsterisk: true,
             },
         },

@@ -33,7 +33,7 @@ export function CautionOnTheDayLabel({
             <Modal
                 opened={opened}
                 onClose={close}
-                title="当日注意事項選択"
+                title="当日当日注意事項選択"
                 centered
             >
                 <DataTableBase
@@ -47,7 +47,7 @@ export function CautionOnTheDayLabel({
             </Modal>
 
             <Group p={2}>
-                <Text>当日注意事項</Text>
+                <Text>当日当日注意事項</Text>
                 <Button size="xs" onClick={open}>
                     選択
                 </Button>

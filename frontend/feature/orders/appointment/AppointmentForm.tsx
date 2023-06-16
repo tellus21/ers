@@ -14,7 +14,7 @@ import { TitleText } from '../components/TitleText'
 import { FieldsEightTwelve } from '../components/FieldsEightTwelve'
 import axios from 'axios'
 import { MedicalInformationSheet } from './components/MedicalInformationSheet'
-import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
+
 import { DisplayPickUpDistanceList } from './components/DisplayPickUpDistanceList'
 import { useAtomValue } from 'jotai'
 
@@ -23,6 +23,8 @@ import { notifications } from '@mantine/notifications'
 import { editedInstructionAtom, editedOrderAtom } from '@/common/contexts'
 import { useDisclosure } from '@mantine/hooks'
 import { CautionOnTheDayLabel } from './components/CautionOnTheDayLabel'
+import { useState } from 'react'
+import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
 
 const useStyles = createStyles((theme) => ({
     label: { fontSize: theme.fontSizes.xs, color: theme.colors.gray[7] },
@@ -140,6 +142,7 @@ export function AppointmentForm({
                             opened={opened}
                             open={open}
                             close={close}
+                            form={form}
                         />
                     }
                     {...form.getInputProps('caution_on_the_day')}

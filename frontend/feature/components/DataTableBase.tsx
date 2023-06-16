@@ -30,6 +30,7 @@ const dateColumns = [
 interface DataTableBaseProps {
     button?: any
     columns: any
+    addDateColumns?: boolean
     records: any
     onRowClick: (rowData: any) => void
     rowStyle?: any
@@ -39,6 +40,7 @@ interface DataTableBaseProps {
 export function DataTableBase({
     button,
     columns,
+    addDateColumns = true,
     records: initialRecords,
     onRowClick,
     rowStyle,
@@ -121,7 +123,9 @@ export function DataTableBase({
                 verticalSpacing="xs"
                 fontSize="xs"
                 verticalAlignment="center"
-                columns={[...columns, ...dateColumns]}
+                columns={
+                    addDateColumns ? [...columns, ...dateColumns] : columns
+                }
                 records={records}
                 onRowClick={onRowClick}
                 rowStyle={rowStyle}

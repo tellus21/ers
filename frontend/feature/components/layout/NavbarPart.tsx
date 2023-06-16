@@ -124,7 +124,11 @@ const data = [
         icon: IconBuildingHospital,
     },
     { link: '/users', label: 'ユーザ', icon: IconUser },
-    { link: '/important-points', label: '特記事項作成', icon: IconFileAlert },
+    {
+        link: '/important-points',
+        label: '当日注意事項作成',
+        icon: IconFileAlert,
+    },
     { link: '', label: '操作マニュアル', icon: IconBook },
     { link: '', label: '操作お試しページ', icon: IconNotes },
 ]

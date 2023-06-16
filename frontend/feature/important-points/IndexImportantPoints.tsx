@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
-import { useImportPointFeature } from './ImportantPointFeature'
+import { useImportantPointFeature } from './ImportantPointFeature'
 import { ModalAndDataTable } from '../components/ModalAndDataTable'
 import { FormBase } from '../components/FormBase'
 import { NormalFields } from '../components/NormalFields'
 
 export function IndexImportantPoints() {
     const { logicalName, resource, columns, form, fields, query } =
-        useImportPointFeature()
+        useImportantPointFeature()
 
     useEffect(() => {}, [fields, query])
 
