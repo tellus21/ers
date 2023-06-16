@@ -1,9 +1,9 @@
 import { notifications } from '@mantine/notifications'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-import { editedOrderAtom } from '../contexts/orderContexts'
 import { useAtomValue } from 'jotai'
 import { API_URL } from '@/common/constants'
+import { editedOrderAtom } from '../contexts'
 
 export function useOrderMutate(resource: string) {
     const queryClient = useQueryClient()

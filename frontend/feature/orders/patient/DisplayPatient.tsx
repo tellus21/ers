@@ -1,7 +1,7 @@
 import { Box, Grid, Text, createStyles } from '@mantine/core'
 import { TitleText } from '../components/TitleText'
 import { useAtomValue } from 'jotai'
-import { editedOrderAtom } from '../contexts/orderContexts'
+import { editedOrderAtom } from '@/common/contexts'
 
 const useStyles = createStyles((theme) => ({
     label: { fontSize: theme.fontSizes.xs, color: theme.colors.gray[7] },

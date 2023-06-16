@@ -1,7 +1,7 @@
 import { Box, Divider, Group, Stack, Text } from '@mantine/core'
 import { useAtomValue } from 'jotai'
-import { editedOrderAtom } from '../../contexts/orderContexts'
 import { Patient, usePatientFeature } from '@/feature/patients/patientFeature'
+import { editedOrderAtom } from '@/common/contexts'
 
 // パターンのPickUpDistancesを表示するコンポーネント
 export function DisplayPickUpDistanceList() {

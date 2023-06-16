@@ -1,11 +1,11 @@
 import { Group, Paper, Text } from '@mantine/core'
-import { useAtom, useAtomValue } from 'jotai'
-import { editedOrderAtom } from '../contexts/orderContexts'
+import { useAtomValue } from 'jotai'
 import { convertIso8601ToDate } from '@/common/lib'
+import { editedOrderAtom } from '@/common/contexts'
 
 // リクエストのメタデータを表示するコンポーネント
 export function OrderMetaData() {
-    const [editedOrder, setEditedOrder] = useAtom(editedOrderAtom)
+    const editedOrder = useAtomValue(editedOrderAtom)
     // const editedOrder: any = useAtomValue(eddditedOrderAtom)
     const bgColorMap: { [key: string]: string } = {
         依頼中: 'yellow.2',

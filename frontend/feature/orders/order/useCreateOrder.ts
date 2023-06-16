@@ -1,13 +1,10 @@
 import { useState } from 'react'
-import {
-    editedInstructionAtom,
-    editedOrderAtom,
-} from '../contexts/orderContexts'
 import { useSetAtom } from 'jotai'
 import {
     patientInitialValues,
     usePatientFeature,
 } from '@/feature/patients/patientFeature'
+import { editedInstructionAtom, editedOrderAtom } from '@/common/contexts'
 
 export const useCreateOrderModal = () => {
     // 患者情報を取得するためのhook

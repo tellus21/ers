@@ -1,15 +1,12 @@
 import { useOrderFeature } from './orderFeature'
 import { useDisclosure } from '@mantine/hooks'
-import { useAtom, useSetAtom } from 'jotai'
-import {
-    editedInstructionAtom,
-    editedOrderAtom,
-} from './contexts/orderContexts'
 import { useConditionFeature } from './condition/conditionFeature'
 import { usePatientFeature } from '../patients/patientFeature'
 import { useInsuranceFeature } from './insurance/insuranceFeature'
 import { useInstructionFeature } from './instruction/instractionFeature'
 import { useAppointmentFeature } from './appointment/appointmentFeature'
+import { useSetAtom } from 'jotai'
+import { editedInstructionAtom, editedOrderAtom } from '@/common/contexts'
 
 // Orderのindexを使用するためのカスタムフック
 export const useOrdersIndex = () => {

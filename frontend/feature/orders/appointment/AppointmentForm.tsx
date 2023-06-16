@@ -8,12 +8,10 @@ import { MedicalInformationSheet } from './components/MedicalInformationSheet'
 import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
 import { DisplayPickUpDistanceList } from './components/DisplayPickUpDistanceList'
 import { useAtomValue } from 'jotai'
-import {
-    editedInstructionAtom,
-    editedOrderAtom,
-} from '../contexts/orderContexts'
-import { ProgressStatus } from '@/common/constants'
+
+import { API_URL, ProgressStatus } from '@/common/constants'
 import { notifications } from '@mantine/notifications'
+import { editedInstructionAtom, editedOrderAtom } from '@/common/contexts'
 
 const useStyles = createStyles((theme) => ({
     label: { fontSize: theme.fontSizes.xs, color: theme.colors.gray[7] },
@@ -42,6 +40,7 @@ export function AppointmentForm({
     //将来的に送迎時間更新をする時に使う
     const editedInstruction = useAtomValue(editedInstructionAtom)
     const editedOrder = useAtomValue(editedOrderAtom)
+
     const onclickButton = () => {
         console.log(editedInstruction.id)
     }
@@ -58,7 +57,7 @@ export function AppointmentForm({
         }
 
         axios
-            .get(`http://localhost:8000/api/appointments/2/download_fax`, {
+            .get(`${API_URL}/appointments/2/download_fax`, {
                 responseType: 'arraybuffer',
             })
             .then((response) => {
@@ -89,15 +88,16 @@ export function AppointmentForm({
                     </Button>
                     <Text size="md"></Text>
                     <Text size="sm">予約記載者：</Text>
-                    {/*                     
+
                     <Text className={classes.data}>
                         {`${editedOrder.user!.last_name}　${
                             editedOrder.user!.first_name
                         }`}
-                    </Text> */}
+                    </Text>
                 </Group>
                 <DisplayPickUpTimeList />
                 <DisplayPickUpDistanceList />
+
                 {/* 診察関連 */}
                 <Divider label="診察関連" />
                 <Group position="right">
@@ -106,6 +106,7 @@ export function AppointmentForm({
                     </Button>
                 </Group>
                 <FieldsEightTwelve form={form} fields={fields.examination} />
+
                 {/* 送迎関連 */}
                 <Divider label="送迎関連" />
                 <Group position="right">
@@ -117,6 +118,7 @@ export function AppointmentForm({
                     </Group>
                 </Group>
                 <FieldsEightTwelve form={form} fields={fields.pickUp} />
+
                 {/* FAX関連 */}
                 <Divider label="FAX関連" />
                 <Group position="right">

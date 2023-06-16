@@ -17,8 +17,8 @@ import { InstructionForm } from '../instruction/InstructionForm'
 import { AppointmentForm } from '../appointment/AppointmentForm'
 import { useProgressStatusMutate } from './hooks/useProgressStatusMutate'
 import { ProgressStatus } from '@/common/constants'
-import { editedOrderAtom } from '../contexts/orderContexts'
 import { useAtom } from 'jotai'
+import { editedOrderAtom } from '@/common/contexts'
 
 interface EditOrderModalProps {
     opened: boolean

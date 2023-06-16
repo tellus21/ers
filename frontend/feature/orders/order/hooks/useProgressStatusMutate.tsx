@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
-import { editedOrderAtom } from '../../contexts/orderContexts'
 import { useAtomValue } from 'jotai'
 import { API_URL } from '@/common/constants'
+import { editedOrderAtom } from '@/common/contexts'
 
 const resource = 'orders'
 
