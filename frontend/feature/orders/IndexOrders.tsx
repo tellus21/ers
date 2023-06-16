@@ -255,19 +255,17 @@ export function IndexOrders() {
                         {ProgressStatus.CANCELLED}
                     </Button>
                 </Group>
-
-                {/* 患者検索ボタンを表示 */}
-                <Group>
-                    <Button size="sm" onClick={createOrderModalHandlers.open}>
-                        患者検索(依頼登録)
-                    </Button>
-                </Group>
             </Group>
 
             <Space h="xs" />
 
             {/* 依頼一覧テーブルを表示 */}
             <DataTableBase
+                create_button={
+                    <Button size="sm" onClick={createOrderModalHandlers.open}>
+                        患者検索(依頼登録)
+                    </Button>
+                }
                 columns={orderColumns}
                 records={filteredOrders}
                 onRowClick={(rowData) => onTableRowClick(rowData)}

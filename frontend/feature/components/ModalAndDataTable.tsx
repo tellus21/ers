@@ -1,5 +1,5 @@
 import { convertDateProperty } from '@/common/lib'
-import { Button, Container, Group, Modal, Text } from '@mantine/core'
+import { Button, Container, Group, Modal, Space, Text } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { DataTableBase } from './DataTableBase'
 
@@ -36,6 +36,9 @@ export function ModalAndDataTable({
     return (
         <Container size="xl">
             <Text size="md">{`${logicalName}一覧`}</Text>
+
+            <Space h="xs" />
+
             <Modal
                 opened={modalOpened}
                 onClose={onModalCloseClick}
@@ -45,14 +48,15 @@ export function ModalAndDataTable({
                 {children}
             </Modal>
 
-            <Group position="right">
-                <Button
-                    size="sm"
-                    onClick={onCreateButtonClick}
-                >{`${logicalName}登録`}</Button>
-            </Group>
-
             <DataTableBase
+                create_button={
+                    <Group position="right">
+                        <Button
+                            size="sm"
+                            onClick={onCreateButtonClick}
+                        >{`${logicalName}登録`}</Button>
+                    </Group>
+                }
                 columns={tableColumns}
                 records={query}
                 onRowClick={(rowData) => onTableRowClick(rowData)}

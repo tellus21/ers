@@ -1,4 +1,4 @@
-import { Space, TextInput } from '@mantine/core'
+import { Group, Space, TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { IconSearch } from '@tabler/icons-react'
 import dayjs from 'dayjs'
@@ -28,6 +28,7 @@ const dateColumns = [
 
 // テーブルの基本的なプロパティを定義
 interface DataTableBaseProps {
+    create_button?: any
     columns: any
     records: any
     onRowClick: (rowData: any) => void
@@ -36,6 +37,7 @@ interface DataTableBaseProps {
 
 // テーブルをレンダリングする関数を定義
 export function DataTableBase({
+    create_button,
     columns,
     records: initialRecords,
     onRowClick,
@@ -93,14 +95,18 @@ export function DataTableBase({
     // テーブルをレンダリング
     return (
         <>
-            <TextInput
-                placeholder="文字列検索"
-                size="sm"
-                icon={<IconSearch />}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                w={400}
-            />
+            <Group position="apart">
+                <TextInput
+                    placeholder="文字列検索"
+                    size="sm"
+                    icon={<IconSearch />}
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    w={400}
+                />
+
+                {create_button}
+            </Group>
 
             <Space h="xs" />
 
