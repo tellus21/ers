@@ -13,6 +13,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { User } from '@/feature/users/UserFeature'
+import { loginUserAtom } from '@/common/contexts'
 import { useSetAtom } from 'jotai'
 import { notifications } from '@mantine/notifications'
 import { API_URL } from '@/common/constants'
@@ -22,6 +23,7 @@ export default function AuthenticationTitle() {
     const [loginName, setLoginName] = useState('') // ログイン名を保持するstate
     const [password, setPassword] = useState('') // パスワードを保持するstate
     const [errorMessage, setErrorMessage] = useState('') // エラーメッセージを保持するstate
+    const setLoginUser = useSetAtom(loginUserAtom) // ログインユーザーを保持するatom
 
     const router = useRouter() // ルーティングを扱うhook
 
@@ -37,7 +39,7 @@ export default function AuthenticationTitle() {
                     title: 'ログイン成功😄',
                     message: '画面が切り替わるまでお待ちください！',
                 })
-                sessionStorage.setItem('loginUser', JSON.stringify(user))
+                setLoginUser(user)
                 router.push('/orders')
             } else {
                 notifications.show({
