@@ -9,6 +9,7 @@ import 'dayjs/locale/ja'
 import { emsTheme } from '@/common/theme'
 import { Notifications } from '@mantine/notifications'
 import { Provider } from 'jotai'
+import { DatesProvider } from '@mantine/dates'
 
 export default function App(props: AppProps) {
     const queryClient = new QueryClient()
@@ -25,13 +26,21 @@ export default function App(props: AppProps) {
             </Head>
 
             <MantineProvider theme={emsTheme} withGlobalStyles withNormalizeCSS>
-                <Provider>
-                    <Notifications />
-                    <QueryClientProvider client={queryClient}>
-                        <Component {...pageProps} />
-                        <ReactQueryDevtools initialIsOpen={false} />
-                    </QueryClientProvider>
-                </Provider>
+                <DatesProvider
+                    settings={{
+                        locale: 'ja',
+                        firstDayOfWeek: 0,
+                        weekendDays: [0],
+                    }}
+                >
+                    <Provider>
+                        <Notifications />
+                        <QueryClientProvider client={queryClient}>
+                            <Component {...pageProps} />
+                            <ReactQueryDevtools initialIsOpen={false} />
+                        </QueryClientProvider>
+                    </Provider>
+                </DatesProvider>
             </MantineProvider>
         </>
     )
