@@ -1,15 +1,15 @@
-import { loginUserAtom } from '@/common/contexts'
-import { userInitialValues } from '@/feature/users/UserFeature'
+import { User } from '@/feature/users/UserFeature'
 import { Box, Button, Group, Text } from '@mantine/core'
-import { useAtom } from 'jotai'
 import { useRouter } from 'next/router'
 
 export function HeaderPart() {
-    const [loginUser, setLoginUser] = useAtom(loginUserAtom)
+    const loginUser: User = JSON.parse(
+        sessionStorage.getItem('loginUser') as string
+    )
     const router = useRouter()
     const onClickLogout = () => {
         router.push('/')
-        setLoginUser(userInitialValues)
+        sessionStorage.removeItem('loginUser')
     }
 
     return (

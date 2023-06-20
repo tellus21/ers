@@ -10,7 +10,6 @@ import {
 } from '@mantine/core'
 
 import {
-    IconLogout,
     IconBook,
     IconNotes,
     IconHomeHeart,
@@ -167,17 +166,6 @@ export function NavbarPart() {
                     <Code className={classes.version}>{CREATION_VERSION}</Code>
                 </Group>
                 {links}
-            </Navbar.Section>
-
-            <Navbar.Section className={classes.footer}>
-                <a
-                    href="/"
-                    className={classes.link}
-                    onClick={(event) => event.preventDefault()}
-                >
-                    <IconLogout className={classes.linkIcon} stroke={1.5} />
-                    <span>Logout</span>
-                </a>
             </Navbar.Section>
         </Navbar>
     )
