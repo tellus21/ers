@@ -14,8 +14,8 @@ class CreateInstructionsTable extends Migration
             $table->foreignId('home_care_doctor_id')->nullable()->constrained('home_care_doctors');
             $table->foreignId('order_id')->constrained();
             $table->string('appointment_content')->nullable();
-            $table->timestamp('candidate_month_1')->nullable();
-            $table->timestamp('candidate_month_2')->nullable();
+            $table->string('candidate_month_1')->nullable();
+            $table->string('candidate_month_2')->nullable();
             $table->boolean('has_ct_contrast')->nullable();
             $table->string('ct_creatinine_value')->nullable();
             $table->boolean('has_brain_pelvis')->nullable();
