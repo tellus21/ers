@@ -2,6 +2,7 @@ import { useQueryBase } from '@/common/hooks/NormalMutate'
 import { Patient } from '../patients/patientFeature'
 import { User } from '../users/UserFeature'
 import dayjs from 'dayjs'
+import { Instruction } from './instruction/instractionFeature'
 
 // ---【Type】---
 export interface Order {
@@ -49,8 +50,10 @@ export function useOrderFeature() {
             accessor: 'created_at',
             title: '依頼作成日',
             sortable: true,
-            render: ({ created_at }: { created_at: Date }) =>
-                dayjs(created_at).format('YYYY/MM/DD'),
+            render: ({ created_at }: { created_at: Date }) => {
+                const date = dayjs(created_at)
+                return date.format('YYYY/MM/DD')
+            },
         },
         { accessor: 'user.last_name', title: '作成者', sortable: true },
         {
@@ -84,13 +87,11 @@ export function useOrderFeature() {
             accessor: 'patient.age',
             title: '年齢',
             sortable: true,
-            render: ({ patient }: { patient: Patient }) => {
-                const age = dayjs().diff(patient.birthday, 'year')
-                return `${age}歳`
-            },
+            render: ({ patient }: { patient: Patient }) =>
+                `${dayjs().diff(patient.birthday, 'year')}歳`,
         },
         { accessor: 'patient.gender', title: '性別' },
-        { accessor: 'condition.insurance_type', title: '保険種別' },
+        { accessor: 'insurance.insurance_type', title: '保険種別' },
         { accessor: '', title: '問診票有無' },
         { accessor: 'instruction.examination_clinic.name', title: '検査施設' },
         {
@@ -98,9 +99,17 @@ export function useOrderFeature() {
                 'patient.instruction.appointment.examination_clinic_karte_number',
             title: '検査施設ID',
         },
-        { accessor: '', title: '検査内容' },
-        { accessor: '', title: '予約日' },
-        { accessor: '', title: '検査確定' },
+        // { accessor: '', title: '検査内容' },
+        {
+            accessor: 'instruction.appointment.scheduled_confirmation_date',
+            title: '予約日',
+            sortable: true,
+            render: ({ instruction }) => {
+                const date = instruction.appointment.scheduled_confirmation_date
+                return date ? dayjs(date).format('YYYY/MM/DD') : ''
+            },
+        },
+        // { accessor: '', title: '検査確定' },
     ]
 
     // ---【API】---

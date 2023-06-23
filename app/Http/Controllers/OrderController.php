@@ -15,6 +15,7 @@ class OrderController extends Controller
             'patient.homeCareClinic',
             'patient.nursingHome',
             'condition',
+            'insurance',
             'instruction',
             'instruction.examinationClinic',
             'instruction.appointment',

@@ -25,10 +25,17 @@ class Order extends Model
     {
         return $this->belongsTo(Patient::class);
     }
+
     public function condition()
     {
         return $this->hasOne(Condition::class);
     }
+
+    public function insurance()
+    {
+        return $this->hasOne(Insurance::class);
+    }
+
     public function instruction()
     {
         return $this->hasOne(Instruction::class);
