@@ -169,7 +169,7 @@ export function IndexOrders() {
     }
 
     return (
-        <Container size="xl">
+        <Container size="xl2">
             {/* ページタイトルを表示 */}
             <Text size="md">{`${orderLogicalName}一覧`}</Text>
 
@@ -270,6 +270,7 @@ export function IndexOrders() {
                     </Button>
                 }
                 columns={orderColumns}
+                addDateColumns={false}
                 records={filteredOrders}
                 onRowClick={(rowData) => onTableRowClick(rowData)}
                 rowStyle={rowStyle}

@@ -48,7 +48,7 @@ export const patientInitialValues: PatientFormValues = {
     first_name_kana: '',
     last_name: '',
     first_name: '',
-    birthday: new Date(1850, 0, 1), //この辺が生年月日の患者が多そうだと推測
+    birthday: new Date(1950, 0, 1), //この辺が生年月日の患者が多そうだと推測
     gender: '',
     karte_number_lsi: '',
     karte_number_smile: '',

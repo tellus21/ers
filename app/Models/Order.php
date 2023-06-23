@@ -29,4 +29,8 @@ class Order extends Model
     {
         return $this->hasOne(Condition::class);
     }
+    public function instruction()
+    {
+        return $this->hasOne(Instruction::class);
+    }
 }

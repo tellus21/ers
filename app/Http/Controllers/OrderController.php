@@ -9,7 +9,16 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with(['user', 'patient', 'patient.homeCareClinic', 'patient.nursingHome', 'condition'])->get();
+        $orders = Order::with([
+            'user',
+            'patient',
+            'patient.homeCareClinic',
+            'patient.nursingHome',
+            'condition',
+            'instruction',
+            'instruction.examinationClinic',
+            'instruction.appointment',
+        ])->get();
         return response()->json($orders);
     }
 

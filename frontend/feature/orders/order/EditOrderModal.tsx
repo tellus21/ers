@@ -181,7 +181,7 @@ export function EditOrderModal({
                             size="sm"
                             onClick={onClickRequestingButton}
                         >
-                            {ProgressStatus.REQUESTING}に戻す
+                            {ProgressStatus.REQUESTING}
                         </Button>
                         <Button
                             color="cyan"
@@ -202,7 +202,7 @@ export function EditOrderModal({
                 <Space h={10} />
                 <Group position="right">
                     <Text size="sm" color="red.6">
-                        ※「保留」「中止」「依頼中に戻す」「予約確定」「依頼者チェック済」ボタンは、クリック直後に反映されます。
+                        ※「保留」「中止」「依頼中」「予約確定」「依頼者チェック済」ボタンは、クリック直後に反映されます。
                         （更新ボタンを押す必要はありません）
                     </Text>
                 </Group>

@@ -1,6 +1,7 @@
 import { useQueryBase } from '@/common/hooks/NormalMutate'
 import { Patient } from '../patients/patientFeature'
 import { User } from '../users/UserFeature'
+import dayjs from 'dayjs'
 
 // ---【Type】---
 export interface Order {
@@ -42,9 +43,15 @@ export function useOrderFeature() {
     // ---【Table】---
     const columns = [
         { accessor: 'id', title: 'id', sortable: true },
-        { accessor: 'is_confirmed', title: '確認済', sortable: true },
+        { accessor: 'is_confirmed', title: '依頼者確認', sortable: true },
         { accessor: 'progress_status', title: '進捗状況', sortable: true },
-        { accessor: 'order_date', title: '依頼日', sortable: true },
+        {
+            accessor: 'created_at',
+            title: '依頼作成日',
+            sortable: true,
+            render: ({ created_at }: { created_at: Date }) =>
+                dayjs(created_at).format('YYYY/MM/DD'),
+        },
         { accessor: 'user.last_name', title: '作成者', sortable: true },
         {
             accessor: 'patient.home_care_clinic.name',
@@ -66,22 +73,34 @@ export function useOrderFeature() {
             title: '警戒レベル',
             sortable: true,
         },
-        { accessor: 'patient.name', title: '患者氏名', sortable: true },
-        //年齢がちゃんと取得できない。。。
-        // {
-        //     accessor: 'patient.birthday',
-        //     title: '年齢',
-        //     render: ({ birthday }: { birthday: Date }) =>
-        //         dayjs(birthday).format('YYYY/MM/DD'),
-        // },
-        // { accessor: 'patient.gender', title: '性別' },
-        // { accessor: 'condition.insurance_type', title: '保険種別' },
-        // { accessor: '', title: '問診票有無' },
-        // { accessor: '', title: '検査施設' },
-        // { accessor: 'patient.exam_karte_number', title: '検査施設ID' },
-        // { accessor: '', title: '検査内容' },
-        // { accessor: '', title: '予約日' },
-        // { accessor: '', title: '検査確定' },
+        {
+            accessor: 'patient.name',
+            title: '患者氏名',
+            sortable: true,
+            render: ({ patient }: { patient: Patient }) =>
+                `${patient.last_name} ${patient.first_name}`,
+        },
+        {
+            accessor: 'patient.age',
+            title: '年齢',
+            sortable: true,
+            render: ({ patient }: { patient: Patient }) => {
+                const age = dayjs().diff(patient.birthday, 'year')
+                return `${age}歳`
+            },
+        },
+        { accessor: 'patient.gender', title: '性別' },
+        { accessor: 'condition.insurance_type', title: '保険種別' },
+        { accessor: '', title: '問診票有無' },
+        { accessor: 'instruction.examination_clinic.name', title: '検査施設' },
+        {
+            accessor:
+                'patient.instruction.appointment.examination_clinic_karte_number',
+            title: '検査施設ID',
+        },
+        { accessor: '', title: '検査内容' },
+        { accessor: '', title: '予約日' },
+        { accessor: '', title: '検査確定' },
     ]
 
     // ---【API】---
