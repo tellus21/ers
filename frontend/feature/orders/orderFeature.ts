@@ -95,21 +95,21 @@ export function useOrderFeature() {
         { accessor: '', title: '問診票有無' },
         { accessor: 'instruction.examination_clinic.name', title: '検査施設' },
         {
-            accessor:
-                'patient.instruction.appointment.examination_clinic_karte_number',
+            accessor: 'instruction.appointment.examination_clinic_karte_number',
             title: '検査施設ID',
         },
-        // { accessor: '', title: '検査内容' },
+        { accessor: 'instruction.content(適当)', title: '検査内容' },
         {
             accessor: 'instruction.appointment.scheduled_confirmation_date',
             title: '予約日',
             sortable: true,
-            render: ({ instruction }) => {
+            render: ({ instruction }: { instruction: any }) => {
                 const date = instruction.appointment.scheduled_confirmation_date
-                return date ? dayjs(date).format('YYYY/MM/DD') : ''
+                const time = instruction.appointment.welcoming_time
+                return date ? `${dayjs(date).format('YYYY/MM/DD')} ${time}` : ''
             },
         },
-        // { accessor: '', title: '検査確定' },
+        { accessor: 'instruction.contact_information', title: '連絡事項' },
     ]
 
     // ---【API】---

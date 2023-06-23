@@ -808,7 +808,7 @@ const contact = [
         },
     },
     {
-        formPath: 'message',
+        formPath: 'contact_information',
         component: 'Textarea',
         props: {
             label: '連絡事項',

@@ -1,6 +1,6 @@
-import { Input } from '@mantine/core'
+import { TextInput } from '@mantine/core'
 import { useId } from '@mantine/hooks'
-import { IMaskInput } from 'react-imask'
+import React from 'react'
 
 interface KarteNumberInputProps {
     form: any
@@ -18,8 +18,19 @@ export function KarteNumberInput({
 }: KarteNumberInputProps) {
     const id = useId()
     return (
-        <Input.Wrapper id={id} {...props} {...form.getInputProps(formPath)}>
-            <Input<any> component={IMaskInput} mask="000000" id={id} />
-        </Input.Wrapper>
+        <TextInput
+            type="number"
+            min="000000"
+            max="999999"
+            step="1"
+            pattern="[0-9]{6}"
+            onKeyDown={(e: React.ChangeEvent<HTMLInputElement>) => {
+                if (e.target.value.length >= 6) {
+                    e.preventDefault()
+                }
+            }}
+            {...props}
+            {...form.getInputProps(formPath)}
+        />
     )
 }
