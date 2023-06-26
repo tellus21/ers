@@ -23,7 +23,6 @@ import { notifications } from '@mantine/notifications'
 import { editedInstructionAtom, editedOrderAtom } from '@/common/contexts'
 import { useDisclosure } from '@mantine/hooks'
 import { CautionOnTheDayLabel } from './components/CautionOnTheDayLabel'
-import { useState } from 'react'
 import { DisplayPickUpTimeList } from './components/DisplayPickUpTimeList'
 
 const useStyles = createStyles((theme) => ({

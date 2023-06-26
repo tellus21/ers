@@ -1,4 +1,4 @@
-export const API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL
+export const API_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL // .env.localに設定
 export const CREATION_VERSION: string = '0.8.5'
 
 export const isNotEmptyErrorMessage = '入力は必須です。'
